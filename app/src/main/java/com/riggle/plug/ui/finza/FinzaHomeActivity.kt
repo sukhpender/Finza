@@ -181,6 +181,8 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         list.add(Drawer(R.drawable.issue_scanner, "Issue Super Tag"))
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))
         list.add(Drawer(R.drawable.change_project, "Change Project"))
+        list.add(Drawer(R.drawable.replace1, "Replacement Flow Process"))
+        list.add(Drawer(R.drawable.vrn, "VRN Flow Process"))
         list.add(Drawer(R.drawable.language, "Language"))
         list.add(Drawer(R.drawable.logout, "Logout"))
         return list

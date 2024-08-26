@@ -22,6 +22,7 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:background="@drawable/round_bottom_app_bg"
+
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
@@ -53,6 +54,279 @@
 
         </LinearLayout>
 
+        <TextView
+            android:id="@+id/tvPhone"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15ssp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:text="Enter Amount ⟨₹⟩"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll1" />
+
+        <EditText
+            android:id="@+id/etAmount"
+            style="@style/EditText.Phone"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:hint="000"
+            android:imeOptions="actionDone"
+            android:inputType="number"
+            android:maxLength="6"
+            android:singleLine="true"
+            app:layout_constraintEnd_toEndOf="@id/tvPhone"
+            app:layout_constraintStart_toStartOf="@id/tvPhone"
+            app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etAmount">
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@drawable/custom_round_stroke_fsm_1"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_7sdp"
+                android:text="₹500"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll1" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_round_stroke_fsm_1"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_7sdp"
+                android:text="₹1000"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll1" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_round_stroke_fsm_1"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_7sdp"
+                android:text="₹2000"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll1" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_round_stroke_fsm_1"
+                android:gravity="center"
+                android:paddingVertical="@dimen/_7sdp"
+                android:text="₹5000"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll1" />
+
+        </LinearLayout>
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvPaymentSummary"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardElevation="@dimen/_2sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            app:cardBackgroundColor="@color/fsm_bg_light_teal"
+            app:cardCornerRadius="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll2">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_10sdp">
+
+                <TextView
+                    android:id="@+id/tv1"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Payment Summary"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_14sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv2"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:text="Total amount"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+                <TextView
+                    android:id="@+id/tv3"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="₹ 500"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv2"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv2" />
+
+                <View
+                    android:id="@+id/v1"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_1sdp"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@color/fsm_bg_teal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv3" />
+
+                <TextView
+                    android:id="@+id/tv4"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="Grand Total"
+                    android:textColor="@color/fsm_bg_teal"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/v1" />
+
+                <TextView
+                    android:id="@+id/tv5"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:fontFamily="@font/inter_semibold"
+                    android:text="₹ 500"
+                    android:textColor="@color/fsm_bg_teal"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv4"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv4" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/ll3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v-> vm.onClick(v)}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:background="@drawable/edit_back_view"
+            android:backgroundTint="@color/fsm_bg_teal"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp">
+
+            <TextView
+                android:id="@+id/tv7"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:layout_marginTop="@dimen/_4sdp"
+                android:text="₹500"
+                android:textColor="@color/fsm_bg_light_teal"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv8"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="Total"
+                android:textColor="@color/fsm_bg_light_teal"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginBottom="@dimen/_4sdp"
+                app:layout_constraintTop_toBottomOf="@+id/tv7"
+                app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tv9"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_medium"
+                android:gravity="center"
+                android:drawableEnd="@drawable/forward_svgrepo_com"
+                android:text="Select payment method"
+                android:drawablePadding="@dimen/_5sdp"
+                android:drawableTint="@color/fsm_bg_light_teal"
+                android:textColor="@color/fsm_bg_light_teal"
+                android:textSize="@dimen/_14sdp"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            app:layout_constraintTop_toBottomOf="@+id/cvPaymentSummary"
+            android:background="@color/fsm_bg_teal"
+            android:layout_marginBottom="@dimen/_10sdp"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

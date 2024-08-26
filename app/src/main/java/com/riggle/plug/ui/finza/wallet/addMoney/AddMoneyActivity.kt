@@ -14,6 +14,7 @@ import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.finza.wallet.WalletActivity
 import com.riggle.plug.ui.finza.wallet.WalletActivityVM
+import com.riggle.plug.ui.finza.wallet.selectPaymentMethod.SelectPaymentMethodActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -51,6 +52,9 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>() {
             when (it?.id) {
                 R.id.iv1 -> {
                     finish()
+                }
+                R.id.ll3 -> { // select payment method
+                startActivity(SelectPaymentMethodActivity.newIntent(this))
                 }
             }
         }
