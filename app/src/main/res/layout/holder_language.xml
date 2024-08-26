@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.Language" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_34sdp"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:foreground="?selectableItemBackground"
+        android:background="@drawable/custom_round_stroke_fsm"
+        android:onClick="@{v-> callback.onItemClick(v,bean,pos)}">
+
+        <TextView
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="center_vertical"
+            android:text="@{bean.englishName}"
+            android:paddingStart="@dimen/_15sdp"
+            android:textColor="@color/line_color"
+            android:textSize="@dimen/_12sdp" />
+
+        <TextView
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_weight="1"
+            android:layout_height="match_parent"
+            android:gravity="end|center_vertical"
+            android:paddingEnd="@dimen/_15sdp"
+            android:text="@{bean.languageName}"
+            android:textColor="@color/line_color"
+            android:textSize="@dimen/_12sdp" />
+
+
+    </LinearLayout>
+
+</layout>

@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.Result" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_7sdp">
+
+        <androidx.cardview.widget.CardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_marginTop="@dimen/_3sdp"
+            app:cardBackgroundColor="@color/line_color"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="@dimen/_4sdp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginBottom="@dimen/_2sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="0dp"
+                app:cardPreventCornerOverlap="false"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal">
+
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:id="@+id/ivBrands"
+                            setImageWithFullUrl="@{bean.brand.image}"
+                            android:layout_width="@dimen/_48sdp"
+                            android:layout_height="@dimen/_48sdp"
+                            android:layout_marginStart="@dimen/_14sdp"
+                            android:layout_marginTop="@dimen/_8sdp"
+                            android:contentDescription="@string/todo"
+                            android:scaleType="centerCrop"
+                            app:shapeAppearanceOverlay="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                        <TextView
+                            style="@style/TextView.PoppinsRegular_12ssp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:layout_marginStart="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_5sdp"
+                            android:gravity="center_vertical"
+                            android:hint="Sukhi"
+                            android:paddingEnd="@dimen/_10sdp"
+                            android:singleLine="true"
+                            android:text="@{bean.brand.name}"
+                            android:textColor="@color/dark_grey_txt_color"
+                            android:textColorHint="@color/dark_grey_txt_color_60"
+                            android:textSize="@dimen/_14ssp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginVertical="@dimen/_12sdp"
+                        android:orientation="horizontal"
+                        android:weightSum="4">
+
+                        <LinearLayout
+                            android:id="@+id/llMyBrandProducts"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/_14sdp"
+                                android:layout_height="@dimen/_14sdp"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_box_product" />
+
+                            <TextView
+                                style="@style/TextView.PoppinsMedium"
+                                android:layout_marginStart="@dimen/_1sdp"
+                                android:text="@string/product"
+                                android:textColor="@color/line_color" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llMyBrandRate"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/_13sdp"
+                                android:layout_height="@dimen/_11sdp"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_rate" />
+
+                            <TextView
+                                style="@style/TextView.PoppinsMedium"
+                                android:layout_marginStart="@dimen/_1sdp"
+                                android:fontFamily="@font/poppins_medium"
+                                android:gravity="center"
+                                android:text="@string/rate"
+                                android:textColor="@color/line_color" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llMyBrandNetwork"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/_13sdp"
+                                android:layout_height="@dimen/_13sdp"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_network" />
+
+                            <TextView
+                                style="@style/TextView.PoppinsMedium"
+                                android:layout_marginStart="@dimen/_1sdp"
+                                android:text="@string/network"
+                                android:textColor="@color/line_color" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/llMyBrandOffers"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:layout_weight="1"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="@dimen/_13sdp"
+                                android:layout_height="@dimen/_13sdp"
+                                android:contentDescription="@string/todo"
+                                android:src="@drawable/ic_offer" />
+
+                            <TextView
+                                style="@style/TextView.PoppinsMedium"
+                                android:layout_marginStart="@dimen/_1sdp"
+                                android:text="@string/offers"
+                                android:textColor="@color/offer_txt_color" />
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </androidx.cardview.widget.CardView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

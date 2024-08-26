@@ -1,0 +1,127 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.ResultSalesLocation" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="@dimen/_28sdp"
+            android:layout_height="@dimen/_28sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/location_with_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/TextView.PoppinsMedium"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:hint="-"
+            setAlphabet="@{pos}"
+            android:textColor="@color/line_color"
+            android:textColorHint="@color/line_color"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv1"
+            app:layout_constraintStart_toEndOf="@+id/iv1"
+            app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:text='@{",  "+bean.distance+" km"}'
+            android:textColor="@color/dark_grey_txt_color"
+            android:textColorHint="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+        <TextView
+            android:id="@+id/tv3"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="0dp"
+            android:text="@{bean.created_at}"
+            setStartTime="@{bean.timestamp}"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textColorHint="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_12ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv2"
+            app:layout_constraintEnd_toStartOf="@+id/tv2"
+            app:layout_constraintTop_toTopOf="@+id/tv2" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:background="@color/dark_grey_txt_color10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/iv1" />
+
+        <TextView
+            android:id="@+id/tv4"
+            style="@style/TextView.PoppinsMedium"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:text="@string/location"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintStart_toStartOf="@+id/iv1"
+            app:layout_constraintTop_toBottomOf="@+id/view" />
+
+        <TextView
+            android:id="@+id/tv5"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:hint="-"
+            getAddress="@{bean}"
+            android:paddingEnd="@dimen/_10sdp"
+            android:textColor="@color/dark_grey_txt_color_60"
+            android:textColorHint="@color/dark_grey_txt_color_60"
+            android:textSize="@dimen/_10ssp"
+            app:layout_constraintStart_toStartOf="@+id/tv4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv4" />
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/dark_grey_txt_color_60"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv5" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

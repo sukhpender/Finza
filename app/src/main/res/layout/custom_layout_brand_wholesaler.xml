@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.WholeSaler" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/ic_white">
+
+        <ImageView
+            android:id="@+id/ivNetworkWholeSaler"
+            android:layout_width="@dimen/_44sdp"
+            android:layout_height="@dimen/_44sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:contentDescription="@string/todo"
+            android:src="@drawable/user"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvNetworkWholeSalerName"
+            style="@style/TextView.PoppinsMedium"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@{bean.wholesalerName}"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivNetworkWholeSaler"
+            app:layout_constraintStart_toEndOf="@+id/ivNetworkWholeSaler"
+            app:layout_constraintTop_toTopOf="@+id/ivNetworkWholeSaler" />
+
+        <TextView
+            android:id="@+id/tvNetworkWholeSalerId"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:text="8000000012"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toEndOf="@+id/ivNetworkWholeSaler"
+            app:layout_constraintTop_toBottomOf="@+id/tvNetworkWholeSalerName" />
+
+        <TextView
+            android:id="@+id/tvNetworkWholeSalerDirectCP"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:text="Direct CP"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="@+id/ivNetworkWholeSaler"
+            app:layout_constraintTop_toBottomOf="@+id/ivNetworkWholeSaler" />
+
+        <TextView
+            android:id="@+id/tvNetworkWholeSalerDirectCPValue"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:text="-"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="@+id/tvNetworkWholeSalerDirectCP"
+            app:layout_constraintTop_toBottomOf="@+id/tvNetworkWholeSalerDirectCP" />
+
+        <TextView
+            android:id="@+id/tvNetworkWholeSalerInDirectCP"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:text="Indirect CP"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toStartOf="@+id/ivWholeSalerArrow"
+            app:layout_constraintStart_toEndOf="@+id/tvNetworkWholeSalerDirectCP"
+            app:layout_constraintTop_toBottomOf="@+id/ivNetworkWholeSaler" />
+
+        <TextView
+            android:id="@+id/tvNetworkWholeSalerIndirectCPValue"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:text="-"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvNetworkWholeSalerInDirectCP"
+            app:layout_constraintTop_toBottomOf="@+id/tvNetworkWholeSalerInDirectCP" />
+
+        <ImageView
+            android:id="@+id/ivWholeSalerArrow"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:padding="@dimen/_6sdp"
+            android:rotation="270"
+            android:src="@drawable/ic_spinner_arrow"
+            android:visibility="invisible"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvNetworkWholeSalerInDirectCP" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_grey_txt_color20"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

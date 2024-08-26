@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.channelPartner.remarks.RemarksFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.channelPartner.remarks.RemarksFragment">
+
+        <include
+            android:id="@+id/headerRemarks"
+            layout="@layout/header_back_with_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
+
+        <TextView
+            android:id="@+id/tvSelectDateRemark"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:background="@drawable/custom_black_border"
+            android:drawablePadding="@dimen/_15sdp"
+            android:enabled="false"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_5sdp"
+            android:text="@string/select_date"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_10ssp"
+            app:drawableEndCompat="@drawable/ic_calender"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerRemarks" />
+
+        <LinearLayout
+            android:id="@+id/llNoDataFoundRemarksCP"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectDateRemark">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_freepik_folder" />
+
+            <TextView
+                android:id="@+id/tvNetworkUserName"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/no_data"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNetworkOrderTypes" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvRemarks"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:overScrollMode="never"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/tvSelectDateRemark"
+            tools:listitem="@layout/custom_layout_remarks" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

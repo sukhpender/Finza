@@ -1,0 +1,274 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.OwnOrderDetailsResponseModel" />
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.orders.cancelled.OwnCancelledOrderDetailsFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/headerOrderDetails"
+            layout="@layout/header_back_with_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@+id/llTotalAmount"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerOrderDetails">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@color/white"
+                android:paddingHorizontal="@dimen/_15sdp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/headerNetworkOrderDetails">
+
+                <TextView
+                    android:id="@+id/tvNetworkUserName"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="0dp"
+                    android:singleLine="true"
+                    android:text="@{bean.buyer.name}"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvNetworkUserAddress"
+                    style="@style/TextView.PoppinsMedium"
+                    android:drawablePadding="@dimen/_4sdp"
+                    android:text="@string/address"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:drawableStartCompat="@drawable/ic_location"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@id/tvNetworkUserName" />
+
+                <TextView
+                    android:id="@+id/tvNetworkUserAddressValue"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:maxLines="2"
+                    android:text="@{bean.buyer.full_address}"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNetworkUserAddress" />
+
+                <TextView
+                    android:id="@+id/tvOrderID"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/order_id"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNetworkUserAddressValue" />
+
+                <TextView
+                    android:id="@+id/tvOrderIDValue"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@{bean.code}"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvOrderID"
+                    app:layout_constraintStart_toEndOf="@+id/tvOrderID"
+                    app:layout_constraintTop_toTopOf="@+id/tvOrderID" />
+
+                <TextView
+                    android:id="@+id/tvGstNumber"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/gst_number"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvOrderID" />
+
+                <TextView
+                    android:id="@+id/tvGstNumberValue"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:text="@{bean.buyer_gst}"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_12ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvGstNumber"
+                    app:layout_constraintStart_toEndOf="@+id/tvGstNumber"
+                    app:layout_constraintTop_toTopOf="@+id/tvGstNumber" />
+
+                <View
+                    android:id="@+id/view1"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/_30sdp"
+                    android:background="@color/dark_grey_txt_color20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvGstNumber" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvOwnOrderDetailsType2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:nestedScrollingEnabled="false"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toTopOf="@+id/view2"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view1"
+                    tools:listitem="@layout/custom_layout_cancelled__order_details" />
+
+                <View
+                    android:id="@+id/view2"
+                    android:layout_width="match_parent"
+                    android:layout_height="2dp"
+                    android:layout_marginTop="@dimen/_18sdp"
+                    app:layout_constraintBottom_toTopOf="@+id/tvPurchase"
+                    android:background="@color/dark_grey_txt_color20"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvOwnOrderDetailsType2" />
+
+                <TextView
+                    android:id="@+id/tvPurchase"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_marginTop="@dimen/_20sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/purchase_order_value"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/view2" />
+
+                <TextView
+                    android:id="@+id/tvPurchaseValue"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:text='@{"₹ "+ String.valueOf(bean.product_amount)}'
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvPurchase" />
+
+                <TextView
+                    android:id="@+id/tvAddOnDiscount"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/add_on_discount"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvPurchaseValue" />
+
+                <TextView
+                    android:id="@+id/tvAddOnDiscountValue"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:text='@{"₹ "+ String.valueOf(bean.total_cart_discount_amount)}'
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvAddOnDiscount" />
+
+                <TextView
+                    android:id="@+id/tvNetPaidAmount"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:fontFamily="@font/poppins_regular"
+                    android:text="@string/net_paid_amt"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvAddOnDiscount" />
+
+                <TextView
+                    android:id="@+id/tvNetPaidAmountValue"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:text='@{"₹ "+ String.valueOf(bean.final_bill_value)}'
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvNetPaidAmount" />
+
+                <TextView
+                    android:id="@+id/tvCancelReason"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_marginTop="@dimen/_16sdp"
+                    android:text="Cancellation reason - Shop closed"
+                    android:textColor="@color/cancel_reason_color"
+                    android:textSize="@dimen/_13ssp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNetPaidAmount" />
+
+               <!-- <View
+                    android:id="@+id/view3"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_80sdp"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tvCancelReason" />-->
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <LinearLayout
+            android:id="@+id/llTotalAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color1"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:text="@string/total_amount"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:text='@{"₹ "+ String.valueOf(bean.product_amount)}'
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

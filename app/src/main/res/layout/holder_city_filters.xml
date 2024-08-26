@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.District" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{v-> callback.onItemClick(v,bean,pos)}">
+
+        <androidx.appcompat.widget.AppCompatCheckBox
+            android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:text="@{bean.district_name}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:buttonTint="@color/line_color"
+            android:textColor="@color/dark_grey_txt_color"
+            android:hint="Channel Partner"
+            android:textSize="@dimen/_12ssp" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.myBrands.network.NetworkFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/headerProductNetwork"
+            layout="@layout/header_with_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvNetworkLink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="horizontal"
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/headerProductNetwork"
+            tools:listitem="@layout/custom_layout_network_link" />
+
+        <LinearLayout
+            android:id="@+id/llManufacturer"
+            android:layout_width="fill_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/custom_top_round_corners"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvNetworkLink">
+
+            <TextView
+                android:id="@+id/tvNetworkManufacturer"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="match_parent"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:gravity="center"
+                android:text="@string/manufacturer"
+                android:textSize="@dimen/_16ssp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/dark_grey_txt_color20"
+                android:visibility="gone" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:background="@drawable/ic_gradient">
+
+                <ImageView
+                    android:id="@+id/ivNetworkManufacturer"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginTop="@dimen/_12sdp"
+                    android:contentDescription="@string/todo"
+                    android:src="@drawable/sr"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tvNetworkManufacturerName"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:fontFamily="@font/poppins_semibold"
+                    android:text="-"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_14ssp"
+                    app:layout_constraintBottom_toBottomOf="@+id/ivNetworkManufacturer"
+                    app:layout_constraintStart_toEndOf="@+id/ivNetworkManufacturer"
+                    app:layout_constraintTop_toTopOf="@+id/ivNetworkManufacturer" />
+
+                <TextView
+                    android:id="@+id/tvNetworkManufacturerId"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_marginStart="@dimen/_16sdp"
+                    android:layout_marginTop="@dimen/_6sdp"
+                    android:text="-"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toEndOf="@+id/ivNetworkManufacturer"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNetworkManufacturerName" />
+
+                <TextView
+                    android:id="@+id/tvNetworkManufacturerDirectCP"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_marginTop="@dimen/_22sdp"
+                    android:text="Direct CP"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="@+id/ivNetworkManufacturer"
+                    app:layout_constraintTop_toBottomOf="@+id/ivNetworkManufacturer" />
+
+                <TextView
+                    android:id="@+id/tvNetworkManufacturerDirectCPValue"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintStart_toStartOf="@+id/tvNetworkManufacturerDirectCP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNetworkManufacturerDirectCP" />
+
+                <TextView
+                    android:id="@+id/tvNetworkManufacturerInDirectCP"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_marginTop="@dimen/_22sdp"
+                    android:text="Indirect CP"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/tvNetworkManufacturerSalesPerson"
+                    app:layout_constraintStart_toEndOf="@+id/tvNetworkManufacturerDirectCP"
+                    app:layout_constraintTop_toBottomOf="@+id/ivNetworkManufacturer" />
+
+                <TextView
+                    android:id="@+id/tvNetworkManufacturerIndirectCPValue"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvNetworkManufacturerInDirectCP"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNetworkManufacturerInDirectCP" />
+
+                <TextView
+                    android:id="@+id/tvNetworkManufacturerSalesPerson"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_marginTop="@dimen/_22sdp"
+                    android:text="Salesperson"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintEnd_toStartOf="@+id/ivManufacturerArrow"
+                    app:layout_constraintStart_toEndOf="@+id/tvNetworkManufacturerInDirectCP"
+                    app:layout_constraintTop_toBottomOf="@+id/ivNetworkManufacturer" />
+
+                <TextView
+                    android:id="@+id/tvNetworkManufacturerSalesPersonValue"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_marginTop="@dimen/_3sdp"
+                    android:layout_marginBottom="@dimen/_10sdp"
+                    android:hint="-"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_11ssp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="@+id/tvNetworkManufacturerSalesPerson"
+                    app:layout_constraintTop_toBottomOf="@+id/tvNetworkManufacturerSalesPerson" />
+
+                <ImageView
+                    android:id="@+id/ivManufacturerArrow"
+                    android:layout_width="@dimen/_25sdp"
+                    android:layout_height="@dimen/_25sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="-5dp"
+                    android:contentDescription="@string/todo"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v -> vm.onClick(v)}"
+                    android:padding="@dimen/_8sdp"
+                    android:rotation="270"
+                    android:src="@drawable/ic_spinner_arrow"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/ivNetworkManufacturer"
+                    app:layout_constraintTop_toTopOf="@+id/tvNetworkManufacturerDirectCP" />
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:background="@color/dark_grey_txt_color20"
+                    android:visibility="gone"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <!--                <androidx.recyclerview.widget.RecyclerView
+                                android:id="@+id/rvNetworkManufacturer"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginTop="@dimen/_12sdp"
+                                android:overScrollMode="never"
+                                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                                tools:listitem="@layout/custom_layout_brand_manufacturer" />-->
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llDistributor"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/custom_top_round_corners"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/rvNetworkLink">
+
+            <TextView
+                android:id="@+id/tvNetworkDistributor"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="@dimen/_220sdp"
+                android:layout_marginTop="@dimen/_12sdp"
+                android:gravity="center"
+                android:text="@string/buyers"
+                android:textSize="@dimen/_16ssp" />
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@color/dark_grey_txt_color20"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvNetworkDistributor"
+                android:layout_width="match_parent"
+                android:layout_height="fill_parent"
+                android:layout_marginTop="@dimen/_12sdp"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                tools:listitem="@layout/custom_layout_brand_distributor" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

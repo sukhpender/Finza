@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.DeliveryRatioResponseModel" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_10sdp"
+        android:background="@color/white">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clNetworkRatio"
+            android:layout_width="@dimen/_43sdp"
+            android:layout_height="@dimen/_43sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.mikhaellopez.circularprogressbar.CircularProgressBar
+                android:id="@+id/circularProgressBar"
+                android:layout_width="@dimen/_43sdp"
+                android:layout_height="@dimen/_43sdp"
+                android:elevation="@dimen/_10sdp"
+                app:cpb_background_progressbar_color="@color/white"
+                app:cpb_background_progressbar_width="3dp"
+                app:cpb_progress_direction="to_right"
+                app:cpb_progressbar_color="@color/line_color"
+                setProgress="@{bean.percentage}"
+                app:cpb_progressbar_width="7dp"
+                app:cpb_round_border="false"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="@dimen/_30sdp"
+                android:layout_height="@dimen/_30sdp"
+                android:background="@drawable/white_circle"
+                android:backgroundTint="@color/pb_bg_color"
+                android:gravity="center"
+                android:includeFontPadding="false"
+                android:text='@{bean.percentage+"%"}'
+                android:textColor="@color/line_color"
+                android:textSize="@dimen/_7ssp"
+                app:layout_constraintBottom_toBottomOf="@id/circularProgressBar"
+                app:layout_constraintEnd_toEndOf="@id/circularProgressBar"
+                app:layout_constraintStart_toStartOf="@id/circularProgressBar"
+                app:layout_constraintTop_toTopOf="@id/circularProgressBar"
+
+                />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <TextView
+            android:id="@+id/tvNetOrder"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="@{bean.orderType}"
+            android:textColor="@color/dark_grey_txt_color"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toEndOf="@+id/clNetworkRatio"
+            app:layout_constraintTop_toTopOf="@+id/clNetworkRatio" />
+
+        <com.mackhartley.roundedprogressbar.RoundedProgressBar
+            android:id="@+id/pbHome"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_4sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/clNetworkRatio"
+            app:layout_constraintStart_toStartOf="@+id/tvNetOrder"
+            app:layout_constraintTop_toBottomOf="@+id/tvNetOrder"
+            app:rpbBackgroundColor="@color/dark_grey_txt_color20"
+            app:layout_constraintEnd_toStartOf="@+id/tvNetOrderPerc"
+            app:rpbBackgroundTextColor="@color/white"
+            app:rpbCornerRadius="@dimen/_5sdp"
+            app:rpbProgress="75"
+            app:rpbProgressColor="@color/line_color"
+            app:rpbShowProgressText="true"
+            app:rpbTextSize="0dp" />
+
+        <TextView
+            android:id="@+id/tvNetOrderPerc"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:text="%"
+            android:textColor="@color/dark_grey_txt_color"
+            android:layout_marginEnd="@dimen/_3sdp"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/clNetworkRatio"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginBottom="@dimen/_4sdp"/>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

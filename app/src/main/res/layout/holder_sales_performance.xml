@@ -1,0 +1,140 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.SalesPerformanceResponseModel" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+<!--        android:visibility="@{pos==0?View.GONE:View.VISIBLE}"-->
+        <View
+            android:id="@+id/v1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:background="@color/dark_grey_txt_color10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_8sdp"
+            android:gravity="start"
+            android:orientation="horizontal"
+            android:weightSum="10.5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v1">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_weight="4">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv1"
+                    setImageWithFullUrl="@{bean.image}"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:scaleType="centerCrop"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text="@{bean.full_name}"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_7sdp"
+                    app:layout_constraintStart_toEndOf="@+id/iv1"
+                    app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:text='@{"("+bean.designation_name+")"}'
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_6sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv1"
+                    app:layout_constraintStart_toEndOf="@+id/iv1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@{String.valueOf(bean.total_count)}"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_7sdp" />
+
+            <TextView
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text="@{String.valueOf(bean.productive_count)}"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_7sdp" />
+
+            <TextView
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_weight="1.5"
+                amountSorting6="@{bean.orders_revenue}"
+                android:gravity="center"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_7sdp" />
+
+            <TextView
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_weight="2"
+                android:gravity="center"
+                android:text='@{String.valueOf(bean.distance_travelled)+" km"}'
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_7sdp" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

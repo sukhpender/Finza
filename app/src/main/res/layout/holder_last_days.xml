@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View"/>
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.HomeInsightsLastDaysResponseModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.helper.widget.Flow
+            android:id="@+id/flow"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border2"
+            android:orientation="horizontal"
+            app:constraint_referenced_ids="tvRateProductName,tvRateProductUnit,tvRateProductMrp,tvRateProductSSRate,tvRateProductSSMOQ,tvRateProductSSMargin,tvRateProductDisRate,tvRateProductDisMOQ"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tvRateProductName"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_109sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:gravity="center"
+            android:singleLine="true"
+            setLastOrderDate1="@{bean.day}"
+            android:textColor="@color/dark_grey_txt_color_80" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateProductName"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvRateProductName" />
+
+        <TextView
+            android:id="@+id/tvRateProductUnit"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:text="@{String.valueOf(bean.total_visits)}"
+            android:textColor="@color/dark_grey_txt_color_80" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateProductUnit"
+            app:layout_constraintStart_toStartOf="@+id/tvRateProductUnit"
+            app:layout_constraintTop_toTopOf="@+id/tvRateProductUnit" />
+
+        <TextView
+            android:id="@+id/tvRateProductMrp"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:gravity="center"
+            android:text="@{String.valueOf(bean.orders_count)}"
+            android:textColor="@color/dark_grey_txt_color_80" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateProductMrp"
+            app:layout_constraintStart_toStartOf="@+id/tvRateProductMrp"
+            app:layout_constraintTop_toTopOf="@+id/tvRateProductMrp" />
+
+        <TextView
+            android:id="@+id/tvRateProductSSRate"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_8sdp"
+            setInsightsPieValues="@{bean.orders_revenue}"
+            android:textColor="@color/line_color" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateProductSSRate"
+            app:layout_constraintStart_toStartOf="@+id/tvRateProductSSRate"
+            app:layout_constraintTop_toTopOf="@+id/tvRateProductSSRate" />
+
+        <TextView
+            android:id="@+id/tvRateProductSSMOQ"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_8sdp"
+            setInsightsPieValues="@{bean.aov}"
+            android:textColor="@color/line_color" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateProductSSMOQ"
+            app:layout_constraintStart_toStartOf="@+id/tvRateProductSSMOQ"
+            app:layout_constraintTop_toTopOf="@+id/tvRateProductSSMOQ" />
+
+        <TextView
+            android:id="@+id/tvRateProductSSMargin"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:text="@{String.valueOf(bean.beats_count)}"
+            android:textColor="@color/dark_grey_txt_color_80" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateProductSSMargin"
+            app:layout_constraintStart_toStartOf="@+id/tvRateProductSSMargin"
+            app:layout_constraintTop_toTopOf="@+id/tvRateProductSSMargin" />
+
+        <TextView
+            android:id="@+id/tvRateProductDisRate"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:text="@{String.valueOf(bean.total_retailers)}"
+            android:textColor="@color/dark_grey_txt_color_80" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateProductDisRate"
+            app:layout_constraintStart_toStartOf="@+id/tvRateProductDisRate"
+            app:layout_constraintTop_toTopOf="@+id/tvRateProductDisRate" />
+
+        <TextView
+            android:id="@+id/tvRateProductDisMOQ"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_80sdp"
+            android:layout_height="@dimen/_35sdp"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:text="@{String.valueOf(bean.pending_retailers)}"
+            android:textColor="@color/dark_grey_txt_color_80" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="0dp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintBottom_toBottomOf="@+id/tvRateProductDisMOQ"
+            app:layout_constraintStart_toStartOf="@+id/tvRateProductDisMOQ"
+            app:layout_constraintTop_toTopOf="@+id/tvRateProductDisMOQ" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

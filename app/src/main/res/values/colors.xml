@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="purple_200">#FB8C00</color>
+    <color name="purple_500">#FB8C00</color>
+    <color name="purple_700">#FB8C00</color>
+    <color name="teal_200">#FB8C00</color>
+    <color name="teal_700">#FB8C00</color>
+    <color name="fsm_bg_light_teal">#E0F2F1</color>
+    <color name="fsm_bg_light_teal60">#F5E0F2F1</color>
+    <color name="fsm_bg_light_teal60_1">#99E0F2F1</color>
+    <color name="fsm_text_color">#424242</color>
+    <color name="fsm_text_color60">#99424242</color>
+    <color name="fsm_text_color80">#CC424242</color>
+    <color name="line_color">#FB8C00</color>
+    <color name="fsm_bg_teal">#00897B</color>
+
+
+
+
+    <color name="black">#000000</color>
+    <color name="black_54">#8A000000</color>
+    <color name="white">#ffffff</color>
+    <color name="white90">#E6FFFFFF</color>
+    <color name="app_color">#F57E3B</color>
+    <color name="dark_grey">#626262</color>
+    <color name="dark_grey_txt_color">#263238</color>
+    <color name="colorGreyTrackingStatus">#dfdfdf</color>
+
+    <color name="dark_grey_txt_color15">#26263238</color>
+    <color name="dark_grey_txt_color50">#80263238</color>
+    <color name="dark_grey_txt_color10">#1A263238</color>
+    <color name="dark_grey_txt_color2">#03263238</color>
+    <color name="dark_grey_txt_color20">#33263238</color>
+    <color name="dark_grey_txt_color35">#59263238</color>
+    <color name="dark_grey_txt_color_80">#CC263238</color>
+    <color name="divider">#DEDEDE</color>
+    <color name="black_theme">#2A3436</color>
+    <color name="color_CED6E0">#CED6E0</color>
+    <color name="color_42ADE2">#42ADE2</color>
+    <color name="loader_color">#66C9C9C9</color>
+
+    <color name="dark_grey_txt_color_50">#80263238</color>
+    <color name="dark_grey_txt_color_20">#33263238</color>
+    <color name="color_D9AE56">#D9AE56</color>
+    <color name="color_CF9723">#CF9723</color>
+    <color name="dark_grey_txt_color_60">#99263238</color>
+    <color name="offer_txt_color">#F0AD00</color>
+    <color name="offer_txt_color15">#26F0AD00</color>
+    <color name="text_color_333333">#333333</color>
+    <color name="edit_back_color">#F3F0FF</color>
+    <color name="deactive">#C7C7C7</color>
+
+    <color name="offer_txt_color80">#CCF0AD00</color>
+    <color name="offer_txt_color55">#8CF0AD00</color>
+    <color name="offer_txt_color5">#0DF0AD00</color>
+    <color name="offer_txt_color10">#1AF0AD00</color>
+    <color name="offer_txt_color1">#03F0AD00</color>
+    <color name="line_color_30">#4DFC8C4D</color>
+    <color name="line_color_25">#40FC8C4D</color>
+    <color name="orange">#FC8C4D</color>
+    <color name="line_color8_trans">#fff6f1</color>
+    <color name="line_color80">#CCFC8C4D</color>
+    <color name="line_color10">#1AFC8C4D</color>
+    <color name="line_color20">#33FC8C4D</color>
+    <color name="line_color50">#80FC8C4D</color>
+    <color name="line_color8">#26FC8C4D</color>
+    <color name="line_color3">#12FC8C4D</color>
+    <color name="voilet_color">#A29FFF</color>
+    <color name="voilet_color80">#CCA29FFF</color>
+    <color name="voilet_color10">#1AA29FFF</color>
+    <color name="voilet_color55">#8CA29FFF</color>
+    <color name="trans">#00000000</color>
+    <color name="voilet20">#338222FC</color>
+    <color name="voilet80">#CC8222FC</color>
+    <color name="address_color">#b4babb</color>
+    <color name="voilet_dark_color">#8222FC</color>
+    <color name="yellow1">#ffc035</color>
+    <color name="bg_color_orders">#ffe7b3</color>
+    <color name="bg_color_orders_completed">#cfe0fd</color>
+    <color name="bg_color_orders_confirmed">#bbf8b9</color>
+    <color name="text_color_orders_completed">#7aa9f8</color>
+    <color name="text_color_orders_confirmed">#50ed4d</color>
+    <color name="text_color_orders_cancelled">#f84157</color>
+    <color name="bg_color_orders_cancelled">#f5bbc1</color>
+    <color name="cancel_reason_color">#f20c0c</color>
+    <color name="bg_color1">#D4D6D7</color>
+    <color name="red_color_3">#F20A0A</color>
+    <color name="red_color_1">#ed7168</color>
+    <color name="red_color_2">#ea5a52</color>
+    <color name="bar_text_color">#99898989</color>
+    <color name="light_green_color">#def6da</color>
+    <color name="green_color_text">#2EC315</color>
+    <color name="light_red_color">#FDEAE9</color>
+    <color name="light_red_color40">#66FDEAE9</color>
+    <color name="pb_bg_color">#515b60</color>
+    <color name="layout_bg">#f6f6f6</color>
+    <color name="pending">#39CEF3</color>
+    <color name="pending90">#E639CEF3</color>
+    <color name="pending10">#1A39CEF3</color>
+
+    <color name="pending_color">#3C9DD9</color>
+    <color name="pending_color_20">#333C9DD9</color>
+    <color name="rejected">#FF391E</color>
+    <color name="rejected_20">#33FF391E</color>
+
+    <color name="title_textColor">#1e1e1e</color>
+    <color name="title_backgroundColor">@color/transparent</color>
+    <color name="title_monthChangeButtonTint">@color/black</color>
+
+    <color name="weekDay_backgroundColor">@color/transparent</color>
+    <color name="weekDay_textColor">@color/black</color>
+
+    <color name="day_textColor_currentDay">#0000ff</color>
+
+    <color name="day_textColor_disabled">#aaffffff</color>
+    <color name="day_backgroundColor_disabled">#44010508</color>
+
+    <color name="day_textColor_enabled">@color/black</color>
+    <color name="day_backgroundColor_enabled">@color/white</color>
+
+    <color name="selectedDay_backgroundColor">@color/dark_grey</color>
+    <color name="selectedDay_textColor">@color/white</color>
+
+</resources>

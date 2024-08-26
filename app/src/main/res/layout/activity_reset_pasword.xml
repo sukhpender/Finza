@@ -1,0 +1,176 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="resend"
+            type="String" />
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.resetPassword.ResetPaswordActivityVM" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:background="@drawable/round_bottom_app_bg"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:id="@+id/ivBackResetPassword"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/fsm_bg_light_teal" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:text="Reset Password"
+                android:textColor="@color/fsm_bg_light_teal"
+                android:textSize="@dimen/_16sdp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/bgView"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_60sdp"
+            android:background="@color/white"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvOldPass"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_25ssp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:text="Old Password*"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/bgView" />
+
+        <EditText
+            android:id="@+id/etvOldPassword"
+            style="@style/EditText.Phone"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Old Password"
+            android:imeOptions="actionDone"
+            android:inputType="phone"
+            android:maxLength="10"
+            app:layout_constraintEnd_toEndOf="@id/tvOldPass"
+            app:layout_constraintStart_toStartOf="@id/tvOldPass"
+            app:layout_constraintTop_toBottomOf="@+id/tvOldPass" />
+
+        <TextView
+            android:id="@+id/tvNewPass"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_25ssp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:text="New Password*"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etvOldPassword" />
+
+        <EditText
+            android:id="@+id/etNewPassword"
+            style="@style/EditText.Phone"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:hint="Enter New Password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="10"
+            app:layout_constraintEnd_toEndOf="@id/tvNewPass"
+            app:layout_constraintStart_toStartOf="@id/tvNewPass"
+            app:layout_constraintTop_toBottomOf="@+id/tvNewPass" />
+
+        <TextView
+            android:id="@+id/tvConfirmPass"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_25ssp"
+            android:layout_marginEnd="@dimen/_16sdp"
+            android:text="Confirm New Password*"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etNewPassword" />
+
+        <EditText
+            android:id="@+id/etConfirmPassword"
+            style="@style/EditText.Phone"
+            android:layout_width="0dp"
+            android:layout_marginTop="8dp"
+            android:hint="Enter Confirm Password"
+            android:imeOptions="actionDone"
+            android:inputType="textPassword"
+            android:maxLength="10"
+            app:layout_constraintEnd_toEndOf="@id/tvConfirmPass"
+            app:layout_constraintStart_toStartOf="@id/tvConfirmPass"
+            app:layout_constraintTop_toBottomOf="@+id/tvConfirmPass" />
+
+        <TextView
+            android:id="@+id/tvSave"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_45sdp"
+            android:layout_marginTop="@dimen/_65sdp"
+            android:background="@drawable/edit_back_view"
+            android:backgroundTint="@color/line_color"
+            android:fontFamily="@font/inter_semibold"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{v->vm.onClick(v)}"
+            android:text="Reset"
+            android:textColor="@color/fsm_bg_light_teal"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etConfirmPassword" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

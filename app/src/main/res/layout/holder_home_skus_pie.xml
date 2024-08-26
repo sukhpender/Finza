@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.SubCategory1" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/_7sdp">
+
+<!--        -->
+        <androidx.appcompat.widget.AppCompatImageView
+            android:id="@+id/ivCircle"
+            android:layout_width="@dimen/_15sdp"
+            image_tint1="@{bean}"
+            android:layout_height="@dimen/_15sdp"
+            android:src="@drawable/white_circle"
+            android:tint="@color/black"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:text="@{bean.sub_category}"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintEnd_toStartOf="@+id/tvPercentage"
+            app:layout_constraintStart_toEndOf="@+id/ivCircle"
+            app:layout_constraintTop_toTopOf="@+id/ivCircle" />
+
+<!--        android:text='@{String.valueOf(bean.percentage_revenue)+"%"}'-->
+        <TextView
+            android:id="@+id/tvPercentage"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            setInsightsPieValues1="@{bean.total_revenue}"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_9sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivCircle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/ivCircle" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>

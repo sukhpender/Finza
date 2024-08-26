@@ -1,0 +1,138 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.home.sales.myCps.MyCPsFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <include
+            android:id="@+id/headerMyCps"
+            layout="@layout/header_with_back"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <View
+            android:id="@+id/v1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/divider"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerMyCps" />
+
+        <LinearLayout
+            android:id="@+id/llHeadings"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:weightSum="2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v1">
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_weight="0.6"
+                android:gravity="center"
+                android:text="@string/name"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_14sdp" />
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:layout_weight="1.4"
+                android:gravity="end"
+                android:paddingEnd="@dimen/_8sdp"
+                android:text="@string/target_vs_achievement"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_14sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            android:weightSum="3"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llHeadings">
+
+            <TextView
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1.4"
+                android:backgroundTint="@color/offer_txt_color15"
+                android:gravity="center_horizontal"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="0.8"
+                android:background="@drawable/btn_rounded_corner_3dp"
+                android:backgroundTint="@color/line_color20"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:text="@string/target"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_10sdp"
+                android:layout_weight="0.8"
+                android:background="@drawable/btn_rounded_corner_3dp"
+                android:backgroundTint="@color/line_color20"
+                android:gravity="center_horizontal"
+                android:paddingTop="@dimen/_3sdp"
+                android:paddingBottom="@dimen/_3sdp"
+                android:text="@string/achieved"
+                android:textSize="@dimen/_10sdp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/v2"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll2"
+            android:background="@color/divider"
+            />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_1sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/v2"
+            android:id="@+id/rvMyCPs"
+            tools:listitem="@layout/holder_my_cps"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

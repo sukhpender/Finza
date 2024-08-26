@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.base.BaseViewModel" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <ImageView
+            android:id="@+id/ivHeaderBack"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:contentDescription="@string/todo"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v->vm.onClick(v)}"
+            android:padding="@dimen/_13sdp"
+            android:src="@drawable/ic_back"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvHeaderTitle"
+            style="@style/TextView.PoppinsMedium"
+            android:layout_width="0dp"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:text="@string/my_brands"
+            android:layout_marginTop="@dimen/_9sdp"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_17ssp"
+            app:layout_constraintEnd_toStartOf="@id/ivHeaderSearch"
+            app:layout_constraintStart_toEndOf="@id/ivHeaderBack"
+            app:layout_constraintTop_toTopOf="@id/ivHeaderBack" />
+
+        <ImageView
+            android:id="@+id/ivHeaderSearch"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginEnd="@dimen/_5sdp"
+            android:contentDescription="@string/todo"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v->vm.onClick(v)}"
+            android:clickable="false"
+            android:focusable="false"
+            android:padding="@dimen/_13sdp"
+            android:src="@drawable/iv_search"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/dark_grey_txt_color_60" />
+
+        <ImageView
+            android:id="@+id/ivHeaderGradLine"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/gradient_header_line"
+            android:contentDescription="@string/todo"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/ivHeaderBack" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

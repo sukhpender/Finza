@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.CPLeaderBoardResponseModel" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/divider"
+            android:visibility="@{pos==0?View.GONE:View.VISIBLE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_2sdp"
+            android:gravity="center"
+            android:orientation="horizontal"
+            android:weightSum="6.2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <TextView
+                android:id="@+id/tvOne"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_weight="0.5"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:maxLines="2"
+                android:text='@{String.valueOf(pos+1)+"."}'
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_8sdp"
+                tools:text="1." />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_12sdp"
+                android:layout_weight="1.5">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv1"
+                    setImageWithFullUrl="@{bean.logo}"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="0dp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_height="0dp"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:text="@{bean.name}"
+                    android:ellipsize="end"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_7sdp"
+                    app:layout_constraintStart_toEndOf="@+id/iv1"
+                    app:layout_constraintTop_toTopOf="@+id/iv1"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv1" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_8sdp"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:textColor="@color/dark_grey_txt_color_80"
+                    android:textSize="@dimen/_6sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv1"
+                    app:layout_constraintStart_toEndOf="@+id/iv1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+            <TextView
+                android:id="@+id/tvThree"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_weight="1.4"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_3sdp"
+                android:text="@{bean.state}"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_8sdp"
+                tools:text="Mumbai Haryana" />
+
+            <TextView
+                android:id="@+id/tvFour"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                amountSorting4="@{bean.current_month_target}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_weight="1.4"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_8sdp"
+                tools:text="1 Cr" />
+
+            <TextView
+                android:id="@+id/tvFive"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                amountSorting3="@{bean.current_month_revenue}"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_35sdp"
+                android:layout_weight="1.4"
+                android:ellipsize="end"
+                android:gravity="center"
+                android:singleLine="true"
+                android:textColor="@color/line_color"
+                android:textSize="@dimen/_8sdp"
+                tools:text="50 L" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

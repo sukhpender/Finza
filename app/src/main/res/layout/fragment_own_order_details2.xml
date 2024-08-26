@@ -1,0 +1,269 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.OwnOrderDetailsResponseModel" />
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.orders.details.OwnOrderDetailsFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/headerOwnOrderDetails"
+            layout="@layout/header_back_with_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:fillViewport="true"
+            android:overScrollMode="never"
+            app:layout_constraintBottom_toTopOf="@+id/llTotalAmount"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerOwnOrderDetails">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clOwnOrderDetails1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerOwnOrderDetails">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clOwnOrderDetails"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:paddingHorizontal="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvShopName"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_marginEnd="@dimen/_18sdp"
+                android:text="@{bean.buyer.name}"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toStartOf="@+id/ivMoreOption"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <ImageView
+                android:id="@+id/ivMoreOption"
+                android:layout_width="@dimen/_24sdp"
+                android:layout_height="@dimen/_24sdp"
+                android:contentDescription="@string/todo"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:padding="@dimen/_5sdp"
+                android:rotation="90"
+                android:src="@drawable/more_horizontal"
+                app:layout_constraintBottom_toBottomOf="@+id/tvShopName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/tvShopName" />
+
+            <TextView
+                android:id="@+id/tvShopAddress"
+                style="@style/TextView.PoppinsMedium"
+                android:drawablePadding="@dimen/_3sdp"
+                android:text="@string/address"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_12ssp"
+                app:drawableStartCompat="@drawable/ic_location"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvShopName" />
+
+            <TextView
+                android:id="@+id/tvNetworkUserAddress"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:layout_marginEnd="@dimen/_80sdp"
+                android:maxLines="2"
+                android:text="@{bean.buyer.full_address}"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_9ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvShopAddress" />
+
+            <TextView
+                android:id="@+id/tvPendingOrderId"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_marginTop="@dimen/_9sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:text="@string/order_id"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNetworkUserAddress" />
+
+            <TextView
+                android:id="@+id/tvCompletedOrderIdValue"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:text="@{bean.code}"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintBottom_toBottomOf="@+id/tvPendingOrderId"
+                app:layout_constraintStart_toEndOf="@+id/tvPendingOrderId"
+                app:layout_constraintTop_toTopOf="@+id/tvPendingOrderId" />
+
+            <TextView
+                android:id="@+id/tvCancelReason"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:fontFamily="@font/poppins_regular"
+                android:text='@{@string/gst_number+ " "+ bean.buyer_gst}'
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_11ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvCompletedOrderIdValue" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@color/dark_grey_txt_color10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clOwnOrderDetails" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llOrderItem"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_4sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rvOwnOrderDetailsType1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                app:layout_constraintBottom_toTopOf="@+id/view2"
+                app:layout_constraintStart_toStartOf="parent"
+                android:nestedScrollingEnabled="false"
+                android:overScrollMode="never"
+                app:layout_constraintTop_toBottomOf="@+id/view1"
+                tools:listitem="@layout/custom_layout_details_type_1" />
+
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/view1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:background="@color/dark_grey_txt_color10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llOrderItem" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_50sdp"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/view1">
+
+            <TextView
+                android:id="@+id/tvCancelOrder"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:background="@drawable/red_border"
+
+                android:gravity="center"
+                android:text="@string/cancel"
+                android:textColor="#F20A0A"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/tvMarkAsDeliverOrder"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginBottom="@dimen/_20sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_weight="1"
+                android:background="@drawable/btn_rounded_corner_6dp"
+                android:gravity="center"
+                android:backgroundTint="@color/dark_grey_txt_color_60"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:singleLine="true"
+                android:text="@string/mark_as_deliver"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </ScrollView>
+
+        <LinearLayout
+            android:id="@+id/llTotalAmount"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/bg_color1"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_15sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_weight="1"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:text="@string/total_amount"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_weight="1"
+                android:gravity="end"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:text='@{"₹ "+ String.valueOf(bean.product_amount)}'
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

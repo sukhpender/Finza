@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.UnAssignedBeatResponseModel" />
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.more.beat.MoreBeatDetailsFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/headerMoreDetailsBeats"
+            layout="@layout/header_back_with_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
+
+        <EditText
+            android:id="@+id/etvSearchRetailer"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_36sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:background="@drawable/round_4dp_border_rec"
+            android:backgroundTint="@color/dark_grey_txt_color_50"
+            android:drawableStart="@drawable/iv_search_mini"
+            android:drawableTint="@color/dark_grey_txt_color_50"
+            android:drawablePadding="@dimen/_10sdp"
+            android:fontFamily="@font/poppins_regular"
+            android:hint="Search..."
+            android:visibility="gone"
+            android:includeFontPadding="false"
+            android:inputType="textPersonName"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:singleLine="true"
+            android:textColor="@color/dark_grey_txt_color_50"
+            android:textColorHint="@color/dark_grey_txt_color_50"
+            app:layout_constraintTop_toBottomOf="@+id/headerMoreDetailsBeats"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:textSize="@dimen/_12ssp" />
+
+        <LinearLayout
+            android:id="@+id/llNoDataBeatDetailsOrders"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/ic_freepik_folder" />
+
+            <TextView
+                android:id="@+id/tvNetworkUserName"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:text="@string/no_data"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNetworkOrderTypes" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMoreBeatDetails"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:overScrollMode="never"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etvSearchRetailer"
+            tools:listitem="@layout/custom_layout_more_beat_details" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

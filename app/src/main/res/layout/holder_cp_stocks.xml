@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.CpStockResponseItem" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:id="@+id/llHeader"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:visibility="@{pos==0?View.VISIBLE:View.GONE}"
+            android:weightSum="5"
+            app:flow_horizontalGap="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <TextView
+                android:id="@+id/tvProdName"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="@dimen/_10sdp"
+                android:text="Product Name"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tvMoqName"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Moq"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tvCountName"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text="Count"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_10sdp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+        <View
+            android:id="@+id/divider"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/black_54"
+            android:visibility="@{pos==0?View.VISIBLE:View.GONE}"
+            app:layout_constraintTop_toBottomOf="@+id/llHeader" />
+
+        <androidx.appcompat.widget.LinearLayoutCompat
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:weightSum="5"
+            app:flow_horizontalGap="@dimen/_5sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/divider">
+
+            <TextView
+                android:id="@+id/tvProd"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:padding="@dimen/_10sdp"
+                android:text="@{bean.product.name}"
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tvMoq"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text='@{String.valueOf(bean.selling_moq)}'
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_10sdp" />
+
+            <TextView
+                android:id="@+id/tvCount"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:padding="@dimen/_10sdp"
+                android:text='@{String.valueOf(bean.quantity)}'
+                android:textColor="@color/dark_grey_txt_color_80"
+                android:textSize="@dimen/_10sdp" />
+        </androidx.appcompat.widget.LinearLayoutCompat>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

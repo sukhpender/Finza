@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+        <import type="android.view.View"/>
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.NetworkTypes" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:foreground="?selectableItemBackground"
+        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}">
+
+        <TextView
+            android:id="@+id/tvNetworkOrderTypes"
+            style="@style/TextView.PoppinsMedium"
+            android:text="@{bean.name}"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            android:paddingStart="@dimen/_10sdp"
+            android:textColor="@color/dark_grey_txt_color"
+            android:paddingVertical="@dimen/_15sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:textSize="@dimen/_11ssp" />
+
+        <TextView
+            android:id="@+id/tvNetworkOrdersCount"
+            style="@style/TextView.PoppinsMedium"
+            android:paddingEnd="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_15sdp"
+            android:layout_marginStart="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/tvNetworkOrderTypes"
+            android:text="@{bean.count}"
+            app:layout_constraintBottom_toTopOf="@+id/view"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_11ssp" />
+
+        <View
+            android:id="@+id/view"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_3sdp"
+            android:visibility="@{bean.selected==true?View.VISIBLE:View.GONE}"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:background="@drawable/custom_round_corners_filled"
+            android:backgroundTint="@color/line_color"
+            app:layout_constraintBottom_toBottomOf="parent"
+            />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

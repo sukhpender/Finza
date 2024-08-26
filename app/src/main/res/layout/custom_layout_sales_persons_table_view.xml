@@ -1,0 +1,212 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+
+    <data>
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.ResultSalesmanListing" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <HorizontalScrollView
+            android:id="@+id/hsvRate"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:foregroundGravity="center_vertical"
+            android:scrollbars="none"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/rateFlow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border1"
+                    android:orientation="horizontal"
+                    app:constraint_referenced_ids="tv1,tv2,tv3,tv4,iv4,iv1,iv2,iv3"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    android:id="@+id/tv1"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_100sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:hint="-"
+                    android:maxLines="2"
+                    android:paddingHorizontal="@dimen/_15sdp"
+                    android:text="@{bean.full_name}"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_10ssp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv1"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tv1" />
+
+                <TextView
+                    android:id="@+id/tv2"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:hint="-"
+                    android:maxLines="2"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@{bean.employee_id}"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_10ssp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv2"
+                    app:layout_constraintStart_toStartOf="@+id/tv2"
+                    app:layout_constraintTop_toTopOf="@+id/tv2" />
+
+                <TextView
+                    android:id="@+id/tv3"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:hint="-"
+                    android:maxLines="2"
+                    android:text="@{bean.sales_designation.name}"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_10sdp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv3"
+                    app:layout_constraintStart_toStartOf="@+id/tv3"
+                    app:layout_constraintTop_toTopOf="@+id/tv3" />
+
+                <TextView
+                    android:id="@+id/tv4"
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:hint="-"
+                    android:maxLines="2"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@{bean.manager.full_name}"
+                    android:textColor="@color/dark_grey_txt_color"
+                    android:textSize="@dimen/_10ssp" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tv4"
+                    app:layout_constraintStart_toStartOf="@+id/tv4"
+                    app:layout_constraintTop_toTopOf="@+id/tv4" />
+
+                <ImageView
+                    android:id="@+id/iv1"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:src="@drawable/ic_insight" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv1"
+                    app:layout_constraintStart_toStartOf="@+id/iv1"
+                    app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+                <ImageView
+                    android:id="@+id/iv4"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:src="@drawable/hr" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv4"
+                    app:layout_constraintStart_toStartOf="@+id/iv4"
+                    app:layout_constraintTop_toTopOf="@+id/iv4" />
+
+                <ImageView
+                    android:id="@+id/iv2"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:src="@drawable/ic_beat" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv2"
+                    app:layout_constraintStart_toStartOf="@+id/iv2"
+                    app:layout_constraintTop_toTopOf="@+id/iv2" />
+
+                <ImageView
+                    android:id="@+id/iv3"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                    android:padding="@dimen/_7sdp"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:src="@drawable/google_map" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv3"
+                    app:layout_constraintStart_toStartOf="@+id/iv3"
+                    app:layout_constraintTop_toTopOf="@+id/iv3" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </HorizontalScrollView>
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

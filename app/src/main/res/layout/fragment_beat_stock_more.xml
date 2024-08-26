@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.more.beat.stock.BeatStockMoreFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <include
+            android:id="@+id/headerBeatStockMore"
+            layout="@layout/header_back_with_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
+
+        <TextView
+            android:id="@+id/tvSelectDateBeatStock"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/app_border_2sdp"
+            android:drawablePadding="@dimen/_15sdp"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:text="@string/select_date"
+            android:textColor="@color/dark_grey_txt_color_50"
+            android:textSize="@dimen/_10ssp"
+            app:drawableEndCompat="@drawable/ic_calender"
+            app:drawableTint="@color/dark_grey_txt_color50"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerBeatStockMore" />
+
+        <TextView
+            android:id="@+id/tvSelectDateBeatBrand"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginStart="@dimen/_18sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/app_border_2sdp"
+            android:drawablePadding="@dimen/_15sdp"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:paddingHorizontal="@dimen/_8sdp"
+            android:paddingVertical="@dimen/_4sdp"
+            android:text="@string/select_brand"
+            android:textColor="@color/dark_grey_txt_color_50"
+            android:textSize="@dimen/_10ssp"
+            app:drawableEndCompat="@drawable/ic_spinner_arrow"
+            app:drawableTint="@color/dark_grey_txt_color50"
+            app:layout_constraintStart_toEndOf="@+id/tvSelectDateBeatStock"
+            app:layout_constraintTop_toBottomOf="@+id/headerBeatStockMore" />
+
+        <TextView
+            android:id="@+id/tvBeatBrandName"
+            style="@style/TextView.PoppinsMedium"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_38sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_18sdp"
+            android:background="@drawable/custom_black_border"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_12sdp"
+            android:text="ABC Brand"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_13ssp"
+            app:layout_constraintStart_toStartOf="@+id/tvSelectDateBeatStock"
+            app:layout_constraintTop_toBottomOf="@+id/tvSelectDateBeatStock" />
+
+        <LinearLayout
+            android:id="@+id/llBeatStock"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@drawable/custom_black_border"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_10sdp"
+            android:weightSum="4"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvBeatBrandName">
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:singleLine="true"
+                android:layout_weight="1.2"
+                android:gravity="start"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:text="@string/product"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_11ssp" />
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_weight="1.4"
+                android:paddingStart="@dimen/_7sdp"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/date"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_11ssp" />
+
+            <TextView
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:gravity="center"
+                android:text="@string/count"
+                android:singleLine="true"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_11ssp" />
+
+            <TextView
+                android:layout_weight="0.4"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="wrap_content"
+                android:gravity="center"
+                android:singleLine="true"
+                android:text="@string/view"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textSize="@dimen/_11ssp" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvMoreBeatDetails"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:background="@drawable/border1"
+            android:overScrollMode="never"
+            android:paddingBottom="@dimen/_10sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintEnd_toEndOf="@+id/llBeatStock"
+            app:layout_constraintStart_toStartOf="@+id/llBeatStock"
+            app:layout_constraintTop_toBottomOf="@+id/llBeatStock"
+            tools:listitem="@layout/custom_layout_more_beat_stock" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+</layout>

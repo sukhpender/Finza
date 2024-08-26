@@ -1,0 +1,207 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.ResultActiveCP" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPName"
+            style="@style/TextView.PoppinsMedium"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:hint="-"
+            android:text="@{bean.name}"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_15ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPAddress"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_marginTop="@dimen/_1sdp"
+            android:paddingHorizontal="@dimen/_20sdp"
+            android:text="@{bean.full_address}"
+            android:maxLines="2"
+            android:hint="-"
+            android:textColor="@color/dark_grey_txt_color50"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvChannelActiveCPName" />
+
+        <ImageView
+            android:id="@+id/iv1"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:contentDescription="@string/todo"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_folder"
+            app:layout_constraintStart_toStartOf="@id/tvChannelActiveCPName"
+            app:layout_constraintTop_toBottomOf="@+id/tvChannelActiveCPAddress" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPId"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:text="CP ID : "
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv1"
+            app:layout_constraintStart_toEndOf="@+id/iv1"
+            app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPIdValue"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:text="@{bean.channel_id}"
+            android:hint="-"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv1"
+            app:layout_constraintStart_toEndOf="@+id/tvChannelActiveCPId"
+            app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPPhone"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:drawablePadding="@dimen/_2sdp"
+            android:text="@{bean.admin.mobile}"
+            android:hint="-"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:drawableStartCompat="@drawable/baseline_call_24"
+            app:layout_constraintBottom_toBottomOf="@+id/iv1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+        <ImageView
+            android:id="@+id/iv2"
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:layout_marginStart="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:contentDescription="@string/todo"
+            android:padding="@dimen/_2sdp"
+            android:src="@drawable/ic_admin"
+            app:layout_constraintStart_toStartOf="@id/tvChannelActiveCPName"
+            app:layout_constraintTop_toBottomOf="@+id/iv1" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPAdmin"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:text="Admin : "
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv2"
+            app:layout_constraintStart_toEndOf="@+id/iv2"
+            app:layout_constraintTop_toTopOf="@+id/iv2" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPAdminValue"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:text="@{bean.admin.full_name}"
+            android:hint="-"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/iv2"
+            app:layout_constraintStart_toEndOf="@+id/tvChannelActiveCPAdmin"
+            app:layout_constraintTop_toTopOf="@+id/iv2" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPStock"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/custom_round_corners_filled1"
+            android:backgroundTint="@color/line_color10"
+            android:drawablePadding="@dimen/_5sdp"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:paddingVertical="@dimen/_1sdp"
+            android:text="@string/stock"
+            android:textColor="@color/app_color"
+            android:textSize="@dimen/_10ssp"
+            app:drawableStartCompat="@drawable/ic_stock"
+            app:layout_constraintStart_toStartOf="@id/iv2"
+            app:layout_constraintTop_toBottomOf="@+id/iv2" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPProfile"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/custom_round_corners_filled1"
+            android:backgroundTint="@color/line_color10"
+            android:drawablePadding="@dimen/_5sdp"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:paddingVertical="@dimen/_1sdp"
+            android:visibility="gone"
+            android:text="@string/profile"
+            android:textColor="@color/app_color"
+            android:textSize="@dimen/_10ssp"
+            app:drawableStartCompat="@drawable/ic_profile"
+            app:layout_constraintStart_toEndOf="@+id/tvChannelActiveCPStock"
+            app:layout_constraintTop_toBottomOf="@+id/iv2" />
+
+        <TextView
+            android:id="@+id/tvChannelActiveCPInsights"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginStart="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:background="@drawable/custom_round_corners_filled1"
+            android:backgroundTint="@color/line_color10"
+            android:drawablePadding="@dimen/_5sdp"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:visibility="gone"
+            android:paddingHorizontal="@dimen/_6sdp"
+            android:paddingVertical="@dimen/_1sdp"
+            android:text="@string/insight"
+            android:textColor="@color/app_color"
+            android:textSize="@dimen/_10ssp"
+            app:drawableStartCompat="@drawable/ic_insight1"
+            app:layout_constraintStart_toEndOf="@+id/tvChannelActiveCPProfile"
+            app:layout_constraintTop_toBottomOf="@+id/iv2" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:background="@color/dark_grey_txt_color10"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvChannelActiveCPStock" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+    <item
+        android:id="@+id/navigation_activation"
+        android:icon="@drawable/activation"
+        android:title="Activations" />
+
+    <item
+        android:id="@+id/navigation_rockstars"
+        android:icon="@drawable/activation"
+        android:title="RockStars" />
+    
+</menu>

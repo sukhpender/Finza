@@ -1,0 +1,433 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.myBrands.rate.RateFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.myBrands.rate.RateFragment">
+
+        <include
+            android:id="@+id/headerProductRate"
+            layout="@layout/header_with_back"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
+
+        <ImageView
+            android:id="@+id/ivNoDataFoundRate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:contentDescription="@string/todo"
+            android:padding="@dimen/_60sdp"
+            android:src="@drawable/no_data_icon"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerProductRate" />
+
+        <HorizontalScrollView
+            android:id="@+id/hsvRate"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginHorizontal="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_25sdp"
+            android:fillViewport="true"
+            android:foregroundGravity="center_vertical"
+            android:scrollbars="none"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/headerProductRate">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:id="@+id/llRate"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border"
+                    android:orientation="horizontal"
+                    android:weightSum="5"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <TextView
+                        style="@style/TextView.PoppinsMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_weight="1.205"
+                        android:gravity="center"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:id="@+id/tvRateProductSS"
+                        style="@style/TextView.PoppinsMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_weight="0.955"
+                        android:background="@drawable/border"
+                        android:gravity="center"
+                        android:text="@string/ss"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:id="@+id/tvRateProductDistributor"
+                        style="@style/TextView.PoppinsMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_weight="0.944"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_15sdp"
+                        android:text="@string/distributor"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:id="@+id/tvRateProductWholeSaler"
+                        style="@style/TextView.PoppinsMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_weight="0.953"
+                        android:background="@drawable/border"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_15sdp"
+                        android:text="@string/wholesaler"
+                        android:textSize="@dimen/_13ssp" />
+
+                    <TextView
+                        android:id="@+id/tvRateProductRetailer"
+                        style="@style/TextView.PoppinsMedium"
+                        android:layout_width="0dp"
+                        android:layout_height="@dimen/_35sdp"
+                        android:layout_weight="0.9"
+                        android:gravity="center"
+                        android:paddingHorizontal="@dimen/_15sdp"
+                        android:text="@string/retailer"
+                        android:textSize="@dimen/_13ssp" />
+
+                </LinearLayout>
+
+                <androidx.constraintlayout.helper.widget.Flow
+                    android:id="@+id/rateFlow2"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/border1"
+                    android:orientation="horizontal"
+                    app:constraint_referenced_ids="tvRateProductName,tvRateProductUnit,tvRateProductMrp,tvRateProductSSRate,tvRateProductSSMOQ,tvRateProductSSMargin,tvRateProductDisRate,tvRateProductDisMOQ,tvRateProductDisMargin,tvRateProductWholeSalerRate,tvRateProductWholeSalerMOQ,tvRateProductWholeSalerMargin,tvRateProductRetailerRate,tvRateProductRetailerMOQ,tvRateProductRetailerMargin"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/llRate" />
+
+
+                <TextView
+                    android:id="@+id/tvRateProductName"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_109sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:singleLine="true"
+                    android:text="@string/product_name"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductName"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductName" />
+
+                <TextView
+                    android:id="@+id/tvRateProductUnit"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/unit_wt"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductUnit"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductUnit"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductUnit" />
+
+                <TextView
+                    android:id="@+id/tvRateProductMrp"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:text="@string/mrp"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductMrp"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductMrp"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductMrp" />
+
+                <TextView
+                    android:id="@+id/tvRateProductSSRate"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/rate"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductSSRate"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductSSRate"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductSSRate" />
+
+                <TextView
+                    android:id="@+id/tvRateProductSSMOQ"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/moq"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductSSMOQ"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductSSMOQ"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductSSMOQ" />
+
+                <TextView
+                    android:id="@+id/tvRateProductSSMargin"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/margin"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductSSMargin"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductSSMargin"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductSSMargin" />
+
+                <TextView
+                    android:id="@+id/tvRateProductDisRate"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/rate"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductDisRate"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductDisRate"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductDisRate" />
+
+                <TextView
+                    android:id="@+id/tvRateProductDisMOQ"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/moq"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductDisMOQ"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductDisMOQ"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductDisMOQ" />
+
+                <TextView
+                    android:id="@+id/tvRateProductDisMargin"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/margin"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductDisMargin"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductDisMargin"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductDisMargin" />
+
+                <TextView
+                    android:id="@+id/tvRateProductWholeSalerRate"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/rate"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductWholeSalerRate"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductWholeSalerRate"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductWholeSalerRate" />
+
+                <TextView
+                    android:id="@+id/tvRateProductWholeSalerMOQ"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/moq"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductWholeSalerMOQ"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductWholeSalerMOQ"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductWholeSalerMOQ" />
+
+                <TextView
+                    android:id="@+id/tvRateProductWholeSalerMargin"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/margin"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductWholeSalerMargin"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductWholeSalerMargin"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductWholeSalerMargin" />
+
+                <TextView
+                    android:id="@+id/tvRateProductRetailerRate"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/rate"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductRetailerRate"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductRetailerRate"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductRetailerRate" />
+
+                <TextView
+                    android:id="@+id/tvRateProductRetailerMOQ"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/moq"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductRetailerMOQ"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductRetailerMOQ"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductRetailerMOQ" />
+
+                <TextView
+                    android:id="@+id/tvRateProductRetailerMargin"
+                    style="@style/TextView.PoppinsMedium"
+                    android:layout_width="@dimen/_60sdp"
+                    android:layout_height="@dimen/_35sdp"
+                    android:gravity="center"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:text="@string/margin"
+                    android:textColor="@color/dark_grey_txt_color" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductRetailerMargin"
+                    app:layout_constraintEnd_toEndOf="@+id/tvRateProductRetailerMargin"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductRetailerMargin" />
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="0dp"
+                    android:background="@color/dark_grey_txt_color"
+                    app:layout_constraintBottom_toBottomOf="@+id/tvRateProductRetailerMargin"
+                    app:layout_constraintStart_toStartOf="@+id/tvRateProductRetailerMargin"
+                    app:layout_constraintTop_toTopOf="@+id/tvRateProductRetailerMargin" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/rvProductRate"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rateFlow2"
+                    tools:listitem="@layout/custom_layout_brand_rate" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </HorizontalScrollView>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

@@ -1,0 +1,163 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.channelPartner.ChannelPartnerFragmentVM" />
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white"
+        tools:context=".ui.channelPartner.ChannelPartnerFragment">
+
+        <include
+            android:id="@+id/headerChannelPartner"
+            layout="@layout/header_back_with_search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:vm="@{vm}" />
+
+        <LinearLayout
+            android:id="@+id/llChannelFrag"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_37sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:orientation="horizontal"
+            app:layout_constraintEnd_toEndOf="@+id/viewChannelPartner"
+            app:layout_constraintStart_toStartOf="@+id/viewChannelPartner"
+            app:layout_constraintTop_toBottomOf="@+id/headerChannelPartner">
+
+            <TextView
+                android:id="@+id/tvChannelActiveCPs"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:text="@string/active_cps"
+                android:textSize="@dimen/_14ssp" />
+
+            <TextView
+                android:id="@+id/tvChannelLeadCPs"
+                style="@style/TextView.PoppinsMedium"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_weight="1"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:text="@string/lead_cps"
+                android:textColor="@color/dark_grey_txt_color_60"
+                android:textSize="@dimen/_14ssp" />
+
+        </LinearLayout>
+
+        <View
+            android:id="@+id/viewChannelPartner"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_1sdp"
+            android:layout_marginHorizontal="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_4sdp"
+            android:background="@color/dark_grey_txt_color20"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/llChannelFrag" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_2sdp"
+            android:layout_marginBottom="-2dp"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toTopOf="@+id/viewChannelPartner"
+            app:layout_constraintEnd_toEndOf="@+id/viewChannelPartner"
+            app:layout_constraintStart_toStartOf="@+id/viewChannelPartner">
+
+            <View
+                android:id="@+id/view1"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_3sdp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_round_corners_filled"
+                android:backgroundTint="@color/app_color" />
+
+            <View
+                android:id="@+id/view2"
+                android:layout_width="0dp"
+                android:layout_height="@dimen/_3sdp"
+                android:layout_weight="1"
+                android:background="@drawable/custom_round_corners_filled"
+                android:backgroundTint="@color/app_color"
+                android:visibility="invisible" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llNoDataFoundActiveCP"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewChannelPartner">
+
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/ic_freepik_folder"
+                android:contentDescription="@string/todo" />
+
+            <TextView
+                android:id="@+id/tvNetworkUserName"
+                style="@style/TextView.PoppinsMedium"
+                android:text="@string/no_data"
+                android:textColor="@color/dark_grey_txt_color"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:textSize="@dimen/_12ssp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvNetworkOrderTypes" />
+
+        </LinearLayout>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvActiveCps"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:visibility="gone"
+            android:overScrollMode="never"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewChannelPartner"
+            tools:listitem="@layout/custom_layout_partner_active_cps" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvLeadCps"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:overScrollMode="never"
+            android:visibility="gone"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/viewChannelPartner"
+            tools:listitem="@layout/custom_layout_partner_active_cps" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

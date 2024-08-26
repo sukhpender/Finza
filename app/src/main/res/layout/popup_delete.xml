@@ -1,0 +1,88 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/trans">
+
+        <ImageView
+            android:layout_width="@dimen/_12sdp"
+            android:layout_height="@dimen/_12sdp"
+            android:layout_marginEnd="@dimen/_20sdp"
+            android:contentDescription="@string/todo"
+            android:scaleType="centerCrop"
+            android:src="@drawable/triangle"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:tint="@color/line_color" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="11dp"
+            android:layout_marginEnd="@dimen/_13sdp"
+            android:background="@drawable/btn_rounded_corner_6dp"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:paddingVertical="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/ivDelete"
+                android:layout_width="@dimen/_16sdp"
+                android:layout_height="@dimen/_16sdp"
+                android:contentDescription="@string/todo"
+                android:src="@drawable/warning"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSureDelete"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_marginStart="@dimen/_8sdp"
+                android:text="@string/are_you_sure_to_delete"
+                android:textSize="@dimen/_16ssp"
+                android:textColor="@color/white"
+                app:layout_constraintBottom_toBottomOf="@+id/ivDelete"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivDelete"
+                app:layout_constraintTop_toTopOf="@+id/ivDelete" />
+
+            <TextView
+                android:id="@+id/tvDeleteCoOwner"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:background="@drawable/custom_round_corners_filled3sdp"
+                android:backgroundTint="@color/white"
+                android:foreground="?selectableItemBackground"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_3sdp"
+                android:text="@string/delete"
+                android:textColor="@color/line_color"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSureDelete" />
+
+            <TextView
+                android:id="@+id/tvCancelCoOwner"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_15sdp"
+                android:background="@drawable/round_8dp_border_rec"
+                android:backgroundTint="@color/white"
+                android:foreground="?selectableItemBackground"
+                android:paddingHorizontal="@dimen/_10sdp"
+                android:paddingVertical="@dimen/_3sdp"
+                android:text="@string/cancel"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_14ssp"
+                app:layout_constraintEnd_toStartOf="@+id/tvDeleteCoOwner"
+                app:layout_constraintTop_toBottomOf="@+id/tvSureDelete" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

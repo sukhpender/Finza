@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.ProductOwnOrderDetails" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+    <RelativeLayout
+        android:id="@+id/rlOrderProduct"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:paddingHorizontal="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_12sdp">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivImg"
+            setImageWithFullUrl="@{bean.product.banner_image.image}"
+            android:layout_width="@dimen/_62sdp"
+            android:layout_height="@dimen/_64sdp"
+            android:scaleType="centerCrop"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+        <TextView
+            android:id="@+id/tvProductName"
+            style="@style/TextView.PoppinsMedium"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toEndOf="@+id/ivImg"
+            android:ellipsize="end"
+            android:singleLine="true"
+            android:text="@{bean.product.name}"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_12sdp" />
+
+        <TextView
+            android:id="@+id/tvMoq"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/plusMinus"
+            android:layout_alignBottom="@+id/plusMinus"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_toEndOf="@+id/ivImg"
+            android:gravity="center"
+            android:text="Qty"
+            android:textAllCaps="false"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_10sdp" />
+
+        <include
+            android:id="@+id/plusMinus"
+            layout="@layout/layout_plus_minus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/llRate"
+            android:layout_marginStart="@dimen/_3sdp"
+            android:layout_toEndOf="@+id/tvMoq"
+            app:bean="@{bean}" />
+
+        <TextView
+            android:id="@+id/tvProductSets"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            setItemSetCountDetails="@{bean}"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/plusMinus"
+            android:layout_alignStart="@+id/tvMoq"
+            android:layout_alignBottom="@+id/ivImg"
+            android:gravity="bottom"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_11sdp" />
+
+        <TextView
+            android:id="@+id/tvGrandPrice"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/llRate"
+            android:layout_alignEnd="@+id/llRate"
+            android:layout_alignBottom="@+id/ivImg"
+            android:layout_marginTop="-12dp"
+            android:ellipsize="end"
+            android:gravity="bottom"
+            android:maxLines="1"
+            android:text='@{"Total: ₹ "+String.valueOf(bean.amount)}'
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_11sdp" />
+
+        <TextView
+            android:id="@+id/tvPrice_1"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignTop="@+id/llRate"
+            android:layout_alignBottom="@+id/llRate"
+            android:layout_marginEnd="@dimen/_4sdp"
+            android:layout_toStartOf="@+id/llRate"
+            android:ellipsize="end"
+            android:gravity="center_vertical"
+            android:maxLines="1"
+            android:text="Rate "
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_10sdp"
+            tools:text="Rate" />
+
+        <LinearLayout
+            android:id="@+id/llRate"
+            android:layout_width="@dimen/_47sdp"
+            android:layout_height="26dp"
+            android:layout_below="@+id/tvProductName"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:backgroundTint="@color/line_color"
+            android:orientation="horizontal">
+
+            <androidx.appcompat.widget.AppCompatEditText
+                android:id="@+id/tvPrice_2"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:background="@drawable/app_border_2sdp"
+                android:clickable="false"
+                android:cursorVisible="true"
+                android:ellipsize="end"
+                android:enabled="false"
+                android:gravity="center"
+                android:imeOptions="actionDone"
+                android:inputType="numberDecimal"
+                android:maxLines="2"
+                android:text="@{String.valueOf(bean.rate)}"
+                android:textColor="@color/dark_grey_txt_color"
+                android:textCursorDrawable="@color/black"
+                android:textSize="@dimen/_11ssp" />
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+</layout>

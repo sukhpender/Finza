@@ -1,0 +1,590 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <import type="com.riggle.plug.utils.FileUtil" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.TargetUserData" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+    </data>
+
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_30sdp"
+            android:layout_height="50dp"
+            android:gravity="center"
+            android:paddingTop="@dimen/_12sdp"
+            android:text='@{String.valueOf(pos+1)+"."}'
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <View
+            android:id="@+id/v8"
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="@+id/clPrimary"
+            app:layout_constraintStart_toEndOf="@+id/tv1"
+            app:layout_constraintTop_toTopOf="@+id/clPrimary" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/cl2"
+            android:layout_width="@dimen/_100sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="center_vertical"
+            android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+            android:paddingTop="@dimen/_10sdp"
+            app:layout_constraintStart_toEndOf="@+id/v8"
+            app:layout_constraintTop_toTopOf="@+id/tv1">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivIcon"
+                setImageWithFullUrl="@{bean.image}"
+                android:layout_width="@dimen/_28sdp"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_centerVertical="true"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:padding="@dimen/_1sdp"
+                android:scaleType="centerCrop"
+                android:theme="@style/CornerCircular"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tvName"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_6sdp"
+                android:maxWidth="@dimen/_120sdp"
+                android:maxLines="2"
+                android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+                android:text="@{FileUtil.capitalizedName(bean.full_name)}"
+                android:textColor="@color/line_color"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/ivIcon"
+                app:layout_constraintTop_toTopOf="@+id/ivIcon" />
+            <!--android:text="@{FileUtil.capitalizedName(bean.name)}"-->
+
+            <TextView
+                android:id="@+id/tvNameRole"
+                style="@style/TextView.PoppinsRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:ellipsize="end"
+                android:gravity="start"
+                android:hint="(Manager)"
+                android:onClick="@{v->callback.onItemClick(v,bean,pos)}"
+                android:singleLine="true"
+                android:text='@{"("+bean.designation_name+")"}'
+                android:textColor="@color/dark_grey_txt_color_60"
+                android:textSize="@dimen/_7sdp"
+                app:layout_constraintStart_toStartOf="@+id/tvName"
+                app:layout_constraintTop_toBottomOf="@+id/tvName" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/v7"
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="@+id/clPrimary"
+            app:layout_constraintStart_toEndOf="@+id/cl2"
+            app:layout_constraintTop_toTopOf="@+id/clPrimary" />
+
+        <TextView
+            android:id="@+id/tv3"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_width="@dimen/_50sdp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:background="@drawable/round_8dp_border_rec"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:paddingVertical="@dimen/_6sdp"
+            android:text="@string/view"
+            android:textColor="@color/dark_grey_txt_color"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:textSize="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="@id/cl2"
+            app:layout_constraintStart_toEndOf="@+id/v7"
+            app:layout_constraintTop_toTopOf="@+id/cl2" />
+
+        <View
+            android:id="@+id/v5"
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="0dp"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="@+id/clPrimary"
+            app:layout_constraintStart_toEndOf="@+id/tv3"
+            app:layout_constraintTop_toTopOf="@+id/clPrimary" />
+
+        <View
+            android:id="@+id/v6"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_1sdp"
+            android:background="@color/divider"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/clPrimary" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/clPrimary"
+            android:layout_width="@dimen/_260sdp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/v5"
+            app:layout_constraintTop_toTopOf="@+id/cl2">
+
+            <LinearLayout
+                android:id="@+id/ll1"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:visibility="@{pos==0?View.VISIBLE:View.GONE}"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:visibility="gone">
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/line_color10"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/target"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/line_color10"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/achieved"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v9"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/divider"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="@{pos==0?View.VISIBLE:View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll1"
+                tools:visibility="gone" />
+
+            <LinearLayout
+                android:id="@+id/ll2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v9">
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/offer_txt_color15"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/amount"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.primary_target}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.primary_order_value}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textColor="@color/line_color"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll2">
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/offer_txt_color15"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/new_cp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.new_activation_target}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.new_activation_achieved}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textColor="@color/line_color"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_marginBottom="@dimen/_10sdp"
+                android:layout_weight="0.2"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll3">
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/offer_txt_color15"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/sku"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.sku_target}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting3="@{bean.sku_achieved}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textColor="@color/line_color"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <View
+            android:id="@+id/v4"
+            android:layout_width="@dimen/_1sdp"
+            android:layout_height="0dp"
+            android:background="@color/divider"
+            app:layout_constraintBottom_toBottomOf="@+id/clPrimary"
+            app:layout_constraintStart_toEndOf="@+id/clPrimary"
+            app:layout_constraintTop_toTopOf="@+id/clPrimary" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:id="@+id/llSecondary"
+            android:layout_width="@dimen/_260sdp"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintStart_toEndOf="@+id/v4"
+            app:layout_constraintTop_toTopOf="@+id/cl2">
+
+            <LinearLayout
+                android:id="@+id/ll5"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:layout_weight="0.185"
+                android:orientation="horizontal"
+                android:visibility="@{pos==0?View.VISIBLE:View.GONE}"
+                android:weightSum="3"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="wrap_content"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/line_color10"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/target"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="@dimen/_80sdp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/line_color10"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/achieved"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/v10"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_1sdp"
+                android:background="@color/divider"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:visibility="@{pos==0?View.VISIBLE:View.GONE}"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll5" />
+
+            <LinearLayout
+                android:id="@+id/ll6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/v10">
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/offer_txt_color15"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/amount"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.secondary_target}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.secondary_target}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textColor="@color/line_color"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:id="@+id/ll7"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:orientation="horizontal"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll6">
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/btn_rounded_corner_3dp"
+                    android:backgroundTint="@color/offer_txt_color15"
+                    android:gravity="center_horizontal"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:text="@string/retailer"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.retailer_target}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textSize="@dimen/_10sdp" />
+
+                <TextView
+                    style="@style/TextView.PoppinsRegular_12ssp"
+                    amountSorting1="@{bean.retailer_achieved}"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:gravity="center_horizontal"
+                    android:hint="-"
+                    android:paddingTop="@dimen/_3sdp"
+                    android:paddingBottom="@dimen/_3sdp"
+                    android:textColor="@color/line_color"
+                    android:textSize="@dimen/_10sdp" />
+
+            </LinearLayout>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

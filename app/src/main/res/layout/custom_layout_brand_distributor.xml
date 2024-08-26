@@ -1,0 +1,157 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.NetworkCPCount1Item" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        setConstraintBackground="@{pos}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}">
+
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/ivNetworkDistributor"
+            setImageWithFullUrl="@{bean.logo}"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_12sdp"
+            android:scaleType="centerCrop"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+        <TextView
+            android:id="@+id/tvNetworkDistributorName"
+            style="@style/TextView.PoppinsMedium"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:fontFamily="@font/poppins_semibold"
+            android:text="@{bean.name}"
+            android:textColor="@color/dark_grey_txt_color"
+            android:textSize="@dimen/_14ssp"
+            app:layout_constraintBottom_toBottomOf="@+id/ivNetworkDistributor"
+            app:layout_constraintStart_toEndOf="@+id/ivNetworkDistributor"
+            app:layout_constraintTop_toTopOf="@+id/ivNetworkDistributor" />
+
+        <TextView
+            android:id="@+id/tvNetworkDistributorId"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginStart="@dimen/_16sdp"
+            android:layout_marginTop="@dimen/_6sdp"
+            android:text="8000000012"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toEndOf="@+id/ivNetworkDistributor"
+            app:layout_constraintTop_toBottomOf="@+id/tvNetworkDistributorName" />
+
+        <TextView
+            android:id="@+id/tvNetworkDistributorDirectCP"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:text="@string/direct_cp"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="@+id/ivNetworkDistributor"
+            app:layout_constraintTop_toBottomOf="@+id/ivNetworkDistributor" />
+
+        <TextView
+            android:id="@+id/tvNetworkDistributorDirectCPValue"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            setCPCount1="@{bean.direct_channels}"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:hint="0"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintStart_toStartOf="@+id/tvNetworkDistributorDirectCP"
+            app:layout_constraintTop_toBottomOf="@+id/tvNetworkDistributorDirectCP" />
+
+        <TextView
+            android:id="@+id/tvNetworkDistributorInDirectCP"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_22sdp"
+            android:text="@string/indirect_cp"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toStartOf="@+id/tvNetworkManufacturerSalesPerson"
+            app:layout_constraintStart_toEndOf="@+id/tvNetworkDistributorDirectCP"
+            app:layout_constraintTop_toBottomOf="@+id/ivNetworkDistributor" />
+
+        <TextView
+            android:id="@+id/tvNetworkDistributorIndirectCPValue"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            setCPCount1="@{bean.indirect_channels}"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            android:hint="0"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvNetworkDistributorInDirectCP"
+            app:layout_constraintTop_toBottomOf="@+id/tvNetworkDistributorInDirectCP" />
+
+        <TextView
+            android:id="@+id/tvNetworkManufacturerSalesPerson"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:text="Salesperson"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            app:layout_constraintEnd_toStartOf="@+id/ivDistributorArrow"
+            app:layout_constraintStart_toEndOf="@+id/tvNetworkDistributorInDirectCP"
+            app:layout_constraintTop_toTopOf="@+id/tvNetworkDistributorInDirectCP" />
+
+        <TextView
+            android:id="@+id/tvNetworkManufacturerSalesPersonValue"
+            style="@style/TextView.PoppinsRegular_12ssp"
+            android:layout_marginTop="@dimen/_3sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
+            android:textColor="@color/dark_grey_txt_color_80"
+            android:textSize="@dimen/_11ssp"
+            android:hint="0"
+            android:text="@{String.valueOf(bean.salesmans.size())}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/tvNetworkManufacturerSalesPerson"
+            app:layout_constraintTop_toBottomOf="@+id/tvNetworkManufacturerSalesPerson" />
+
+        <ImageView
+            android:id="@+id/ivDistributorArrow"
+            arrowVisibility="@{bean}"
+            android:layout_width="@dimen/_20sdp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginTop="-5dp"
+            android:contentDescription="@string/todo"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:padding="@dimen/_6sdp"
+            android:rotation="270"
+            android:src="@drawable/ic_spinner_arrow"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ivNetworkDistributor"
+            app:layout_constraintTop_toTopOf="@+id/tvNetworkDistributorDirectCP" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="@color/dark_grey_txt_color20"
+            android:visibility="gone"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

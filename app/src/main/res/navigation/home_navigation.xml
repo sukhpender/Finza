@@ -1,0 +1,390 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/home_navigation"
+    app:startDestination="@+id/navigation_activation">
+
+    <fragment
+        android:id="@+id/navigation_activation"
+        android:name="com.riggle.plug.ui.finza.avtivation.ActivationFragment"
+        android:label="Activation"
+        tools:layout="@layout/fragment_activation" />
+
+    <fragment
+        android:id="@+id/navigation_rockstars"
+        android:name="com.riggle.plug.ui.finza.rockstarts.RockStartsFragment"
+        android:label="Rockstar"
+        tools:layout="@layout/fragment_rock_starts" />
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    <fragment
+        android:id="@+id/navigation_brands"
+        android:name="com.riggle.plug.ui.myBrands.MyBrandsFragment"
+        android:label="@string/my_brands"
+        tools:layout="@layout/fragment_my_brands" />
+
+    <fragment
+        android:id="@+id/navigation_home_arena"
+        android:name="com.riggle.plug.ui.orders.OrdersFragment"
+        android:label="@string/arena"
+        tools:layout="@layout/fragment_orders" />
+
+    <fragment
+        android:id="@+id/navigation_home"
+        android:name="com.riggle.plug.ui.home.home.HomeFragment"
+        android:label="@string/home"
+        tools:layout="@layout/fragment_home" />
+
+    <fragment
+        android:id="@+id/navigation_home_network_orders"
+        android:name="com.riggle.plug.ui.networkOrders.NetworkOrdersFragment"
+        android:label="@string/beat"
+        tools:layout="@layout/fragment_network_orders" />
+
+    <fragment
+        android:id="@+id/navigation_home_more"
+        android:name="com.riggle.plug.ui.more.HomeMoreFragment"
+        android:label="@string/more"
+        tools:layout="@layout/fragment_home_more" />
+
+    <action
+        android:id="@+id/navigateToMyBrandsFragment"
+        app:destination="@+id/navigation_home_to_myBrands_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_home_to_myBrands_fragment"
+        android:name="com.riggle.plug.ui.myBrands.MyBrandsFragment"
+        android:label="@string/my_brands"
+        tools:layout="@layout/fragment_my_brands" />
+
+    <action
+        android:id="@+id/navigateToMyBrandProductsFragment"
+        app:destination="@+id/navigation_to_myBrand_products_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_myBrand_products_fragment"
+        android:name="com.riggle.plug.ui.myBrands.product.ProductFragment"
+        android:label="@string/product"
+        tools:layout="@layout/fragment_product" />
+
+    <action
+        android:id="@+id/navigateToMyBrandProductRateFragment"
+        app:destination="@+id/navigation_to_myBrand_product_rate_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_myBrand_product_rate_fragment"
+        android:name="com.riggle.plug.ui.myBrands.rate.RateFragment"
+        android:label="@string/rate"
+        tools:layout="@layout/fragment_rate" />
+
+    <action
+        android:id="@+id/navigateToFilterFragment"
+        app:destination="@+id/navigation_to_filter_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_filter_fragment"
+        android:name="com.riggle.plug.ui.filter.FilterFragment"
+        android:label="@string/filter"
+        tools:layout="@layout/fragment_filter" />
+
+    <action
+        android:id="@+id/navigateToMyBrandProductNetworkFragment"
+        app:destination="@+id/navigation_to_myBrand_product_network_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_myBrand_product_network_fragment"
+        android:name="com.riggle.plug.ui.myBrands.network.NetworkFragment"
+        android:label="@string/network"
+        tools:layout="@layout/fragment_network" />
+
+    <action
+        android:id="@+id/navigateToMyBrandProductCouponsFragment"
+        app:destination="@+id/navigation_to_myBrand_product_coupons_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_myBrand_product_coupons_fragment"
+        android:name="com.riggle.plug.ui.myBrands.coupons.CouponsFragment"
+        android:label="@string/coupons"
+        tools:layout="@layout/fragment_coupons" />
+
+
+    <action
+        android:id="@+id/navigateToMyBrandProductSalesFragment"
+        app:destination="@+id/navigation_to_myBrand_product_sales_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_myBrand_product_sales_fragment"
+        android:name="com.riggle.plug.ui.home.sales.SalesFragment"
+        android:label="@string/sales"
+        tools:layout="@layout/fragment_sales" />
+
+    <action
+        android:id="@+id/navigateToSalesUserInsightsFragment"
+        app:destination="@+id/navigation_to_sales_user_insights_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_sales_user_insights_fragment"
+        android:name="com.riggle.plug.ui.home.sales.salesInsights.SalesUserInsightsFragment"
+        android:label="@string/sales_insights"
+        tools:layout="@layout/fragment_sales_user_insights" />
+
+    <action
+        android:id="@+id/navigateToSalesTargetFragment"
+        app:destination="@+id/navigation_to_sales_target_fragment" />
+
+    <action
+        android:id="@+id/navigateToSalesFilterFragment"
+        app:destination="@+id/navigation_to_sales_filter_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_sales_filter_fragment"
+        android:name="com.riggle.plug.ui.sales.salesFilter.SalesFilterFragment"
+        android:label="@string/sales_filter"
+        tools:layout="@layout/fragment_sales_filter" />
+
+    <action
+        android:id="@+id/navigateToInsightsHeadFragment"
+        app:destination="@+id/navigation_to_insights_head_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_insights_head_fragment"
+        android:name="com.riggle.plug.ui.home.sales.salesInsights.insights.SalesInsightsHeadFragment"
+        android:label="@string/insights_head"
+        tools:layout="@layout/fragment_sales_insights_head" />
+
+    <action
+        android:id="@+id/navigateToSalesBeatFragment"
+        app:destination="@+id/navigation_to_sales_beat_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_sales_beat_fragment"
+        android:name="com.riggle.plug.ui.home.sales.salesInsights.salesBeat.SalesBeatFragment"
+        android:label="@string/sales_beat"
+        tools:layout="@layout/fragment_sales_beat" />
+
+    <action
+        android:id="@+id/navigateToSaleLocationsFragment"
+        app:destination="@+id/navigation_to_sale_locations_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_sale_locations_fragment"
+        android:name="com.riggle.plug.ui.home.sales.salesInsights.saleLocations.SalesLocationsFragment"
+        android:label="@string/sale_locations"
+        tools:layout="@layout/fragment_sales_locations" />
+
+    <action
+        android:id="@+id/navigateToMyHRFragment"
+        app:destination="@+id/navigation_to_My_Hr_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_My_Hr_fragment"
+        android:name="com.riggle.plug.ui.hr.MyHRFragment"
+        android:label="@string/my_hr"
+        tools:layout="@layout/fragment_my_h_r" />
+
+    <action
+        android:id="@+id/navigateToApproveHRFragment"
+        app:destination="@+id/navigation_to_Approve_Hr_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_Approve_Hr_fragment"
+        android:name="com.riggle.plug.ui.hr.HRApprovalsFragment"
+        android:label="@string/my_hr"
+        tools:layout="@layout/fragment_h_r_approvals" />
+
+    <action
+        android:id="@+id/navigateToMyBrandProductChannelPartnerFragment"
+        app:destination="@+id/navigation_to_myBrand_product_channel_partner_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_myBrand_product_channel_partner_fragment"
+        android:name="com.riggle.plug.ui.channelPartner.ChannelPartnerFragment"
+        android:label="@string/channel_partner"
+        tools:layout="@layout/fragment_channel_partner" />
+
+    <action
+        android:id="@+id/navigateToMyBrandProductChannelPartnerRemarksFragment"
+        app:destination="@+id/navigation_to_myBrand_product_channel_partner_remarks_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_myBrand_product_channel_partner_remarks_fragment"
+        android:name="com.riggle.plug.ui.channelPartner.remarks.RemarksFragment"
+        android:label="@string/remarks"
+        tools:layout="@layout/fragment_remarks" />
+
+    <action
+        android:id="@+id/navigateToCPStockFragment"
+        app:destination="@+id/navigation_to_cp_stock_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_cp_stock_fragment"
+        android:name="com.riggle.plug.ui.channelPartner.stock.CpStockFragment"
+        android:label="@string/stock"
+        tools:layout="@layout/fragment_cp_stock" />
+
+    <action
+        android:id="@+id/navigateToCPInsightsFragment"
+        app:destination="@+id/navigation_to_cp_insights_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_cp_insights_fragment"
+        android:name="com.riggle.plug.ui.channelPartner.insights.CpInsightsFragment"
+        android:label="@string/insight"
+        tools:layout="@layout/fragment_cp_insights" />
+
+    <action
+        android:id="@+id/navigateToMyBrandProductChannelPartnerProfileFragment"
+        app:destination="@+id/navigation_to_myBrand_product_channel_partner_profile_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_myBrand_product_channel_partner_profile_fragment"
+        android:name="com.riggle.plug.ui.channelPartner.profile.ProfileFragment"
+        android:label="@string/profile"
+        tools:layout="@layout/fragment_profile" />
+
+    <action
+        android:id="@+id/navigateToNetworkOrderDetailsFragment"
+        app:destination="@+id/navigation_to_network_order_details_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_network_order_details_fragment"
+        android:name="com.riggle.plug.ui.networkOrders.orderDetails.NetworkOrderDetailsFragment"
+        android:label="@string/network_orders"
+        tools:layout="@layout/fragment_network_order_details" />
+
+    <action
+        android:id="@+id/navigateToMoreBeatFragment"
+        app:destination="@+id/navigation_to_more_beat_fragment"
+        app:popUpToSaveState="true"
+        app:restoreState="true" />
+
+    <fragment
+        android:id="@+id/navigation_to_more_beat_fragment"
+        android:name="com.riggle.plug.ui.more.beat.MoreBeatFragment"
+        android:label="@string/more_beat"
+        tools:layout="@layout/fragment_more_beat" />
+
+    <action
+        android:id="@+id/navigateToMoreBeatDetailsFragment"
+        app:destination="@+id/navigation_to_more_beat_details_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_more_beat_details_fragment"
+        android:name="com.riggle.plug.ui.more.beat.MoreBeatDetailsFragment"
+        android:label="@string/more_beat_details"
+        tools:layout="@layout/fragment_more_beat_details" />
+
+    <action
+        android:id="@+id/navigateToMoreBeatStockFragment"
+        app:destination="@+id/navigation_to_more_beat_stock_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_more_beat_stock_fragment"
+        android:name="com.riggle.plug.ui.more.beat.stock.BeatStockMoreFragment"
+        android:label="@string/beat_stock_history"
+        tools:layout="@layout/fragment_beat_stock_more" />
+
+    <action
+        android:id="@+id/navigateToMoreBeatInsightFragment"
+        app:destination="@+id/navigation_to_more_beat_insight_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_more_beat_insight_fragment"
+        android:name="com.riggle.plug.ui.more.beat.insights.MoreBeatInsightsFragment"
+        android:label="@string/more_beat_insights"
+        tools:layout="@layout/fragment_more_beat_insights" />
+
+    <action
+        android:id="@+id/navigateToMyAccountFragment"
+        app:destination="@+id/navigation_to_my_account_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_my_account_fragment"
+        android:name="com.riggle.plug.ui.more.myAccount.MyAccountFragment"
+        android:label="@string/my_account"
+        tools:layout="@layout/fragment_my_account" />
+
+    <action
+        android:id="@+id/navigateToEditBusinessFragment"
+        app:destination="@+id/navigation_to_edit_business_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_edit_business_fragment"
+        android:name="com.riggle.plug.ui.more.myAccount.EditBusinessFragment"
+        android:label="@string/edit_business"
+        tools:layout="@layout/fragment_edit_business" />
+
+    <action
+        android:id="@+id/navigateToEditAccountFragment"
+        app:destination="@+id/navigation_to_edit_account_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_edit_account_fragment"
+        android:name="com.riggle.plug.ui.more.myAccount.EditOwnInfoFragment"
+        android:label="@string/edit_account"
+        tools:layout="@layout/fragment_edit_own_info" />
+
+    <action
+        android:id="@+id/navigateToSalesLiveOfflineFragment"
+        app:destination="@+id/navigation_to_sales_live_offline_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_sales_live_offline_fragment"
+        android:name="com.riggle.plug.ui.sales.SalesPersonLiveOfflineFragment"
+        android:label="@string/sales"
+        tools:layout="@layout/fragment_sales_person_live_offline" />
+
+    <action
+        android:id="@+id/navigateToOwnOrderDetailsFragment"
+        app:destination="@+id/navigation_to_own_order_details_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_own_order_details_fragment"
+        android:name="com.riggle.plug.ui.orders.details.OwnOrderDetailsFragment"
+        android:label="@string/own_order_details"
+        tools:layout="@layout/fragment_own_order_details2" />
+
+    <action
+        android:id="@+id/navigateToOwnOrderDetailsType2Fragment"
+        app:destination="@+id/navigation_to_own_order_details_type2_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_own_order_details_type2_fragment"
+        android:name="com.riggle.plug.ui.orders.details.OwnOrderDetailsType2Fragment"
+        android:label="@string/own_order_details_type_2"
+        tools:layout="@layout/fragment_own_order_details_type2" />
+
+    <action
+        android:id="@+id/navigateToMyCPsFragment"
+        app:destination="@+id/navigation_tomy_cps_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_tomy_cps_fragment"
+        android:name="com.riggle.plug.ui.home.sales.myCps.MyCPsFragment"
+        android:label="My CPs"
+        tools:layout="@layout/fragment_my_c_ps" />
+
+    <action
+        android:id="@+id/navigateToOwnCancelOrderFragment"
+        app:destination="@+id/navigation_to_own_cancel_order_fragment" />
+
+    <fragment
+        android:id="@+id/navigation_to_own_cancel_order_fragment"
+        android:name="com.riggle.plug.ui.orders.cancelled.OwnCancelledOrderDetailsFragment"
+        android:label="@string/own_order_details_type_2"
+        tools:layout="@layout/fragment_own_cancelled_order_details" />
+
+</navigation>
