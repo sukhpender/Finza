@@ -1,0 +1,260 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.finza.wallet.WalletActivityVM" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/ll1"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/round_bottom_app_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv1"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/fsm_bg_light_teal" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:text="Wallet"
+                android:textColor="@color/fsm_bg_light_teal"
+                android:textSize="@dimen/_16sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/ll2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:background="@color/fsm_bg_teal"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingVertical="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll1">
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:background="@color/fsm_bg_teal"
+                android:gravity="center_vertical"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll1">
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:gravity="center"
+                    android:text="₹ 20,000"
+                    android:textColor="@color/line_color"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_15sdp"
+                    android:gravity="center"
+                    android:text="Available Balance"
+                    android:textColor="@color/line_color"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/tvAddMoneyWallet"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:background="@drawable/edit_back_view"
+                android:drawableStart="@drawable/ic_plus"
+                android:drawablePadding="@dimen/_6sdp"
+                android:fontFamily="@font/inter_semibold"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="Add Money"
+                android:textColor="@color/line_color"
+                android:textSize="@dimen/_12sdp" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:gravity="center"
+            android:text="Your Transactions :"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_11sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll2" />
+
+        <LinearLayout
+            android:id="@+id/ll3"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:background="@color/fsm_bg_teal"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv1">
+
+            <TextView
+                android:id="@+id/tvAllWallet"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_back_view"
+                android:fontFamily="@font/inter_semibold"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="All"
+                android:textColor="@color/line_color"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/tvSpentWallet"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_back_view"
+                android:fontFamily="@font/inter_semibold"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_8sdp"
+                android:text="Spent"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12ssp" />
+
+            <TextView
+                android:id="@+id/tvReceivedWallet"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/_2sdp"
+                android:layout_marginStart="@dimen/_15sdp"
+                android:layout_marginEnd="@dimen/_10sdp"
+                android:layout_weight="1"
+                android:background="@drawable/edit_back_view"
+                android:fontFamily="@font/inter_semibold"
+                android:foreground="?selectableItemBackground"
+                android:gravity="center"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:paddingHorizontal="@dimen/_8sdp"
+                android:paddingVertical="@dimen/_8sdp"
+                android:singleLine="true"
+                android:text="Received"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12ssp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            android:gravity="center"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/ll3">
+
+            <ImageView
+                android:layout_width="@dimen/_100sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:src="@drawable/journey"
+                android:padding="@dimen/_15sdp"
+                />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:text="Let's begin your journey"
+                android:fontFamily="@font/inter_bold"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll2" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_10sdp"
+                android:gravity="center"
+                android:paddingHorizontal="@dimen/_50sdp"
+                android:text="Make your transaction by adding money to your wallet."
+                android:textColor="@color/fsm_text_color60"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/ll2" />
+
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

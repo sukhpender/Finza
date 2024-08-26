@@ -34,6 +34,12 @@
         android:usesCleartextTraffic="true"
         tools:targetApi="31">
         <activity
+            android:name=".ui.finza.wallet.addMoney.AddMoneyActivity"
+            android:exported="false" />
+        <activity
+            android:name=".ui.finza.wallet.WalletActivity"
+            android:exported="false" />
+        <activity
             android:name=".ui.finza.language.LanguageActivity"
             android:exported="false" />
         <activity

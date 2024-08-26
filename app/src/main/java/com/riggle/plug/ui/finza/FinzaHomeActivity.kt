@@ -24,8 +24,10 @@ import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.plug.ui.finza.checkVehicleStatus.CheckVehicleStatusActivity
 import com.riggle.plug.ui.finza.language.LanguageActivity
 import com.riggle.plug.ui.finza.projectList.ProjectListActivity
+import com.riggle.plug.ui.finza.wallet.WalletActivity
 import com.riggle.plug.ui.login.LoginActivity
 import com.riggle.plug.ui.resetPassword.ResetPasswordActivity
+import com.riggle.plug.utils.showInfoToast
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
 
@@ -50,10 +52,6 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
     }
 
     override fun onCreateView() {
-        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
-        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
-        window.statusBarColor = ContextCompat.getColor(this, R.color.line_color)
-
         initView()
         initOnClick()
     }
@@ -69,7 +67,6 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 R.id.tvResetPass -> {
                     startActivity(ResetPasswordActivity.newIntent(this))
                 }
-
                 R.id.llOpenCloseDrawer -> {
                     openCloseDrawer()
                 }
@@ -83,7 +80,6 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         } else {
             binding.drawerLayout.openDrawer(GravityCompat.START)
         }
-
     }
 
     private fun initNavController() {
@@ -107,12 +103,12 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
             when (pos) {
                 0 -> {
                     /** wallet */
-
+                    startActivity(WalletActivity.newIntent(this))
                 }
 
                 1 -> {
                     /*** inventory */
-
+                    showInfoToast("Available soon!!")
                 }
 
                 2 -> {

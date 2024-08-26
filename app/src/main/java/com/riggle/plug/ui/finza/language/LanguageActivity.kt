@@ -34,7 +34,7 @@ class LanguageActivity : BaseActivity<ActivityLanguageBinding>() {
         fun newIntent(activity: Activity): Intent {
             val intent = Intent(activity, LanguageActivity::class.java)
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
-            return in
+            return intent
         }
     }
 
