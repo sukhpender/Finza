@@ -1,19 +1,20 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="purple_200">#FB8C00</color>
-    <color name="purple_500">#FB8C00</color>
-    <color name="purple_700">#FB8C00</color>
-    <color name="teal_200">#FB8C00</color>
-    <color name="teal_700">#FB8C00</color>
-    <color name="fsm_bg_light_teal">#E0F2F1</color>
+    <color name="purple_200">#2432db</color>
+    <color name="purple_500">#2432db</color>
+    <color name="purple_700">#2432db</color>
+    <color name="teal_200">#2432db</color>
+    <color name="teal_700">#2432db</color>
+    <color name="fsm_bg_light_teal">#f3f2fb</color>
     <color name="fsm_bg_light_teal60">#F5E0F2F1</color>
     <color name="fsm_bg_light_teal60_1">#99E0F2F1</color>
-    <color name="fsm_text_color">#424242</color>
-    <color name="fsm_text_color60">#99424242</color>
-    <color name="fsm_text_color80">#CC424242</color>
-    <color name="line_color">#FB8C00</color>
-    <color name="fsm_bg_teal">#00897B</color>
-    <color name="fsm_bg_teal60">#9900897B</color>
+    <color name="fsm_text_color">#0d0e2e</color>
+    <color name="fsm_text_color60">#990D0E2E</color>
+    <color name="fsm_text_color80">#CC0D0E2E</color>
+    <color name="line_color">#2432db</color>
+    <color name="line_color60">#992432DB</color>
+    <color name="fsm_bg_teal">#2432db</color>
+    <color name="fsm_bg_teal60">#992432DB</color>
 
 
 
@@ -22,7 +23,7 @@
     <color name="black_54">#8A000000</color>
     <color name="white">#ffffff</color>
     <color name="white90">#E6FFFFFF</color>
-    <color name="app_color">#F57E3B</color>
+    <color name="app_color">#2432db</color>
     <color name="dark_grey">#626262</color>
     <color name="dark_grey_txt_color">#263238</color>
     <color name="colorGreyTrackingStatus">#dfdfdf</color>

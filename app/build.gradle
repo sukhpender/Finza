@@ -25,11 +25,11 @@ android {
     productFlavors {
         develop {
             applicationIdSuffix ".dev"
-            resValue 'string', 'app_name', "Plug Dev"
+            resValue 'string', 'app_name', "Finza Dev"
             buildConfigField 'String', 'BASE_URL', "\"https://stag.api.riggleapp.in/api/v1/\""
         }
         production {
-            resValue 'string', 'app_name', "Riggle Plug"
+            resValue 'string', 'app_name', "Finza"
             buildConfigField 'String', 'BASE_URL', "\"https://api.riggleapp.in/api/v1/\""
         }
 

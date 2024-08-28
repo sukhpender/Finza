@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Plug</string>
+    <string name="app_name">Finza</string>
 
     <string name="session_expired">session_expired</string>
     <string name="alert">Alert</string>
@@ -274,6 +274,6 @@
     <string name="attendance">Attendance</string>
 
 
-    <string name="reset_password"><u>Reset password?</u></string>
+    <string name="reset_password"><u>Forgot password?</u></string>
 
 </resources>

@@ -17,7 +17,8 @@
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"
@@ -57,9 +58,9 @@
                 android:layout_margin="@dimen/_15sdp"
                 android:background="@drawable/white_circle"
                 android:backgroundTint="@color/line_color"
+                android:elevation="@dimen/_5sdp"
                 android:foreground="?selectableItemBackground"
                 android:onClick="@{v->vm.onClick(v)}"
-                android:elevation="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
@@ -68,10 +69,10 @@
                     android:layout_height="@dimen/_38sdp"
                     android:padding="@dimen/_10sdp"
                     android:src="@drawable/menu"
-                    app:tint="@color/fsm_bg_light_teal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    app:tint="@color/fsm_bg_light_teal" />
 
             </LinearLayout>
 
@@ -112,7 +113,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:fontFamily="@font/inter_semibold"
                         android:gravity="center_vertical"
-                        android:text="Overview"
+                        android:text="Chandigarh A"
                         android:textColor="@color/fsm_bg_light_teal"
                         android:textSize="@dimen/_18sdp"
                         app:layout_constraintStart_toStartOf="parent"
@@ -141,29 +142,35 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:layout_marginTop="@dimen/_64sdp"
+            android:layout_marginTop="@dimen/_22sdp"
             android:background="@drawable/right_round_corners"
-            android:backgroundTint="@color/fsm_bg_light_teal60"
             android:fitsSystemWindows="true">
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
 
-                <ImageView
+                <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivLogo"
-                    android:layout_width="@dimen/_150sdp"
+                    android:layout_width="@dimen/_100sdp"
                     android:layout_height="@dimen/_100sdp"
-                    android:layout_marginBottom="@dimen/_40sdp"
-                    android:scaleType="centerCrop"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:elevation="@dimen/_1sdp"
+                    android:padding="@dimen/_2sdp"
+                    android:scaleType="fitXY"
                     android:src="@drawable/fsm_logo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/rvHomeDrawer"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    app:strokeColor="@color/line_color"
+                    app:strokeWidth="@dimen/_1sdp" />
 
                 <LinearLayout
                     android:id="@+id/ll1"
-                    android:layout_width="@dimen/_100sdp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_8sdp"
                     android:layout_marginTop="@dimen/_10sdp"
@@ -215,6 +222,7 @@
                     android:text="Chandigarh A"
                     android:textColor="@color/line_color"
                     android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -231,6 +239,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
                     android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginBottom="@dimen/_3sdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toTopOf="@+id/ivLogo"
                     app:layout_constraintTop_toBottomOf="@+id/ll1"
@@ -247,7 +256,7 @@
                     android:fontFamily="@font/inter_bold"
                     android:gravity="center"
                     android:text="App Version: v0.0.1"
-                    android:textColor="@color/line_color"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent" />

@@ -72,7 +72,6 @@
             android:textColor="@color/fsm_text_color"
             android:textColorHint="@color/fsm_text_color80"
             android:paddingHorizontal="@dimen/_15sdp"
-            android:backgroundTint="@color/fsm_bg_light_teal60_1"
             app:layout_constraintTop_toBottomOf="@+id/ll1"
             android:id="@+id/etvSearchProject"
             />

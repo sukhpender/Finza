@@ -1830,7 +1830,6 @@
                             android:layout_marginStart="@dimen/_14sdp"
                             android:background="@drawable/ic_light_red"
                             android:padding="@dimen/_5sdp"
-                            android:src="@drawable/ic_1"
                             app:layout_constraintBottom_toBottomOf="@+id/tvReachAnalysis1"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="@+id/tvReachAnalysis1" />

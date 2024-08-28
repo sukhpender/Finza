@@ -128,21 +128,16 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 }
 
                 5 -> {
-                    /** replacement flow process */
+                    /** help and support */
 
                 }
 
                 6 -> {
-                    /** vrn flow process */
-
-                }
-
-                7 -> {
                     /** language */
                     startActivity(LanguageActivity.newIntent(this))
                 }
 
-                8 -> {
+                7 -> {
                     /** logout */
                     bsLogout()
                 }
@@ -192,8 +187,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         list.add(Drawer(R.drawable.issue_scanner, "Issue Super Tag"))
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))
         list.add(Drawer(R.drawable.change_project, "Change Project"))
-        list.add(Drawer(R.drawable.replace1, "Replacement Flow Process"))
-        list.add(Drawer(R.drawable.vrn, "VRN Flow Process"))
+        list.add(Drawer(R.drawable.replace1, "Help & Support"))
         list.add(Drawer(R.drawable.language, "Language"))
         list.add(Drawer(R.drawable.logout, "Logout"))
         return list

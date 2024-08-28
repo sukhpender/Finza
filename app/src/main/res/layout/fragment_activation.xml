@@ -14,8 +14,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:background="@color/fsm_bg_light_teal60_1">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/tv1"
@@ -23,15 +22,17 @@
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
             android:layout_marginTop="@dimen/_50ssp"
-            android:background="@color/fsm_bg_light_teal"
+            android:background="@drawable/edit_back_view"
+            android:backgroundTint="@color/line_color"
             android:drawablePadding="@dimen/_5sdp"
             android:gravity="center_vertical"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:paddingHorizontal="@dimen/_10sdp"
             android:text="No tags issued in last 7 days. Issue now!"
-            android:textColor="@color/fsm_text_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/_12sdp"
             app:drawableStartCompat="@drawable/ic_info"
-            app:drawableTint="@color/fsm_text_color"
+            app:drawableTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"/>
@@ -57,7 +58,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/fsm_bg_light_teal"
+            app:cardBackgroundColor="@color/line_color"
             app:cardCornerRadius="@dimen/_8sdp"
             app:cardElevation="@dimen/_2sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -81,7 +82,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Incoming"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp" />
 
                     <TextView
@@ -91,7 +92,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_semibold"
                         android:text="0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp" />
 
                 </LinearLayout>
@@ -99,7 +100,7 @@
                 <View
                     android:layout_width="@dimen/_1sdp"
                     android:layout_height="match_parent"
-                    android:background="@color/fsm_text_color" />
+                    android:background="@color/white" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -114,7 +115,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Available"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp" />
 
                     <TextView
@@ -124,7 +125,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_semibold"
                         android:text="0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp" />
 
                 </LinearLayout>
@@ -132,7 +133,7 @@
                 <View
                     android:layout_width="@dimen/_1sdp"
                     android:layout_height="match_parent"
-                    android:background="@color/fsm_text_color" />
+                    android:background="@color/white" />
 
                 <LinearLayout
                     android:layout_width="0dp"
@@ -147,7 +148,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Old Tags"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp" />
 
                     <TextView
@@ -157,7 +158,7 @@
                         android:layout_height="wrap_content"
                         android:fontFamily="@font/inter_semibold"
                         android:text="0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_16sdp" />
 
                 </LinearLayout>
@@ -187,7 +188,7 @@
             android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_5sdp"
-            app:cardBackgroundColor="@color/fsm_bg_light_teal"
+            app:cardBackgroundColor="@color/line_color"
             app:cardCornerRadius="@dimen/_8sdp"
             app:cardElevation="@dimen/_2sdp"
             app:layout_constraintStart_toStartOf="parent"
@@ -202,7 +203,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
-                    android:gravity="center_vertical"
+                    android:gravity="center"
                     android:orientation="vertical">
 
                     <TextView
@@ -212,24 +213,25 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:text="Type"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_1sdp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@color/fsm_text_color" />
+                        android:background="@color/white" />
 
                     <TextView
                         android:id="@+id/tv11"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:text="UGLY Issuances"
-                        android:textColor="@color/fsm_text_color"
+                        android:gravity="center"
+                        android:text="UGLY\nIssuances"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -240,7 +242,7 @@
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="URT"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -251,7 +253,7 @@
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="OLD Tag"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -263,7 +265,7 @@
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="LOST Tag"
                         android:layout_marginBottom="@dimen/_8sdp"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                 </LinearLayout>
@@ -280,22 +282,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Count"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_1sdp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@color/fsm_text_color" />
+                        android:background="@color/white" />
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="0"
-                        android:textColor="@color/fsm_text_color"
+                        android:gravity="center"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -304,7 +307,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -313,7 +316,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -322,7 +325,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                 </LinearLayout>
@@ -339,22 +342,23 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Amount"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <View
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_1sdp"
                         android:layout_marginTop="@dimen/_8sdp"
-                        android:background="@color/fsm_text_color" />
+                        android:background="@color/white" />
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_marginTop="@dimen/_12sdp"
+                        android:gravity="center"
                         android:text="₹ 0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -363,7 +367,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="₹ 0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -372,7 +376,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="₹ 0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
@@ -381,7 +385,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:text="₹ 0"
-                        android:textColor="@color/fsm_text_color"
+                        android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
                 </LinearLayout>
@@ -398,14 +402,14 @@
             android:layout_marginHorizontal="@dimen/_15sdp"
             android:layout_marginBottom="@dimen/_65sdp"
             android:background="@drawable/edit_back_view"
-            android:backgroundTint="@color/fsm_bg_light_teal"
+            android:backgroundTint="@color/line_color"
             android:fontFamily="@font/inter_semibold"
             android:elevation="@dimen/_2sdp"
             android:foreground="?selectableItemBackground"
             android:gravity="center"
             android:onClick="@{v->vm.onClick(v)}"
             android:text="Issue Super TAG"
-            android:textColor="@color/fsm_text_color"
+            android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
             app:layout_constraintTop_toBottomOf="@+id/cv2"
             app:layout_constraintBottom_toBottomOf="parent"
