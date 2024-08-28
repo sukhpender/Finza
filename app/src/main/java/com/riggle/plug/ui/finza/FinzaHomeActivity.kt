@@ -67,6 +67,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 R.id.tvResetPass -> {
                     startActivity(ResetPasswordActivity.newIntent(this))
                 }
+
                 R.id.llOpenCloseDrawer -> {
                     openCloseDrawer()
                 }
@@ -127,11 +128,21 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 }
 
                 5 -> {
+                    /** replacement flow process */
+
+                }
+
+                6 -> {
+                    /** vrn flow process */
+
+                }
+
+                7 -> {
                     /** language */
                     startActivity(LanguageActivity.newIntent(this))
                 }
 
-                6 -> {
+                8 -> {
                     /** logout */
                     bsLogout()
                 }

@@ -15,8 +15,402 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/fsm_bg_light_teal60_1">
 
+        <TextView
+            android:id="@+id/tv1"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginTop="@dimen/_50ssp"
+            android:background="@color/fsm_bg_light_teal"
+            android:drawablePadding="@dimen/_5sdp"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_10sdp"
+            android:text="No tags issued in last 7 days. Issue now!"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:drawableStartCompat="@drawable/ic_info"
+            app:drawableTint="@color/fsm_text_color"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <TextView
+            android:id="@+id/tv2"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_25ssp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center_vertical"
+            android:text="Your FASTag Inventory"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/fsm_bg_light_teal"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="@dimen/_2sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv2">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv3"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Incoming"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/tv4"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:background="@color/fsm_text_color" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv5"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Available"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/tv6"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+                <View
+                    android:layout_width="@dimen/_1sdp"
+                    android:layout_height="match_parent"
+                    android:background="@color/fsm_text_color" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv7"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Old Tags"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_11sdp" />
+
+                    <TextView
+                        android:id="@+id/tv8"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tv9"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_25ssp"
+            android:fontFamily="@font/inter_semibold"
+            android:gravity="center_vertical"
+            android:text="Deductions Aug 2024"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv1" />
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:cardBackgroundColor="@color/fsm_bg_light_teal"
+            app:cardCornerRadius="@dimen/_8sdp"
+            app:cardElevation="@dimen/_2sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tv9">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginVertical="@dimen/_10sdp">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center_vertical"
+                    android:orientation="vertical">
+
+                    <TextView
+                        android:id="@+id/tv10"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:text="Type"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@color/fsm_text_color" />
+
+                    <TextView
+                        android:id="@+id/tv11"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="UGLY Issuances"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv12"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="URT"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv13"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="OLD Tag"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        android:id="@+id/tv14"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="LOST Tag"
+                        android:layout_marginBottom="@dimen/_8sdp"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Count"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@color/fsm_text_color" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Amount"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:background="@color/fsm_text_color" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="₹ 0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="₹ 0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="₹ 0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_12sdp"
+                        android:text="₹ 0"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/tvIssueSuperTag"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_65sdp"
+            android:background="@drawable/edit_back_view"
+            android:backgroundTint="@color/fsm_bg_light_teal"
+            android:fontFamily="@font/inter_semibold"
+            android:elevation="@dimen/_2sdp"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{v->vm.onClick(v)}"
+            android:text="Issue Super TAG"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_16sdp"
+            app:layout_constraintTop_toBottomOf="@+id/cv2"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

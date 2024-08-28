@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <data>
+
         <import type="android.view.View" />
 
         <variable
@@ -15,7 +16,6 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        tools:openDrawer="start"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
@@ -52,26 +52,75 @@
 
             <LinearLayout
                 android:id="@+id/llOpenCloseDrawer"
-                android:layout_width="@dimen/_42sdp"
-                android:layout_height="@dimen/_42sdp"
-                android:layout_margin="@dimen/_10sdp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_15sdp"
                 android:background="@drawable/white_circle"
-                android:backgroundTint="@color/fsm_bg_teal"
-                android:elevation="@dimen/_5sdp"
+                android:backgroundTint="@color/line_color"
                 android:foreground="?selectableItemBackground"
-                android:onClick="@{v-> vm.onClick(v)}"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:elevation="@dimen/_15sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent">
 
                 <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="@dimen/_42sdp"
-                    android:layout_height="@dimen/_42sdp"
-                    android:padding="@dimen/_12sdp"
+                    android:layout_width="@dimen/_38sdp"
+                    android:layout_height="@dimen/_38sdp"
+                    android:padding="@dimen/_10sdp"
                     android:src="@drawable/menu"
-                    android:tint="@color/fsm_bg_light_teal"
+                    app:tint="@color/fsm_bg_light_teal"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
                     app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
 
             </LinearLayout>
+
+
+            <androidx.cardview.widget.CardView
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_45sdp"
+                android:elevation="@dimen/_15sdp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:paddingVertical="@dimen/_2sdp"
+                app:cardBackgroundColor="@color/line_color"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center_vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="@dimen/_38sdp"
+                        android:layout_height="@dimen/_38sdp"
+                        android:layout_marginStart="@dimen/_15sdp"
+                        android:background="@color/white"
+                        android:foreground="?selectableItemBackground"
+                        android:onClick="@{v->vm.onClick(v)}"
+                        android:padding="@dimen/_2sdp"
+                        android:src="@drawable/fsm_logo"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:gravity="center_vertical"
+                        android:text="Overview"
+                        android:textColor="@color/fsm_bg_light_teal"
+                        android:textSize="@dimen/_18sdp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
 
             <fragment
                 android:id="@+id/nav_host_fragment_activity_home_finza"
@@ -92,7 +141,7 @@
             android:layout_width="wrap_content"
             android:layout_height="match_parent"
             android:layout_gravity="start"
-            android:layout_marginTop="@dimen/_22sdp"
+            android:layout_marginTop="@dimen/_64sdp"
             android:background="@drawable/right_round_corners"
             android:backgroundTint="@color/fsm_bg_light_teal60"
             android:fitsSystemWindows="true">
@@ -102,8 +151,9 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:layout_width="@dimen/_200sdp"
-                    android:layout_height="@dimen/_150sdp"
+                    android:id="@+id/ivLogo"
+                    android:layout_width="@dimen/_150sdp"
+                    android:layout_height="@dimen/_100sdp"
                     android:layout_marginBottom="@dimen/_40sdp"
                     android:scaleType="centerCrop"
                     android:src="@drawable/fsm_logo"
@@ -180,11 +230,11 @@
                     android:id="@+id/rvHomeDrawer"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginTop="@dimen/_20sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                    app:layout_constraintBottom_toTopOf="@+id/tvAppVersion"
+                    app:layout_constraintBottom_toTopOf="@+id/ivLogo"
                     app:layout_constraintTop_toBottomOf="@+id/ll1"
-                    tools:itemCount="7"
+                    tools:itemCount="9"
                     tools:listitem="@layout/holder_drawer" />
 
                 <TextView
