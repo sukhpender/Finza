@@ -30,45 +30,45 @@
         android:foreground="?selectableItemBackground"
         android:onClick="@{v-> callback.onItemClick(v,bean,pos)}">
 
-    <LinearLayout
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginHorizontal="@dimen/_10sdp"
-        android:layout_marginVertical="@dimen/_10sdp"
-        android:orientation="vertical">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:orientation="vertical">
 
-        <TextView
-            style="@style/TextView.InterRegular_12ssp"
-            android:fontFamily="@font/inter_semibold"
-            android:singleLine="true"
-            android:text="@{bean.name}"
-            android:textColor="@color/line_color"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:fontFamily="@font/inter_semibold"
+                android:singleLine="true"
+                android:text="@{bean.name}"
+                android:textColor="@color/line_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            style="@style/TextView.InterRegular_12ssp"
-            android:singleLine="true"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:text="Chandigarh A"
-            android:textColor="@color/fsm_text_color"
-            android:fontFamily="@font/inter_semibold"
-            android:textSize="@dimen/_12sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:singleLine="true"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:text="Chandigarh A"
+                android:textColor="@color/fsm_text_color"
+                android:fontFamily="@font/inter_semibold"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-        <TextView
-            style="@style/TextView.InterRegular_12ssp"
-            android:singleLine="true"
-            android:text="Chandigarh"
-            android:layout_marginTop="@dimen/_2sdp"
-            android:textColor="@color/fsm_text_color80"
-            android:textSize="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:singleLine="true"
+                android:text="Chandigarh"
+                android:layout_marginTop="@dimen/_2sdp"
+                android:textColor="@color/fsm_text_color80"
+                android:textSize="@dimen/_10sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
-    </LinearLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 
 </layout>

@@ -85,7 +85,7 @@
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="center"
                     android:text="₹ 20,000"
-                    android:textColor="@color/line_color"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_14sdp" />
 
                 <TextView
@@ -95,7 +95,7 @@
                     android:layout_marginStart="@dimen/_15sdp"
                     android:gravity="center"
                     android:text="Available Balance"
-                    android:textColor="@color/line_color"
+                    android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp" />
 
             </LinearLayout>
@@ -110,6 +110,7 @@
                 android:background="@drawable/edit_back_view"
                 android:drawableStart="@drawable/ic_plus"
                 android:drawablePadding="@dimen/_6sdp"
+                android:drawableTint="@color/line_color"
                 android:fontFamily="@font/inter_semibold"
                 android:foreground="?selectableItemBackground"
                 android:gravity="center"

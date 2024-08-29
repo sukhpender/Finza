@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        android:paddingVertical="@dimen/_8sdp"
+        android:paddingVertical="@dimen/_10sdp"
         android:foreground="?selectableItemBackground"
         android:onClick="@{v-> callback.onItemClick(v,bean,pos)}">
 
@@ -33,10 +33,10 @@
             setImage1="@{bean.image}"
             android:layout_width="@dimen/_16sdp"
             android:layout_height="@dimen/_16sdp"
-            android:backgroundTint="@color/line_color"
+            android:backgroundTint="@color/fsm_text_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:tint="@color/line_color" />
+            app:tint="@color/fsm_text_color" />
 
         <TextView
             android:id="@+id/tvDItems"
@@ -46,7 +46,7 @@
             android:layout_marginStart="@dimen/_30sdp"
             android:gravity="center_vertical"
             android:text="@{bean.name}"
-            android:textColor="@color/line_color"
+            android:textColor="@color/fsm_text_color"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintBottom_toBottomOf="@+id/ivDrawer"
             app:layout_constraintStart_toStartOf="parent"

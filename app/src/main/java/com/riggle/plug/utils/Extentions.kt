@@ -24,8 +24,6 @@ import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.google.android.material.snackbar.Snackbar
 import com.riggle.plug.R
 import com.riggle.plug.data.model.BrandResult
-import com.riggle.plug.databinding.ViewEmptyBinding
-import com.riggle.plug.databinding.ViewLoaderBinding
 import com.riggle.plug.ui.base.BaseViewModel
 import retrofit2.HttpException
 import java.io.IOException
@@ -39,20 +37,6 @@ import java.util.stream.Collectors
 
 /** Network Extensions */
 
-fun ViewEmptyBinding.hideEmptyView() {
-    this.main.visibility = View.GONE
-    this.tvMessage.text = ""
-}
-
-fun ViewLoaderBinding.showLoading() {
-    this.shimmer.startShimmer()
-    this.main.visibility = View.VISIBLE
-}
-
-fun ViewLoaderBinding.hideLoading() {
-    this.shimmer.stopShimmer()
-    this.main.visibility = View.GONE
-}
 
 
 fun Context.isNetworkAvailable(): Boolean {

@@ -12,6 +12,7 @@ import com.riggle.plug.databinding.FragmentActivationBinding
 import com.riggle.plug.ui.base.BaseFragment
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.finza.FinzaHomeActivityVM
+import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -20,7 +21,18 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
     private val viewModel: ActivationFragmentVM by viewModels()
 
     override fun onCreateView(view: View) {
+        initOnClick()
+    }
 
+    private fun initOnClick() {
+        viewModel.onClick.observe(viewLifecycleOwner){
+            when(it?.id){
+                R.id.tvIssueSuperTag -> {
+                        startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
+
+                }
+            }
+        }
     }
 
     override fun getLayoutResource(): Int {

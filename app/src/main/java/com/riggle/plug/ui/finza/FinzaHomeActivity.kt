@@ -2,11 +2,9 @@ package com.riggle.plug.ui.finza
 
 import android.app.Activity
 import android.content.Intent
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -22,6 +20,7 @@ import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.plug.ui.finza.checkVehicleStatus.CheckVehicleStatusActivity
+import com.riggle.plug.ui.finza.helpAndSupport.HelpAndSupportActivity
 import com.riggle.plug.ui.finza.language.LanguageActivity
 import com.riggle.plug.ui.finza.projectList.ProjectListActivity
 import com.riggle.plug.ui.finza.wallet.WalletActivity
@@ -71,6 +70,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 R.id.llOpenCloseDrawer -> {
                     openCloseDrawer()
                 }
+
             }
         }
     }
@@ -113,31 +113,26 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 }
 
                 2 -> {
-                    /** issue super tag */
-
-                }
-
-                3 -> {
                     /** vehicle status */
                     startActivity(CheckVehicleStatusActivity.newIntent(this))
                 }
 
-                4 -> {
+                3 -> {
                     /** change project */
                     startActivity(ProjectListActivity.newIntent(this))
                 }
 
-                5 -> {
+                4 -> {
                     /** help and support */
-
+                    startActivity(HelpAndSupportActivity.newIntent(this))
                 }
 
-                6 -> {
+                5 -> {
                     /** language */
                     startActivity(LanguageActivity.newIntent(this))
                 }
 
-                7 -> {
+                6 -> {
                     /** logout */
                     bsLogout()
                 }
@@ -184,7 +179,6 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         val list = ArrayList<Drawer>()
         list.add(Drawer(R.drawable.wallet, "Wallet"))
         list.add(Drawer(R.drawable.inventory, "Inventory"))
-        list.add(Drawer(R.drawable.issue_scanner, "Issue Super Tag"))
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))
         list.add(Drawer(R.drawable.change_project, "Change Project"))
         list.add(Drawer(R.drawable.replace1, "Help & Support"))

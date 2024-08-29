@@ -12,8 +12,7 @@
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="@dimen/_10sdp"
-        android:background="@drawable/background_transparent">
+        android:layout_marginBottom="@dimen/_10sdp">
 
         <androidx.cardview.widget.CardView
             android:id="@+id/card"
@@ -22,6 +21,7 @@
             android:layout_centerHorizontal="true"
             android:background="@color/white"
             android:backgroundTint="@color/white"
+            android:visibility="gone"
             android:elevation="@dimen/_10sdp"
             android:padding="@dimen/_5sdp"
             app:cardCornerRadius="@dimen/_15sdp">

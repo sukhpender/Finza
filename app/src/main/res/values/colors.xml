@@ -1,4 +1,3 @@
-<?xml version="1.0" encoding="utf-8"?>
 <resources>
     <color name="purple_200">#2432db</color>
     <color name="purple_500">#2432db</color>
@@ -15,10 +14,6 @@
     <color name="line_color60">#992432DB</color>
     <color name="fsm_bg_teal">#2432db</color>
     <color name="fsm_bg_teal60">#992432DB</color>
-
-
-
-
     <color name="black">#000000</color>
     <color name="black_54">#8A000000</color>
     <color name="white">#ffffff</color>
@@ -27,7 +22,6 @@
     <color name="dark_grey">#626262</color>
     <color name="dark_grey_txt_color">#263238</color>
     <color name="colorGreyTrackingStatus">#dfdfdf</color>
-
     <color name="dark_grey_txt_color15">#26263238</color>
     <color name="dark_grey_txt_color50">#80263238</color>
     <color name="dark_grey_txt_color10">#1A263238</color>
@@ -40,7 +34,6 @@
     <color name="color_CED6E0">#CED6E0</color>
     <color name="color_42ADE2">#42ADE2</color>
     <color name="loader_color">#66C9C9C9</color>
-
     <color name="dark_grey_txt_color_50">#80263238</color>
     <color name="dark_grey_txt_color_20">#33263238</color>
     <color name="color_D9AE56">#D9AE56</color>
@@ -51,7 +44,6 @@
     <color name="text_color_333333">#333333</color>
     <color name="edit_back_color">#F3F0FF</color>
     <color name="deactive">#C7C7C7</color>
-
     <color name="offer_txt_color80">#CCF0AD00</color>
     <color name="offer_txt_color55">#8CF0AD00</color>
     <color name="offer_txt_color5">#0DF0AD00</color>
@@ -99,28 +91,21 @@
     <color name="pending">#39CEF3</color>
     <color name="pending90">#E639CEF3</color>
     <color name="pending10">#1A39CEF3</color>
-
     <color name="pending_color">#3C9DD9</color>
     <color name="pending_color_20">#333C9DD9</color>
     <color name="rejected">#FF391E</color>
     <color name="rejected_20">#33FF391E</color>
-
     <color name="title_textColor">#1e1e1e</color>
     <color name="title_backgroundColor">@color/transparent</color>
     <color name="title_monthChangeButtonTint">@color/black</color>
-
     <color name="weekDay_backgroundColor">@color/transparent</color>
     <color name="weekDay_textColor">@color/black</color>
-
     <color name="day_textColor_currentDay">#0000ff</color>
-
     <color name="day_textColor_disabled">#aaffffff</color>
     <color name="day_backgroundColor_disabled">#44010508</color>
-
     <color name="day_textColor_enabled">@color/black</color>
     <color name="day_backgroundColor_enabled">@color/white</color>
-
     <color name="selectedDay_backgroundColor">@color/dark_grey</color>
     <color name="selectedDay_textColor">@color/white</color>
-
+    <color name="transparent">@color/white</color>
 </resources>

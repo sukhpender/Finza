@@ -152,11 +152,10 @@
 
                 <com.google.android.material.imageview.ShapeableImageView
                     android:id="@+id/ivLogo"
-                    android:layout_width="@dimen/_100sdp"
-                    android:layout_height="@dimen/_100sdp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_90sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:layout_marginBottom="@dimen/_50sdp"
-                    android:elevation="@dimen/_1sdp"
                     android:padding="@dimen/_2sdp"
                     android:scaleType="fitXY"
                     android:src="@drawable/fsm_logo"
@@ -164,9 +163,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/rvHomeDrawer"
-                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                    app:strokeColor="@color/line_color"
-                    app:strokeWidth="@dimen/_1sdp" />
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
                 <LinearLayout
                     android:id="@+id/ll1"
@@ -183,7 +180,7 @@
                         android:fontFamily="@font/inter_bold"
                         android:singleLine="true"
                         android:text="Rishab Agarwal"
-                        android:textColor="@color/line_color"
+                        android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
@@ -201,8 +198,8 @@
                         style="@style/TextView.InterRegular_12ssp"
                         android:singleLine="true"
                         android:text="0123456789"
-                        android:textColor="@color/line_color"
-                        android:textSize="@dimen/_12sdp"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_11sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
@@ -226,24 +223,16 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <View
-                    android:layout_width="match_parent"
-                    android:layout_height="@dimen/_2sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:background="@color/line_color"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/ll1" />
-
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/rvHomeDrawer"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_30sdp"
                     android:layout_marginBottom="@dimen/_3sdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toTopOf="@+id/ivLogo"
                     app:layout_constraintTop_toBottomOf="@+id/ll1"
-                    tools:itemCount="9"
+                    tools:itemCount="8"
                     tools:listitem="@layout/holder_drawer" />
 
                 <TextView

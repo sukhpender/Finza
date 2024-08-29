@@ -275,5 +275,14 @@
 
 
     <string name="reset_password"><u>Forgot password?</u></string>
+    <string name="help_support"><![CDATA[Help & Support]]></string>
+    <string name="vrn_update_flow_process">VRN Update Flow Process</string>
+    <string name="replacement_flow_process">Replacement Flow Process</string>
+    <string name="issue_super_tag">Issue Super Tag</string>
+    <string name="total">Total</string>
+    <string name="grand_total">Grand Total</string>
+    <string name="payment_summary">Payment Summary</string>
+    <string name="enter_amount">Enter Amount ⟨₹⟩</string>
+    <string name="add_money">Add Money</string>
 
 </resources>

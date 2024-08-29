@@ -16,7 +16,6 @@ import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.finza.FinzaHomeActivity
 import com.riggle.plug.ui.finza.projectList.ProjectListActivity
-import com.riggle.plug.ui.home.HomeActivity
 import com.riggle.plug.ui.resetPassword.ResetPasswordActivity
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.preventClick

@@ -35,9 +35,7 @@ import com.riggle.plug.data.model.SalesmanCityBeats
 import com.riggle.plug.data.model.SubCategory1
 import com.riggle.plug.data.model.SubCategory2
 import com.riggle.plug.data.model.TargetUserData
-import com.riggle.plug.databinding.LaySalesBeatItemBinding
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
-import com.skydoves.progressview.ProgressView
 import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -355,21 +353,6 @@ object ImageBindingAdapter {
         }
     }
 
-    @JvmStatic
-    @BindingAdapter(value = ["setSalesBeatItem"])
-    fun setSalesBeatItem(rv: RecyclerView, bean: List<BeatSalesBeat>?) {
-        val adapter: SimpleRecyclerViewAdapter<BeatSalesBeat, LaySalesBeatItemBinding> =
-            SimpleRecyclerViewAdapter(
-                R.layout.lay_sales_beat_item, BR.bean
-            ) { v, m, pos ->
-
-            }
-        rv.adapter = adapter
-        if (bean != null) {
-            adapter.list = bean
-        }
-    }
-
 
     @JvmStatic
     @BindingAdapter(value = ["setACBoxStatus"])
@@ -385,18 +368,6 @@ object ImageBindingAdapter {
                     R.drawable.filter_border
                 )
             )
-        }
-    }
-
-    @JvmStatic
-    @BindingAdapter(value = ["setProgress"])
-    fun setProgress(
-        pv: com.mikhaellopez.circularprogressbar.CircularProgressBar, percentage: String?
-    ) {
-        if (percentage != null) {
-            pv.progress = percentage.toFloat()
-        } else {
-            pv.progress = 0f
         }
     }
 
@@ -1077,13 +1048,4 @@ object ImageBindingAdapter {
             cv.background = cv.context.getDrawable(R.drawable.ic_white)
         }
     }
-
-    @JvmStatic
-    @BindingAdapter(value = ["setHomeBarValues"])
-    fun setHomeBarValues(pv: ProgressView, bar: Int) {
-        pv.progress = bar.toFloat()
-        pv.labelText = "$bar lakh"
-    }
-
-
 }

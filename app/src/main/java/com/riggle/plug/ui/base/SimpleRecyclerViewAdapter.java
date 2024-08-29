@@ -82,12 +82,12 @@ public class SimpleRecyclerViewAdapter<M, B extends ViewDataBinding> extends Rec
             holder.binding.setVariable(BR.callback, callback);
             holder.binding.setVariable(modelVariableId, dataList.get(position));
             holder.binding.setVariable(BR.pos, position);
-            holder.binding.setVariable(BR.listsize, dataList.size());
+           // holder.binding.setVariable(BR.listsize, dataList.size());
         } else {
             holder.binding.setVariable(BR.callback, null);
             holder.binding.setVariable(modelVariableId, null);
             holder.binding.setVariable(BR.pos, 0);
-            holder.binding.setVariable(BR.listsize, 0);
+          //  holder.binding.setVariable(BR.listsize, 0);
         }
         holder.binding.executePendingBindings();
     }

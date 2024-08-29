@@ -2,23 +2,25 @@ package com.riggle.plug.ui.finza.wallet.addMoney
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
-import androidx.activity.enableEdgeToEdge
+import android.text.Editable
+import android.text.TextWatcher
+import android.util.Log
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
+import com.razorpay.Checkout
+import com.razorpay.PaymentData
+import com.razorpay.PaymentResultWithDataListener
 import com.riggle.plug.R
 import com.riggle.plug.databinding.ActivityAddMoneyBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
-import com.riggle.plug.ui.finza.wallet.WalletActivity
-import com.riggle.plug.ui.finza.wallet.WalletActivityVM
-import com.riggle.plug.ui.finza.wallet.selectPaymentMethod.SelectPaymentMethodActivity
+import com.riggle.plug.utils.showErrorToast
+import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
+import org.json.JSONObject
+
 
 @AndroidEntryPoint
-class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>() {
+class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultWithDataListener {
 
     private val viewModel: AddMoneyActivityVM by viewModels()
 
@@ -39,12 +41,31 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>() {
     }
 
     override fun onCreateView() {
+        Checkout.preload(applicationContext)
+        val co = Checkout()
+        co.setKeyID("rzp_test_Nqy8gmPWtyPySL")
+
         initView()
         initOnClick()
     }
 
     private fun initView() {
+        binding.amount = "500"
 
+        binding.etAmount.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable) {}
+
+            override fun beforeTextChanged(s: CharSequence, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence, start: Int, before: Int, count: Int) {
+                binding.amount = s.toString()
+//                if (s.toString() != "" && s.toString().toInt() >= 200){
+//                    binding.amount = s.toString()
+//                }else{
+//                    showErrorToast("Minimum amount 200.")
+//                }
+            }
+        })
     }
 
     private fun initOnClick() {
@@ -53,11 +74,79 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>() {
                 R.id.iv1 -> {
                     finish()
                 }
+
                 R.id.ll3 -> { // select payment method
-                startActivity(SelectPaymentMethodActivity.newIntent(this))
+                    // value will ended in subunits like for 1 Ruppe send 1000
+                    if (binding.amount == "") {
+                        showErrorToast("Enter minimum amount 200")
+                    } else if (binding.amount != "" && binding.amount!!.toInt() < 200) {
+                        showErrorToast("Minimum amount required 200")
+                    } else if (binding.amount != "" && binding.amount!!.toInt() > 10000) {
+                        showErrorToast("Maximum amount 10000")
+                    } else {
+                        val totalAmount = binding.amount!!.toInt() * 1000
+                        initPayment(totalAmount.toString())
+                    }
+                    //  startActivity(SelectPaymentMethodActivity.newIntent(this))
+                }
+
+                R.id.tv500 -> {
+                    binding.amount = "500"
+                }
+
+                R.id.tv1000 -> {
+                    binding.amount = "1000"
+                }
+
+                R.id.tv2000 -> {
+                    binding.amount = "2000"
+                }
+
+                R.id.tv5000 -> {
+                    binding.amount = "5000"
                 }
             }
         }
     }
 
+    private fun initPayment(amount: String) {
+        val activity: Activity = this
+        val co = Checkout()
+
+        try {
+            val options = JSONObject()
+            options.put("name", "Finza")
+            options.put("description", "Add Money in Finza Wallet.")
+            //You can omit the image option to fetch the image from the dashboard
+            options.put("image", "http://example.com/image/rzp.jpg")
+            options.put("theme.color", "#2432db")
+            options.put("currency", "INR")
+            // options.put("order_id", "order_DBJOWzybf0sJbb");
+            options.put("amount", amount)//pass amount in currency subunits
+
+            val retryObj = JSONObject()
+            retryObj.put("enabled", true)
+            retryObj.put("max_count", 4)
+            options.put("retry", retryObj)
+
+            val prefill = JSONObject()
+            prefill.put("email", "sukhpenderpanghal123@gmail.com")
+            prefill.put("contact", "9813301662")
+
+            options.put("prefill", prefill)
+            co.open(activity, options)
+        } catch (e: Exception) {
+            showErrorToast("Error in payment: " + e.message)
+            e.printStackTrace()
+        }
+    }
+
+    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
+        Log.e("PaymentLoad", p1?.data.toString())
+        showSuccessToast(p1!!.paymentId)
+    }
+
+    override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
+        showErrorToast("Payment failed")
+    }
 }

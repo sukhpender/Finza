@@ -1,10 +1,15 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
         <import type="android.view.View" />
+
+        <variable
+            name="amount"
+            type="String" />
 
         <variable
             name="vm"
@@ -48,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:gravity="center_vertical"
-                android:text="Add Money"
+                android:text="@string/add_money"
                 android:textColor="@color/fsm_bg_light_teal"
                 android:textSize="@dimen/_16sdp" />
 
@@ -62,7 +67,7 @@
             android:layout_marginStart="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_15ssp"
             android:layout_marginEnd="@dimen/_16sdp"
-            android:text="Enter Amount ⟨₹⟩"
+            android:text="@string/enter_amount"
             android:textColor="@color/fsm_text_color"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintEnd_toEndOf="parent"
@@ -74,11 +79,11 @@
             style="@style/EditText.Phone"
             android:layout_width="0dp"
             android:layout_marginTop="8dp"
-            android:hint="000"
             android:imeOptions="actionDone"
             android:inputType="number"
             android:maxLength="6"
             android:singleLine="true"
+            android:text="@{amount}"
             app:layout_constraintEnd_toEndOf="@id/tvPhone"
             app:layout_constraintStart_toStartOf="@id/tvPhone"
             app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
@@ -95,12 +100,15 @@
             app:layout_constraintTop_toBottomOf="@+id/etAmount">
 
             <TextView
+                android:id="@+id/tv500"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:background="@drawable/custom_round_stroke_fsm_1"
+                android:foreground="?selectableItemBackground"
                 android:gravity="center"
+                android:onClick="@{v -> vm.onClick(v)}"
                 android:paddingVertical="@dimen/_7sdp"
                 android:text="₹500"
                 android:textColor="@color/fsm_text_color"
@@ -110,13 +118,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/ll1" />
 
             <TextView
+                android:id="@+id/tv1000"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:background="@drawable/custom_round_stroke_fsm_1"
+                android:foreground="?selectableItemBackground"
                 android:gravity="center"
+                android:onClick="@{v -> vm.onClick(v)}"
                 android:paddingVertical="@dimen/_7sdp"
                 android:text="₹1000"
                 android:textColor="@color/fsm_text_color"
@@ -126,13 +137,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/ll1" />
 
             <TextView
+                android:id="@+id/tv2000"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:background="@drawable/custom_round_stroke_fsm_1"
+                android:foreground="?selectableItemBackground"
                 android:gravity="center"
+                android:onClick="@{v -> vm.onClick(v)}"
                 android:paddingVertical="@dimen/_7sdp"
                 android:text="₹2000"
                 android:textColor="@color/fsm_text_color"
@@ -142,13 +156,16 @@
                 app:layout_constraintTop_toBottomOf="@+id/ll1" />
 
             <TextView
+                android:id="@+id/tv5000"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_8sdp"
                 android:layout_weight="1"
                 android:background="@drawable/custom_round_stroke_fsm_1"
+                android:foreground="?selectableItemBackground"
                 android:gravity="center"
+                android:onClick="@{v -> vm.onClick(v)}"
                 android:paddingVertical="@dimen/_7sdp"
                 android:text="₹5000"
                 android:textColor="@color/fsm_text_color"
@@ -163,11 +180,11 @@
             android:id="@+id/cvPaymentSummary"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardElevation="@dimen/_2sdp"
             android:layout_marginHorizontal="@dimen/_15sdp"
             android:layout_marginTop="@dimen/_25sdp"
-            app:cardBackgroundColor="@color/fsm_bg_light_teal"
+            app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_5sdp"
+            app:cardElevation="@dimen/_4sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll2">
@@ -183,7 +200,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_semibold"
-                    android:text="Payment Summary"
+                    android:text="@string/payment_summary"
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_14sdp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -195,7 +212,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_6sdp"
-                    android:text="Total amount"
+                    android:text="@string/total_amount"
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -206,7 +223,7 @@
                     style="@style/TextView.InterRegular_12ssp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="₹ 500"
+                    android:text='@{"₹"+amount}'
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv2"
@@ -216,7 +233,7 @@
                 <View
                     android:id="@+id/v1"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_1sdp"
+                    android:layout_height="1dp"
                     android:layout_marginTop="@dimen/_15sdp"
                     android:background="@color/fsm_bg_teal"
                     app:layout_constraintStart_toStartOf="parent"
@@ -229,7 +246,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/_12sdp"
                     android:fontFamily="@font/inter_semibold"
-                    android:text="Grand Total"
+                    android:text="@string/grand_total"
                     android:textColor="@color/fsm_bg_teal"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintStart_toStartOf="parent"
@@ -241,7 +258,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_semibold"
-                    android:text="₹ 500"
+                    android:text='@{"₹"+amount}'
                     android:textColor="@color/fsm_bg_teal"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/tv4"
@@ -257,45 +274,45 @@
             android:id="@+id/ll3"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:foreground="?selectableItemBackground"
-            android:onClick="@{v-> vm.onClick(v)}"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
-            android:paddingHorizontal="@dimen/_10sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginBottom="@dimen/_10sdp"
             android:background="@drawable/edit_back_view"
             android:backgroundTint="@color/fsm_bg_teal"
-            android:layout_marginHorizontal="@dimen/_15sdp"
-            android:layout_marginBottom="@dimen/_10sdp">
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v-> vm.onClick(v)}"
+            android:paddingHorizontal="@dimen/_10sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
 
             <TextView
                 android:id="@+id/tv7"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/_4sdp"
                 android:layout_weight="1"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
-                android:layout_marginTop="@dimen/_4sdp"
-                android:text="₹500"
+                android:text='@{"₹"+amount}'
                 android:textColor="@color/fsm_bg_light_teal"
                 android:textSize="@dimen/_14sdp"
-                app:layout_constraintTop_toTopOf="parent"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv8"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/_4sdp"
                 android:layout_weight="1"
                 android:gravity="center"
-                android:text="Total"
+                android:text="@string/total"
                 android:textColor="@color/fsm_bg_light_teal"
                 android:textSize="@dimen/_10sdp"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_marginBottom="@dimen/_4sdp"
-                app:layout_constraintTop_toBottomOf="@+id/tv7"
-                app:layout_constraintStart_toStartOf="parent" />
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv7" />
 
             <TextView
                 android:id="@+id/tv9"
@@ -303,30 +320,30 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:drawablePadding="@dimen/_5sdp"
                 android:fontFamily="@font/inter_medium"
                 android:gravity="center"
-                android:drawableEnd="@drawable/forward_svgrepo_com"
-                android:text="Select payment method"
-                android:drawablePadding="@dimen/_5sdp"
-                android:drawableTint="@color/fsm_bg_light_teal"
+                android:text="Continue"
                 android:textColor="@color/fsm_bg_light_teal"
                 android:textSize="@dimen/_14sdp"
-                app:layout_constraintTop_toTopOf="parent"
+                app:drawableEndCompat="@drawable/forward_svgrepo_com"
+                app:drawableTint="@color/fsm_bg_light_teal"
                 app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent" />
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
 
         <View
             android:layout_width="match_parent"
             android:layout_height="@dimen/_2sdp"
-            app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginHorizontal="@dimen/_15sdp"
-            app:layout_constraintTop_toBottomOf="@+id/cvPaymentSummary"
-            android:background="@color/fsm_bg_teal"
+            android:layout_marginTop="@dimen/_20sdp"
             android:layout_marginBottom="@dimen/_10sdp"
-            />
+            android:background="@color/fsm_bg_teal"
+            android:visibility="gone"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cvPaymentSummary" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

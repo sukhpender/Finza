@@ -251,7 +251,6 @@
         <item name="bottomSheetStyle">@style/customBottomSheetStyle</item>
     </style>
     <style name="customBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
-        <item name="android:background">@color/transparent</item>
         <!--<item name="android:alpha">.2</item>-->
     </style>
 </resources>

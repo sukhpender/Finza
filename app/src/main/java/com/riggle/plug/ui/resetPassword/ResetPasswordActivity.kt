@@ -16,7 +16,6 @@ import com.riggle.plug.databinding.ActivityLoginBinding
 import com.riggle.plug.databinding.ActivityResetPaswordBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
-import com.riggle.plug.ui.home.HomeActivity
 import com.riggle.plug.ui.login.LoginActivity
 import com.riggle.plug.ui.splash_screen.SplashScreenActivityVm
 import com.riggle.plug.utils.showSuccessToast
