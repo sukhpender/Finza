@@ -20,6 +20,9 @@ import com.riggle.plug.data.model.CpStockResponseItem
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
+import com.riggle.plug.data.model.FinzaLoginData
+import com.riggle.plug.data.model.FinzaLoginResponseModel
+import com.riggle.plug.data.model.FinzaLogoutResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
@@ -74,6 +77,17 @@ import retrofit2.Response
 import javax.inject.Inject
 
 class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRepo {
+    override suspend fun finzaLogin(
+        email: String,
+        password: String
+    ): Response<FinzaLoginResponseModel> {
+        return apiService.finzaLogin(email,password)
+    }
+
+    override suspend fun finzaLogout(token: String): Response<FinzaLogoutResponseModel> {
+        return apiService.finzaLogOut(token)
+    }
+
     override suspend fun sendOtp(mobile: String): Response<SendOtpResponseModel> {
         return apiService.sendOtp(mobile)
     }

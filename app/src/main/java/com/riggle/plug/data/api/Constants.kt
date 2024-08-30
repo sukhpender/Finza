@@ -1,10 +1,28 @@
 package com.riggle.plug.data.api
 
 object Constants {
-    const val PAGE_SIZE = "15"
 
-    const val BASE_URL = "https://api.riggleapp.in/api/v1/"
-    const val X_APP_NAME= "x-app-name:plug"
+    // Finza
+    const val X_APP_ACCEPT= "Accept:application/json"
+    const val X_APP_NAME= "Accept:application/json"
+    const val FINZA_LOGIN = "user-login"
+    const val FINZA_LOGOUT = "user-logout"
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     /* <<---  Brand Module Constants  --->> **/
     const val BRAND = "brand"

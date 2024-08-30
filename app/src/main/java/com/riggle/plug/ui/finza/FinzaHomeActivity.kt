@@ -26,7 +26,11 @@ import com.riggle.plug.ui.finza.projectList.ProjectListActivity
 import com.riggle.plug.ui.finza.wallet.WalletActivity
 import com.riggle.plug.ui.login.LoginActivity
 import com.riggle.plug.ui.resetPassword.ResetPasswordActivity
+import com.riggle.plug.utils.LoadingDialog
+import com.riggle.plug.utils.Status
+import com.riggle.plug.utils.showErrorToast
 import com.riggle.plug.utils.showInfoToast
+import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
 
@@ -53,6 +57,41 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
     override fun onCreateView() {
         initView()
         initOnClick()
+        initObservers()
+    }
+
+    private fun initObservers() {
+        viewModel.obrLogout.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+
+                    it.data?.message?.let { it1 -> showSuccessToast(it1) }
+                        sharedPrefManager.clearUser()
+                        sharedPrefManager.clear()
+                        dialog.dismiss()
+                        startActivity(LoginActivity.newIntent(this))
+                        finishAffinity()
+
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
     }
 
     private fun initView() {
@@ -142,19 +181,16 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         adapter.list = prepareList()
     }
 
+    private lateinit var dialog: BottomSheetDialog
     private var index = 0
     private fun bsLogout() {
-        val dialog = BottomSheetDialog(this, R.style.CustomBottomSheetDialogTheme)
+        dialog = BottomSheetDialog(this, R.style.CustomBottomSheetDialogTheme)
         val view = layoutInflater.inflate(R.layout.bs_logout, null)
         val tvLogout = view.findViewById<TextView>(R.id.tvLogout)
         val tvCancel = view.findViewById<TextView>(R.id.tvCancel)
         val iv = view.findViewById<ImageView>(R.id.iv)
         tvLogout.setOnClickListener {
-            sharedPrefManager.clear()
-            val intent = LoginActivity.newIntent(this)
-            startActivity(intent)
-            finish()
-            dialog.dismiss()
+           viewModel.finzaLogout(sharedPrefManager.getToken().toString())
         }
         iv.setOnClickListener {
             if (index < binding.drawerLayout.childCount) {

@@ -2,25 +2,20 @@ package com.riggle.plug.ui.login
 
 import android.app.Activity
 import android.content.Intent
+import android.text.TextUtils
 import android.util.Log
-import android.view.View
+import android.util.Patterns
 import android.view.WindowManager
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.firebase.messaging.FirebaseMessaging
 import com.riggle.plug.R
-import com.riggle.plug.data.api.Constants
 import com.riggle.plug.databinding.ActivityLoginBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
-import com.riggle.plug.ui.finza.FinzaHomeActivity
 import com.riggle.plug.ui.finza.projectList.ProjectListActivity
 import com.riggle.plug.ui.resetPassword.ResetPasswordActivity
 import com.riggle.plug.utils.Status
-import com.riggle.plug.utils.preventClick
 import com.riggle.plug.utils.showErrorToast
-import com.riggle.plug.utils.showInfoToast
 import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -53,7 +48,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         initView()
         initOnClick()
         observers()
-
     }
 
     private fun initView() {
@@ -61,7 +55,37 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 
 
     private fun observers() {
+        viewModel.obrLogin.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
 
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        it.data.message.let { it1 -> showSuccessToast(it1) }
+                        sharedPrefManager.saveUser(it.data.data)
+                        sharedPrefManager.saveToken("Bearer ${it.data.data.auth_token}")
+                        Log.e("savedData",sharedPrefManager.getToken().toString())
+                        startActivity(ProjectListActivity.newIntent(this))
+                        finish()
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
     }
 
     private fun initOnClick() {
@@ -70,12 +94,27 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                 R.id.tvResetPass -> {
                     startActivity(ResetPasswordActivity.newIntent(this))
                 }
+
                 R.id.tvLogin -> {
-                    showSuccessToast("Login Successfully")
-                    startActivity(ProjectListActivity.newIntent(this))
-                    finish()
+                    val email = binding.etPhone.text.toString()
+                    val pass = binding.etPassword.text.toString()
+                    if (email == "") {
+                        showErrorToast("Please enter email address")
+                    } else if (pass == "") {
+                        showErrorToast("Please enter password")
+                    } else if (!isValidEmail(email)) {
+                        showErrorToast("Please enter a valid email address")
+                    } else if (pass.length < 8) {
+                        showErrorToast("Password must be greater then 8 digits")
+                    } else {
+                        viewModel.finzaLogin(email, pass)
+                    }
                 }
             }
         }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

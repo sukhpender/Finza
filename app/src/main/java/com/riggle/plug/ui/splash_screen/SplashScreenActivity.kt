@@ -37,7 +37,7 @@ class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
 
 
     private fun initHandler() {
-        Handler(Looper.getMainLooper()).postDelayed(Runnable {
+        Handler(Looper.getMainLooper()).postDelayed({
             if (sharedPrefManager.getCurrentUser() != null) {
                 startActivity(FinzaHomeActivity.newIntent(this))
                 finish()
@@ -45,7 +45,7 @@ class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
                 startActivity(LoginActivity.newIntent(this))
                 finish()
             }
-        }, 2000)
+        }, 2500)
     }
 
     private fun setStatusTextColor() {

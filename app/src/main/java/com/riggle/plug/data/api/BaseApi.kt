@@ -20,6 +20,9 @@ import com.riggle.plug.data.model.CpStockResponseItem
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
+import com.riggle.plug.data.model.FinzaLoginData
+import com.riggle.plug.data.model.FinzaLoginResponseModel
+import com.riggle.plug.data.model.FinzaLogoutResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
@@ -87,6 +90,33 @@ import retrofit2.http.Query
 import retrofit2.http.QueryMap
 
 interface BaseApi {
+
+    @POST(Constants.FINZA_LOGIN)
+    @FormUrlEncoded
+    suspend fun finzaLogin(
+        @Field("email") email: String,
+        @Field("password") password: String,
+    ): Response<FinzaLoginResponseModel>
+
+
+    @POST(Constants.FINZA_LOGOUT)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun finzaLogOut(
+        @Header("Authorization") header: String,
+    ): Response<FinzaLogoutResponseModel>
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     @POST(Constants.SEND_OTP)
     @Headers(Constants.X_APP_NAME)

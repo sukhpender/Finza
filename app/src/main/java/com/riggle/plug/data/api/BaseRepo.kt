@@ -20,6 +20,8 @@ import com.riggle.plug.data.model.CpStockResponseItem
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
+import com.riggle.plug.data.model.FinzaLoginResponseModel
+import com.riggle.plug.data.model.FinzaLogoutResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
@@ -77,6 +79,22 @@ import retrofit2.http.Path
 import retrofit2.http.QueryMap
 
 interface BaseRepo {
+
+    suspend fun finzaLogin(
+        email:String,
+        password: String
+    ): Response<FinzaLoginResponseModel>
+
+
+    suspend fun finzaLogout(
+        token: String
+    ): Response<FinzaLogoutResponseModel>
+
+
+
+
+
+
 
     suspend fun sendOtp(
         mobile: String
