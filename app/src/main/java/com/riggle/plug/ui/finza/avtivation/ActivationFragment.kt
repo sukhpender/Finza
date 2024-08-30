@@ -1,17 +1,12 @@
 package com.riggle.plug.ui.finza.avtivation
 
-import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import androidx.activity.viewModels
 import androidx.fragment.app.viewModels
 import com.riggle.plug.R
 import com.riggle.plug.databinding.FragmentActivationBinding
 import com.riggle.plug.ui.base.BaseFragment
 import com.riggle.plug.ui.base.BaseViewModel
-import com.riggle.plug.ui.finza.FinzaHomeActivityVM
+import com.riggle.plug.ui.finza.issuance.IssuanceActivity
 import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -25,11 +20,14 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
     }
 
     private fun initOnClick() {
-        viewModel.onClick.observe(viewLifecycleOwner){
-            when(it?.id){
+        viewModel.onClick.observe(viewLifecycleOwner) {
+            when (it?.id) {
                 R.id.tvIssueSuperTag -> {
-                        startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
+                    startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
+                }
 
+                R.id.tv15 -> {
+                    startActivity(IssuanceActivity.newIntent(requireActivity()))
                 }
             }
         }

@@ -22,6 +22,7 @@ import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
+import com.riggle.plug.data.model.FinzaProfileResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
@@ -74,7 +75,9 @@ import com.riggle.plug.data.model.VerifyOtpResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.GET
 import retrofit2.http.Header
+import retrofit2.http.Headers
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
 
@@ -90,7 +93,9 @@ interface BaseRepo {
         token: String
     ): Response<FinzaLogoutResponseModel>
 
-
+    suspend fun finzaGetProfile(
+        token: String,
+    ): Response<FinzaProfileResponseModel>
 
 
 

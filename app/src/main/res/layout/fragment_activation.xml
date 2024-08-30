@@ -21,12 +21,12 @@
             style="@style/TextView.InterRegular_12ssp"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_50ssp"
             android:background="@drawable/edit_back_view"
             android:backgroundTint="@color/line_color"
             android:drawablePadding="@dimen/_5sdp"
             android:gravity="center_vertical"
-            android:layout_marginHorizontal="@dimen/_10sdp"
             android:paddingHorizontal="@dimen/_10sdp"
             android:text="No tags issued in last 7 days. Issue now!"
             android:textColor="@color/white"
@@ -35,7 +35,7 @@
             app:drawableTint="@color/white"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"/>
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/tv2"
@@ -182,6 +182,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/cv1" />
 
+        <TextView
+            android:id="@+id/tv15"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_25ssp"
+            android:fontFamily="@font/inter_semibold"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:text="@string/see_more"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv1" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cv2"
             android:layout_width="match_parent"
@@ -263,8 +280,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:text="LOST Tag"
                         android:layout_marginBottom="@dimen/_8sdp"
+                        android:text="LOST Tag"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
@@ -296,8 +313,8 @@
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:text="0"
                         android:gravity="center"
+                        android:text="0"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
@@ -403,18 +420,18 @@
             android:layout_marginBottom="@dimen/_65sdp"
             android:background="@drawable/edit_back_view"
             android:backgroundTint="@color/line_color"
-            android:fontFamily="@font/inter_semibold"
             android:elevation="@dimen/_2sdp"
+            android:fontFamily="@font/inter_semibold"
             android:foreground="?selectableItemBackground"
             android:gravity="center"
             android:onClick="@{v->vm.onClick(v)}"
             android:text="Issue Super TAG"
             android:textColor="@color/white"
             android:textSize="@dimen/_16sdp"
-            app:layout_constraintTop_toBottomOf="@+id/cv2"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent" />
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

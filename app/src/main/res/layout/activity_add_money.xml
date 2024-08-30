@@ -27,7 +27,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/_50sdp"
             android:background="@drawable/round_bottom_app_bg"
-
             android:gravity="center_vertical"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"

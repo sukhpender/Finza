@@ -23,6 +23,7 @@ import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
 import com.riggle.plug.data.model.FinzaLoginData
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
+import com.riggle.plug.data.model.FinzaProfileResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
@@ -86,6 +87,10 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
 
     override suspend fun finzaLogout(token: String): Response<FinzaLogoutResponseModel> {
         return apiService.finzaLogOut(token)
+    }
+
+    override suspend fun finzaGetProfile(token: String): Response<FinzaProfileResponseModel> {
+        return apiService.finzaGetProfile(token)
     }
 
     override suspend fun sendOtp(mobile: String): Response<SendOtpResponseModel> {

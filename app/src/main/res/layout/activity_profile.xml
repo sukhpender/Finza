@@ -1,0 +1,236 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="resend"
+            type="String" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.FinzaProfileModel" />
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.finza.profile.ProfileActivityVM" />
+
+    </data>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true"
+        android:overScrollMode="never">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:animateLayoutChanges="true"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_200sdp"
+                android:background="@drawable/round_bottom_app_bg"
+                android:orientation="vertical"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/ll1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/round_bottom_app_bg"
+                    android:orientation="horizontal"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/iv1"
+                        android:layout_width="@dimen/_40sdp"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_3sdp"
+                        android:foreground="?selectableItemBackground"
+                        android:onClick="@{v-> vm.onClick(v)}"
+                        android:padding="@dimen/_10sdp"
+                        android:src="@drawable/ic_back"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent"
+                        app:tint="@color/fsm_bg_light_teal" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginStart="@dimen/_5sdp"
+                        android:gravity="center_vertical"
+                        android:text="Profile"
+                        android:textColor="@color/fsm_bg_light_teal"
+                        android:textSize="@dimen/_16sdp" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="@dimen/_80sdp"
+                        android:layout_height="@dimen/_80sdp"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@color/white"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/moosa"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                        app:strokeColor="@color/white"
+                        app:strokeWidth="@dimen/_2sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:gravity="center_vertical"
+                        android:text='@{bean.first_name + " " + bean.last_name}'
+                        android:textColor="@color/fsm_bg_light_teal"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:gravity="center_vertical"
+                        android:text="(Manager)"
+                        android:textColor="@color/fsm_bg_light_teal"
+                        android:textSize="@dimen/_12sdp" />
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+
+            <TextView
+                android:id="@+id/tvPhone"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_25ssp"
+                android:text="Email"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bgView" />
+
+            <EditText
+                android:id="@+id/etPhone"
+                style="@style/EditText.Phone"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="8dp"
+                android:clickable="false"
+                android:enabled="false"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:text="@{bean.email}"
+                app:layout_constraintEnd_toEndOf="@id/tvPhone"
+                app:layout_constraintStart_toStartOf="@id/tvPhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:text="Address"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bgView" />
+
+            <EditText
+                style="@style/EditText.Phone"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="8dp"
+                android:clickable="false"
+                android:enabled="false"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:text="@{bean.address}"
+                app:layout_constraintEnd_toEndOf="@id/tvPhone"
+                app:layout_constraintStart_toStartOf="@id/tvPhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:text="City"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bgView" />
+
+            <EditText
+                style="@style/EditText.Phone"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="8dp"
+                android:clickable="false"
+                android:enabled="false"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:text="@{bean.city}"
+                app:layout_constraintEnd_toEndOf="@id/tvPhone"
+                app:layout_constraintStart_toStartOf="@id/tvPhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:text="State"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bgView" />
+
+            <EditText
+                style="@style/EditText.Phone"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="@dimen/_25sdp"
+                android:clickable="false"
+                android:enabled="false"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:text="@{bean.state}"
+                app:layout_constraintEnd_toEndOf="@id/tvPhone"
+                app:layout_constraintStart_toStartOf="@id/tvPhone"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</layout>

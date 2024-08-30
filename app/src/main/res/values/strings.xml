@@ -284,5 +284,9 @@
     <string name="payment_summary">Payment Summary</string>
     <string name="enter_amount">Enter Amount ⟨₹⟩</string>
     <string name="add_money">Add Money</string>
+    <string name="submit">Submit</string>
+    <string name="my_inventory">My Inventory</string>
+    <string name="issuance">Issuance</string>
+    <string name="see_more"><u>See more</u></string>
 
 </resources>

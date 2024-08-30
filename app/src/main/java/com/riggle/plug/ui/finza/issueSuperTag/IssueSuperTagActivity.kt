@@ -59,7 +59,7 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
             if(it.toString() != ""){
                 cameraExecutor.shutdown()
                 binding.cvPreview.visibility = View.GONE
-                binding.tvValueSet.text = it
+                binding.etvFastTagId.setText(it)
             }else{
                 showErrorToast("Scan Failure")
                 finish()

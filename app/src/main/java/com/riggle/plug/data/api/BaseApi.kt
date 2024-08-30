@@ -23,6 +23,7 @@ import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
 import com.riggle.plug.data.model.FinzaLoginData
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
+import com.riggle.plug.data.model.FinzaProfileResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
@@ -104,6 +105,12 @@ interface BaseApi {
     suspend fun finzaLogOut(
         @Header("Authorization") header: String,
     ): Response<FinzaLogoutResponseModel>
+
+    @GET(Constants.FINZA_PROFILE)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun finzaGetProfile(
+        @Header("Authorization") header: String,
+    ): Response<FinzaProfileResponseModel>
 
 
 

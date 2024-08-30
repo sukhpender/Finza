@@ -6,19 +6,11 @@
     android:background="#0F000000"
     android:padding="5dp">
 
-    <LinearLayout
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:background="@color/trans">
-
         <com.airbnb.lottie.LottieAnimationView
-            android:layout_width="150dp"
-            android:layout_height="150dp"
+            android:layout_width="120dp"
+            android:layout_height="120dp"
             app:lottie_autoPlay="true"
             app:lottie_fileName="loader1.json"
             app:lottie_loop="true" />
-
-    </LinearLayout>
 
 </RelativeLayout>

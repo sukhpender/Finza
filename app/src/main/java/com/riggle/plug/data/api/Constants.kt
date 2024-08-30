@@ -7,6 +7,7 @@ object Constants {
     const val X_APP_NAME= "Accept:application/json"
     const val FINZA_LOGIN = "user-login"
     const val FINZA_LOGOUT = "user-logout"
+    const val FINZA_PROFILE = "profile"
 
 
 
