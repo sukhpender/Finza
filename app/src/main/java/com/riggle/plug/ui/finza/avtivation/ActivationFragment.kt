@@ -6,6 +6,7 @@ import com.riggle.plug.R
 import com.riggle.plug.databinding.FragmentActivationBinding
 import com.riggle.plug.ui.base.BaseFragment
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.ui.finza.inventory.InventoryActivity
 import com.riggle.plug.ui.finza.issuance.IssuanceActivity
 import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity
 import dagger.hilt.android.AndroidEntryPoint
@@ -28,6 +29,10 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
 
                 R.id.tv15 -> {
                     startActivity(IssuanceActivity.newIntent(requireActivity()))
+                }
+
+                R.id.tv16 -> {
+                    startActivity(InventoryActivity.newIntent(requireActivity()))
                 }
             }
         }

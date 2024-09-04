@@ -2,23 +2,16 @@ package com.riggle.plug.ui.finza.helpAndSupport
 
 import android.app.Activity
 import android.content.Intent
-import android.os.Bundle
-import android.view.WindowManager
-import androidx.activity.enableEdgeToEdge
 import androidx.activity.viewModels
-import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
-import androidx.core.view.ViewCompat
-import androidx.core.view.WindowInsetsCompat
 import com.riggle.plug.R
 import com.riggle.plug.databinding.ActivityHelpAndSupportBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
-import com.riggle.plug.ui.finza.projectList.ProjectListActivity
-import com.riggle.plug.ui.login.LoginActivity
-import com.riggle.plug.ui.login.LoginActivityVM
-import com.riggle.plug.ui.resetPassword.ResetPasswordActivity
-import com.riggle.plug.utils.showSuccessToast
+import com.riggle.plug.ui.finza.helpAndSupport.fitmentCerti.FitmentCertificateActivity
+import com.riggle.plug.ui.finza.helpAndSupport.kyc.UpdateKYCActivity
+import com.riggle.plug.ui.finza.helpAndSupport.needFastag.NeedFastagActivity
+import com.riggle.plug.ui.finza.helpAndSupport.replaceFASTag.ReplaceFASTagActivity
+import com.riggle.plug.ui.finza.helpAndSupport.updateVehicleNumber.UpdateVehicleNumberActivity
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -63,11 +56,25 @@ class HelpAndSupportActivity : BaseActivity<ActivityHelpAndSupportBinding>() {
                 R.id.iv1 -> {
                     finish()
                 }
-                R.id.etvReplacement -> {
 
+                R.id.etvFTReplacement -> { // fastag replacement
+                    startActivity(ReplaceFASTagActivity.newIntent(this))
                 }
-                R.id.etvVRN -> {
 
+                R.id.etvUpdateVN -> { // update vehicle number
+                    startActivity(UpdateVehicleNumberActivity.newIntent(this))
+                }
+
+                R.id.etvUpdateKYC -> { // update KYC
+                    startActivity(UpdateKYCActivity.newIntent(this))
+                }
+
+                R.id.etvFitment -> { // fitment certificate
+                    startActivity(FitmentCertificateActivity.newIntent(this))
+                }
+
+                R.id.etvNeedFastag -> { // need fast tag
+                    startActivity(NeedFastagActivity.newIntent(this))
                 }
             }
         }

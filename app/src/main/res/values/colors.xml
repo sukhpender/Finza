@@ -11,6 +11,7 @@
     <color name="fsm_text_color60">#990D0E2E</color>
     <color name="fsm_text_color80">#CC0D0E2E</color>
     <color name="line_color">#2432db</color>
+    <color name="line_colo10">#1A2432DB</color>
     <color name="line_color60">#992432DB</color>
     <color name="fsm_bg_teal">#2432db</color>
     <color name="fsm_bg_teal60">#992432DB</color>

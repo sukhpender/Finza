@@ -53,33 +53,65 @@
 
         </LinearLayout>
 
-        <EditText
-            android:id="@+id/etvReplacement"
-            style="@style/EditText.Phone"
+        <TextView
+            android:id="@+id/etvFTReplacement"
+            style="@style/TextView.Phone"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="@dimen/_10sdp"
             android:layout_marginTop="@dimen/_20sdp"
-            android:clickable="false"
-            android:drawableEnd="@drawable/forward_svgrepo_com"
-            android:drawableTint="@color/fsm_text_color"
-            android:enabled="false"
             android:foreground="?selectableItemBackground"
             android:onClick="@{v-> vm.onClick(v)}"
-            android:text="@string/replacement_flow_process" />
+            android:text="@string/fastag_replacement"
+            app:drawableEndCompat="@drawable/forward_svgrepo_com"
+            app:drawableTint="@color/fsm_text_color" />
 
-        <EditText
-            android:id="@+id/etvVRN"
-            style="@style/EditText.Phone"
+        <TextView
+            android:id="@+id/etvUpdateVN"
+            style="@style/TextView.Phone"
             android:layout_width="match_parent"
             android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_20sdp"
-            android:clickable="false"
-            android:drawableEnd="@drawable/forward_svgrepo_com"
-            android:drawableTint="@color/fsm_text_color"
-            android:enabled="false"
+            android:layout_marginTop="@dimen/_15sdp"
             android:foreground="?selectableItemBackground"
             android:onClick="@{v-> vm.onClick(v)}"
-            android:text="@string/vrn_update_flow_process" />
+            android:text="@string/update_vehicle_number"
+            app:drawableEndCompat="@drawable/forward_svgrepo_com"
+            app:drawableTint="@color/fsm_text_color" />
+
+        <TextView
+            android:id="@+id/etvUpdateKYC"
+            style="@style/TextView.Phone"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v-> vm.onClick(v)}"
+            android:text="@string/update_kyc"
+            app:drawableEndCompat="@drawable/forward_svgrepo_com"
+            app:drawableTint="@color/fsm_text_color" />
+
+        <TextView
+            android:id="@+id/etvFitment"
+            style="@style/TextView.Phone"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v-> vm.onClick(v)}"
+            android:text="@string/fitment_certificate"
+            app:drawableEndCompat="@drawable/forward_svgrepo_com"
+            app:drawableTint="@color/fsm_text_color" />
+
+        <TextView
+            android:id="@+id/etvNeedFastag"
+            style="@style/TextView.Phone"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:foreground="?selectableItemBackground"
+            android:onClick="@{v-> vm.onClick(v)}"
+            android:text="Need FASTag"
+            app:drawableEndCompat="@drawable/forward_svgrepo_com"
+            app:drawableTint="@color/fsm_text_color" />
 
     </LinearLayout>
 

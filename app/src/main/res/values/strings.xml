@@ -288,5 +288,16 @@
     <string name="my_inventory">My Inventory</string>
     <string name="issuance">Issuance</string>
     <string name="see_more"><u>See more</u></string>
-
+    <string name="fastag_replacement">FASTag Replacement</string>
+    <string name="update_vehicle_number">Update Vehicle Number</string>
+    <string name="fitment_certificate">Fitment Certificate</string>
+    <string name="update_kyc">Update KYC</string>
+    <string name="upload_aadhaar_front">Upload Aadhaar Front</string>
+    <string-array name="banks">
+        <item>Bajaj</item>
+    </string-array>
+    <string-array name="reason">
+        <item>Customer Damaged</item>
+        <item>Not Working</item>
+    </string-array>
 </resources>

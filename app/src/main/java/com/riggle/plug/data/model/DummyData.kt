@@ -2,6 +2,8 @@ package com.riggle.plug.data.model
 
 data class Drawer(val image: Int, val name: String)
 
+data class UglyIssuence(val date: String,val fNumber: String,val bank: String)
+
 data class Language(val englishName:String, val languageName: String)
 
 data class ProductRate(val productName: String)

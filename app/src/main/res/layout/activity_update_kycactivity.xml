@@ -1,0 +1,279 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.finza.helpAndSupport.kyc.UpdateKYCActivityVM" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/round_bottom_app_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv1"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/fsm_bg_light_teal" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:text="Update KYC"
+                android:textColor="@color/fsm_bg_light_teal"
+                android:textSize="@dimen/_16sdp" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/edit_back_view1"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        android:layout_width="wrap_content"
+                        style="@style/spinnerStyle"
+                        android:layout_height="@dimen/_32sdp"
+                        android:layout_gravity="center"
+                        android:dropDownVerticalOffset="@dimen/_25sdp"
+                        android:elevation="@dimen/_15sdp"
+                        android:gravity="center" />
+                </LinearLayout>
+
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_25ssp"
+                    android:text="Enter Registered Mobile Number"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <EditText
+                    style="@style/EditText.Phone"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="8dp"
+                    android:hint="0000000000"
+                    android:imeOptions="actionNext"
+                    android:inputType="phone"
+                    android:maxLength="10" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:text="Enter Vehicle Number"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <EditText
+                    style="@style/EditText.Phone"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="8dp"
+                    android:hint="HR12Y1234"
+                    android:imeOptions="actionNext"
+                    android:inputType="text"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:text="Enter Aadhar Number"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"/>
+
+                <EditText
+                    style="@style/EditText.Phone"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="8dp"
+                    android:hint="0000123498760000"
+                    android:imeOptions="actionNext"
+                    android:inputType="number"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="@string/upload_aadhaar_front"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableEndCompat="@drawable/ic_plus"
+                    app:drawableTint="@color/fsm_text_color"/>
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivAadharFront"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/white"
+                    android:elevation="@dimen/_1sdp"
+                    android:src="@drawable/aadharfront"
+                    android:scaleType="fitXY"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Upload Aadhaar Back"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableEndCompat="@drawable/ic_plus"
+                    app:drawableTint="@color/fsm_text_color" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivAadharBack"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/white"
+                    android:elevation="@dimen/_1sdp"
+                    android:layout_gravity="center"
+                    android:rotation="180"
+                    android:src="@drawable/ab"
+                    android:scaleType="fitXY"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:drawableEnd="@drawable/ic_plus"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Upload PAN"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableTint="@color/fsm_text_color" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivPan"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:layout_gravity="center"
+                    android:background="@color/white"
+                    android:elevation="@dimen/_1sdp"
+                    android:src="@drawable/pancard"
+                    android:scaleType="centerCrop"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:drawableEnd="@drawable/ic_plus"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:paddingEnd="@dimen/_10sdp"
+                    android:text="Upload Selfie"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:drawableTint="@color/fsm_text_color" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivSelfie"
+                    android:layout_gravity="center"
+                    android:layout_width="@dimen/_180sdp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:background="@color/white"
+                    android:elevation="@dimen/_1sdp"
+                    android:src="@drawable/selfie1"
+                    android:scaleType="fitXY"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                <TextView
+                    android:id="@+id/tvUpdateKyc"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_35sdp"
+                    android:background="@drawable/edit_back_view"
+                    android:backgroundTint="@color/line_color"
+                    android:fontFamily="@font/inter_semibold"
+                    android:foreground="?selectableItemBackground"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:text="Update KYC"
+                    android:textColor="@color/fsm_bg_light_teal"
+                    android:textSize="@dimen/_16sdp"/>
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

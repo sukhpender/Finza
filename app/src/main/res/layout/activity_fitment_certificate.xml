@@ -1,0 +1,189 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.riggle.plug.ui.finza.helpAndSupport.fitmentCerti.FitmentCertificateActivityVM" />
+
+    </data>
+
+    <LinearLayout
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/round_bottom_app_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv1"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_back"
+                app:tint="@color/fsm_bg_light_teal" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:text="Fitment Cetificate"
+                android:textColor="@color/fsm_bg_light_teal"
+                android:textSize="@dimen/_16sdp" />
+
+        </LinearLayout>
+
+        <ScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:fillViewport="true"
+            android:overScrollMode="never">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_marginTop="@dimen/_15sdp"
+                    android:background="@drawable/edit_back_view1"
+                    android:gravity="center">
+
+                    <Spinner
+                        android:id="@+id/spinner"
+                        style="@style/spinnerStyle"
+                        android:layout_width="wrap_content"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center"
+                        android:dropDownVerticalOffset="@dimen/_35sdp"
+                        android:paddingEnd="@dimen/_15sdp"
+                        android:elevation="@dimen/_15sdp"
+                        android:gravity="center" />
+                </LinearLayout>
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_25ssp"
+                    android:text="Enter Vehicle Number"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    style="@style/EditText.Phone"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="8dp"
+                    android:hint="0123456789"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:maxLength="10" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:text="Enter Chassis Number"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    style="@style/EditText.Phone"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="8dp"
+                    android:hint="ASD456J8IOL000"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:text="Enter Engine Number"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    style="@style/EditText.Phone"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="8dp"
+                    android:hint="A00155OL000"
+                    android:imeOptions="actionNext"
+                    android:singleLine="true"
+                    android:inputType="text"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_15ssp"
+                    android:text="Enter Mobile Number"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+                <EditText
+                    style="@style/EditText.Phone"
+                    android:layout_width="match_parent"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="8dp"
+                    android:hint="A00155OL000"
+                    android:singleLine="true"
+                    android:imeOptions="actionDone"
+                    android:inputType="phone"
+                    android:textAllCaps="true" />
+
+                <TextView
+                    android:id="@+id/tvConfirm"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="match_parent"
+                    android:layout_height="@dimen/_40sdp"
+                    android:layout_marginHorizontal="@dimen/_12sdp"
+                    android:layout_marginTop="@dimen/_35sdp"
+                    android:layout_marginBottom="@dimen/_20sdp"
+                    android:background="@drawable/edit_back_view"
+                    android:backgroundTint="@color/line_color"
+                    android:fontFamily="@font/inter_semibold"
+                    android:foreground="?selectableItemBackground"
+                    android:gravity="center"
+                    android:onClick="@{v->vm.onClick(v)}"
+                    android:text="Confirm"
+                    android:textColor="@color/fsm_bg_light_teal"
+                    android:textSize="@dimen/_16sdp" />
+
+            </LinearLayout>
+
+        </ScrollView>
+
+    </LinearLayout>
+
+</layout>

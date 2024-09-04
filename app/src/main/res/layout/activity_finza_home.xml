@@ -50,30 +50,7 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:menu="@menu/bottom_finza_nav_menu" />
 
-            <LinearLayout
-                android:id="@+id/llOpenCloseDrawer"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="@dimen/_15sdp"
-                android:background="@drawable/white_circle"
-                android:backgroundTint="@color/line_color"
-                android:elevation="@dimen/_5sdp"
-                android:foreground="?selectableItemBackground"
-                android:onClick="@{v->vm.onClick(v)}"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent">
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:layout_width="@dimen/_38sdp"
-                    android:layout_height="@dimen/_38sdp"
-                    android:padding="@dimen/_10sdp"
-                    android:src="@drawable/menu"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
-                    app:tint="@color/fsm_bg_light_teal" />
-
-            </LinearLayout>
 
 
             <androidx.cardview.widget.CardView
@@ -94,16 +71,41 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
 
-                    <com.google.android.material.imageview.ShapeableImageView
-                        android:layout_width="@dimen/_38sdp"
-                        android:layout_height="@dimen/_38sdp"
-                        android:layout_marginStart="@dimen/_15sdp"
-                        android:background="@color/white"
+<!--                    <com.google.android.material.imageview.ShapeableImageView-->
+<!--                        android:layout_width="@dimen/_38sdp"-->
+<!--                        android:layout_height="@dimen/_38sdp"-->
+<!--                        android:layout_marginStart="@dimen/_15sdp"-->
+<!--                        android:background="@color/white"-->
+<!--                        android:foreground="?selectableItemBackground"-->
+<!--                        android:onClick="@{v->vm.onClick(v)}"-->
+<!--                        android:padding="@dimen/_2sdp"-->
+<!--                        android:src="@drawable/fsm_logo"-->
+<!--                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />-->
+
+                    <LinearLayout
+                        android:id="@+id/llOpenCloseDrawer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/white_circle"
+                        android:backgroundTint="@color/white"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:elevation="@dimen/_5sdp"
                         android:foreground="?selectableItemBackground"
                         android:onClick="@{v->vm.onClick(v)}"
-                        android:padding="@dimen/_2sdp"
-                        android:src="@drawable/fsm_logo"
-                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent">
+
+                        <com.google.android.material.imageview.ShapeableImageView
+                            android:layout_width="@dimen/_32sdp"
+                            android:layout_height="@dimen/_32sdp"
+                            android:padding="@dimen/_10sdp"
+                            android:src="@drawable/menu"
+                            app:layout_constraintBottom_toBottomOf="parent"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                            app:tint="@color/line_color" />
+
+                    </LinearLayout>
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
@@ -112,7 +114,7 @@
                         android:layout_marginStart="@dimen/_10sdp"
                         android:fontFamily="@font/inter_semibold"
                         android:gravity="center_vertical"
-                        android:text="Chandigarh A"
+                        android:text="Home"
                         android:textColor="@color/fsm_bg_light_teal"
                         android:textSize="@dimen/_18sdp"
                         app:layout_constraintStart_toStartOf="parent"

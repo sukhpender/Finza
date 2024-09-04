@@ -159,7 +159,7 @@ dependencies {
     implementation 'jp.wasabeef:blurry:4.0.1'
     // razor pay
     implementation 'com.razorpay:checkout:1.6.40'
-    implementation 'com.github.kal72:RackMonthPicker:1.6.1'
+
 
 }
 kapt {

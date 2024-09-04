@@ -9,7 +9,6 @@ import androidx.activity.viewModels
 import androidx.appcompat.app.AppCompatActivity
 import androidx.core.view.ViewCompat
 import androidx.core.view.WindowInsetsCompat
-import com.kal.rackmonthpicker.RackMonthPicker
 import com.riggle.plug.R
 import com.riggle.plug.databinding.ActivityProfileBinding
 import com.riggle.plug.ui.base.BaseActivity
