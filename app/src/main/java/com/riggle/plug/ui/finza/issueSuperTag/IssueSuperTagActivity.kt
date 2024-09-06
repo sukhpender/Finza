@@ -17,6 +17,7 @@ import com.riggle.plug.R
 import com.riggle.plug.databinding.ActivityIssueSuperTagBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.ui.finza.issueSuperTag.verify.VerifyTagActivity
 import com.riggle.plug.utils.barcode.BarcodeBoxView
 import com.riggle.plug.utils.barcode.QrCodeAnalyzer
 import com.riggle.plug.utils.event.SingleLiveEvent
@@ -55,12 +56,12 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
         initView()
         initOnClick()
 
-        scannedResult.observe(this){
-            if(it.toString() != ""){
+        scannedResult.observe(this) {
+            if (it.toString() != "") {
                 cameraExecutor.shutdown()
                 binding.cvPreview.visibility = View.GONE
                 binding.etvFastTagId.setText(it)
-            }else{
+            } else {
                 showErrorToast("Scan Failure")
                 finish()
             }
@@ -71,15 +72,21 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
         barcodeBoxView = BarcodeBoxView(this)
         startCamera()
     }
+
     private fun initOnClick() {
         viewModel.onClick.observe(this) {
             when (it?.id) {
-                R.id.iv1 ->{
+                R.id.iv1 -> {
                     finish()
+                }
+
+                R.id.tvLogin -> {
+                    startActivity(VerifyTagActivity.newIntent(this))
                 }
             }
         }
     }
+
     private fun checkCameraPermission() {
         try {
             val requiredPermissions = arrayOf(Manifest.permission.CAMERA)
@@ -90,21 +97,21 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
     }
 
     private fun checkIfCameraPermissionIsGranted() {
-        if (ContextCompat.checkSelfPermission(this, Manifest.permission.CAMERA) == PackageManager.PERMISSION_GRANTED) {
+        if (ContextCompat.checkSelfPermission(
+                this,
+                Manifest.permission.CAMERA
+            ) == PackageManager.PERMISSION_GRANTED
+        ) {
             // Permission granted: start the preview
             startCamera()
         } else {
             // Permission denied
-            MaterialAlertDialogBuilder(this)
-                .setTitle("Permission required")
+            MaterialAlertDialogBuilder(this).setTitle("Permission required")
                 .setMessage("This application needs to access the camera to process barcodes")
                 .setPositiveButton("Ok") { _, _ ->
                     // Keep asking for permission until granted
                     checkCameraPermission()
-                }
-                .setCancelable(false)
-                .create()
-                .apply {
+                }.setCancelable(false).create().apply {
                     setCanceledOnTouchOutside(false)
                     show()
                 }
@@ -113,9 +120,7 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
 
 
     override fun onRequestPermissionsResult(
-        requestCode: Int,
-        permissions: Array<out String>,
-        grantResults: IntArray
+        requestCode: Int, permissions: Array<out String>, grantResults: IntArray
     ) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         checkIfCameraPermissionIsGranted()
@@ -128,21 +133,21 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
             val cameraProvider = cameraProviderFuture.get()
 
             // Preview
-            val preview = Preview.Builder()
-                .build()
-                .also {
+            val preview = Preview.Builder().build().also {
                     it.setSurfaceProvider(binding.previewView.surfaceProvider)
                 }
 
             // Image analyzer
             val imageAnalyzer = ImageAnalysis.Builder()
-                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST)
-                .build()
-                .also {
-                    it.setAnalyzer(cameraExecutor, QrCodeAnalyzer(this,
-                        barcodeBoxView,
-                        binding.previewView.width.toFloat(),
-                        binding.previewView.height.toFloat()))
+                .setBackpressureStrategy(ImageAnalysis.STRATEGY_KEEP_ONLY_LATEST).build().also {
+                    it.setAnalyzer(
+                        cameraExecutor, QrCodeAnalyzer(
+                            this,
+                            barcodeBoxView,
+                            binding.previewView.width.toFloat(),
+                            binding.previewView.height.toFloat()
+                        )
+                    )
                 }
 
             // Select back camera as a default

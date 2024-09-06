@@ -23,12 +23,11 @@ import com.riggle.plug.ui.finza.checkVehicleStatus.CheckVehicleStatusActivity
 import com.riggle.plug.ui.finza.helpAndSupport.HelpAndSupportActivity
 import com.riggle.plug.ui.finza.inventory.InventoryActivity
 import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity
-import com.riggle.plug.ui.finza.language.LanguageActivity
 import com.riggle.plug.ui.finza.profile.ProfileActivity
 import com.riggle.plug.ui.finza.projectList.ProjectListActivity
 import com.riggle.plug.ui.finza.wallet.WalletActivity
 import com.riggle.plug.ui.login.LoginActivity
-import com.riggle.plug.ui.resetPassword.ResetPasswordActivity
+import com.riggle.plug.ui.resetPassword.ForgotPasswordActivity
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
 import com.riggle.plug.utils.showSuccessToast
@@ -104,7 +103,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         viewModel.onClick.observe(this) {
             when (it?.id) {
                 R.id.tvResetPass -> {
-                    startActivity(ResetPasswordActivity.newIntent(this))
+                    startActivity(ForgotPasswordActivity.newIntent(this))
                 }
 
                 R.id.llOpenCloseDrawer -> {
@@ -175,19 +174,19 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                     openCloseDrawer()
                 }
 
-                6 -> {
-                    /** language */
-                    startActivity(LanguageActivity.newIntent(this))
-                    openCloseDrawer()
-                }
+//                6 -> {
+//                    /** language */
+//                    startActivity(LanguageActivity.newIntent(this))
+//                    openCloseDrawer()
+//                }
 
-                7 -> {
+                6 -> {
                     /** profile */
                     startActivity(ProfileActivity.newIntent(this))
                     openCloseDrawer()
                 }
 
-                8 -> {
+                7 -> {
                     /** logout */
                     bsLogout()
                     openCloseDrawer()
@@ -230,13 +229,13 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
 
     private fun prepareList(): ArrayList<Drawer> {
         val list = ArrayList<Drawer>()
-        list.add(Drawer(R.drawable.wallet, "Wallet"))
-        list.add(Drawer(R.drawable.inventory, "My Inventory"))
+        list.add(Drawer(R.drawable.wallet, "My Finza Wallet"))
+        list.add(Drawer(R.drawable.inventory, "Inventory"))
         list.add(Drawer(R.drawable.ic_percentage_filled, "Issue Tag"))
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))
         list.add(Drawer(R.drawable.change_project, "Change Project"))
         list.add(Drawer(R.drawable.replace1, "Help & Support"))
-        list.add(Drawer(R.drawable.language, "Language"))
+      //  list.add(Drawer(R.drawable.language, "Language"))
         list.add(Drawer(R.drawable.profile, "Profile"))
         list.add(Drawer(R.drawable.logout, "Logout"))
         return list

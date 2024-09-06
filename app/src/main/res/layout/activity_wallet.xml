@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
 
     <data>
 
@@ -20,9 +21,9 @@
         <LinearLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_50sdp"
+            android:layout_height="@dimen/_95sdp"
             android:background="@drawable/round_bottom_app_bg"
-            android:gravity="center_vertical"
+            android:gravity="start"
             android:orientation="horizontal"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
@@ -44,217 +45,158 @@
             <TextView
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_height="@dimen/_40sdp"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:gravity="center_vertical"
                 android:text="Wallet"
                 android:textColor="@color/fsm_bg_light_teal"
                 android:textSize="@dimen/_16sdp" />
 
+
+
         </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/ll2"
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cvBalance"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_5sdp"
-            android:background="@color/fsm_bg_teal"
-            android:gravity="center_vertical"
-            android:orientation="horizontal"
-            android:paddingVertical="@dimen/_10sdp"
-            app:layout_constraintEnd_toEndOf="parent"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_height="@dimen/_100sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll1">
+            app:cardBackgroundColor="@color/white"
+            app:cardElevation="@dimen/_6sdp"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:layout_constraintTop_toBottomOf="@+id/ll1"
+            app:layout_constraintBottom_toBottomOf="@+id/ll1"
+            >
 
-            <LinearLayout
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_weight="1"
-                android:background="@color/fsm_bg_teal"
-                android:gravity="center_vertical"
-                android:orientation="vertical"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll1">
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
                 <TextView
+                    android:id="@+id/tv1"
                     style="@style/TextView.InterRegular_12ssp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:gravity="center"
+                    android:text="Available Balance"
+                    android:textColor="@color/fsm_text_color"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tv3"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:fontFamily="@font/inter_semibold"
                     android:gravity="center"
                     android:text="₹ 20,000"
-                    android:textColor="@color/white"
-                    android:textSize="@dimen/_14sdp" />
+                    android:textColor="@color/fsm_text_color"
+                    app:layout_constraintStart_toStartOf="@+id/tv1"
+                    app:layout_constraintTop_toBottomOf="@+id/tv1"
+                    android:textSize="@dimen/_22sdp" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv2"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
+                    android:layout_margin="@dimen/_10sdp"
+                    android:src="@drawable/india"
+                    android:scaleType="centerCrop"
+                    android:layout_width="@dimen/_42sdp"
+                    android:layout_height="@dimen/_42sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
                     style="@style/TextView.InterRegular_12ssp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_15sdp"
+                    android:fontFamily="@font/inter_semibold"
                     android:gravity="center"
-                    android:text="Available Balance"
+                    android:text="Indian Rupee"
+                    android:layout_marginTop="@dimen/_5sdp"
+                    android:textColor="@color/fsm_text_color"
+                    app:layout_constraintEnd_toEndOf="@+id/iv2"
+                    app:layout_constraintTop_toBottomOf="@+id/iv2"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    android:id="@+id/tvAddMoneyWallet"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/edit_back_view"
+                    android:drawableStart="@drawable/ic_plus"
+                    android:backgroundTint="@color/line_color"
+                    android:drawablePadding="@dimen/_6sdp"
+                    android:drawableTint="@color/white"
+                    android:fontFamily="@font/inter_semibold"
+                    android:foreground="?selectableItemBackground"
+                    android:gravity="center"
+                    android:onClick="@{v-> vm.onClick(v)}"
+                    app:layout_constraintStart_toStartOf="@+id/tv3"
+                    app:layout_constraintTop_toBottomOf="@+id/tv3"
+                    android:layout_marginTop="@dimen/_8sdp"
+                    android:paddingHorizontal="@dimen/_8sdp"
+                    android:paddingVertical="@dimen/_8sdp"
+                    android:text="Add Money"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp" />
 
-            </LinearLayout>
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <TextView
-                android:id="@+id/tvAddMoneyWallet"
-                style="@style/TextView.InterRegular_12ssp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:background="@drawable/edit_back_view"
-                android:drawableStart="@drawable/ic_plus"
-                android:drawablePadding="@dimen/_6sdp"
-                android:drawableTint="@color/line_color"
-                android:fontFamily="@font/inter_semibold"
-                android:foreground="?selectableItemBackground"
-                android:gravity="center"
-                android:onClick="@{v-> vm.onClick(v)}"
-                android:paddingHorizontal="@dimen/_8sdp"
-                android:paddingVertical="@dimen/_8sdp"
-                android:text="Add Money"
-                android:textColor="@color/line_color"
-                android:textSize="@dimen/_12sdp" />
-
-        </LinearLayout>
+        </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/tv1"
+            android:id="@+id/tv11"
             style="@style/TextView.InterRegular_12ssp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_10sdp"
-            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_20sdp"
             android:gravity="center"
             android:text="Your Transactions :"
             android:textColor="@color/fsm_text_color"
-            android:textSize="@dimen/_11sdp"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll2" />
+            app:layout_constraintTop_toBottomOf="@+id/cvBalance" />
 
         <LinearLayout
-            android:id="@+id/ll3"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_40sdp"
-            android:layout_marginTop="@dimen/_10sdp"
-            android:background="@color/fsm_bg_teal"
-            android:gravity="center"
-            android:orientation="horizontal"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv1">
+            android:layout_width="@dimen/_70sdp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tv11"
+            app:layout_constraintBottom_toBottomOf="@+id/tv11"
+            android:background="@drawable/edit_back_view1"
+            android:gravity="center">
 
-            <TextView
-                android:id="@+id/tvAllWallet"
-                style="@style/TextView.InterRegular_12ssp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/_2sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_back_view"
-                android:fontFamily="@font/inter_semibold"
-                android:foreground="?selectableItemBackground"
-                android:gravity="center"
-                android:onClick="@{v-> vm.onClick(v)}"
-                android:paddingHorizontal="@dimen/_8sdp"
-                android:paddingVertical="@dimen/_8sdp"
-                android:text="All"
-                android:textColor="@color/line_color"
-                android:textSize="@dimen/_12ssp" />
-
-            <TextView
-                android:id="@+id/tvSpentWallet"
-                style="@style/TextView.InterRegular_12ssp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/_2sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_back_view"
-                android:fontFamily="@font/inter_semibold"
-                android:foreground="?selectableItemBackground"
-                android:gravity="center"
-                android:onClick="@{v-> vm.onClick(v)}"
-                android:paddingHorizontal="@dimen/_8sdp"
-                android:paddingVertical="@dimen/_8sdp"
-                android:text="Spent"
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12ssp" />
-
-            <TextView
-                android:id="@+id/tvReceivedWallet"
-                style="@style/TextView.InterRegular_12ssp"
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_marginVertical="@dimen/_2sdp"
-                android:layout_marginStart="@dimen/_15sdp"
-                android:layout_marginEnd="@dimen/_10sdp"
-                android:layout_weight="1"
-                android:background="@drawable/edit_back_view"
-                android:fontFamily="@font/inter_semibold"
-                android:foreground="?selectableItemBackground"
-                android:gravity="center"
-                android:onClick="@{v-> vm.onClick(v)}"
-                android:paddingHorizontal="@dimen/_8sdp"
-                android:paddingVertical="@dimen/_8sdp"
-                android:singleLine="true"
-                android:text="Received"
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12ssp" />
-
+            <Spinner
+                android:id="@+id/spinner"
+                android:layout_width="wrap_content"
+                android:paddingEnd="@dimen/_15sdp"
+                style="@style/spinnerStyle"
+                android:layout_height="@dimen/_25sdp"
+                android:layout_gravity="center"
+                android:dropDownVerticalOffset="@dimen/_25sdp"
+                android:gravity="center" />
         </LinearLayout>
 
-        <LinearLayout
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvHomeDrawer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:orientation="vertical"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            android:gravity="center"
+            android:layout_marginTop="@dimen/_5sdp"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ll3">
-
-            <ImageView
-                android:layout_width="@dimen/_100sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:src="@drawable/journey"
-                android:padding="@dimen/_15sdp"
-                />
-
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:gravity="center"
-                android:text="Let's begin your journey"
-                android:fontFamily="@font/inter_bold"
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll2" />
-
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/_10sdp"
-                android:gravity="center"
-                android:paddingHorizontal="@dimen/_50sdp"
-                android:text="Make your transaction by adding money to your wallet."
-                android:textColor="@color/fsm_text_color60"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/ll2" />
-
-
-        </LinearLayout>
+            app:layout_constraintTop_toBottomOf="@+id/tv11"
+            app:layout_constraintBottom_toBottomOf="parent"
+            tools:listitem="@layout/holder_wallet_transactions" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

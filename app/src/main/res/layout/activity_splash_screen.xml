@@ -27,6 +27,7 @@
 
         <ImageView
             android:layout_width="match_parent"
+            android:visibility="gone"
             android:layout_height="@dimen/_10sdp"
             android:src="@color/line_color"
             app:layout_constraintBottom_toBottomOf="parent"

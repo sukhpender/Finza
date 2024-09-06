@@ -219,7 +219,6 @@
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="8dp"
-                android:layout_marginBottom="@dimen/_25sdp"
                 android:clickable="false"
                 android:enabled="false"
                 android:imeOptions="actionNext"
@@ -228,6 +227,65 @@
                 app:layout_constraintEnd_toEndOf="@id/tvPhone"
                 app:layout_constraintStart_toStartOf="@id/tvPhone"
                 app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:layout_marginTop="@dimen/_15sdp"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="Aadhaar Front Image"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bgView" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivAadharFront"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_gravity="center"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/white"
+                android:elevation="@dimen/_1sdp"
+                android:scaleType="fitXY"
+                android:src="@drawable/aadharfront"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="Aadhaar Back Image"
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bgView" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/ivAadharBack"
+                android:layout_width="@dimen/_180sdp"
+                android:layout_height="@dimen/_100sdp"
+                android:layout_gravity="center"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_5sdp"
+                android:background="@color/white"
+                android:elevation="@dimen/_1sdp"
+                android:scaleType="fitXY"
+                android:layout_marginBottom="@dimen/_40sdp"
+                android:src="@drawable/ab"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
         </LinearLayout>
 

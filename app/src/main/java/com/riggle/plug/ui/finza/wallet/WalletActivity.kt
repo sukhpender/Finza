@@ -2,12 +2,21 @@ package com.riggle.plug.ui.finza.wallet
 
 import android.app.Activity
 import android.content.Intent
+import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
+import com.riggle.plug.BR
 import com.riggle.plug.R
+import com.riggle.plug.data.model.Drawer
 import com.riggle.plug.databinding.ActivityWalletBinding
+import com.riggle.plug.databinding.HolderProjectListBinding
+import com.riggle.plug.databinding.HolderWalletTransactionsBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
+import com.riggle.plug.ui.finza.FinzaHomeActivity
 import com.riggle.plug.ui.finza.wallet.addMoney.AddMoneyActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -38,7 +47,16 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
     }
 
     private fun initView() {
+        initAdapter()
+        val adapter = ArrayAdapter(this,
+            android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.transactions))
+        binding.spinner.adapter = adapter
 
+        binding.spinner.onItemSelectedListener = object :
+            AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) { }
+            override fun onNothingSelected(parent: AdapterView<*>) { }
+        }
     }
 
     private fun initOnClick() {
@@ -52,84 +70,38 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
                     finish()
                 }
 
-                R.id.tvReceivedWallet -> {
-                    setColor1(3)
-                }
-
-                R.id.tvSpentWallet -> {
-                    setColor1(2)
-                }
-
-                R.id.tvAllWallet -> {
-                    setColor1(1)
-                }
             }
         }
     }
 
-    private fun setColor1(type: Int){
-        when(type) {
-            1 -> {
-                binding.tvAllWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.line_color
-                    )
-                )
-                binding.tvSpentWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.fsm_text_color
-                    )
-                )
-                binding.tvReceivedWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.fsm_text_color
-                    )
-                )
-            }
-            2 -> {
-                binding.tvSpentWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.line_color
-                    )
-                )
-                binding.tvAllWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.fsm_text_color
-                    )
-                )
-                binding.tvReceivedWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.fsm_text_color
-                    )
-                )
-            }
-            3 -> {
-                binding.tvReceivedWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.line_color
-                    )
-                )
-                binding.tvSpentWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.fsm_text_color
-                    )
-                )
-                binding.tvAllWallet.setTextColor(
-                    ContextCompat.getColor(
-                        this,
-                        R.color.fsm_text_color
-                    )
-                )
-            }
-        }
+    private lateinit var adapter: SimpleRecyclerViewAdapter<Drawer, HolderWalletTransactionsBinding>
+    private fun initAdapter() {
+        adapter = SimpleRecyclerViewAdapter(
+            R.layout.holder_wallet_transactions, BR.bean
+        ) { v, m, pos ->
 
+        }
+        binding.rvHomeDrawer.adapter = adapter
+        adapter.list = prepareList()
+    }
+
+    private fun prepareList(): ArrayList<Drawer> {
+        val list = ArrayList<Drawer>()
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
+
+        return list
     }
 }

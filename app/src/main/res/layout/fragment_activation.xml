@@ -303,7 +303,7 @@
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Incoming"
+                        android:text="Dispatch"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp" />
 
@@ -336,7 +336,7 @@
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:text="Available"
+                        android:text="In Hand"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_11sdp" />
 
@@ -462,18 +462,6 @@
                         android:background="@color/white" />
 
                     <TextView
-                        android:id="@+id/tv11"
-                        style="@style/TextView.InterRegular_12ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:gravity="center"
-                        android:text="UGLY\nIssuances"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
                         android:id="@+id/tv12"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
@@ -491,19 +479,7 @@
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_12sdp"
-                        android:text="OLD Tag"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        android:id="@+id/tv14"
-                        style="@style/TextView.InterRegular_12ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:layout_marginBottom="@dimen/_8sdp"
-                        android:text="LOST Tag"
+                        android:text="Bad Tag"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
@@ -529,25 +505,6 @@
                         android:layout_height="@dimen/_1sdp"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:background="@color/white" />
-
-                    <TextView
-                        style="@style/TextView.InterRegular_12ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:gravity="center"
-                        android:text="0"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        style="@style/TextView.InterRegular_12ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:text="0"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp" />
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
@@ -589,25 +546,6 @@
                         android:layout_height="@dimen/_1sdp"
                         android:layout_marginTop="@dimen/_8sdp"
                         android:background="@color/white" />
-
-                    <TextView
-                        style="@style/TextView.InterRegular_12ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:gravity="center"
-                        android:text="₹ 0"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp" />
-
-                    <TextView
-                        style="@style/TextView.InterRegular_12ssp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="@dimen/_12sdp"
-                        android:text="₹ 0"
-                        android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp" />
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"

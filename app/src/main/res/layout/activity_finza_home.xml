@@ -16,6 +16,8 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
+        tools:openDrawer="start"
+        android:background="@color/white"
         android:layout_height="match_parent"
         android:fitsSystemWindows="true">
 
@@ -189,7 +191,7 @@
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:singleLine="true"
-                        android:text="Super Agent"
+                        android:text="Finza Agent"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -199,6 +201,28 @@
                         style="@style/TextView.InterRegular_12ssp"
                         android:singleLine="true"
                         android:text="0123456789"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_11sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:singleLine="true"
+                        android:text="Chandigarh A"
+                        android:fontFamily="@font/inter_semibold"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_13sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:singleLine="true"
+                        android:text="Project Type: Comission"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_11sdp"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -84,7 +84,7 @@
         <item name="cornerSizeBottomRight">50%</item>
     </style>
 
-    <style name="spinnerStyle"  parent="@android:style/Widget.TextView.SpinnerItem">
+    <style name="spinnerStyle" parent="@android:style/Widget.TextView.SpinnerItem">
         <item name="android:padding">@dimen/_5sdp</item>
     </style>
 
@@ -268,6 +268,7 @@
     <style name="CustomBottomSheetDialogTheme" parent="Theme.Design.Light.BottomSheetDialog">
         <item name="bottomSheetStyle">@style/customBottomSheetStyle</item>
     </style>
+
     <style name="customBottomSheetStyle" parent="Widget.Design.BottomSheet.Modal">
         <!--<item name="android:alpha">.2</item>-->
     </style>

@@ -219,7 +219,6 @@
                     android:src="@drawable/rc"
                     app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 
-
                 <TextView
                     android:id="@+id/tvUpdateVN"
                     style="@style/TextView.InterRegular_12ssp"

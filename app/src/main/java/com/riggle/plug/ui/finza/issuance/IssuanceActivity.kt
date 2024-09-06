@@ -64,21 +64,21 @@ class IssuanceActivity : BaseActivity<ActivityIssuanceBinding>() {
 
     private fun fragList1(): ArrayList<Fragment> {
         val fragList = ArrayList<Fragment>()
-        fragList.add(UglyFragment())
-        fragList.add(OldFragment())
-        fragList.add(BadFragment())
+      //  fragList.add(UglyFragment())
+     //   fragList.add(OldFragment())
         fragList.add(UrtFragment())
-        fragList.add(LostFragment())
+        fragList.add(BadFragment())
+        //   fragList.add(LostFragment())
         return fragList
     }
 
     private val titleList = ArrayList<String>()
     private fun titleList1(): ArrayList<String> {
-        titleList.add("UGLY")
-        titleList.add("OLD")
-        titleList.add("BAD")
+       // titleList.add("UGLY")
+       // titleList.add("OLD")
         titleList.add("URT")
-        titleList.add("LOST")
+        titleList.add("BAD")
+       // titleList.add("LOST")
         return titleList
     }
 }

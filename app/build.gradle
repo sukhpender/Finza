@@ -159,7 +159,7 @@ dependencies {
     implementation 'jp.wasabeef:blurry:4.0.1'
     // razor pay
     implementation 'com.razorpay:checkout:1.6.40'
-
+    implementation 'com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0'
 
 }
 kapt {
