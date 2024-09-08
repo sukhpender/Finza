@@ -20,6 +20,7 @@ import com.riggle.plug.data.model.CpStockResponseItem
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
+import com.riggle.plug.data.model.FinzaForgotPassResponseModel
 import com.riggle.plug.data.model.FinzaLoginData
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
@@ -65,6 +66,8 @@ import com.riggle.plug.data.model.SalesSKUsResponseModel
 import com.riggle.plug.data.model.SalesTargetAnalysisResponseModel
 import com.riggle.plug.data.model.SalesUserListResponseModel
 import com.riggle.plug.data.model.SalesmanListingResponseModel
+import com.riggle.plug.data.model.SendOtpIssueTagResponseModel
+import com.riggle.plug.data.model.SendOtpRequest
 import com.riggle.plug.data.model.SendOtpResponseModel
 import com.riggle.plug.data.model.TargetGraphResponse
 import com.riggle.plug.data.model.TargetUserData
@@ -91,6 +94,26 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
 
     override suspend fun finzaGetProfile(token: String): Response<FinzaProfileResponseModel> {
         return apiService.finzaGetProfile(token)
+    }
+
+    override suspend fun forgotPass(email: String): Response<FinzaForgotPassResponseModel> {
+        return apiService.forgotPass(email)
+    }
+
+    override suspend fun sendOtpTagIssue(
+        header: String,
+        reqBody: SendOtpRequest
+    ): Response<SendOtpIssueTagResponseModel> {
+        return apiService.sendOtpTagIssue(header,reqBody)
+    }
+
+    override suspend fun createWalletCustomer(
+        header: String,
+        name: String,
+        email: String,
+        phone: String
+    ): Response<SendOtpIssueTagResponseModel> {
+        return apiService.createWalletCustomer(header,name,email,phone)
     }
 
     override suspend fun sendOtp(mobile: String): Response<SendOtpResponseModel> {

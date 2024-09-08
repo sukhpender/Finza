@@ -15,6 +15,7 @@ data class FinzaLoginData(
     val email: String,
     val email_verified_at: String,
     val first_name: String,
+    val full_name: String,
     val gender: String,
     val id: Int,
     val last_name: String,

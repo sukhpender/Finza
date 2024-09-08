@@ -84,8 +84,15 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                     } else if (binding.amount != "" && binding.amount!!.toInt() > 10000) {
                         showErrorToast("Maximum amount 10000")
                     } else {
-                        val totalAmount = binding.amount!!.toInt() * 1000
-                        initPayment(totalAmount.toString())
+                        sharedPrefManager.getCurrentUser()?.let { it1 ->
+                            viewModel.createCustomer(
+                                sharedPrefManager.getToken().toString(),
+                                it1.full_name,
+                                it1.email,
+                                it1.phone_number)
+                        }
+//                        val totalAmount = binding.amount!!.toInt() * 1000
+//                        initPayment(totalAmount.toString())
                     }
                     //  startActivity(SelectPaymentMethodActivity.newIntent(this))
                 }
@@ -104,6 +111,9 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
 
                 R.id.tv5000 -> {
                     binding.amount = "5000"
+                }
+                R.id.tv9 -> { // continue
+
                 }
             }
         }

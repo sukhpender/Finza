@@ -48,7 +48,7 @@
             android:exported="true" />
         <activity
             android:name=".ui.finza.issueSuperTag.verify.VerifyTagActivity"
-            android:exported="false" />
+            android:exported="true" />
         <activity
             android:name=".ui.finza.helpAndSupport.fitmentCerti.FitmentCertificateActivity"
             android:exported="false" />

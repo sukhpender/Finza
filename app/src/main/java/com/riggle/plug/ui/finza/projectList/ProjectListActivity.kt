@@ -2,7 +2,9 @@ package com.riggle.plug.ui.finza.projectList
 
 import android.app.Activity
 import android.content.Intent
+import android.view.WindowManager
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.riggle.plug.BR
 import com.riggle.plug.R
 import com.riggle.plug.data.model.Drawer
@@ -35,6 +37,10 @@ class ProjectListActivity : BaseActivity<ActivityProjectListBinding>() {
     }
 
     override fun onCreateView() {
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.line_color)
+
         initView()
         initOnClick()
     }

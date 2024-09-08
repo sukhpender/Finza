@@ -140,7 +140,7 @@
                     android:layout_marginStart="@dimen/_16sdp"
                     android:layout_marginTop="@dimen/_25ssp"
                     android:layout_marginEnd="@dimen/_16sdp"
-                    android:text="Mobile Number*"
+                    android:text="Phone Number*"
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp" />
 
@@ -179,6 +179,7 @@
                     android:textAllCaps="true" />
 
                 <CheckBox
+                    android:id="@+id/cbChassisNumber"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginHorizontal="@dimen/_15sdp"
@@ -196,9 +197,9 @@
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:hint="Enter chassis number"
                     android:imeOptions="actionNext"
-                    android:inputType="phone"
+                    android:inputType="text"
+                    android:maxLength="17"
                     android:layout_marginTop="-5dp"
-                    android:maxLength="10"
                     android:textAllCaps="true" />
 
                 <TextView
@@ -218,7 +219,7 @@
                     android:layout_width="match_parent"
                     android:layout_marginHorizontal="@dimen/_15sdp"
                     android:layout_marginTop="8dp"
-                    android:hint="HR20AS0000"
+                    android:hint="last 5 digits"
                     android:imeOptions="actionDone"
                     android:inputType="text"
                     android:maxLength="10"

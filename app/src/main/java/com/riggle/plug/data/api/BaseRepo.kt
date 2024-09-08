@@ -20,6 +20,7 @@ import com.riggle.plug.data.model.CpStockResponseItem
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
+import com.riggle.plug.data.model.FinzaForgotPassResponseModel
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
 import com.riggle.plug.data.model.FinzaProfileResponseModel
@@ -67,6 +68,8 @@ import com.riggle.plug.data.model.TargetGraphResponse
 import com.riggle.plug.data.model.TargetUserData
 import com.riggle.plug.data.model.SalesUserListResponseModel
 import com.riggle.plug.data.model.SalesmanListingResponseModel
+import com.riggle.plug.data.model.SendOtpIssueTagResponseModel
+import com.riggle.plug.data.model.SendOtpRequest
 import com.riggle.plug.data.model.SendOtpResponseModel
 import com.riggle.plug.data.model.UnAssignedBeatResponseModel
 import com.riggle.plug.data.model.UnAssignedCountResponseModel
@@ -75,9 +78,13 @@ import com.riggle.plug.data.model.VerifyOtpResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.Field
+import retrofit2.http.FormUrlEncoded
 import retrofit2.http.GET
 import retrofit2.http.Header
 import retrofit2.http.Headers
+import retrofit2.http.POST
 import retrofit2.http.Path
 import retrofit2.http.QueryMap
 
@@ -88,7 +95,6 @@ interface BaseRepo {
         password: String
     ): Response<FinzaLoginResponseModel>
 
-
     suspend fun finzaLogout(
         token: String
     ): Response<FinzaLogoutResponseModel>
@@ -97,8 +103,21 @@ interface BaseRepo {
         token: String,
     ): Response<FinzaProfileResponseModel>
 
+    suspend fun forgotPass(
+        email: String,
+    ): Response<FinzaForgotPassResponseModel>
 
+    suspend fun sendOtpTagIssue(
+        header: String,
+        reqBody: SendOtpRequest
+    ): Response<SendOtpIssueTagResponseModel>
 
+    suspend fun createWalletCustomer(
+       header: String,
+        name: String,
+        email: String,
+        phone: String
+    ): Response<SendOtpIssueTagResponseModel>
 
 
     suspend fun sendOtp(

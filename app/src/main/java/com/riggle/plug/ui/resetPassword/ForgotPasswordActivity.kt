@@ -2,18 +2,22 @@ package com.riggle.plug.ui.resetPassword
 
 import android.app.Activity
 import android.content.Intent
+import android.text.TextUtils
+import android.util.Patterns
 import androidx.activity.viewModels
 import com.riggle.plug.R
 import com.riggle.plug.databinding.ActivityResetPaswordBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.utils.Status
+import com.riggle.plug.utils.showErrorToast
 import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class ForgotPasswordActivity : BaseActivity<ActivityResetPaswordBinding>() {
 
-    private val viewModel: ResetPaswordActivityVM by viewModels()
+    private val viewModel: ForgotPasswordActivityVM by viewModels()
 
     companion object {
         fun newIntent(activity: Activity): Intent {
@@ -42,14 +46,51 @@ class ForgotPasswordActivity : BaseActivity<ActivityResetPaswordBinding>() {
                 R.id.ivBackResetPassword -> {
                     finish()
                 }
+
                 R.id.tvContinue -> {
-                    finish()
+                    if (binding.etvEmail.text.toString() == "") {
+                        showErrorToast("Please enter email address")
+                    } else if (!isValidEmail(binding.etvEmail.text.toString())) {
+                        showErrorToast("Please enter a valid email address")
+                    } else {
+                        viewModel.forgotPass(binding.etvEmail.text.toString())
+                    }
                 }
             }
         }
     }
 
     private fun initView() {
+        viewModel.obrFPass.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
 
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        it.data.message.let { it1 -> showSuccessToast(it1) }
+                        finish()
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+    }
+
+    private fun isValidEmail(email: String): Boolean {
+        return !TextUtils.isEmpty(email) && Patterns.EMAIL_ADDRESS.matcher(email).matches()
     }
 }

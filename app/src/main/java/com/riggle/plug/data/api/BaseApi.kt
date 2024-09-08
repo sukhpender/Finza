@@ -20,7 +20,7 @@ import com.riggle.plug.data.model.CpStockResponseItem
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
-import com.riggle.plug.data.model.FinzaLoginData
+import com.riggle.plug.data.model.FinzaForgotPassResponseModel
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
 import com.riggle.plug.data.model.FinzaProfileResponseModel
@@ -65,6 +65,8 @@ import com.riggle.plug.data.model.SalesSKUsResponseModel
 import com.riggle.plug.data.model.SalesTargetAnalysisResponseModel
 import com.riggle.plug.data.model.SalesUserListResponseModel
 import com.riggle.plug.data.model.SalesmanListingResponseModel
+import com.riggle.plug.data.model.SendOtpIssueTagResponseModel
+import com.riggle.plug.data.model.SendOtpRequest
 import com.riggle.plug.data.model.SendOtpResponseModel
 import com.riggle.plug.data.model.TargetGraphResponse
 import com.riggle.plug.data.model.TargetUserData
@@ -75,6 +77,7 @@ import com.riggle.plug.data.model.VerifyOtpResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.DELETE
 import retrofit2.http.Field
 import retrofit2.http.FieldMap
@@ -95,10 +98,15 @@ interface BaseApi {
     @POST(Constants.FINZA_LOGIN)
     @FormUrlEncoded
     suspend fun finzaLogin(
-        @Field("email") email: String,
+        @Field("phone_number") mobile: String,
         @Field("password") password: String,
     ): Response<FinzaLoginResponseModel>
 
+    @POST(Constants.FORGOT_PASSWORD)
+    @FormUrlEncoded
+    suspend fun forgotPass(
+        @Field("email") email: String,
+    ): Response<FinzaForgotPassResponseModel>
 
     @POST(Constants.FINZA_LOGOUT)
     @Headers(Constants.X_APP_ACCEPT)
@@ -112,13 +120,20 @@ interface BaseApi {
         @Header("Authorization") header: String,
     ): Response<FinzaProfileResponseModel>
 
+    @POST(Constants.SEND_OTP_TAG_ISSUE)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun sendOtpTagIssue(
+        @Header("Authorization") header: String, @Body reqBody: SendOtpRequest
+    ): Response<SendOtpIssueTagResponseModel>
 
-
-
-
-
-
-
+    @POST(Constants.WALLET_CREATE_CUSTOMER)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun createWalletCustomer(
+        @Header("Authorization") header: String,
+        @Field("name") name: String,
+        @Field("email") email: String,
+        @Field("phone") phone: String
+    ): Response<SendOtpIssueTagResponseModel>
 
 
 

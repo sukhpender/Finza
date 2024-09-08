@@ -108,8 +108,6 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
         })
     }
 
-
-
     private fun observers() {
         viewModel.obrLogin.observe(this) {
             when (it?.status) {
@@ -155,11 +153,11 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                     val email = binding.etPhone.text.toString()
                     val pass = binding.etPassword.text.toString()
                     if (email == "") {
-                        showErrorToast("Please enter email address")
+                        showErrorToast("Please enter phone number")
                     } else if (pass == "") {
                         showErrorToast("Please enter password")
-                    } else if (!isValidEmail(email)) {
-                        showErrorToast("Please enter a valid email address")
+                    } else if (email.length != 10) {
+                        showErrorToast("Please enter a valid phone number")
                     } else if (pass.length < 8) {
                         showErrorToast("Password must be greater then 8 digits")
                     } else {

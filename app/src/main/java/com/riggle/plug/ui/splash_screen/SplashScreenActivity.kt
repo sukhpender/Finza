@@ -4,6 +4,7 @@ import android.os.Handler
 import android.os.Looper
 import android.view.WindowManager
 import androidx.activity.viewModels
+import androidx.core.content.ContextCompat
 import com.riggle.plug.R
 import com.riggle.plug.databinding.ActivitySplashScreenBinding
 import com.riggle.plug.ui.base.BaseActivity
@@ -26,10 +27,13 @@ class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
     }
 
     override fun onCreateView() {
-        window.setFlags(
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
-            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
-        )
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.line_color)
+//        window.setFlags(
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS,
+//            WindowManager.LayoutParams.FLAG_LAYOUT_NO_LIMITS
+//        )
         setStatusTextColor()
         initHandler()
 

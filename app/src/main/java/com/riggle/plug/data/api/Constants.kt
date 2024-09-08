@@ -8,6 +8,9 @@ object Constants {
     const val FINZA_LOGIN = "user-login"
     const val FINZA_LOGOUT = "user-logout"
     const val FINZA_PROFILE = "profile"
+    const val FORGOT_PASSWORD = "forgotPassword"
+    const val SEND_OTP_TAG_ISSUE = "send-otp"
+    const val WALLET_CREATE_CUSTOMER = "customer-create"
 
 
 
