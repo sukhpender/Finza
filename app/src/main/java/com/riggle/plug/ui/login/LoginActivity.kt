@@ -22,7 +22,7 @@ import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.permission.PermissionHandler
 import com.riggle.plug.ui.base.permission.Permissions
 import com.riggle.plug.ui.finza.projectList.ProjectListActivity
-import com.riggle.plug.ui.resetPassword.ForgotPasswordActivity
+import com.riggle.plug.ui.forgotPassword.ForgotPasswordActivity
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
 import com.riggle.plug.utils.showInfoToast
@@ -158,8 +158,8 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                         showErrorToast("Please enter password")
                     } else if (email.length != 10) {
                         showErrorToast("Please enter a valid phone number")
-                    } else if (pass.length < 8) {
-                        showErrorToast("Password must be greater then 8 digits")
+                    } else if (pass.length < 6) {
+                        showErrorToast("Password must be greater then 6 digits")
                     } else {
                         if (isCameraPermissionGranted()) {
                             // Permission is granted

@@ -3,10 +3,12 @@ package com.riggle.plug.utils
 import android.content.Context
 import android.graphics.Color
 import android.location.Geocoder
+import android.os.Build
 import android.view.View
 import android.widget.ImageView
 import android.widget.ProgressBar
 import android.widget.TextView
+import androidx.annotation.RequiresApi
 import androidx.cardview.widget.CardView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
@@ -35,10 +37,14 @@ import com.riggle.plug.data.model.SalesmanCityBeats
 import com.riggle.plug.data.model.SubCategory1
 import com.riggle.plug.data.model.SubCategory2
 import com.riggle.plug.data.model.TargetUserData
+import com.riggle.plug.data.model.UsersListData
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
+import java.time.ZonedDateTime
+import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeParseException
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
@@ -46,6 +52,69 @@ import kotlin.math.ln
 import kotlin.math.pow
 
 object ImageBindingAdapter {
+
+    @JvmStatic
+    @BindingAdapter("getInitials")
+    fun getInitials(textView: TextView,data: UsersListData) {
+        var firstName = data.first_name +" " + data.last_name
+        val nameParts = firstName.trim().split(" ")
+        if (nameParts.size >= 2) {
+            val firstInitial = nameParts.firstOrNull()?.firstOrNull()?.uppercase() ?: ""
+            val lastInitial = nameParts.lastOrNull()?.firstOrNull()?.uppercase() ?: ""
+            textView.text = "$firstInitial$lastInitial"
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @JvmStatic
+    @BindingAdapter("setAssignedDate1")
+    fun setAssignedDate1(textView: TextView, dateString: String) {
+        val oldFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'")
+        val newFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+
+        try {
+            // Parse the date string using the old format
+            val zonedDateTime = ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
+
+            // Format the parsed date to the new format
+            val formattedDate = zonedDateTime.format(newFormat)
+            textView.text = "Accepted On: $formattedDate"
+        } catch (e: DateTimeParseException) {
+            e.printStackTrace()
+            textView.text = "Error parsing date"
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @JvmStatic
+    @BindingAdapter("setAssignedDate2")
+    fun setAssignedDate2(textView: TextView, dateString: String) {
+        val oldFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'")
+        val newFormat = DateTimeFormatter.ofPattern("dd-MM-yyyy")
+
+        try {
+            // Parse the date string using the old format
+            val zonedDateTime = ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
+
+            // Format the parsed date to the new format
+            val formattedDate = zonedDateTime.format(newFormat)
+            textView.text = "Created On: $formattedDate"
+        } catch (e: DateTimeParseException) {
+            e.printStackTrace()
+            textView.text = "Error parsing date"
+        }
+    }
+
+
+    @JvmStatic
+    @BindingAdapter(value = ["setUserSelection"])
+    fun setUserSelection(iv: ImageView, isSelected: Boolean) {
+        if (isSelected) {
+            iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context,R.drawable.checked1))
+        } else {
+            iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context,R.drawable.checked2))
+        }
+    }
 
     @JvmStatic
     @BindingAdapter(value = ["setFont"])
@@ -1022,7 +1091,7 @@ object ImageBindingAdapter {
     @JvmStatic
     @BindingAdapter(value = ["setImageWithFullUrl"])
     fun setImageWithFullUrl(imageView: ImageView, image: String?) {
-        Glide.with(imageView.context).load(image).placeholder(R.drawable.ic_rocket_anim)
+        Glide.with(imageView.context).load(image).placeholder(R.drawable.fsm_logo)
             .into(imageView)
     }
 

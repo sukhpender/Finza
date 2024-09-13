@@ -16,7 +16,7 @@
 
         <variable
             name="bean"
-            type="com.riggle.plug.data.model.Drawer" />
+            type="com.riggle.plug.data.model.ProjectListData" />
 
     </data>
 
@@ -41,7 +41,7 @@
                 style="@style/TextView.InterRegular_12ssp"
                 android:fontFamily="@font/inter_semibold"
                 android:singleLine="true"
-                android:text="@{bean.name}"
+                android:text='@{"Price: "+bean.price}'
                 android:textColor="@color/line_color"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -51,7 +51,7 @@
                 style="@style/TextView.InterRegular_12ssp"
                 android:singleLine="true"
                 android:layout_marginTop="@dimen/_2sdp"
-                android:text="Chandigarh A"
+                android:text="@{bean.title}"
                 android:textColor="@color/fsm_text_color"
                 android:fontFamily="@font/inter_semibold"
                 android:textSize="@dimen/_12sdp"
@@ -61,7 +61,7 @@
             <TextView
                 style="@style/TextView.InterRegular_12ssp"
                 android:singleLine="true"
-                android:text="Chandigarh"
+                setAssignedDate2="@{bean.created_at}"
                 android:layout_marginTop="@dimen/_2sdp"
                 android:textColor="@color/fsm_text_color80"
                 android:textSize="@dimen/_10sdp"

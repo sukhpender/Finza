@@ -2,6 +2,7 @@ package com.riggle.plug.data.api
 
 import com.riggle.plug.data.model.ActiveCPResponseModel
 import com.riggle.plug.data.model.ActiveSalesmanResponseModel
+import com.riggle.plug.data.model.AssignInventoryResponseModel
 import com.riggle.plug.data.model.AssignedBeatDetailsResponseModel
 import com.riggle.plug.data.model.BeatCityResponseModel
 import com.riggle.plug.data.model.BeatInsightsResponseModel
@@ -42,6 +43,7 @@ import com.riggle.plug.data.model.HomePageSnapShotResponseModel
 import com.riggle.plug.data.model.HomeReachAnalysisResponseModel
 import com.riggle.plug.data.model.HomeSKUsItemDetailsResponseModel
 import com.riggle.plug.data.model.HomeSKUsResponseModel
+import com.riggle.plug.data.model.InventryResponseModel
 import com.riggle.plug.data.model.LeadCPResponseModel
 import com.riggle.plug.data.model.LowStockDataResponse
 import com.riggle.plug.data.model.NetworkCPCount1Item
@@ -53,7 +55,10 @@ import com.riggle.plug.data.model.NetworkOrdersCountResponseModel
 import com.riggle.plug.data.model.NetworkOutstandingOrdersResponseModel
 import com.riggle.plug.data.model.NetworkPendingOrdersResponseModel
 import com.riggle.plug.data.model.OwnOrderDetailsResponseModel
+import com.riggle.plug.data.model.PaymentStoreRequest
+import com.riggle.plug.data.model.ProjectListResponseModel
 import com.riggle.plug.data.model.ReportingManagerResponseModel
+import com.riggle.plug.data.model.ResetPasswordResponseModel
 import com.riggle.plug.data.model.SalesBeatCountResponseModel
 import com.riggle.plug.data.model.SalesBeatResponseModel
 import com.riggle.plug.data.model.SalesBrandAnalysisInsightsResponseModel
@@ -68,12 +73,16 @@ import com.riggle.plug.data.model.SalesmanListingResponseModel
 import com.riggle.plug.data.model.SendOtpIssueTagResponseModel
 import com.riggle.plug.data.model.SendOtpRequest
 import com.riggle.plug.data.model.SendOtpResponseModel
+import com.riggle.plug.data.model.StorePaymentResponseModel
 import com.riggle.plug.data.model.TargetGraphResponse
 import com.riggle.plug.data.model.TargetUserData
 import com.riggle.plug.data.model.UnAssignedBeatResponseModel
 import com.riggle.plug.data.model.UnAssignedCountResponseModel
 import com.riggle.plug.data.model.UserProfileResponseModel
+import com.riggle.plug.data.model.UserWalletResponseModel
+import com.riggle.plug.data.model.UsersListResponseModel
 import com.riggle.plug.data.model.VerifyOtpResponseModel
+import com.riggle.plug.data.model.WalletCreateCustomerResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -128,12 +137,84 @@ interface BaseApi {
 
     @POST(Constants.WALLET_CREATE_CUSTOMER)
     @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
     suspend fun createWalletCustomer(
         @Header("Authorization") header: String,
         @Field("name") name: String,
         @Field("email") email: String,
         @Field("phone") phone: String
-    ): Response<SendOtpIssueTagResponseModel>
+    ): Response<WalletCreateCustomerResponseModel>
+
+    @JvmSuppressWildcards
+    @Multipart
+    @Headers(Constants.X_APP_ACCEPT)
+    @POST(Constants.UPDATE_PROFILE)
+    suspend fun updateUserProfile(
+        @Header("Authorization") header: String,
+        @Part("first_name") body: RequestBody,
+        @Part("last_name") body2: RequestBody,
+        @Part profile_image: MultipartBody.Part
+    ): Response<FinzaProfileResponseModel>
+
+    @GET(Constants.USER_WALLET)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun finzaUserWallet(
+        @Header("Authorization") header: String,
+    ): Response<UserWalletResponseModel>
+
+    @GET(Constants.USERS_LIST)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun finzaUsersList(
+        @Header("Authorization") header: String,
+    ): Response<UsersListResponseModel>
+
+    @POST(Constants.INVENTORY_LIST)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun getInventoriesList(
+        @Header("Authorization") header: String, @Field("status") status: String
+    ): Response<InventryResponseModel>
+
+    @POST(Constants.ASSIGN_INVENTORY)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun assignInventory(
+        @Header("Authorization") header: String,
+        @Field("inventory_id") inventory_id: String,
+        @Field("assigned_to") assigned_to: String
+    ): Response<AssignInventoryResponseModel>
+
+    @POST(Constants.ASSIGN_INVENTORY)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun acceptRejectInventory(
+        @Header("Authorization") header: String,
+        @Field("inventory_id") inventory_id: String,
+        @Field("status") status: String
+    ): Response<AssignInventoryResponseModel>
+
+    @POST(Constants.RESET_PASSWORD)
+    @FormUrlEncoded
+    suspend fun resetPasssword(
+        @Field("user_id") user_id: String,
+        @Field("new_password") new_password: String,
+        @Field("confirm_new_password") confirm_new_password: String
+    ): Response<ResetPasswordResponseModel>
+
+    @GET(Constants.PROJECT_LISTING)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun getProjectList(
+        @Header("Authorization") header: String,
+    ): Response<ProjectListResponseModel>
+
+    @POST(Constants.PAYMENT_STORE)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun storePayment(
+        @Header("Authorization") header: String, @Body reqBody: PaymentStoreRequest
+    ): Response<StorePaymentResponseModel>
+
+
+
 
 
 

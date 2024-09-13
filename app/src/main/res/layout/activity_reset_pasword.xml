@@ -12,7 +12,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.resetPassword.ForgotPasswordActivityVM" />
+            type="com.riggle.plug.ui.forgotPassword.ForgotPasswordActivityVM" />
 
     </data>
 

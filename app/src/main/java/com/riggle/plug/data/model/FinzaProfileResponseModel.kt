@@ -20,7 +20,7 @@ data class FinzaProfileModel(
     val last_name: String,
     val phone_number: String,
     val pin_code: String,
-    val profile_image: Any,
+    val profile_image: String?,
     val role_id: Int,
     val state: String,
     val updated_at: String,

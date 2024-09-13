@@ -16,66 +16,73 @@
 
         <variable
             name="bean"
-            type="com.riggle.plug.data.model.UglyIssuence" />
+            type="com.riggle.plug.data.model.InventryData" />
 
     </data>
 
-    <androidx.cardview.widget.CardView
+    <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/_8sdp"
-        android:layout_marginHorizontal="@dimen/_12sdp"
-        android:layout_marginVertical="@dimen/_5sdp">
+        android:background="@color/line_colo10">
 
-        <LinearLayout
+        <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:orientation="vertical">
+            app:cardCornerRadius="@dimen/_8sdp"
+            android:layout_marginHorizontal="@dimen/_12sdp"
+            android:layout_marginVertical="@dimen/_5sdp">
 
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:singleLine="true"
-                android:text='@{"FasTag Number: " + bean.FNumber}'
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginVertical="@dimen/_10sdp"
+                android:orientation="vertical">
 
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:singleLine="true"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:text="Assignee Name: Test User"
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:singleLine="true"
+                    android:text='@{"FasTag Number: " + bean.inventory.bar_code}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:singleLine="true"
-                android:text='@{"Privider: " + bean.bank}'
-                android:layout_marginTop="@dimen/_2sdp"
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:singleLine="true"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:text='@{"Assignee Name: " + bean.assigned_by.first_name}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:singleLine="true"
-                android:text="Accepted On: 24-05-2024"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:singleLine="true"
+                    android:text='@{"Privider: " + bean.inventory.provider}'
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-        </LinearLayout>
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:singleLine="true"
+                    android:text="Accepted On: Need to add key in response"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-    </androidx.cardview.widget.CardView>
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
+    </LinearLayout>
+
 
 </layout>

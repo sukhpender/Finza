@@ -1,8 +1,7 @@
-package com.riggle.plug.ui.resetPassword
+package com.riggle.plug.ui.forgotPassword
 
 import com.riggle.plug.data.api.BaseRepo
 import com.riggle.plug.data.model.FinzaForgotPassResponseModel
-import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.utils.Coroutines
 import com.riggle.plug.utils.Resource

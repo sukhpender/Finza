@@ -2,10 +2,12 @@ package com.riggle.plug.ui.base
 
 import android.os.Bundle
 import android.view.View
+import android.view.WindowManager
 import android.view.inputmethod.InputMethodManager
 import android.widget.Toast
 import androidx.annotation.CallSuper
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import androidx.databinding.DataBindingUtil
 import androidx.databinding.ViewDataBinding
 import androidx.lifecycle.Observer
@@ -64,6 +66,9 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
         progressDialogAvl = ProgressDialogAvl(this)
         loaderDialog = LoadingDialog(this)
 
+        window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
+        window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
+        window.statusBarColor = ContextCompat.getColor(this, R.color.line_color)
         onCreateView()
     }
 

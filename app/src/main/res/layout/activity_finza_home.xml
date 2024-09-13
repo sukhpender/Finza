@@ -8,6 +8,10 @@
         <import type="android.view.View" />
 
         <variable
+            name="bean"
+            type="com.riggle.plug.data.model.FinzaLoginData" />
+
+        <variable
             name="vm"
             type="com.riggle.plug.ui.finza.FinzaHomeActivityVM" />
 
@@ -182,7 +186,7 @@
                         style="@style/TextView.InterRegular_12ssp"
                         android:fontFamily="@font/inter_bold"
                         android:singleLine="true"
-                        android:text="Rishab Agarwal"
+                        android:text="@{bean.full_name}"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -191,7 +195,7 @@
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:singleLine="true"
-                        android:text="Finza Agent"
+                        android:text="@{String.valueOf(bean.role_id)}"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -200,7 +204,7 @@
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:singleLine="true"
-                        android:text="0123456789"
+                        android:text="@{bean.phone_number}"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_11sdp"
                         app:layout_constraintEnd_toEndOf="parent"

@@ -1,4 +1,4 @@
-package com.riggle.plug.ui.resetPassword
+package com.riggle.plug.ui.forgotPassword
 
 import android.app.Activity
 import android.content.Intent

@@ -28,8 +28,8 @@ import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity
 import com.riggle.plug.ui.finza.profile.ProfileActivity
 import com.riggle.plug.ui.finza.projectList.ProjectListActivity
 import com.riggle.plug.ui.finza.wallet.WalletActivity
+import com.riggle.plug.ui.forgotPassword.ForgotPasswordActivity
 import com.riggle.plug.ui.login.LoginActivity
-import com.riggle.plug.ui.resetPassword.ForgotPasswordActivity
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
 import com.riggle.plug.utils.showSuccessToast
@@ -103,6 +103,10 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
     private fun initView() {
         initNavController()
         initDrawerAdapter()
+
+        sharedPrefManager.getCurrentUser().let {
+            binding.bean = it
+        }
     }
 
     private fun initOnClick() {
@@ -158,7 +162,9 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                     startActivity(InventoryActivity.newIntent(this))
                     openCloseDrawer()
                 }
-                2-> { /** issue tag */
+
+                2 -> {
+                    /** issue tag */
                     startActivity(IssueSuperTagActivity.newIntent(this))
                 }
 
@@ -241,7 +247,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))
         list.add(Drawer(R.drawable.change_project, "Change Project"))
         list.add(Drawer(R.drawable.replace1, "Help & Support"))
-      //  list.add(Drawer(R.drawable.language, "Language"))
+        //  list.add(Drawer(R.drawable.language, "Language"))
         list.add(Drawer(R.drawable.profile, "Profile"))
         list.add(Drawer(R.drawable.logout, "Logout"))
         return list

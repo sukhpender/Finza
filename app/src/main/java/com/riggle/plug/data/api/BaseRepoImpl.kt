@@ -2,6 +2,7 @@ package com.riggle.plug.data.api
 
 import com.riggle.plug.data.model.ActiveCPResponseModel
 import com.riggle.plug.data.model.ActiveSalesmanResponseModel
+import com.riggle.plug.data.model.AssignInventoryResponseModel
 import com.riggle.plug.data.model.AssignedBeatDetailsResponseModel
 import com.riggle.plug.data.model.BeatCityResponseModel
 import com.riggle.plug.data.model.BeatInsightsResponseModel
@@ -24,7 +25,9 @@ import com.riggle.plug.data.model.FinzaForgotPassResponseModel
 import com.riggle.plug.data.model.FinzaLoginData
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
+import com.riggle.plug.data.model.FinzaProfileModel
 import com.riggle.plug.data.model.FinzaProfileResponseModel
+import com.riggle.plug.data.model.FinzaUpdateProfileResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
@@ -43,6 +46,7 @@ import com.riggle.plug.data.model.HomePageSnapShotResponseModel
 import com.riggle.plug.data.model.HomeReachAnalysisResponseModel
 import com.riggle.plug.data.model.HomeSKUsItemDetailsResponseModel
 import com.riggle.plug.data.model.HomeSKUsResponseModel
+import com.riggle.plug.data.model.InventryResponseModel
 import com.riggle.plug.data.model.LeadCPResponseModel
 import com.riggle.plug.data.model.LowStockDataResponse
 import com.riggle.plug.data.model.NetworkCPCount1Item
@@ -54,7 +58,10 @@ import com.riggle.plug.data.model.NetworkOrdersCountResponseModel
 import com.riggle.plug.data.model.NetworkOutstandingOrdersResponseModel
 import com.riggle.plug.data.model.NetworkPendingOrdersResponseModel
 import com.riggle.plug.data.model.OwnOrderDetailsResponseModel
+import com.riggle.plug.data.model.PaymentStoreRequest
+import com.riggle.plug.data.model.ProjectListResponseModel
 import com.riggle.plug.data.model.ReportingManagerResponseModel
+import com.riggle.plug.data.model.ResetPasswordResponseModel
 import com.riggle.plug.data.model.SalesBeatCountResponseModel
 import com.riggle.plug.data.model.SalesBeatResponseModel
 import com.riggle.plug.data.model.SalesBrandAnalysisInsightsResponseModel
@@ -69,12 +76,16 @@ import com.riggle.plug.data.model.SalesmanListingResponseModel
 import com.riggle.plug.data.model.SendOtpIssueTagResponseModel
 import com.riggle.plug.data.model.SendOtpRequest
 import com.riggle.plug.data.model.SendOtpResponseModel
+import com.riggle.plug.data.model.StorePaymentResponseModel
 import com.riggle.plug.data.model.TargetGraphResponse
 import com.riggle.plug.data.model.TargetUserData
 import com.riggle.plug.data.model.UnAssignedBeatResponseModel
 import com.riggle.plug.data.model.UnAssignedCountResponseModel
 import com.riggle.plug.data.model.UserProfileResponseModel
+import com.riggle.plug.data.model.UserWalletResponseModel
+import com.riggle.plug.data.model.UsersListResponseModel
 import com.riggle.plug.data.model.VerifyOtpResponseModel
+import com.riggle.plug.data.model.WalletCreateCustomerResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -112,9 +123,69 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         name: String,
         email: String,
         phone: String
-    ): Response<SendOtpIssueTagResponseModel> {
+    ): Response<WalletCreateCustomerResponseModel> {
         return apiService.createWalletCustomer(header,name,email,phone)
     }
+
+    override suspend fun updateUserProfile(
+        header: String,
+        body: RequestBody,
+        body2: RequestBody,
+        profile_image: MultipartBody.Part
+    ): Response<FinzaProfileResponseModel> {
+        return apiService.updateUserProfile(header,body,body2,profile_image)
+    }
+
+    override suspend fun finzaUserWallet(header: String): Response<UserWalletResponseModel> {
+        return apiService.finzaUserWallet(header)
+    }
+
+    override suspend fun getInventoriesList(
+        header: String,
+        status: String
+    ): Response<InventryResponseModel> {
+        return apiService.getInventoriesList(header,status)
+    }
+
+    override suspend fun finzaUsersList(header: String): Response<UsersListResponseModel> {
+        return apiService.finzaUsersList(header)
+    }
+
+    override suspend fun assignInventory(
+        header: String,
+        inventory_id: String,
+        assigned_to: String
+    ): Response<AssignInventoryResponseModel> {
+        return apiService.assignInventory(header, inventory_id, assigned_to)
+    }
+
+    override suspend fun resetPasssword(
+        user_id: String,
+        new_password: String,
+        confirm_new_password: String
+    ): Response<ResetPasswordResponseModel> {
+        return apiService.resetPasssword(user_id,new_password,confirm_new_password)
+    }
+
+    override suspend fun getProjectList(header: String): Response<ProjectListResponseModel> {
+        return apiService.getProjectList(header)
+    }
+
+    override suspend fun acceptRejectInventory(
+        header: String,
+        inventory_id: String,
+        status: String
+    ): Response<AssignInventoryResponseModel> {
+        return apiService.acceptRejectInventory(header,inventory_id,status)
+    }
+
+    override suspend fun storePayment(
+        header: String,
+        reqBody: PaymentStoreRequest
+    ): Response<StorePaymentResponseModel> {
+        return apiService.storePayment(header,reqBody)
+    }
+
 
     override suspend fun sendOtp(mobile: String): Response<SendOtpResponseModel> {
         return apiService.sendOtp(mobile)

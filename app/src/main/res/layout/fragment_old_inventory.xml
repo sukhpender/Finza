@@ -16,12 +16,13 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/line_colo10">
+        android:background="@color/white">
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHomeDrawer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:visibility="gone"
             android:layout_marginTop="@dimen/_5sdp"
             android:overScrollMode="never"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
@@ -29,6 +30,18 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/holder_old_inventory" />
+
+        <ImageView
+            android:id="@+id/ivNoData"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toBottomOf="parent"
+            android:layout_width="@dimen/_150sdp"
+            android:scaleType="centerCrop"
+            android:layout_height="@dimen/_150sdp"
+            android:src="@drawable/no_data"
+            />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

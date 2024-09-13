@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.plug.data.model.UsersListData" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:foreground="?selectableItemBackground"
+        android:gravity="center_vertical"
+        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginVertical="@dimen/_10sdp"
+            android:gravity="center_vertical">
+
+            <TextView
+                getInitials="@{bean}"
+                android:layout_width="@dimen/_32sdp"
+                android:background="@drawable/custom_round_stroke_fsm"
+                android:textColor="@color/white"
+                tools:text="SP"
+                android:textSize="@dimen/_15ssp"
+                android:backgroundTint="@color/fsm_text_color"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="center"
+                android:layout_height="@dimen/_32sdp"/>
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_marginHorizontal="@dimen/_5sdp"
+                android:layout_weight="1"
+                android:singleLine="true"
+                android:text='@{bean.first_name+" " + bean.last_name}'
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_13sdp" />
+
+            <ImageView
+                android:layout_width="@dimen/_18sdp"
+                setUserSelection="@{bean.userSelected}"
+                android:layout_height="@dimen/_18sdp" />
+
+        </LinearLayout>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_2sdp"
+            android:background="@color/dark_grey_txt_color10" />
+
+    </LinearLayout>
+
+</layout>

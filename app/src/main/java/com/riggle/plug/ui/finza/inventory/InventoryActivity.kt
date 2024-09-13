@@ -9,6 +9,7 @@ import com.riggle.plug.databinding.ActivityInventoryBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.finza.inventory.available.AvailableInventoryFragment
+import com.riggle.plug.ui.finza.inventory.forwarded.ForwardedInventoryFragment
 import com.riggle.plug.ui.finza.inventory.incoming.IncomingInventoryFragment
 import com.riggle.plug.ui.finza.inventory.old.OldInventoryFragment
 import com.riggle.plug.ui.finza.issuance.ViewPagerAdapter
@@ -68,6 +69,7 @@ class InventoryActivity : BaseActivity<ActivityInventoryBinding>() {
 
     private fun fragList1(): ArrayList<Fragment> {
         val fragList = ArrayList<Fragment>()
+        fragList.add(ForwardedInventoryFragment())
         fragList.add(IncomingInventoryFragment())
         fragList.add(AvailableInventoryFragment())
         fragList.add(OldInventoryFragment())
@@ -76,9 +78,10 @@ class InventoryActivity : BaseActivity<ActivityInventoryBinding>() {
 
     private val titleList = ArrayList<String>()
     private fun titleList1(): ArrayList<String> {
-        titleList.add("INCOMING")
-        titleList.add("AVAILABLE")
-        titleList.add("OLD")
+        titleList.add("Forward")
+        titleList.add("Dispatch")
+        titleList.add("In Hand")
+        titleList.add("Old")
         return titleList
     }
 }

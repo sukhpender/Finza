@@ -10,19 +10,25 @@ import com.razorpay.Checkout
 import com.razorpay.PaymentData
 import com.razorpay.PaymentResultWithDataListener
 import com.riggle.plug.R
+import com.riggle.plug.data.model.AcquirerData
+import com.riggle.plug.data.model.PaymentStoreRequest
 import com.riggle.plug.databinding.ActivityAddMoneyBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
 import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import org.json.JSONObject
-
+import java.text.SimpleDateFormat
+import java.util.Date
+import java.util.TimeZone
 
 @AndroidEntryPoint
 class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultWithDataListener {
 
     private val viewModel: AddMoneyActivityVM by viewModels()
+    private var amount = ""
 
     companion object {
         fun newIntent(activity: Activity): Intent {
@@ -41,9 +47,12 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
     }
 
     override fun onCreateView() {
+
+       // RAZORPAY_KEY=rzp_test_xwRyHpFkgGpMMI
+       // RAZORPAY_SECRET=SnRc6UhBJrKqAqloH4MhTZty use these in application side
         Checkout.preload(applicationContext)
         val co = Checkout()
-        co.setKeyID("rzp_test_Nqy8gmPWtyPySL")
+        co.setKeyID("rzp_test_xwRyHpFkgGpMMI")
 
         initView()
         initOnClick()
@@ -66,6 +75,65 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
 //                }
             }
         })
+
+        viewModel.obrCreateCustomer.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+//                    if (it.data != null) {
+//                        it.data.message.let { it1 -> showSuccessToast(it1) }
+//                    }
+                    it.data?.data?.let { it1 -> sharedPrefManager.saveWalletUser(it1) }
+                    val totalAmount = binding.amount!!.toInt() * 1000
+                    amount = (totalAmount / 1000).toString()
+                    initPayment(totalAmount.toString())
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
+        viewModel.obrStorePayment.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        it.data.message.let { it1 -> showSuccessToast(it1) }
+                    }
+                    finish()
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
     }
 
     private fun initOnClick() {
@@ -89,7 +157,8 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                                 sharedPrefManager.getToken().toString(),
                                 it1.full_name,
                                 it1.email,
-                                it1.phone_number)
+                                it1.phone_number
+                            )
                         }
 //                        val totalAmount = binding.amount!!.toInt() * 1000
 //                        initPayment(totalAmount.toString())
@@ -112,6 +181,7 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                 R.id.tv5000 -> {
                     binding.amount = "5000"
                 }
+
                 R.id.tv9 -> { // continue
 
                 }
@@ -154,9 +224,53 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
     override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
         Log.e("PaymentLoad", p1?.data.toString())
         showSuccessToast(p1!!.paymentId)
+
+        val acquireData = AcquirerData(
+            rrn = ""
+        )
+        val requestBody = PaymentStoreRequest(
+            acquirer_data = acquireData,
+            amount = amount.toInt(),
+            amount_refunded = 0,
+            bank = "",
+            captured = false,
+            card_id = "",
+            contact = p1.userContact,
+            created_at = getFormattedCurrentTime(),
+            currency = "IN",
+            customer_id = sharedPrefManager.getWalletUser()?.razorpay_customer_id.toString(),
+            description = "",
+            email = p1.userEmail.toString(),
+            entity = "",
+            error_code = "",
+            error_description = "",
+            error_reason = "",
+            error_source = "",
+            error_step = "",
+            fee = 0,
+            id = p1.paymentId,
+            international = false,
+            invoice_id = "",
+            method = "upi",
+            notes = emptyList(),
+            order_id = p1.orderId,
+            refund_status = "",
+            status = "Success",
+            tax = 0,
+            vpa = "",
+            wallet = p1.externalWallet
+        )
+
+        viewModel.storePayment(sharedPrefManager.getToken().toString(), requestBody)
     }
 
     override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {
-        showErrorToast("Payment failed")
+        showErrorToast(p2?.data.toString())
+    }
+
+    private fun getFormattedCurrentTime(): String {
+        val dateFormat = SimpleDateFormat("yyyy-MM-dd HH:mm:ss")
+        dateFormat.timeZone = TimeZone.getDefault()
+        return dateFormat.format(Date())
     }
 }

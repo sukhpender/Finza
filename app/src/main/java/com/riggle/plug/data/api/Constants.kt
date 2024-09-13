@@ -11,6 +11,15 @@ object Constants {
     const val FORGOT_PASSWORD = "forgotPassword"
     const val SEND_OTP_TAG_ISSUE = "send-otp"
     const val WALLET_CREATE_CUSTOMER = "customer-create"
+    const val UPDATE_PROFILE = "updateProfile"
+    const val USER_WALLET = "user-wallet"
+    const val INVENTORY_LIST = "assigned-inventory"
+    const val USERS_LIST = "user-list"
+    const val ASSIGN_INVENTORY = "inventory-assigned"
+    const val RESET_PASSWORD = "resetPassword"
+    const val PROJECT_LISTING = "project-list"
+    const val CHANGE_INVENTORY_STATUS = "change-inventory-status"
+    const val PAYMENT_STORE = "payment-store"
 
 
 

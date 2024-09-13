@@ -7,13 +7,16 @@ import androidx.activity.viewModels
 import androidx.core.content.ContextCompat
 import com.riggle.plug.BR
 import com.riggle.plug.R
-import com.riggle.plug.data.model.Drawer
+import com.riggle.plug.data.model.ProjectListData
 import com.riggle.plug.databinding.ActivityProjectListBinding
 import com.riggle.plug.databinding.HolderProjectListBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.plug.ui.finza.FinzaHomeActivity
+import com.riggle.plug.utils.Status
+import com.riggle.plug.utils.showErrorToast
+import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -47,6 +50,34 @@ class ProjectListActivity : BaseActivity<ActivityProjectListBinding>() {
 
     private fun initView() {
         initAdapter()
+        sharedPrefManager.getToken().let {
+            viewModel.getList(it.toString())
+        }
+        viewModel.obrProjectList.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    //it.data?.message?.let { it1 -> showSuccessToast(it1) }
+                    adapter.list = it.data?.data
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
     }
 
     private fun initOnClick() {
@@ -60,7 +91,7 @@ class ProjectListActivity : BaseActivity<ActivityProjectListBinding>() {
         }
     }
 
-    private lateinit var adapter: SimpleRecyclerViewAdapter<Drawer, HolderProjectListBinding>
+    private lateinit var adapter: SimpleRecyclerViewAdapter<ProjectListData, HolderProjectListBinding>
     private fun initAdapter() {
         adapter = SimpleRecyclerViewAdapter(
             R.layout.holder_project_list, BR.bean
@@ -69,23 +100,5 @@ class ProjectListActivity : BaseActivity<ActivityProjectListBinding>() {
             finish()
         }
         binding.rvHomeDrawer.adapter = adapter
-        adapter.list = prepareList()
-    }
-
-    private fun prepareList(): ArrayList<Drawer> {
-        val list = ArrayList<Drawer>()
-        list.add(Drawer(R.drawable.wallet, "10765"))
-        list.add(Drawer(R.drawable.wallet, "05247"))
-        list.add(Drawer(R.drawable.wallet, "15845"))
-        list.add(Drawer(R.drawable.wallet, "14245"))
-        list.add(Drawer(R.drawable.wallet, "10765"))
-        list.add(Drawer(R.drawable.wallet, "05247"))
-        list.add(Drawer(R.drawable.wallet, "15845"))
-        list.add(Drawer(R.drawable.wallet, "14245"))
-        list.add(Drawer(R.drawable.wallet, "10765"))
-        list.add(Drawer(R.drawable.wallet, "05247"))
-        list.add(Drawer(R.drawable.wallet, "15845"))
-        list.add(Drawer(R.drawable.wallet, "14245"))
-        return list
     }
 }
