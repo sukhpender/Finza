@@ -111,15 +111,14 @@
                 android:layout_width="match_parent"
                 android:layout_marginHorizontal="@dimen/_10sdp"
                 android:layout_marginTop="8dp"
-                android:hint="00000000"
-                android:imeOptions="actionNext"
+                android:imeOptions="actionDone"
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="@id/tvPhone"
                 app:layout_constraintStart_toStartOf="@id/tvPhone"
                 app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
 
             <TextView
-                android:id="@+id/tvLogin"
+                android:id="@+id/tvSubmit"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_40sdp"

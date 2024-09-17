@@ -20,10 +20,10 @@
     <androidx.drawerlayout.widget.DrawerLayout
         android:id="@+id/drawer_layout"
         android:layout_width="match_parent"
-        tools:openDrawer="start"
-        android:background="@color/white"
         android:layout_height="match_parent"
-        android:fitsSystemWindows="true">
+        android:background="@color/white"
+        android:fitsSystemWindows="true"
+        tools:openDrawer="start">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container"
@@ -56,9 +56,6 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:menu="@menu/bottom_finza_nav_menu" />
 
-
-
-
             <androidx.cardview.widget.CardView
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_45sdp"
@@ -77,24 +74,24 @@
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent">
 
-<!--                    <com.google.android.material.imageview.ShapeableImageView-->
-<!--                        android:layout_width="@dimen/_38sdp"-->
-<!--                        android:layout_height="@dimen/_38sdp"-->
-<!--                        android:layout_marginStart="@dimen/_15sdp"-->
-<!--                        android:background="@color/white"-->
-<!--                        android:foreground="?selectableItemBackground"-->
-<!--                        android:onClick="@{v->vm.onClick(v)}"-->
-<!--                        android:padding="@dimen/_2sdp"-->
-<!--                        android:src="@drawable/fsm_logo"-->
-<!--                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />-->
+                    <!--                    <com.google.android.material.imageview.ShapeableImageView-->
+                    <!--                        android:layout_width="@dimen/_38sdp"-->
+                    <!--                        android:layout_height="@dimen/_38sdp"-->
+                    <!--                        android:layout_marginStart="@dimen/_15sdp"-->
+                    <!--                        android:background="@color/white"-->
+                    <!--                        android:foreground="?selectableItemBackground"-->
+                    <!--                        android:onClick="@{v->vm.onClick(v)}"-->
+                    <!--                        android:padding="@dimen/_2sdp"-->
+                    <!--                        android:src="@drawable/fsm_logo"-->
+                    <!--                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />-->
 
                     <LinearLayout
                         android:id="@+id/llOpenCloseDrawer"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:background="@drawable/white_circle"
                         android:backgroundTint="@color/white"
-                        android:layout_marginStart="@dimen/_10sdp"
                         android:elevation="@dimen/_5sdp"
                         android:foreground="?selectableItemBackground"
                         android:onClick="@{v->vm.onClick(v)}"
@@ -162,9 +159,9 @@
                     android:layout_width="match_parent"
                     android:layout_height="@dimen/_90sdp"
                     android:layout_marginTop="@dimen/_5sdp"
-                    android:layout_marginBottom="@dimen/_50sdp"
+                    android:layout_marginBottom="@dimen/_25sdp"
                     android:padding="@dimen/_2sdp"
-                    android:scaleType="fitXY"
+                    android:scaleType="centerCrop"
                     android:src="@drawable/fsm_logo"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -176,14 +173,14 @@
                     android:id="@+id/ll1"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_8sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
+                    android:paddingTop="@dimen/_10sdp"
                     android:orientation="vertical"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent">
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
+                        android:layout_marginStart="@dimen/_8sdp"
                         android:fontFamily="@font/inter_bold"
                         android:singleLine="true"
                         android:text="@{bean.full_name}"
@@ -194,6 +191,7 @@
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
+                        android:layout_marginStart="@dimen/_8sdp"
                         android:singleLine="true"
                         android:text="@{String.valueOf(bean.role_id)}"
                         android:textColor="@color/fsm_text_color"
@@ -203,6 +201,7 @@
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
+                        android:layout_marginStart="@dimen/_8sdp"
                         android:singleLine="true"
                         android:text="@{bean.phone_number}"
                         android:textColor="@color/fsm_text_color"
@@ -210,27 +209,33 @@
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
-
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
-                        android:singleLine="true"
-                        android:text="Chandigarh A"
+                        android:layout_marginStart="@dimen/_8sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/inter_semibold"
+                        android:singleLine="true"
+                        android:text="@{bean.project_detail.title}"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_13sdp"
                         app:layout_constraintEnd_toEndOf="parent"
-                        android:layout_marginTop="@dimen/_10sdp"
                         app:layout_constraintTop_toTopOf="parent" />
-
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
+                        android:layout_marginStart="@dimen/_8sdp"
                         android:singleLine="true"
-                        android:text="Project Type: Comission"
+                        android:text='@{"Project Type: "+ bean.project_detail.type}'
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_11sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/line_color" />
 
                 </LinearLayout>
 
@@ -256,8 +261,7 @@
                     android:id="@+id/rvHomeDrawer"
                     android:layout_width="match_parent"
                     android:layout_height="0dp"
-                    android:layout_marginTop="@dimen/_30sdp"
-                    android:layout_marginBottom="@dimen/_3sdp"
+                    android:layout_marginTop="@dimen/_20sdp"
                     app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                     app:layout_constraintBottom_toTopOf="@+id/ivLogo"
                     app:layout_constraintTop_toBottomOf="@+id/ll1"

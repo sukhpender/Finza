@@ -8,7 +8,7 @@ import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import com.riggle.plug.BR
 import com.riggle.plug.R
-import com.riggle.plug.data.model.Drawer
+import com.riggle.plug.data.model.WalletTransactionsData
 import com.riggle.plug.databinding.ActivityWalletBinding
 import com.riggle.plug.databinding.HolderWalletTransactionsBinding
 import com.riggle.plug.ui.base.BaseActivity
@@ -44,6 +44,9 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
         sharedPrefManager.getToken()?.let {
             viewModel.getWallet(it)
         }
+        sharedPrefManager.getToken()?.let {
+            viewModel.getTransactionHistory(it)
+        }
 
         initView()
         initOnClick()
@@ -60,10 +63,7 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
 
         binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>, view: View, position: Int, id: Long
             ) {
             }
 
@@ -73,13 +73,47 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
         viewModel.obrWallet.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {
+                    //    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    //  showHideLoader(false)
+                    if (it.data != null) {
+                        binding.tv3.text = "₹ ${it.data.wallet}"
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
+        viewModel.obrTransactionHistory.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
                     showHideLoader(true)
                 }
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     if (it.data != null) {
-                        binding.tv3.text  =  "₹ ${it.data.wallet}"
+                        adapter1.list = it.data.data
+                        if (it.data.data.size != 0) {
+                            binding.ivNoData.visibility = View.GONE
+                            binding.rvHomeDrawer.visibility = View.VISIBLE
+                        } else {
+                            binding.ivNoData.visibility = View.VISIBLE
+                            binding.rvHomeDrawer.visibility = View.GONE
+                        }
                     }
                 }
 
@@ -113,34 +147,13 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
         }
     }
 
-    private lateinit var adapter: SimpleRecyclerViewAdapter<Drawer, HolderWalletTransactionsBinding>
+    private lateinit var adapter1: SimpleRecyclerViewAdapter<WalletTransactionsData, HolderWalletTransactionsBinding>
     private fun initAdapter() {
-        adapter = SimpleRecyclerViewAdapter(
+        adapter1 = SimpleRecyclerViewAdapter(
             R.layout.holder_wallet_transactions, BR.bean
         ) { v, m, pos ->
 
         }
-        binding.rvHomeDrawer.adapter = adapter
-        adapter.list = prepareList()
-    }
-
-    private fun prepareList(): ArrayList<Drawer> {
-        val list = ArrayList<Drawer>()
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-        list.add(Drawer(R.drawable.wallet, "25 Dec 2022"))
-
-        return list
+        binding.rvHomeDrawer.adapter = adapter1
     }
 }

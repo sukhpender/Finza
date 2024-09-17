@@ -3,6 +3,7 @@ package com.riggle.plug.ui.finza
 import com.riggle.plug.data.api.BaseRepo
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
+import com.riggle.plug.data.model.HomeInventoryResponseModel
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.utils.Coroutines
 import com.riggle.plug.utils.Resource

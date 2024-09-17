@@ -21,9 +21,19 @@ data class FinzaLoginData(
     val last_name: String,
     val phone_number: String,
     val pin_code: String,
-    val profile_image: Any,
+    val profile_image: String,
+    val project_detail: ProjectDetail,
     val role_id: Int,
     val state: String,
     val updated_at: String,
-    val username: Any
+    val username: Any?
+)
+
+data class ProjectDetail(
+    val created_at: String,
+    val id: Int,
+    val price: String,
+    val title: String,
+    val type: String?,
+    val updated_at: String
 )

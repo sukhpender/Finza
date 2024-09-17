@@ -20,6 +20,10 @@ object Constants {
     const val PROJECT_LISTING = "project-list"
     const val CHANGE_INVENTORY_STATUS = "change-inventory-status"
     const val PAYMENT_STORE = "payment-store"
+    const val WALLET_TRANSACTIONS = "transaction-list"
+    const val HOME_INVENTORY = "inventory_count"
+    const val ISSUE_TAG_CHECK_WALLET = "check-wallet"
+    const val CHECK_TAG_AVAILABILITY = "scan-tag"
 
 
 

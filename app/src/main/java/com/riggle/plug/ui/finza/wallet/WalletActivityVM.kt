@@ -2,6 +2,7 @@ package com.riggle.plug.ui.finza.wallet
 
 import com.riggle.plug.data.api.BaseRepo
 import com.riggle.plug.data.model.UserWalletResponseModel
+import com.riggle.plug.data.model.WalletTransactionsResponseModel
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.utils.Coroutines
 import com.riggle.plug.utils.Resource
@@ -34,6 +35,32 @@ class WalletActivityVM @Inject constructor(private val baseRepo: BaseRepo): Base
             } catch (e: Exception) {
                 parseException(e.cause)?.let {
                     obrWallet.postValue(Resource.error(null, it))
+                }
+            }
+        }
+    }
+
+    val obrTransactionHistory = SingleRequestEvent<WalletTransactionsResponseModel>()
+    fun getTransactionHistory(header: String) {
+        Coroutines.io {
+            obrTransactionHistory.postValue(Resource.loading(null))
+            try {
+                baseRepo.getTransactionsList(header).let {
+                    if (it.isSuccessful) {
+                        it.body()?.let { results ->
+                            obrTransactionHistory.postValue(Resource.success(results, "Success"))
+                        }
+                    } else {
+                        obrTransactionHistory.postValue(
+                            Resource.error(
+                                null, handleErrorResponse(it.errorBody(),it.code())
+                            )
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                parseException(e.cause)?.let {
+                    obrTransactionHistory.postValue(Resource.error(null, it))
                 }
             }
         }

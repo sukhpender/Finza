@@ -87,6 +87,26 @@ object ImageBindingAdapter {
 
     @RequiresApi(Build.VERSION_CODES.O)
     @JvmStatic
+    @BindingAdapter("setAssignedDate3")
+    fun setAssignedDate3(textView: TextView, dateString: String) {
+        val oldFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'")
+        val newFormat = DateTimeFormatter.ofPattern("dd MMM,yyyy")
+
+        try {
+            // Parse the date string using the old format
+            val zonedDateTime = ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
+
+            // Format the parsed date to the new format
+            val formattedDate = zonedDateTime.format(newFormat)
+            textView.text = formattedDate
+        } catch (e: DateTimeParseException) {
+            e.printStackTrace()
+            textView.text = "Error parsing date"
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    @JvmStatic
     @BindingAdapter("setAssignedDate2")
     fun setAssignedDate2(textView: TextView, dateString: String) {
         val oldFormat = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'")

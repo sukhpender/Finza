@@ -13,6 +13,7 @@ import com.riggle.plug.data.model.BrandProductResponseModel
 import com.riggle.plug.data.model.BrandRateResponseModel
 import com.riggle.plug.data.model.BrandResponse
 import com.riggle.plug.data.model.CPLeaderBoardResponseModel
+import com.riggle.plug.data.model.CheckTagAvailabilityResponseModel
 import com.riggle.plug.data.model.CityBeatsResponseModel
 import com.riggle.plug.data.model.CoOwnersListResponseModel
 import com.riggle.plug.data.model.CpInsightsResponseModel
@@ -36,6 +37,7 @@ import com.riggle.plug.data.model.HomeInsightsLastDaysResponseModel
 import com.riggle.plug.data.model.HomeInsightsOrderPlacedResponseModel
 import com.riggle.plug.data.model.HomeInsightsOrderResponseModel
 import com.riggle.plug.data.model.HomeInsightsSubCatResponseModel
+import com.riggle.plug.data.model.HomeInventoryResponseModel
 import com.riggle.plug.data.model.HomeLeaderBoardSPResponseModel
 import com.riggle.plug.data.model.HomeOrderSummaryOrdersResponseModel
 import com.riggle.plug.data.model.HomeOrderSummaryResponseModel
@@ -47,6 +49,7 @@ import com.riggle.plug.data.model.HomeReachAnalysisResponseModel
 import com.riggle.plug.data.model.HomeSKUsItemDetailsResponseModel
 import com.riggle.plug.data.model.HomeSKUsResponseModel
 import com.riggle.plug.data.model.InventryResponseModel
+import com.riggle.plug.data.model.IssueTagCheckWalletResponseModel
 import com.riggle.plug.data.model.LeadCPResponseModel
 import com.riggle.plug.data.model.LowStockDataResponse
 import com.riggle.plug.data.model.NetworkCPCount1Item
@@ -86,6 +89,7 @@ import com.riggle.plug.data.model.UserWalletResponseModel
 import com.riggle.plug.data.model.UsersListResponseModel
 import com.riggle.plug.data.model.VerifyOtpResponseModel
 import com.riggle.plug.data.model.WalletCreateCustomerResponseModel
+import com.riggle.plug.data.model.WalletTransactionsResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -177,7 +181,22 @@ interface BaseRepo {
        header: String, reqBody: PaymentStoreRequest
     ): Response<StorePaymentResponseModel>
 
+    suspend fun getTransactionsList(
+        header: String,
+    ): Response<WalletTransactionsResponseModel>
 
+    suspend fun getHomeInventoryList(
+        header: String,
+    ): Response<HomeInventoryResponseModel>
+
+    suspend fun issueTagCheckWallet(
+        header: String,
+    ): Response<IssueTagCheckWalletResponseModel>
+
+    suspend fun checkTagAvailable(
+        header: String,
+        tag_id: String,
+    ): Response<CheckTagAvailabilityResponseModel>
 
 
 

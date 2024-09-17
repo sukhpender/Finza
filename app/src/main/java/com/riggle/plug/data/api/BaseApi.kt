@@ -13,6 +13,7 @@ import com.riggle.plug.data.model.BrandProductResponseModel
 import com.riggle.plug.data.model.BrandRateResponseModel
 import com.riggle.plug.data.model.BrandResponse
 import com.riggle.plug.data.model.CPLeaderBoardResponseModel
+import com.riggle.plug.data.model.CheckTagAvailabilityResponseModel
 import com.riggle.plug.data.model.CityBeatsResponseModel
 import com.riggle.plug.data.model.CoOwnersListResponseModel
 import com.riggle.plug.data.model.CpInsightsResponseModel
@@ -33,6 +34,7 @@ import com.riggle.plug.data.model.HomeInsightsLastDaysResponseModel
 import com.riggle.plug.data.model.HomeInsightsOrderPlacedResponseModel
 import com.riggle.plug.data.model.HomeInsightsOrderResponseModel
 import com.riggle.plug.data.model.HomeInsightsSubCatResponseModel
+import com.riggle.plug.data.model.HomeInventoryResponseModel
 import com.riggle.plug.data.model.HomeLeaderBoardSPResponseModel
 import com.riggle.plug.data.model.HomeOrderSummaryOrdersResponseModel
 import com.riggle.plug.data.model.HomeOrderSummaryResponseModel
@@ -44,6 +46,7 @@ import com.riggle.plug.data.model.HomeReachAnalysisResponseModel
 import com.riggle.plug.data.model.HomeSKUsItemDetailsResponseModel
 import com.riggle.plug.data.model.HomeSKUsResponseModel
 import com.riggle.plug.data.model.InventryResponseModel
+import com.riggle.plug.data.model.IssueTagCheckWalletResponseModel
 import com.riggle.plug.data.model.LeadCPResponseModel
 import com.riggle.plug.data.model.LowStockDataResponse
 import com.riggle.plug.data.model.NetworkCPCount1Item
@@ -83,6 +86,7 @@ import com.riggle.plug.data.model.UserWalletResponseModel
 import com.riggle.plug.data.model.UsersListResponseModel
 import com.riggle.plug.data.model.VerifyOtpResponseModel
 import com.riggle.plug.data.model.WalletCreateCustomerResponseModel
+import com.riggle.plug.data.model.WalletTransactionsResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
@@ -213,8 +217,31 @@ interface BaseApi {
         @Header("Authorization") header: String, @Body reqBody: PaymentStoreRequest
     ): Response<StorePaymentResponseModel>
 
+    @GET(Constants.WALLET_TRANSACTIONS)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun getTransactionsList(
+        @Header("Authorization") header: String,
+    ): Response<WalletTransactionsResponseModel>
 
+    @GET(Constants.HOME_INVENTORY)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun getHomeInventoryList(
+        @Header("Authorization") header: String,
+    ): Response<HomeInventoryResponseModel>
 
+    @GET(Constants.ISSUE_TAG_CHECK_WALLET)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun issueTagCheckWallet(
+        @Header("Authorization") header: String,
+    ): Response<IssueTagCheckWalletResponseModel>
+
+    @POST(Constants.CHECK_TAG_AVAILABILITY)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun checkTagAvailable(
+        @Header("Authorization") header: String,
+        @Field("tag_id") tag_id: String,
+        ): Response<CheckTagAvailabilityResponseModel>
 
 
 

@@ -62,7 +62,7 @@
                     style="@style/TextView.InterRegular_12ssp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:singleLine="true"
-                    android:text='@{"Privider: " + bean.inventory.provider}'
+                    android:text='@{"Provider: " + bean.inventory.provider}'
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintEnd_toEndOf="parent"

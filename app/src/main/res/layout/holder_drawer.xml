@@ -24,7 +24,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginHorizontal="@dimen/_10sdp"
-        android:paddingVertical="@dimen/_10sdp"
+        android:paddingVertical="@dimen/_7sdp"
         android:foreground="?selectableItemBackground"
         android:onClick="@{v-> callback.onItemClick(v,bean,pos)}">
 

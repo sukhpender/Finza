@@ -38,6 +38,7 @@ import jp.wasabeef.blurry.Blurry
 
 @AndroidEntryPoint
 class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
+
     private val viewModel: FinzaHomeActivityVM by viewModels()
 
     companion object {
@@ -67,6 +68,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
     }
 
     private fun initObservers() {
+
         viewModel.obrLogout.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {
@@ -98,6 +100,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 else -> {}
             }
         }
+
     }
 
     private fun initView() {

@@ -18,10 +18,12 @@ import com.riggle.plug.databinding.ActivityIssueSuperTagBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.finza.issueSuperTag.verify.VerifyTagActivity
+import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.barcode.BarcodeBoxView
 import com.riggle.plug.utils.barcode.QrCodeAnalyzer
 import com.riggle.plug.utils.event.SingleLiveEvent
 import com.riggle.plug.utils.showErrorToast
+import com.riggle.plug.utils.showInfoToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.concurrent.ExecutorService
 import java.util.concurrent.Executors
@@ -71,6 +73,34 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
     private fun initView() {
         barcodeBoxView = BarcodeBoxView(this)
         startCamera()
+
+        viewModel.obrCheckTagAvailable.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        startActivity(VerifyTagActivity.newIntent(this))
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
     }
 
     private fun initOnClick() {
@@ -80,8 +110,15 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
                     finish()
                 }
 
-                R.id.tvLogin -> {
-                    startActivity(VerifyTagActivity.newIntent(this))
+                R.id.tvSubmit -> {
+                    val tagNumber = binding.etvFastTagId.text.toString()
+                    if (tagNumber == ""){
+                        showErrorToast("Please enter FASTag number")
+                    }else{
+                       // showInfoToast("Work in progress")
+                        viewModel.checkAvailability(sharedPrefManager.getToken().toString(),tagNumber)
+                    }
+                   // startActivity(VerifyTagActivity.newIntent(this))
                 }
             }
         }
@@ -170,7 +207,6 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
 
     override fun onDestroy() {
         super.onDestroy()
-
         cameraExecutor.shutdown()
     }
 }

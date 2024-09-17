@@ -221,47 +221,92 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
         }
     }
 
+//    override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
+//
+//        Log.e("PaymentLoad", p1?.data.toString())
+//        showSuccessToast(p1!!.paymentId)
+//
+//        val acquireData = AcquirerData(
+//            rrn = ""
+//        )
+//        val requestBody = PaymentStoreRequest(
+//            acquirer_data = acquireData,
+//            amount = amount.toInt(),
+//            amount_refunded = 0,
+//            bank = "",
+//            captured = false,
+//            card_id = "",
+//            contact = p1.userContact,
+//            created_at = getFormattedCurrentTime(),
+//            currency = "IN",
+//            customer_id = sharedPrefManager.getWalletUser()?.razorpay_customer_id.toString(),
+//            description = "",
+//            email = p1.userEmail.toString(),
+//            entity = "",
+//            error_code = "",
+//            error_description = "",
+//            error_reason = "",
+//            error_source = "",
+//            error_step = "",
+//            fee = 0,
+//            id = p1.paymentId,
+//            international = false,
+//            invoice_id = "",
+//            method = "upi",
+//            notes = emptyList(),
+//            order_id = p1.orderId,
+//            refund_status = "",
+//            status = "Success",
+//            tax = 0,
+//            vpa = "",
+//            wallet = p1.externalWallet
+//        )
+//
+//        viewModel.storePayment(sharedPrefManager.getToken().toString(), requestBody)
+//    }
+
     override fun onPaymentSuccess(p0: String?, p1: PaymentData?) {
-        Log.e("PaymentLoad", p1?.data.toString())
-        showSuccessToast(p1!!.paymentId)
+        try {
+            val acquireData = AcquirerData(
+                rrn = ""
+            )
+            val requestBody = PaymentStoreRequest(
+                acquirer_data = acquireData,
+                amount = amount.toInt(),
+                amount_refunded = 0,
+                bank = "",
+                captured = false,
+                card_id = "",
+                contact = p1?.userContact.toString(),
+                created_at = getFormattedCurrentTime(),
+                currency = "INR",
+                customer_id = sharedPrefManager.getWalletUser()?.razorpay_customer_id.toString(),
+                description = "",
+                email = p1?.userEmail.toString(),
+                entity = "payment",
+                error_code = "",
+                error_description = "",
+                error_reason = "",
+                error_source = "",
+                error_step = "",
+                fee = 0,
+                id = p1?.paymentId.toString(),
+                international = false,
+                invoice_id = "",
+                method = "upi",
+                notes = emptyList(),
+                order_id = "",
+                refund_status = "",
+                status = "captured",
+                tax = 0,
+                vpa = "",
+                wallet = ""
+            )
+            viewModel.storePayment(sharedPrefManager.getToken().toString(), requestBody)
 
-        val acquireData = AcquirerData(
-            rrn = ""
-        )
-        val requestBody = PaymentStoreRequest(
-            acquirer_data = acquireData,
-            amount = amount.toInt(),
-            amount_refunded = 0,
-            bank = "",
-            captured = false,
-            card_id = "",
-            contact = p1.userContact,
-            created_at = getFormattedCurrentTime(),
-            currency = "IN",
-            customer_id = sharedPrefManager.getWalletUser()?.razorpay_customer_id.toString(),
-            description = "",
-            email = p1.userEmail.toString(),
-            entity = "",
-            error_code = "",
-            error_description = "",
-            error_reason = "",
-            error_source = "",
-            error_step = "",
-            fee = 0,
-            id = p1.paymentId,
-            international = false,
-            invoice_id = "",
-            method = "upi",
-            notes = emptyList(),
-            order_id = p1.orderId,
-            refund_status = "",
-            status = "Success",
-            tax = 0,
-            vpa = "",
-            wallet = p1.externalWallet
-        )
-
-        viewModel.storePayment(sharedPrefManager.getToken().toString(), requestBody)
+        } catch (e: Exception) {
+            showErrorToast(e.localizedMessage)
+        }
     }
 
     override fun onPaymentError(p0: Int, p1: String?, p2: PaymentData?) {

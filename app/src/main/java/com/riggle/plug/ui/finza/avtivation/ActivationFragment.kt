@@ -9,6 +9,8 @@ import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.finza.inventory.InventoryActivity
 import com.riggle.plug.ui.finza.issuance.IssuanceActivity
 import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity
+import com.riggle.plug.utils.Status
+import com.riggle.plug.utils.showErrorToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -17,6 +19,65 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
     private val viewModel: ActivationFragmentVM by viewModels()
 
     override fun onCreateView(view: View) {
+
+        viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+
+        viewModel.obrHomeInventory.observe(viewLifecycleOwner) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        binding.tv4.text = it.data.data.incomingInventory.toString()
+                        binding.tv6.text = it.data.data.inHandInventory.toString()
+                        binding.tv8.text = it.data.data.old_inventory.toString()
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
+        viewModel.obrIssueTagCheckWallet.observe(viewLifecycleOwner) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                   if (it.data != null){
+                       startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
+                   }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
         initOnClick()
     }
 
@@ -24,7 +85,8 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
         viewModel.onClick.observe(viewLifecycleOwner) {
             when (it?.id) {
                 R.id.tvIssueSuperTag -> {
-                    startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
+                    viewModel.issueTagCheckWallet(sharedPrefManager.getToken().toString())
+                    //startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
                 }
 
                 R.id.tv15 -> {

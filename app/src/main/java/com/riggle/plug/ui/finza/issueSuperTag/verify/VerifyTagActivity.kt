@@ -161,7 +161,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             vehicleNo = vehicleNumber
                         )
                         Log.e("SendOtpRequest--->>>", requestBody.toString())
-                        viewModel.sendOtp(sharedPrefManager.toString(), requestBody)
+                        viewModel.sendOtp(sharedPrefManager.getToken().toString(), requestBody)
                     }
                 }
             }
