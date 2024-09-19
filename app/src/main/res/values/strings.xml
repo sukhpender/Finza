@@ -304,10 +304,10 @@
         <item>All</item>
         <item>Credited</item>
         <item>Debited</item>
+        <item>Refunded</item>
     </string-array>
     <string-array name="requestType">
         <item>Registration</item>
-        <item>Replacement</item>
     </string-array>
 
     <string-array name="documentType">

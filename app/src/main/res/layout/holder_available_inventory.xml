@@ -85,7 +85,7 @@
                     android:layout_height="@dimen/_30sdp"
                     android:layout_marginTop="@dimen/_5sdp"
                     android:background="@drawable/edit_back_view"
-                    android:backgroundTint="@android:color/holo_green_dark"
+                    android:backgroundTint="@color/line_color"
                     android:fontFamily="@font/inter_medium"
                     android:foreground="?selectableItemBackground"
                     android:gravity="center"

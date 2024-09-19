@@ -112,6 +112,7 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                         binding.rvHomeDrawer.visibility = View.VISIBLE
                         inventoryId = 0
                         assignToId = 0
+                        viewModel.getInventory(sharedPrefManager.getToken().toString(), "2")
                     }
                 }
 

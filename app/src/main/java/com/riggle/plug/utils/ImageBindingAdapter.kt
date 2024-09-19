@@ -14,14 +14,11 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.ResourcesCompat
 import androidx.databinding.BindingAdapter
-import androidx.recyclerview.widget.RecyclerView
 import com.bumptech.glide.Glide
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.imageview.ShapeableImageView
-import com.riggle.plug.BR
 import com.riggle.plug.R
 import com.riggle.plug.data.model.Arpr
-import com.riggle.plug.data.model.BeatSalesBeat
 import com.riggle.plug.data.model.GraphData
 import com.riggle.plug.data.model.NetworkCPCount1Item
 import com.riggle.plug.data.model.New1
@@ -38,7 +35,6 @@ import com.riggle.plug.data.model.SubCategory1
 import com.riggle.plug.data.model.SubCategory2
 import com.riggle.plug.data.model.TargetUserData
 import com.riggle.plug.data.model.UsersListData
-import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import java.text.DecimalFormat
 import java.text.ParseException
 import java.text.SimpleDateFormat
@@ -54,9 +50,79 @@ import kotlin.math.pow
 object ImageBindingAdapter {
 
     @JvmStatic
+    @BindingAdapter("setStatus")
+    fun setStatus(textView: TextView, status: Int) {
+        when (status) {
+            0 -> {
+                textView.text = "Credited"
+            }
+
+            1 -> {
+                textView.text = "Debited"
+            }
+
+            2 -> {
+                textView.text = "Refunded"
+            }
+
+            3 -> {
+                textView.text = "All"
+            }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setStatus1")
+    fun setStatus1(textView: TextView, status: Int) {
+        when (status) {
+            0 -> {
+                textView.text = "Credit"
+            }
+
+            1 -> {
+                textView.text = "Debit"
+            }
+
+            2 -> {
+                textView.text = "Refund"
+            }
+
+            3 -> {
+                textView.text = "All"
+            }
+        }
+    }
+
+    @JvmStatic
+    @BindingAdapter("setStatus3")
+    fun setStatus3(iv: ShapeableImageView, status: Int) {
+        when (status) {
+//                    0 for credited
+//                    1 for debited
+//                    2 for refunded
+//                    3 for all
+            0 -> {
+                iv.rotation = 180f
+            }
+
+            1 -> {
+                iv.rotation = 0f
+            }
+
+            2 -> {
+                iv.rotation = 180f
+            }
+
+            3 -> {
+                iv.setBackgroundColor(ContextCompat.getColor(iv.context,R.color.white))
+            }
+        }
+    }
+
+    @JvmStatic
     @BindingAdapter("getInitials")
-    fun getInitials(textView: TextView,data: UsersListData) {
-        var firstName = data.first_name +" " + data.last_name
+    fun getInitials(textView: TextView, data: UsersListData) {
+        var firstName = data.first_name + " " + data.last_name
         val nameParts = firstName.trim().split(" ")
         if (nameParts.size >= 2) {
             val firstInitial = nameParts.firstOrNull()?.firstOrNull()?.uppercase() ?: ""
@@ -74,7 +140,8 @@ object ImageBindingAdapter {
 
         try {
             // Parse the date string using the old format
-            val zonedDateTime = ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
+            val zonedDateTime =
+                ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
 
             // Format the parsed date to the new format
             val formattedDate = zonedDateTime.format(newFormat)
@@ -94,7 +161,8 @@ object ImageBindingAdapter {
 
         try {
             // Parse the date string using the old format
-            val zonedDateTime = ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
+            val zonedDateTime =
+                ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
 
             // Format the parsed date to the new format
             val formattedDate = zonedDateTime.format(newFormat)
@@ -114,7 +182,8 @@ object ImageBindingAdapter {
 
         try {
             // Parse the date string using the old format
-            val zonedDateTime = ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
+            val zonedDateTime =
+                ZonedDateTime.parse(dateString, oldFormat.withZone(java.time.ZoneOffset.UTC))
 
             // Format the parsed date to the new format
             val formattedDate = zonedDateTime.format(newFormat)
@@ -130,9 +199,9 @@ object ImageBindingAdapter {
     @BindingAdapter(value = ["setUserSelection"])
     fun setUserSelection(iv: ImageView, isSelected: Boolean) {
         if (isSelected) {
-            iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context,R.drawable.checked1))
+            iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context, R.drawable.checked1))
         } else {
-            iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context,R.drawable.checked2))
+            iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context, R.drawable.checked2))
         }
     }
 
@@ -147,25 +216,6 @@ object ImageBindingAdapter {
             tv.typeface = myTypeface
         }
     }
-
-    fun amountSorting(amount: Double): String {
-        var updatedAmount = ""
-        val formatter = DecimalFormat("#.##")
-        if (amount > 999 && amount < 99999) {
-            val cal = (amount / 1000)
-            updatedAmount = formatter.format(cal).toString() + " K"
-        } else if (amount > 99999 && amount < 9999999) {
-            val cal = (amount / 100000)
-            updatedAmount = formatter.format(cal).toString() + " Lakh"
-        } else if (amount > 9999999 && amount < 999999999) {
-            val cal = (amount / 10000000)
-            updatedAmount = formatter.format(cal).toString() + " Crore"
-        } else {
-            updatedAmount = amount.toString()
-        }
-        return updatedAmount
-    }
-
 
     @JvmStatic
     @BindingAdapter(value = ["amountSorting1"])
@@ -294,53 +344,6 @@ object ImageBindingAdapter {
         }
     }
 
-/*    @JvmStatic
-    @BindingAdapter(value = ["setSecondaryProgress"])
-    fun setSecondaryProgress(pb: ProgressBar, response: TargetUserData?) {
-        response?.secondary_order_value?.let { primary ->
-            if (primary > 0) {
-                response.secondary_target.let {
-                    if (it > 0) {
-                        val percentage = (primary * 100) / it
-                        pb.progress = percentage
-                    }
-                }
-            }
-        }
-    }*/
-
-    @JvmStatic
-    @BindingAdapter(value = ["setProgressPercentagePrimary"])
-    fun setProgressPercentagePrimary(tv: TextView, response: TargetUserData?) {
-        response?.primary_order_value?.let { secondary ->
-            if (secondary > 0) {
-                response.primary_target.let {
-                    if (it > 0) {
-                        val decimalFormat = DecimalFormat("#.#")
-                        val percentage = (secondary * 100) / it
-                        tv.text = decimalFormat.format(percentage) + "%"
-                    }
-                }
-            }
-        }
-    }
-
-    @JvmStatic
-    @BindingAdapter(value = ["setProgressPercentageSecondary"])
-    fun setProgressPercentageSecondary(tv: TextView, response: TargetUserData?) {
-        response?.secondary_order_value?.let { secondary ->
-            if (secondary > 0) {
-                response.secondary_target.let {
-                    if (it > 0) {
-                        val decimalFormat = DecimalFormat("#.#")
-                        val percentage = (secondary * 100) / it
-                        tv.text = decimalFormat.format(percentage) + "%"
-                    }
-                }
-            }
-        }
-    }
-
     @JvmStatic
     @BindingAdapter(value = ["setAlphabet"])
     fun setAlphabet(tv: TextView, pos: Int?) {
@@ -453,8 +456,7 @@ object ImageBindingAdapter {
         } else {
             acb.setBackgroundDrawable(
                 ContextCompat.getDrawable(
-                    acb.context,
-                    R.drawable.filter_border
+                    acb.context, R.drawable.filter_border
                 )
             )
         }
@@ -475,7 +477,7 @@ object ImageBindingAdapter {
         //ContextCompat.getColor(context, R.color.COLOR_YOUR_COLOR)
         if (bean?.color != null) {
             imageView.setColorFilter(
-                Color.parseColor(bean?.color), android.graphics.PorterDuff.Mode.SRC_IN
+                Color.parseColor(bean.color), android.graphics.PorterDuff.Mode.SRC_IN
             )
         } else {
             imageView.setColorFilter(
@@ -490,7 +492,7 @@ object ImageBindingAdapter {
         //ContextCompat.getColor(context, R.color.COLOR_YOUR_COLOR)
         if (bean?.color != null) {
             imageView.setColorFilter(
-                Color.parseColor(bean?.color), android.graphics.PorterDuff.Mode.SRC_IN
+                Color.parseColor(bean.color), android.graphics.PorterDuff.Mode.SRC_IN
             )
         } else {
             imageView.setColorFilter(
@@ -562,14 +564,14 @@ object ImageBindingAdapter {
     fun getMonthName(date: String?): String {
         if (date != null) {
             var nwDate = ""
-             // 2024-07-01
+            // 2024-07-01
             val newFormat = "MMM"
             val sdf = SimpleDateFormat("yyyy-MM-dd")
             val newDate = sdf.parse(date)
             sdf.applyPattern(newFormat)
             nwDate = sdf.format(newDate)
             return nwDate
-        }else{
+        } else {
             return "IV"
         }
     }
@@ -1111,15 +1113,13 @@ object ImageBindingAdapter {
     @JvmStatic
     @BindingAdapter(value = ["setImageWithFullUrl"])
     fun setImageWithFullUrl(imageView: ImageView, image: String?) {
-        Glide.with(imageView.context).load(image).placeholder(R.drawable.fsm_logo)
-            .into(imageView)
+        Glide.with(imageView.context).load(image).placeholder(R.drawable.fsm_logo).into(imageView)
     }
 
     @JvmStatic
     @BindingAdapter(value = ["setImage1"])
     fun setImage1(imageView: ImageView, image: Int?) {
-        Glide.with(imageView.context).load(image)
-            .into(imageView)
+        Glide.with(imageView.context).load(image).into(imageView)
     }
 
     @JvmStatic

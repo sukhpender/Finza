@@ -32,6 +32,7 @@ import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
 import com.riggle.plug.data.model.GetLeaveData
+import com.riggle.plug.data.model.HoldAmountResponseModel
 import com.riggle.plug.data.model.HomeInsightRetailersResponseModel
 import com.riggle.plug.data.model.HomeInsightsLastDaysResponseModel
 import com.riggle.plug.data.model.HomeInsightsOrderPlacedResponseModel
@@ -182,7 +183,7 @@ interface BaseRepo {
     ): Response<StorePaymentResponseModel>
 
     suspend fun getTransactionsList(
-        header: String,
+        header: String,status:Int
     ): Response<WalletTransactionsResponseModel>
 
     suspend fun getHomeInventoryList(

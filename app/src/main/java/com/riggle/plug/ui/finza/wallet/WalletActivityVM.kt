@@ -41,11 +41,11 @@ class WalletActivityVM @Inject constructor(private val baseRepo: BaseRepo): Base
     }
 
     val obrTransactionHistory = SingleRequestEvent<WalletTransactionsResponseModel>()
-    fun getTransactionHistory(header: String) {
+    fun getTransactionHistory(header: String,status:Int) {
         Coroutines.io {
             obrTransactionHistory.postValue(Resource.loading(null))
             try {
-                baseRepo.getTransactionsList(header).let {
+                baseRepo.getTransactionsList(header,status).let {
                     if (it.isSuccessful) {
                         it.body()?.let { results ->
                             obrTransactionHistory.postValue(Resource.success(results, "Success"))

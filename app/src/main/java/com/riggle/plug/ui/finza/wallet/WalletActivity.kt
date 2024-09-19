@@ -17,6 +17,7 @@ import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.plug.ui.finza.wallet.addMoney.AddMoneyActivity
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
+import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -45,7 +46,7 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
             viewModel.getWallet(it)
         }
         sharedPrefManager.getToken()?.let {
-            viewModel.getTransactionHistory(it)
+            viewModel.getTransactionHistory(it,3)
         }
 
         initView()
@@ -65,6 +66,34 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
             override fun onItemSelected(
                 parent: AdapterView<*>, view: View, position: Int, id: Long
             ) {
+                val selectedItem = parent.getItemAtPosition(position) as String
+                when(selectedItem){
+//                    Status key
+//                    0 for credited
+//                    1 for debited
+//                    2 for refunded
+//                    3 for all
+                    "All"-> { // send status 3 for all
+                        sharedPrefManager.getToken()?.let {
+                            viewModel.getTransactionHistory(it,3)
+                        }
+                    }
+                    "Credited" -> {
+                        sharedPrefManager.getToken()?.let {
+                            viewModel.getTransactionHistory(it,0)
+                        }
+                    }
+                    "Debited" -> {
+                        sharedPrefManager.getToken()?.let {
+                            viewModel.getTransactionHistory(it,1)
+                        }
+                    }
+                    "Refunded" -> {
+                        sharedPrefManager.getToken()?.let {
+                            viewModel.getTransactionHistory(it,2)
+                        }
+                    }
+                }
             }
 
             override fun onNothingSelected(parent: AdapterView<*>) {}
@@ -73,11 +102,12 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
         viewModel.obrWallet.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {
-                    //    showHideLoader(true)
+                        showHideLoader(true)
                 }
 
                 Status.SUCCESS -> {
                     //  showHideLoader(false)
+                   // showSuccessToast(it.data?.message.toString())
                     if (it.data != null) {
                         binding.tv3.text = "₹ ${it.data.wallet}"
                     }
@@ -106,10 +136,10 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     if (it.data != null) {
-                        adapter1.list = it.data.data
                         if (it.data.data.size != 0) {
                             binding.ivNoData.visibility = View.GONE
                             binding.rvHomeDrawer.visibility = View.VISIBLE
+                            adapter1.list = it.data.data
                         } else {
                             binding.ivNoData.visibility = View.VISIBLE
                             binding.rvHomeDrawer.visibility = View.GONE

@@ -85,6 +85,7 @@
                         android:fontFamily="@font/inter_medium"
                         android:foreground="?selectableItemBackground"
                         android:gravity="center"
+                        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
                         android:text="Accept"
                         android:textColor="@color/fsm_bg_light_teal"
                         android:textSize="@dimen/_14sdp" />
@@ -102,6 +103,7 @@
                         android:fontFamily="@font/inter_medium"
                         android:foreground="?selectableItemBackground"
                         android:gravity="center"
+                        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
                         android:text="Reject"
                         android:textColor="@color/fsm_bg_light_teal"
                         android:textSize="@dimen/_14sdp" />

@@ -29,6 +29,7 @@ import com.riggle.plug.data.model.FinzaProfileResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
+import com.riggle.plug.data.model.HoldAmountResponseModel
 import com.riggle.plug.data.model.HomeInsightRetailersResponseModel
 import com.riggle.plug.data.model.HomeInsightsLastDaysResponseModel
 import com.riggle.plug.data.model.HomeInsightsOrderPlacedResponseModel
@@ -188,7 +189,7 @@ interface BaseApi {
         @Field("assigned_to") assigned_to: String
     ): Response<AssignInventoryResponseModel>
 
-    @POST(Constants.ASSIGN_INVENTORY)
+    @POST(Constants.CHANGE_INVENTORY_STATUS)
     @Headers(Constants.X_APP_ACCEPT)
     @FormUrlEncoded
     suspend fun acceptRejectInventory(
@@ -217,10 +218,12 @@ interface BaseApi {
         @Header("Authorization") header: String, @Body reqBody: PaymentStoreRequest
     ): Response<StorePaymentResponseModel>
 
-    @GET(Constants.WALLET_TRANSACTIONS)
+    @POST(Constants.WALLET_TRANSACTIONS)
     @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
     suspend fun getTransactionsList(
         @Header("Authorization") header: String,
+        @Field("status") status:Int,
     ): Response<WalletTransactionsResponseModel>
 
     @GET(Constants.HOME_INVENTORY)

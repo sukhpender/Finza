@@ -32,6 +32,7 @@ import com.riggle.plug.data.model.FinzaUpdateProfileResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
 import com.riggle.plug.data.model.GetHRResponseList
 import com.riggle.plug.data.model.GetLeaveCountData
+import com.riggle.plug.data.model.HoldAmountResponseModel
 import com.riggle.plug.data.model.HomeInsightRetailersResponseModel
 import com.riggle.plug.data.model.HomeInsightsLastDaysResponseModel
 import com.riggle.plug.data.model.HomeInsightsOrderPlacedResponseModel
@@ -190,8 +191,8 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         return apiService.storePayment(header,reqBody)
     }
 
-    override suspend fun getTransactionsList(header: String): Response<WalletTransactionsResponseModel> {
-        return apiService.getTransactionsList(header)
+    override suspend fun getTransactionsList(header: String,status:Int): Response<WalletTransactionsResponseModel> {
+        return apiService.getTransactionsList(header,status)
     }
 
     override suspend fun getHomeInventoryList(header: String): Response<HomeInventoryResponseModel> {

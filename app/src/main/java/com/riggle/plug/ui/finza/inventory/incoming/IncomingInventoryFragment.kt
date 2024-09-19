@@ -68,6 +68,7 @@ class IncomingInventoryFragment : BaseFragment<FragmentIncomingInventoryBinding>
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
+                    viewModel.getInventory(sharedPrefManager.getToken().toString(), "1")
                 }
 
                 Status.WARN -> {
@@ -107,15 +108,15 @@ class IncomingInventoryFragment : BaseFragment<FragmentIncomingInventoryBinding>
             R.layout.holder_incomg_inventory, BR.bean
         ) { v, m, pos ->
             when (v?.id) {
-                R.id.tvReject -> {// status = 1
+                R.id.tvReject -> {// status = 0
                     viewModel.acceptReject(
-                        sharedPrefManager.getToken().toString(), m.inventory_id.toString(), "1"
+                        sharedPrefManager.getToken().toString(), m.inventory_id.toString(), "0"
                     )
                 }
 
-                R.id.tvAccept -> { // status = 0
+                R.id.tvAccept -> { // status = 1
                     viewModel.acceptReject(
-                        sharedPrefManager.getToken().toString(), m.inventory_id.toString(), "0"
+                        sharedPrefManager.getToken().toString(), m.inventory_id.toString(), "1"
                     )
                 }
             }

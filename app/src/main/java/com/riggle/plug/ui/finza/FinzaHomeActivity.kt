@@ -23,6 +23,7 @@ import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.plug.ui.finza.checkVehicleStatus.CheckVehicleStatusActivity
 import com.riggle.plug.ui.finza.helpAndSupport.HelpAndSupportActivity
+import com.riggle.plug.ui.finza.inWallet.InventoryWalletActivity
 import com.riggle.plug.ui.finza.inventory.InventoryActivity
 import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity
 import com.riggle.plug.ui.finza.profile.ProfileActivity
@@ -159,31 +160,36 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                     startActivity(WalletActivity.newIntent(this))
                     openCloseDrawer()
                 }
-
                 1 -> {
+                    /** inventory wallet */
+                    startActivity(InventoryWalletActivity.newIntent(this))
+                    openCloseDrawer()
+                }
+
+                2 -> {
                     /*** inventory */
                     startActivity(InventoryActivity.newIntent(this))
                     openCloseDrawer()
                 }
 
-                2 -> {
+                3 -> {
                     /** issue tag */
                     startActivity(IssueSuperTagActivity.newIntent(this))
                 }
 
-                3 -> {
+                4 -> {
                     /** vehicle status */
                     startActivity(CheckVehicleStatusActivity.newIntent(this))
                     openCloseDrawer()
                 }
 
-                4 -> {
+                5 -> {
                     /** change project */
                     startActivity(ProjectListActivity.newIntent(this))
                     openCloseDrawer()
                 }
 
-                5 -> {
+                6 -> {
                     /** help and support */
                     startActivity(HelpAndSupportActivity.newIntent(this))
                     openCloseDrawer()
@@ -195,13 +201,13 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
 //                    openCloseDrawer()
 //                }
 
-                6 -> {
+                7 -> {
                     /** profile */
                     startActivity(ProfileActivity.newIntent(this))
                     openCloseDrawer()
                 }
 
-                7 -> {
+                8 -> {
                     /** logout */
                     bsLogout()
                     openCloseDrawer()
@@ -245,6 +251,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
     private fun prepareList(): ArrayList<Drawer> {
         val list = ArrayList<Drawer>()
         list.add(Drawer(R.drawable.wallet, "My Finza Wallet"))
+        list.add(Drawer(R.drawable.wallet, "Inventory Wallet"))
         list.add(Drawer(R.drawable.inventory, "Inventory"))
         list.add(Drawer(R.drawable.ic_percentage_filled, "Issue Tag"))
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))

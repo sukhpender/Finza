@@ -21,6 +21,7 @@ import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.permission.PermissionHandler
 import com.riggle.plug.ui.base.permission.Permissions
+import com.riggle.plug.ui.finza.FinzaHomeActivity
 import com.riggle.plug.ui.finza.projectList.ProjectListActivity
 import com.riggle.plug.ui.forgotPassword.ForgotPasswordActivity
 import com.riggle.plug.utils.Status
@@ -122,8 +123,13 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                         sharedPrefManager.saveUser(it.data.data)
                         sharedPrefManager.saveToken("Bearer ${it.data.data.auth_token}")
                         Log.e("savedData",sharedPrefManager.getToken().toString())
-                        startActivity(ProjectListActivity.newIntent(this))
-                        finish()
+                        if ((it.data.data.role_id != 5)) {
+                            startActivity(ProjectListActivity.newIntent(this))
+                            finish()
+                        }else{
+                            startActivity(FinzaHomeActivity.newIntent(this))
+                            finish()
+                        }
                     }
                 }
 

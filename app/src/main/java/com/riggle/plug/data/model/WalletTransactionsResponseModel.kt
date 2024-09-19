@@ -1,5 +1,6 @@
 package com.riggle.plug.data.model
 
+/*
 data class WalletTransactionsResponseModel(
     val `data`: List<WalletTransactionsData>,
     val message: String,
@@ -46,4 +47,21 @@ data class WalletTransactionsData(
 
 data class AcquirerData1(
     val rrn: String
+)*/
+
+data class WalletTransactionsResponseModel(
+    val `data`: List<WalletTransactionsData>,
+    val message: String,
+    val status: String,
+    val statusCode: Int
+)
+
+data class WalletTransactionsData(
+    val amount: String,
+    val created_at: String,
+    val description: String,
+    val id: Int,
+    val status: Int,
+    val updated_at: String,
+    val user_id: Int
 )
