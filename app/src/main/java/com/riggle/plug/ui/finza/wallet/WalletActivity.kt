@@ -16,6 +16,7 @@ import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.plug.ui.finza.wallet.addMoney.AddMoneyActivity
 import com.riggle.plug.utils.Status
+import com.riggle.plug.utils.event.SingleLiveEvent
 import com.riggle.plug.utils.showErrorToast
 import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
@@ -31,6 +32,8 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             return intent
         }
+
+        val isMoneyAdded = SingleLiveEvent<Boolean>()
     }
 
     override fun getLayoutResource(): Int {
@@ -99,6 +102,16 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
             override fun onNothingSelected(parent: AdapterView<*>) {}
         }
 
+        isMoneyAdded.observe(this){ it ->
+            if (it) {
+                sharedPrefManager.getToken()?.let {
+                    viewModel.getWallet(it)
+                }
+                sharedPrefManager.getToken()?.let {
+                    viewModel.getTransactionHistory(it,3)
+                }
+            }
+        }
         viewModel.obrWallet.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {

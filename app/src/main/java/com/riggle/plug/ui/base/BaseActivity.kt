@@ -69,7 +69,19 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.line_color)
+        window.decorView.systemUiVisibility = 0
+        window.navigationBarColor = ContextCompat.getColor(this, R.color.line_color)
+        setNavigationBarIconsColor(isLight = false) // Change to false for dark icons
         onCreateView()
+    }
+
+    private fun setNavigationBarIconsColor(isLight: Boolean) {
+        val flags = if (isLight) {
+            View.SYSTEM_UI_FLAG_LIGHT_NAVIGATION_BAR
+        } else {
+            0
+        }
+        window.decorView.systemUiVisibility = flags
     }
 
     @Inject

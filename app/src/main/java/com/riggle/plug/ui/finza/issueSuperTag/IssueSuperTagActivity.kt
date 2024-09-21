@@ -62,7 +62,7 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
             if (it.toString() != "") {
                 cameraExecutor.shutdown()
                 binding.cvPreview.visibility = View.GONE
-                binding.etvFastTagId.setText(it)
+                binding.etvFastTagId1.setText(it)
             } else {
                 showErrorToast("Scan Failure")
                 finish()
@@ -111,12 +111,19 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
                 }
 
                 R.id.tvSubmit -> {
-                    val tagNumber = binding.etvFastTagId.text.toString()
-                    if (tagNumber == ""){
-                        showErrorToast("Please enter FASTag number")
-                    }else{
+                    val tagNumber1 = binding.etvFastTagId1.text.toString()
+                    val tagNumber2 = binding.etvFastTagId2.text.toString()
+                    val tagNumber3 = binding.etvFastTagId3.text.toString()
+                    if (tagNumber1 == ""){
+                        showErrorToast("Please enter complete FASTag number")
+                    }else if (tagNumber2 == ""){
+                        showErrorToast("Please enter complete FASTag number")
+                    }else if (tagNumber3 == ""){
+                        showErrorToast("Please enter complete FASTag number")
+                    } else{
                        // showInfoToast("Work in progress")
-                        viewModel.checkAvailability(sharedPrefManager.getToken().toString(),tagNumber)
+                        val final = tagNumber1+tagNumber2+tagNumber3
+                        viewModel.checkAvailability(sharedPrefManager.getToken().toString(),final)
                     }
                    // startActivity(VerifyTagActivity.newIntent(this))
                 }

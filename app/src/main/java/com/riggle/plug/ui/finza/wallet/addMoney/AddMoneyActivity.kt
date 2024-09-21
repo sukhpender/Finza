@@ -4,7 +4,6 @@ import android.app.Activity
 import android.content.Intent
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import androidx.activity.viewModels
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
@@ -15,6 +14,7 @@ import com.riggle.plug.data.model.PaymentStoreRequest
 import com.riggle.plug.databinding.ActivityAddMoneyBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.ui.finza.wallet.WalletActivity
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
 import com.riggle.plug.utils.showSuccessToast
@@ -48,8 +48,8 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
 
     override fun onCreateView() {
 
-       // RAZORPAY_KEY=rzp_test_xwRyHpFkgGpMMI
-       // RAZORPAY_SECRET=SnRc6UhBJrKqAqloH4MhTZty use these in application side
+        // RAZORPAY_KEY=rzp_test_xwRyHpFkgGpMMI
+        // RAZORPAY_SECRET=SnRc6UhBJrKqAqloH4MhTZty use these in application side
         Checkout.preload(applicationContext)
         val co = Checkout()
         co.setKeyID("rzp_test_xwRyHpFkgGpMMI")
@@ -114,9 +114,10 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                 }
 
                 Status.SUCCESS -> {
+                    WalletActivity.isMoneyAdded.value = true
                     showHideLoader(false)
                     if (it.data != null) {
-                        it.data.message.let { it1 -> showSuccessToast(it1) }
+                       // it.data.message.let { it1 -> showSuccessToast(it1) }
                     }
                     finish()
                 }
@@ -210,7 +211,7 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
             options.put("retry", retryObj)
 
             val prefill = JSONObject()
-            prefill.put("email", sharedPrefManager.getCurrentUser()?.email.toString())
+            prefill.put("email", "test@yopmail.com")
             prefill.put("contact", sharedPrefManager.getCurrentUser()?.phone_number.toString())
 
             options.put("prefill", prefill)
@@ -238,7 +239,7 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                 currency = "INR",
                 customer_id = sharedPrefManager.getWalletUser()?.razorpay_customer_id.toString(),
                 description = "",
-                email = p1?.userEmail.toString(),
+                email = "test@yopmail.com",
                 entity = "payment",
                 error_code = "",
                 error_description = "",
