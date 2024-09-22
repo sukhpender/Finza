@@ -15,6 +15,32 @@ import javax.inject.Inject
 @HiltViewModel
 class FinzaHomeActivityVM @Inject constructor(private val baseRepo: BaseRepo): BaseViewModel() {
 
+    val obrHomeInventory = SingleRequestEvent<HomeInventoryResponseModel>()
+    fun getHomeInventoryCount(token: String) {
+        Coroutines.io {
+            obrHomeInventory.postValue(Resource.loading(null))
+            try {
+                baseRepo.getHomeInventoryList(token).let {
+                    if (it.isSuccessful) {
+                        it.body()?.let { results ->
+                            obrHomeInventory.postValue(Resource.success(results, "Success"))
+                        }
+                    } else {
+                        obrHomeInventory.postValue(
+                            Resource.error(
+                                null, handleErrorResponse(it.errorBody(),it.code())
+                            )
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                parseException(e.cause)?.let {
+                    obrHomeInventory.postValue(Resource.error(null, it))
+                }
+            }
+        }
+    }
+
     val obrLogout = SingleRequestEvent<FinzaLogoutResponseModel>()
 
     fun finzaLogout(token: String) {

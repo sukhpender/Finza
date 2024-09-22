@@ -24,6 +24,7 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         const val USER = "user"
         const val WALLET_USER = "wallet_user"
         const val USER_TOKEN = "user_token"
+        const val PROJECT_ID = "project_id"
     }
 
     fun clearUser() {
@@ -61,6 +62,17 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
 
     fun getToken(): String? {
         val token: String? = sharedPreferences.getString(KEY.USER_TOKEN, null)
+        return token
+    }
+
+    fun saveProjectId(id: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString(KEY.PROJECT_ID, id)
+        editor.apply()
+    }
+
+    fun getProjectId(): String? {
+        val token: String? = sharedPreferences.getString(KEY.PROJECT_ID, null)
         return token
     }
 

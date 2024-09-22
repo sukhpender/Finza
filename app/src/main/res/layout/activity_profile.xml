@@ -7,12 +7,8 @@
         <import type="android.view.View" />
 
         <variable
-            name="resend"
-            type="String" />
-
-        <variable
             name="bean"
-            type="com.riggle.plug.data.model.FinzaProfileModel" />
+            type="com.riggle.plug.data.model.FinzaProfileData" />
 
         <variable
             name="vm"
@@ -68,8 +64,8 @@
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_40sdp"
-                        android:layout_weight="1"
                         android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_weight="1"
                         android:gravity="center_vertical"
                         android:text="Profile"
                         android:textColor="@color/fsm_bg_light_teal"
@@ -80,16 +76,15 @@
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="@dimen/_100sdp"
                         android:layout_height="@dimen/_30sdp"
+                        android:layout_gravity="center_vertical"
+                        android:layout_marginEnd="@dimen/_10sdp"
                         android:background="@drawable/edit_back_view"
                         android:foreground="?selectableItemBackground"
                         android:gravity="center"
                         android:onClick="@{v->vm.onClick(v)}"
-                        android:layout_marginEnd="@dimen/_10sdp"
-                        android:layout_gravity="center_vertical"
                         android:text="Reset Password"
                         android:textColor="@color/fsm_text_color"
-                        android:textSize="@dimen/_10sdp"
-                        />
+                        android:textSize="@dimen/_10sdp" />
 
                 </LinearLayout>
 
@@ -137,6 +132,7 @@
                                 android:src="@drawable/ic_camera"
                                 app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent"
                                 app:tint="@color/line_color" />
+
                         </LinearLayout>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
@@ -314,30 +310,76 @@
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_15sdp"
-                android:foreground="?selectableItemBackground"
-                android:onClick="@{v->vm.onClick(v)}"
-                android:paddingEnd="@dimen/_10sdp"
-                android:text="Aadhaar Front Image"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="@dimen/_15ssp"
+                android:text="Toll Plaza"
                 android:textColor="@color/fsm_text_color"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="@+id/bgView" />
 
-            <com.google.android.material.imageview.ShapeableImageView
-                android:id="@+id/ivAadharFront"
-                android:layout_width="@dimen/_180sdp"
-                android:layout_height="@dimen/_100sdp"
-                android:layout_gravity="center"
+            <EditText
+                style="@style/EditText.Phone"
+                android:layout_width="match_parent"
+                android:layout_marginHorizontal="@dimen/_10sdp"
+                android:layout_marginTop="8dp"
+                android:clickable="false"
+                android:enabled="false"
+                android:imeOptions="actionNext"
+                android:inputType="textEmailAddress"
+                android:text="@{bean.toll_plaza_name}" />
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_12sdp"
-                android:layout_marginTop="@dimen/_5sdp"
-                android:background="@color/white"
-                android:elevation="@dimen/_1sdp"
-                android:scaleType="fitXY"
-                android:src="@drawable/aadharfront"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+                android:layout_marginTop="@dimen/_15sdp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v->vm.onClick(v)}"
+                android:paddingEnd="@dimen/_10sdp"
+                android:text="Aadhaar : "
+                android:textColor="@color/fsm_text_color"
+                android:textSize="@dimen/_12sdp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="@+id/bgView" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/ivAadharFront"
+                    setImageAAdhaar="@{bean.aadhar_front_photo}"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_12sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:elevation="@dimen/_1sdp"
+                    android:scaleType="fitXY"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize5Percent" />
+
+                <com.google.android.material.imageview.ShapeableImageView
+                    setImageAAdhaar="@{bean.aadhar_back_photo}"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_100sdp"
+                    android:layout_gravity="center"
+                    android:layout_marginVertical="@dimen/_5sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_12sdp"
+                    android:layout_weight="1"
+                    android:background="@color/white"
+                    android:elevation="@dimen/_1sdp"
+                    android:scaleType="fitXY"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize5Percent" />
+
+            </LinearLayout>
 
             <TextView
                 style="@style/TextView.InterRegular_12ssp"
@@ -348,7 +390,7 @@
                 android:foreground="?selectableItemBackground"
                 android:onClick="@{v->vm.onClick(v)}"
                 android:paddingEnd="@dimen/_10sdp"
-                android:text="Aadhaar Back Image"
+                android:text="PanCard : "
                 android:textColor="@color/fsm_text_color"
                 android:textSize="@dimen/_12sdp"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -357,16 +399,15 @@
 
             <com.google.android.material.imageview.ShapeableImageView
                 android:id="@+id/ivAadharBack"
+                setImageAAdhaarBack="@{bean.pancard_photo}"
                 android:layout_width="@dimen/_180sdp"
                 android:layout_height="@dimen/_100sdp"
-                android:layout_gravity="center"
                 android:layout_marginHorizontal="@dimen/_12sdp"
                 android:layout_marginTop="@dimen/_5sdp"
                 android:background="@color/white"
                 android:elevation="@dimen/_1sdp"
                 android:scaleType="fitXY"
-                android:src="@drawable/ab"
-                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize5Percent" />
 
             <TextView
                 android:id="@+id/tvUpdate"

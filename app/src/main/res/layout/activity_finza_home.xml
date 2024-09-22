@@ -193,7 +193,7 @@
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:singleLine="true"
-                        android:text="@{String.valueOf(bean.role_id)}"
+                        android:text="@{String.valueOf(bean.designation)}"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_12sdp"
                         app:layout_constraintEnd_toEndOf="parent"
@@ -210,22 +210,22 @@
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv4"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:layout_marginTop="@dimen/_10sdp"
                         android:fontFamily="@font/inter_semibold"
                         android:singleLine="true"
-                        android:text="@{bean.project_detail.title}"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_13sdp"
                         app:layout_constraintEnd_toEndOf="parent"
                         app:layout_constraintTop_toTopOf="parent" />
 
                     <TextView
+                        android:id="@+id/tv5"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_marginStart="@dimen/_8sdp"
                         android:singleLine="true"
-                        android:text='@{"Project Type: "+ bean.project_detail.type}'
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_11sdp"
                         app:layout_constraintEnd_toEndOf="parent"

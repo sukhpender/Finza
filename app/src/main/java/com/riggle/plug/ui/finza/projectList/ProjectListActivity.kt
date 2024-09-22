@@ -19,6 +19,8 @@ import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.plug.ui.finza.FinzaHomeActivity
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
+import com.riggle.plug.utils.showInfoToast
+import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -80,13 +82,46 @@ class ProjectListActivity : BaseActivity<ActivityProjectListBinding>() {
                     if (it.data != null) {
                         adapter.list = it.data.data
                         list1 = it.data.data as ArrayList<ProjectListData>
+                        pList = it.data.data
                         if (it.data.data.size != 0) {
                             binding.ivNoData.visibility = View.GONE
+                            binding.tvContinue.visibility = View.VISIBLE
                             binding.rvHomeDrawer.visibility = View.VISIBLE
                         } else {
                             binding.ivNoData.visibility = View.VISIBLE
+                            binding.tvContinue.visibility = View.GONE
                             binding.rvHomeDrawer.visibility = View.GONE
                         }
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
+        viewModel.obrUpdateProject.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        showSuccessToast(it.data.message.toString())
+                        sharedPrefManager.saveProjectId(project_id.toString())
+                        startActivity(FinzaHomeActivity.newIntent(this))
+                        finish()
                     }
                 }
 
@@ -108,15 +143,19 @@ class ProjectListActivity : BaseActivity<ActivityProjectListBinding>() {
     private fun filter(text: String) {
         val filteredList: ArrayList<ProjectListData> = ArrayList()
         for (item in list1) {
-            if (item.title.lowercase(Locale.getDefault()).contains(text.lowercase(Locale.getDefault()))) {
+            if (item.title.lowercase(Locale.getDefault())
+                    .contains(text.lowercase(Locale.getDefault()))
+            ) {
                 filteredList.add(item)
             }
         }
         if (filteredList.isEmpty()) {
             binding.ivNoData.visibility = View.VISIBLE
+            binding.tvContinue.visibility = View.GONE
             binding.rvHomeDrawer.visibility = View.GONE
         } else {
             binding.ivNoData.visibility = View.GONE
+            binding.tvContinue.visibility = View.VISIBLE
             binding.rvHomeDrawer.visibility = View.VISIBLE
             adapter.filterList(filteredList)
         }
@@ -128,17 +167,30 @@ class ProjectListActivity : BaseActivity<ActivityProjectListBinding>() {
                 R.id.iv1 -> {
                     finish()
                 }
+
+                R.id.tvContinue -> {
+                    if (project_id != 0){
+                        viewModel.updateProject(sharedPrefManager.getToken().toString(), project_id.toString())
+                    }else{
+                        showInfoToast("Please select project")
+                    }
+                }
             }
         }
     }
 
+    var project_id = 0
+    var pList = ArrayList<ProjectListData>()
     private lateinit var adapter: SimpleRecyclerViewAdapter<ProjectListData, HolderProjectListBinding>
     private fun initAdapter() {
         adapter = SimpleRecyclerViewAdapter(
             R.layout.holder_project_list, BR.bean
         ) { v, m, pos ->
-            startActivity(FinzaHomeActivity.newIntent(this))
-            finish()
+            project_id = m.id
+            for (i in 0..pList.size - 1) {
+                pList[i].isSelected = pList[i].id == m.id
+            }
+            adapter.list = pList
         }
         binding.rvHomeDrawer.adapter = adapter
     }

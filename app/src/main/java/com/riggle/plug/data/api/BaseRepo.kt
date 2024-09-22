@@ -25,7 +25,6 @@ import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
 import com.riggle.plug.data.model.FinzaForgotPassResponseModel
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
-import com.riggle.plug.data.model.FinzaProfileModel
 import com.riggle.plug.data.model.FinzaProfileResponseModel
 import com.riggle.plug.data.model.FinzaUpdateProfileResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
@@ -85,6 +84,7 @@ import com.riggle.plug.data.model.SendOtpResponseModel
 import com.riggle.plug.data.model.StorePaymentResponseModel
 import com.riggle.plug.data.model.UnAssignedBeatResponseModel
 import com.riggle.plug.data.model.UnAssignedCountResponseModel
+import com.riggle.plug.data.model.UpdateProjectResponseModel
 import com.riggle.plug.data.model.UserProfileResponseModel
 import com.riggle.plug.data.model.UserWalletResponseModel
 import com.riggle.plug.data.model.UsersListResponseModel
@@ -171,6 +171,11 @@ interface BaseRepo {
     suspend fun getProjectList(
        header: String,
     ): Response<ProjectListResponseModel>
+
+    suspend fun updateProject(
+        header: String,
+        project_id: String
+    ): Response<UpdateProjectResponseModel>
 
     suspend fun acceptRejectInventory(
         header: String,

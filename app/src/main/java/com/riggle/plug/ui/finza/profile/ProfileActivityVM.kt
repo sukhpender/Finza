@@ -1,7 +1,6 @@
 package com.riggle.plug.ui.finza.profile
 
 import com.riggle.plug.data.api.BaseRepo
-import com.riggle.plug.data.model.FinzaProfileModel
 import com.riggle.plug.data.model.FinzaProfileResponseModel
 import com.riggle.plug.data.model.FinzaUpdateProfileResponseModel
 import com.riggle.plug.ui.base.BaseViewModel

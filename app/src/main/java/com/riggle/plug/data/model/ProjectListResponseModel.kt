@@ -12,5 +12,6 @@ data class ProjectListData(
     val id: Int,
     val price: String,
     val title: String,
-    val updated_at: String
+    val updated_at: String,
+    var isSelected: Boolean = false
 )

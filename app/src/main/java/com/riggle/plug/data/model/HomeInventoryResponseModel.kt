@@ -10,5 +10,16 @@ data class HomeInventoryResponseModel(
 data class HomeInventoryData(
     val inHandInventory: Int,
     val incomingInventory: Int,
-    val old_inventory: Int
+    val old_inventory: Int,
+    val project_detail: ProjectDetail2
+)
+
+data class ProjectDetail2(
+    val created_at: String,
+    val id: Int,
+    val price: String,
+    val tag_assigned_charges: String,
+    val title: String,
+    val type: String,
+    val updated_at: String
 )

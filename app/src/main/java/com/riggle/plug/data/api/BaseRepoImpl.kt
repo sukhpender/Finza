@@ -26,7 +26,6 @@ import com.riggle.plug.data.model.FinzaForgotPassResponseModel
 import com.riggle.plug.data.model.FinzaLoginData
 import com.riggle.plug.data.model.FinzaLoginResponseModel
 import com.riggle.plug.data.model.FinzaLogoutResponseModel
-import com.riggle.plug.data.model.FinzaProfileModel
 import com.riggle.plug.data.model.FinzaProfileResponseModel
 import com.riggle.plug.data.model.FinzaUpdateProfileResponseModel
 import com.riggle.plug.data.model.GenerateReportResponseModel
@@ -85,6 +84,7 @@ import com.riggle.plug.data.model.TargetGraphResponse
 import com.riggle.plug.data.model.TargetUserData
 import com.riggle.plug.data.model.UnAssignedBeatResponseModel
 import com.riggle.plug.data.model.UnAssignedCountResponseModel
+import com.riggle.plug.data.model.UpdateProjectResponseModel
 import com.riggle.plug.data.model.UserProfileResponseModel
 import com.riggle.plug.data.model.UserWalletResponseModel
 import com.riggle.plug.data.model.UsersListResponseModel
@@ -174,6 +174,13 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
 
     override suspend fun getProjectList(header: String): Response<ProjectListResponseModel> {
         return apiService.getProjectList(header)
+    }
+
+    override suspend fun updateProject(
+        header: String,
+        project_id: String
+    ): Response<UpdateProjectResponseModel> {
+        return apiService.updateProject(header,project_id)
     }
 
     override suspend fun acceptRejectInventory(

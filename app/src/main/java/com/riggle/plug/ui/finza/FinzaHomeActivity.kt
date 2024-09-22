@@ -2,11 +2,9 @@ package com.riggle.plug.ui.finza
 
 import android.app.Activity
 import android.content.Intent
-import android.view.WindowManager
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
-import androidx.core.content.ContextCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -48,6 +46,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             return intent
         }
+
     }
 
     override fun getLayoutResource(): Int {
@@ -59,12 +58,44 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
     }
 
     override fun onCreateView() {
+
+        viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+
         initView()
         initOnClick()
         initObservers()
     }
 
     private fun initObservers() {
+
+        viewModel.obrHomeInventory.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        binding.tv4.text = it.data.data.project_detail.title
+                        binding.tv5.text = it.data.data.project_detail.type
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
 
         viewModel.obrLogout.observe(this) {
             when (it?.status) {
@@ -156,6 +187,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                     startActivity(WalletActivity.newIntent(this))
                     openCloseDrawer()
                 }
+
                 1 -> {
                     /** inventory wallet */
                     startActivity(InventoryWalletActivity.newIntent(this))

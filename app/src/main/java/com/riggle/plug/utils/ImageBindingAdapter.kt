@@ -18,6 +18,7 @@ import com.bumptech.glide.Glide
 import com.google.android.gms.maps.model.LatLng
 import com.google.android.material.imageview.ShapeableImageView
 import com.riggle.plug.R
+import com.riggle.plug.data.api.Constants
 import com.riggle.plug.data.model.Arpr
 import com.riggle.plug.data.model.GraphData
 import com.riggle.plug.data.model.NetworkCPCount1Item
@@ -114,7 +115,7 @@ object ImageBindingAdapter {
             }
 
             3 -> {
-                iv.setBackgroundColor(ContextCompat.getColor(iv.context,R.color.white))
+                iv.setBackgroundColor(ContextCompat.getColor(iv.context, R.color.white))
             }
         }
     }
@@ -1113,8 +1114,34 @@ object ImageBindingAdapter {
     @JvmStatic
     @BindingAdapter(value = ["setImageWithFullUrl"])
     fun setImageWithFullUrl(imageView: ImageView, image: String?) {
-        Glide.with(imageView.context).load(image).placeholder(R.drawable.fsm_logo).into(imageView)
+        Glide.with(imageView.context).load(Constants.IMAGE_BASE_URL+image).placeholder(R.drawable.fsm_logo).into(imageView)
     }
+
+    @JvmStatic
+    @BindingAdapter(value = ["setImageAAdhaar"])
+    fun setImageAAdhaar(imageView: ShapeableImageView, image: String?) {
+        Glide.with(imageView.context).load(Constants.IMAGE_BASE_URL + image)
+            .placeholder(R.drawable.aadharfront).into(imageView)
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["setImageAAdhaarBack"])
+    fun setImageAAdhaarBack(imageView: ShapeableImageView, image: String?) {
+        Glide.with(imageView.context).load(Constants.IMAGE_BASE_URL + image)
+            .placeholder(R.drawable.aadharback).into(imageView)
+    }
+
+
+    @JvmStatic
+    @BindingAdapter(value = ["isChecked1"])
+    fun isChecked1(imageView: ImageView, image: Boolean) {
+        if (image){
+         imageView.setBackgroundDrawable(ContextCompat.getDrawable(imageView.context,R.drawable.checked_1))
+        }else{
+            imageView.setBackgroundDrawable(ContextCompat.getDrawable(imageView.context,R.drawable.check_stroke))
+        }
+    }
+
 
     @JvmStatic
     @BindingAdapter(value = ["setImage1"])

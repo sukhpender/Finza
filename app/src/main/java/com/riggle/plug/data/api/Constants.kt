@@ -3,6 +3,7 @@ package com.riggle.plug.data.api
 object Constants {
 
     // Finza
+    const val IMAGE_BASE_URL= "https://finzaa.s3.amazonaws.com/"
     const val X_APP_ACCEPT= "Accept:application/json"
     const val X_APP_NAME= "Accept:application/json"
     const val FINZA_LOGIN = "api/user-login"
@@ -25,6 +26,7 @@ object Constants {
     const val HOME_INVENTORY = "api/inventory_count"
     const val ISSUE_TAG_CHECK_WALLET = "api/check-wallet"
     const val CHECK_TAG_AVAILABILITY = "api/scan-tag"
+    const val UPDATE_PROJECT = "api/update-user-project"
 
 
 

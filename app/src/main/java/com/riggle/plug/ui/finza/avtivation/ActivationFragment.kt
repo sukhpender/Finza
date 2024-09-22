@@ -3,9 +3,12 @@ package com.riggle.plug.ui.finza.avtivation
 import android.view.View
 import androidx.fragment.app.viewModels
 import com.riggle.plug.R
+import com.riggle.plug.data.model.ProjectDetail
+import com.riggle.plug.data.model.ProjectDetail2
 import com.riggle.plug.databinding.FragmentActivationBinding
 import com.riggle.plug.ui.base.BaseFragment
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.ui.finza.FinzaHomeActivity
 import com.riggle.plug.ui.finza.inventory.InventoryActivity
 import com.riggle.plug.ui.finza.issuance.IssuanceActivity
 import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity

@@ -82,6 +82,7 @@ import com.riggle.plug.data.model.TargetGraphResponse
 import com.riggle.plug.data.model.TargetUserData
 import com.riggle.plug.data.model.UnAssignedBeatResponseModel
 import com.riggle.plug.data.model.UnAssignedCountResponseModel
+import com.riggle.plug.data.model.UpdateProjectResponseModel
 import com.riggle.plug.data.model.UserProfileResponseModel
 import com.riggle.plug.data.model.UserWalletResponseModel
 import com.riggle.plug.data.model.UsersListResponseModel
@@ -217,6 +218,14 @@ interface BaseApi {
     suspend fun storePayment(
         @Header("Authorization") header: String, @Body reqBody: PaymentStoreRequest
     ): Response<StorePaymentResponseModel>
+
+    @POST(Constants.UPDATE_PROJECT)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun updateProject(
+        @Header("Authorization") header: String,
+        @Field("project_id") project_id: String
+    ): Response<UpdateProjectResponseModel>
 
     @POST(Constants.WALLET_TRANSACTIONS)
     @Headers(Constants.X_APP_ACCEPT)
