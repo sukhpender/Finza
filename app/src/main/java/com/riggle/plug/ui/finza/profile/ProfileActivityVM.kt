@@ -69,4 +69,31 @@ class ProfileActivityVM @Inject constructor(private val baseRepo: BaseRepo) : Ba
             }
         }
     }
+
+    fun updateProfileWithoutIImage(
+        header: String,f_nmae:String,l_name:String
+    ) {
+        Coroutines.io {
+            obrUpdateProfile.postValue(Resource.loading(null))
+            try {
+                baseRepo.updateUserWithoutImage(header, f_nmae, l_name).let {
+                    if (it.isSuccessful) {
+                        it.body()?.let { results ->
+                            obrUpdateProfile.postValue(Resource.success(results, "Success"))
+                        }
+                    } else {
+                        obrUpdateProfile.postValue(
+                            Resource.error(
+                                null, handleErrorResponse(it.errorBody(), it.code())
+                            )
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                parseException(e.cause)?.let {
+                    obrUpdateProfile.postValue(Resource.error(null, it))
+                }
+            }
+        }
+    }
 }

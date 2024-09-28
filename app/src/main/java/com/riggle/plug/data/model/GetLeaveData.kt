@@ -36,7 +36,6 @@ data class GetLeaveData(
     val user: User2?)
 
 data class User2(
-    val company: Company,
     val created_at: String,
     val date_joined: String,
     val designation: Any,

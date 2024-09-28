@@ -211,7 +211,7 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
             options.put("retry", retryObj)
 
             val prefill = JSONObject()
-            prefill.put("email", "test@yopmail.com")
+            prefill.put("email", sharedPrefManager.getCurrentUser()?.email.toString())
             prefill.put("contact", sharedPrefManager.getCurrentUser()?.phone_number.toString())
 
             options.put("prefill", prefill)
@@ -239,7 +239,7 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                 currency = "INR",
                 customer_id = sharedPrefManager.getWalletUser()?.razorpay_customer_id.toString(),
                 description = "",
-                email = "test@yopmail.com",
+                email = sharedPrefManager.getCurrentUser()?.email.toString(),
                 entity = "payment",
                 error_code = "",
                 error_description = "",

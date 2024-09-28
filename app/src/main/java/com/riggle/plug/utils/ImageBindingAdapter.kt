@@ -1114,7 +1114,13 @@ object ImageBindingAdapter {
     @JvmStatic
     @BindingAdapter(value = ["setImageWithFullUrl"])
     fun setImageWithFullUrl(imageView: ImageView, image: String?) {
-        Glide.with(imageView.context).load(Constants.IMAGE_BASE_URL+image).placeholder(R.drawable.fsm_logo).into(imageView)
+        Glide.with(imageView.context).load(Constants.IMAGE_BASE_URL1+image).placeholder(R.drawable.fsm_logo).into(imageView)
+    }
+
+    @JvmStatic
+    @BindingAdapter(value = ["setImageWithFullUrl2"])
+    fun setImageWithFullUrl2(imageView: ImageView, image: String?) {
+        Glide.with(imageView.context).load(Constants.IMAGE_BASE_URL+image).placeholder(R.drawable.dummy1).into(imageView)
     }
 
     @JvmStatic

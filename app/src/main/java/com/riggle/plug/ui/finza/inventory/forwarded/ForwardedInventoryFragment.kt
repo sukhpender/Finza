@@ -10,7 +10,10 @@ import com.riggle.plug.databinding.HolderForwardedInventoryBinding
 import com.riggle.plug.ui.base.BaseFragment
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
+import com.riggle.plug.ui.finza.avtivation.ActivationFragment
+import com.riggle.plug.ui.finza.avtivation.ActivationFragment.Companion
 import com.riggle.plug.utils.Status
+import com.riggle.plug.utils.event.SingleLiveEvent
 import com.riggle.plug.utils.showErrorToast
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -19,9 +22,19 @@ class ForwardedInventoryFragment : BaseFragment<FragmentForwardedInventoryBindin
 
     private val viewModel: ForwardedInventoryFragmentVM by viewModels()
 
+    companion object{
+        var isUpdatesAvailable = SingleLiveEvent<Boolean>()
+    }
+
     override fun onCreateView(view: View) {
         initAdapter()
         initOnClick()
+
+        ActivationFragment.isUpdatesAvailable.observe(viewLifecycleOwner){ it ->
+            if (it){
+                viewModel.getInventory(sharedPrefManager.getToken().toString(), "0")
+            }
+        }
 
         //  Status for  Forwarded list 0 , Status for Incoming 1 , 2 for in-hand inventory , 3 = old inventory
         viewModel.getInventory(sharedPrefManager.getToken().toString(), "0")

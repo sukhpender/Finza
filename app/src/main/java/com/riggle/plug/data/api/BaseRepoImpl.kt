@@ -19,6 +19,7 @@ import com.riggle.plug.data.model.CoOwnersListResponseModel
 import com.riggle.plug.data.model.CpInsightsResponseModel
 import com.riggle.plug.data.model.CpRemarksResponseModel
 import com.riggle.plug.data.model.CpStockResponseItem
+import com.riggle.plug.data.model.CreateCustomerRew
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
@@ -88,6 +89,10 @@ import com.riggle.plug.data.model.UpdateProjectResponseModel
 import com.riggle.plug.data.model.UserProfileResponseModel
 import com.riggle.plug.data.model.UserWalletResponseModel
 import com.riggle.plug.data.model.UsersListResponseModel
+import com.riggle.plug.data.model.ValidateOtpRequest
+import com.riggle.plug.data.model.VehicleMakersListResponseModel
+import com.riggle.plug.data.model.VehicleMakersRequest
+import com.riggle.plug.data.model.VerifyOtpRequest
 import com.riggle.plug.data.model.VerifyOtpResponseModel
 import com.riggle.plug.data.model.WalletCreateCustomerResponseModel
 import com.riggle.plug.data.model.WalletTransactionsResponseModel
@@ -123,6 +128,27 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         return apiService.sendOtpTagIssue(header,reqBody)
     }
 
+    override suspend fun verifyOtpTagIssue(
+        header: String,
+        reqBody: ValidateOtpRequest
+    ): Response<VerifyOtpResponseModel> {
+        return apiService.verifyOtpTagIssue(header,reqBody)
+    }
+
+    override suspend fun vehicleMakersList(
+        header: String,
+        reqBody: VehicleMakersRequest
+    ): Response<VehicleMakersListResponseModel> {
+        return apiService.vehicleMakersList(header,reqBody)
+    }
+
+    override suspend fun createCustomerBajaj(
+        header: String,
+        reqBody: CreateCustomerRew
+    ): Response<VehicleMakersListResponseModel> {
+        return apiService.createCustomerBajaj(header,reqBody)
+    }
+
     override suspend fun createWalletCustomer(
         header: String,
         name: String,
@@ -139,6 +165,14 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         profile_image: MultipartBody.Part
     ): Response<FinzaProfileResponseModel> {
         return apiService.updateUserProfile(header,body,body2,profile_image)
+    }
+
+    override suspend fun updateUserWithoutImage(
+        header: String,
+        f_name: String,
+        l_name: String
+    ): Response<FinzaProfileResponseModel> {
+        return apiService.updateUserWithoutImage(header,f_name,l_name)
     }
 
     override suspend fun finzaUserWallet(header: String): Response<UserWalletResponseModel> {

@@ -87,7 +87,7 @@ class ResetPassActivity : BaseActivity<ActivityResetPassBinding>() {
                     if (pass == "") {
                         showErrorToast("Please enter password")
                     } else if (pass.length < 8) {
-                        showErrorToast("Please enter a valid phone number")
+                        showErrorToast("Password must be greater then 8 digits")
                     } else if (confirmPass == "") {
                         showErrorToast("Please enter confirm password")
                     } else if (confirmPass.length < 8) {

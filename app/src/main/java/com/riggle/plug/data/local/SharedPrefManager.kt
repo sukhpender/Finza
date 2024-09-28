@@ -12,7 +12,6 @@ import com.google.gson.reflect.TypeToken
 import com.riggle.plug.data.local.SharedPrefManager.KEY.USER
 import com.riggle.plug.data.local.SharedPrefManager.KEY.WALLET_USER
 import com.riggle.plug.data.model.BeatCityResponseModel
-import com.riggle.plug.data.model.BrandVerifyOtp
 import com.riggle.plug.data.model.FinzaLoginData
 import com.riggle.plug.data.model.VerifyOtpResponseModel
 import com.riggle.plug.data.model.WalletCreateCustomerData

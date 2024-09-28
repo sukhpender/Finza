@@ -19,6 +19,7 @@ import com.riggle.plug.data.model.CoOwnersListResponseModel
 import com.riggle.plug.data.model.CpInsightsResponseModel
 import com.riggle.plug.data.model.CpRemarksResponseModel
 import com.riggle.plug.data.model.CpStockResponseItem
+import com.riggle.plug.data.model.CreateCustomerRew
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
@@ -88,6 +89,10 @@ import com.riggle.plug.data.model.UpdateProjectResponseModel
 import com.riggle.plug.data.model.UserProfileResponseModel
 import com.riggle.plug.data.model.UserWalletResponseModel
 import com.riggle.plug.data.model.UsersListResponseModel
+import com.riggle.plug.data.model.ValidateOtpRequest
+import com.riggle.plug.data.model.VehicleMakersListResponseModel
+import com.riggle.plug.data.model.VehicleMakersRequest
+import com.riggle.plug.data.model.VerifyOtpRequest
 import com.riggle.plug.data.model.VerifyOtpResponseModel
 import com.riggle.plug.data.model.WalletCreateCustomerResponseModel
 import com.riggle.plug.data.model.WalletTransactionsResponseModel
@@ -129,6 +134,19 @@ interface BaseRepo {
         reqBody: SendOtpRequest
     ): Response<SendOtpIssueTagResponseModel>
 
+    suspend fun verifyOtpTagIssue(
+       header: String,
+       reqBody: ValidateOtpRequest
+    ): Response<VerifyOtpResponseModel>
+
+    suspend fun vehicleMakersList(
+        header: String, reqBody: VehicleMakersRequest
+    ): Response<VehicleMakersListResponseModel>
+
+    suspend fun createCustomerBajaj(
+        header: String, reqBody: CreateCustomerRew
+    ): Response<VehicleMakersListResponseModel>
+
     suspend fun createWalletCustomer(
        header: String,
         name: String,
@@ -141,6 +159,12 @@ interface BaseRepo {
         body: RequestBody,
         body2: RequestBody,
         profile_image: MultipartBody.Part
+    ): Response<FinzaProfileResponseModel>
+
+    suspend fun updateUserWithoutImage(
+        header: String,
+        f_name: String,
+        l_name: String,
     ): Response<FinzaProfileResponseModel>
 
     suspend fun finzaUserWallet(

@@ -5,6 +5,7 @@ import android.app.Activity
 import android.content.Context
 import android.content.Intent
 import android.os.Build
+import android.util.Log
 import android.view.View
 import android.view.WindowManager
 import androidx.activity.result.ActivityResult
@@ -64,6 +65,8 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
 
     private fun initView() {
 
+        binding.tv4.text = "("+sharedPrefManager.getCurrentUser()?.designation+")"
+
         viewModel.obrProfile.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {
@@ -101,6 +104,7 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
                     showHideLoader(false)
                     if (it.data != null) {
                         binding.bean = it.data.data
+                        Log.e("Ashu--------",it.data.data.toString())
                     }
                 }
 
@@ -141,20 +145,26 @@ class ProfileActivity : BaseActivity<ActivityProfileBinding>() {
                         showErrorToast("Please enter first name")
                     } else if (etvLName == "") {
                         showErrorToast("Please enter last name")
-                    } else if (aadhaarCardFile == null) {
-                        showErrorToast("Please select image")
                     } else {
-                        val requestFile =
-                            aadhaarCardFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
-                        val body: MultipartBody.Part = MultipartBody.Part.createFormData(
-                            "profile_image", aadhaarCardFile?.name, requestFile!!
-                        )
-                        viewModel.updateProfile(
-                            sharedPrefManager.getToken().toString(),
-                            AppUtils.textToRequestBody(etvFName),
-                            AppUtils.textToRequestBody(etvLName),
-                            body
-                        )
+                        if (aadhaarCardFile == null) {
+                            viewModel.updateProfileWithoutIImage(
+                                sharedPrefManager.getToken().toString(),
+                                etvFName,
+                                etvLName,
+                            )
+                        } else {
+                            val requestFile =
+                                aadhaarCardFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                            val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                                "profile_image", aadhaarCardFile?.name, requestFile!!
+                            )
+                            viewModel.updateProfile(
+                                sharedPrefManager.getToken().toString(),
+                                AppUtils.textToRequestBody(etvFName),
+                                AppUtils.textToRequestBody(etvLName),
+                                body
+                            )
+                        }
                     }
                 }
             }

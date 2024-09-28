@@ -10,7 +10,6 @@ import com.riggle.plug.databinding.ActivitySplashScreenBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.finza.FinzaHomeActivity
-import com.riggle.plug.ui.finza.projectList.ProjectListActivity
 import com.riggle.plug.ui.login.LoginActivity
 import dagger.hilt.android.AndroidEntryPoint
 
@@ -44,13 +43,8 @@ class SplashScreenActivity : BaseActivity<ActivitySplashScreenBinding>() {
     private fun initHandler() {
         Handler(Looper.getMainLooper()).postDelayed({
             if (sharedPrefManager.getCurrentUser() != null) {
-                if (sharedPrefManager.getProjectId() != null) {
-                    startActivity(FinzaHomeActivity.newIntent(this))
-                    finish()
-                }else{
-                    startActivity(ProjectListActivity.newIntent(this))
-                    finish()
-                }
+                startActivity(FinzaHomeActivity.newIntent(this))
+                finish()
             } else {
                 startActivity(LoginActivity.newIntent(this))
                 finish()

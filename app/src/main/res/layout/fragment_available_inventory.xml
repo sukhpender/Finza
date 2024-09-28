@@ -34,28 +34,45 @@
 
         <ImageView
             android:id="@+id/ivNoData"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent"
             android:layout_width="@dimen/_150sdp"
-            android:scaleType="centerCrop"
             android:layout_height="@dimen/_150sdp"
+            android:scaleType="centerCrop"
             android:src="@drawable/no_data"
-            />
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <LinearLayout
             android:id="@+id/llUserView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_5sdp"
-            android:weightSum="1.1"
             android:background="@color/white"
             android:orientation="vertical"
             android:visibility="gone"
+            android:weightSum="1.1"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintBottom_toBottomOf="parent">
+            app:layout_constraintTop_toTopOf="parent">
+
+            <EditText
+                android:id="@+id/etvSearchProject"
+                android:layout_width="match_parent"
+                android:layout_height="@dimen/_42sdp"
+                android:layout_marginHorizontal="@dimen/_12sdp"
+                android:layout_marginTop="@dimen/_8sdp"
+                android:background="@drawable/edit_back_view"
+                android:drawableStart="@drawable/iv_search_mini"
+                android:drawablePadding="@dimen/_7sdp"
+                android:drawableTint="@color/fsm_text_color80"
+                android:gravity="center_vertical"
+                android:hint="Search"
+                android:paddingHorizontal="@dimen/_15sdp"
+                android:singleLine="true"
+                android:textColor="@color/fsm_text_color"
+                android:textColorHint="@color/fsm_text_color80"
+                android:textSize="@dimen/_14ssp" />
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/rvUser"
@@ -66,42 +83,21 @@
                 android:layout_weight="1"
                 android:overScrollMode="never"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent"
                 tools:listitem="@layout/holder_users" />
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:weightSum="2"
+                android:layout_weight="0.1"
                 android:orientation="horizontal"
-                android:layout_weight="0.1">
-
-                <TextView
-                    android:id="@+id/tvAssign"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginEnd="@dimen/_5sdp"
-                    android:layout_weight="1"
-                    android:background="@drawable/bg_orange_stroke_round_border"
-                    android:fontFamily="@font/poppins_medium"
-                    android:foreground="?selectableItemBackground"
-                    android:includeFontPadding="false"
-                    android:onClick="@{v -> vm.onClick(v)}"
-                    android:padding="@dimen/_10sdp"
-                    android:text="Assign"
-                    android:textAlignment="center"
-                    android:textColor="@color/line_color"
-                    android:textSize="@dimen/_14sdp" />
+                android:weightSum="2">
 
                 <TextView
                     android:id="@+id/tvCancel"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_5sdp"
-                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_10sdp"
+                    android:layout_marginEnd="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:background="@drawable/rounded_4dp_border"
                     android:backgroundTint="@color/line_color"
@@ -113,6 +109,24 @@
                     android:text="@string/cancel"
                     android:textAlignment="center"
                     android:textColor="@color/fsm_bg_light_teal60"
+                    android:textSize="@dimen/_14sdp" />
+
+                <TextView
+                    android:id="@+id/tvAssign"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:layout_marginEnd="@dimen/_10sdp"
+                    android:layout_weight="1"
+                    android:background="@drawable/bg_orange_stroke_round_border"
+                    android:fontFamily="@font/poppins_medium"
+                    android:foreground="?selectableItemBackground"
+                    android:includeFontPadding="false"
+                    android:onClick="@{v -> vm.onClick(v)}"
+                    android:padding="@dimen/_10sdp"
+                    android:text="Assign"
+                    android:textAlignment="center"
+                    android:textColor="@color/line_color"
                     android:textSize="@dimen/_14sdp" />
 
             </LinearLayout>

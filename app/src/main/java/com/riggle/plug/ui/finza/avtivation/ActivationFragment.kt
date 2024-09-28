@@ -13,7 +13,9 @@ import com.riggle.plug.ui.finza.inventory.InventoryActivity
 import com.riggle.plug.ui.finza.issuance.IssuanceActivity
 import com.riggle.plug.ui.finza.issueSuperTag.IssueSuperTagActivity
 import com.riggle.plug.utils.Status
+import com.riggle.plug.utils.event.SingleLiveEvent
 import com.riggle.plug.utils.showErrorToast
+import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -21,10 +23,19 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
 
     private val viewModel: ActivationFragmentVM by viewModels()
 
+    companion object{
+        var isUpdatesAvailable = SingleLiveEvent<Boolean>()
+    }
+
     override fun onCreateView(view: View) {
 
         viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
 
+        isUpdatesAvailable.observe(viewLifecycleOwner){ it ->
+            if (it){
+                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+            }
+        }
         viewModel.obrHomeInventory.observe(viewLifecycleOwner) {
             when (it?.status) {
                 Status.LOADING -> {
@@ -62,6 +73,7 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
+                    showSuccessToast(it.message.toString())
                    if (it.data != null){
                        startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
                    }

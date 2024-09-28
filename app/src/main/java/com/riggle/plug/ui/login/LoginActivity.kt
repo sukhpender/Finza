@@ -122,14 +122,16 @@ class LoginActivity : BaseActivity<ActivityLoginBinding>() {
                         it.data.message.let { it1 -> showSuccessToast(it1) }
                         sharedPrefManager.saveUser(it.data.data)
                         sharedPrefManager.saveToken("Bearer ${it.data.data.auth_token}")
-                        Log.e("savedData",sharedPrefManager.getToken().toString())
-                        if ((it.data.data.role_id != 5)) {
-                            startActivity(ProjectListActivity.newIntent(this))
+                        startActivity(FinzaHomeActivity.newIntent(this))
                             finish()
-                        }else{
-                            startActivity(FinzaHomeActivity.newIntent(this))
-                            finish()
-                        }
+
+//                        if ((it.data.data.role_id != 5)) {
+//                            startActivity(ProjectListActivity.newIntent(this))
+//                            finish()
+//                        }else{
+//                            startActivity(FinzaHomeActivity.newIntent(this))
+//                            finish()
+//                        }
                     }
                 }
 

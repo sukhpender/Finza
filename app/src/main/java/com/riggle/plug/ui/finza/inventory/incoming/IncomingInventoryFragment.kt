@@ -10,8 +10,11 @@ import com.riggle.plug.databinding.HolderIncomgInventoryBinding
 import com.riggle.plug.ui.base.BaseFragment
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
+import com.riggle.plug.ui.finza.avtivation.ActivationFragment
+import com.riggle.plug.ui.finza.inventory.available.AvailableInventoryFragment
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
+import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
@@ -69,6 +72,9 @@ class IncomingInventoryFragment : BaseFragment<FragmentIncomingInventoryBinding>
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     viewModel.getInventory(sharedPrefManager.getToken().toString(), "1")
+                    ActivationFragment.isUpdatesAvailable.value = true
+                    AvailableInventoryFragment.isUpdatesAvailable.value = true
+                    showSuccessToast(it.data?.message.toString())
                 }
 
                 Status.WARN -> {

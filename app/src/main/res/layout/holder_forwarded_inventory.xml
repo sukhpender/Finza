@@ -52,7 +52,7 @@
                     style="@style/TextView.InterRegular_12ssp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:singleLine="true"
-                    android:text='@{"Assignee Name: " + bean.assigned_by.first_name}'
+                    android:text='@{"Assignee Name: " + bean.assigned_to.first_name + " " + bean.assigned_to.last_name}'
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintEnd_toEndOf="parent"

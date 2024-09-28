@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -21,55 +20,116 @@
 
     </data>
 
-    <LinearLayout
+    <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/white"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
         android:foreground="?selectableItemBackground"
-        android:gravity="center_vertical"
         android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
-        android:orientation="vertical">
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_8sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_10sdp"
-            android:layout_marginVertical="@dimen/_10sdp"
-            android:gravity="center_vertical">
+            android:background="@color/white"
+            android:gravity="center_vertical"
+            android:orientation="vertical">
 
-            <TextView
-                getInitials="@{bean}"
-                android:layout_width="@dimen/_32sdp"
-                android:background="@drawable/custom_round_stroke_fsm"
-                android:textColor="@color/white"
-                tools:text="SP"
-                android:textSize="@dimen/_15ssp"
-                android:backgroundTint="@color/fsm_text_color"
-                android:fontFamily="@font/inter_semibold"
-                android:gravity="center"
-                android:layout_height="@dimen/_32sdp"/>
-
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
                 android:layout_marginHorizontal="@dimen/_5sdp"
-                android:layout_weight="1"
-                android:singleLine="true"
-                android:text='@{bean.first_name+" " + bean.last_name}'
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_13sdp" />
+                android:layout_marginVertical="@dimen/_5sdp"
+                android:gravity="center_vertical">
 
-            <ImageView
-                android:layout_width="@dimen/_18sdp"
-                setUserSelection="@{bean.userSelected}"
-                android:layout_height="@dimen/_18sdp" />
+                <com.google.android.material.imageview.ShapeableImageView
+                    android:id="@+id/iv1"
+                    setImageWithFullUrl2="@{bean.profile_image}"
+                    android:layout_width="@dimen/_40sdp"
+                    android:layout_height="@dimen/_60sdp"
+                    android:scaleType="fitXY"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+                    app:strokeColor="@color/dark_grey_txt_color10"
+                    app:strokeWidth="@dimen/_1sdp" />
+
+                <TextView
+                    android:id="@+id/tv1"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/inter_semibold"
+                    android:singleLine="true"
+                    android:text='@{bean.first_name+" " + bean.last_name}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_13sdp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv2"
+                    app:layout_constraintEnd_toStartOf="@+id/iv2"
+                    app:layout_constraintStart_toEndOf="@+id/iv1"
+                    app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+                <TextView
+                    android:id="@+id/tv2"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text='@{bean.phone_number}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv3"
+                    app:layout_constraintEnd_toStartOf="@+id/iv2"
+                    app:layout_constraintStart_toEndOf="@+id/iv1"
+                    app:layout_constraintTop_toBottomOf="@+id/tv1" />
+
+                <TextView
+                    android:id="@+id/tv3"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text='@{"Toll Plaza : "+ bean.toll_plaza_name}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintBottom_toTopOf="@+id/tv4"
+                    app:layout_constraintEnd_toStartOf="@+id/iv2"
+                    app:layout_constraintStart_toEndOf="@+id/iv1"
+                    app:layout_constraintTop_toBottomOf="@+id/tv2" />
+
+                <TextView
+                    android:id="@+id/tv4"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_width="0dp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:layout_weight="1"
+                    android:singleLine="true"
+                    android:text='@{"City : "+ bean.city}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_11sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv1"
+                    app:layout_constraintEnd_toStartOf="@+id/iv2"
+                    app:layout_constraintStart_toEndOf="@+id/iv1"
+                    app:layout_constraintTop_toBottomOf="@+id/tv3" />
+
+                <ImageView
+                    android:id="@+id/iv2"
+                    setUserSelection="@{bean.userSelected}"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    app:layout_constraintBottom_toBottomOf="@+id/iv1"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="@+id/iv1" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
 
-        <View
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/_2sdp"
-            android:background="@color/dark_grey_txt_color10" />
-
-    </LinearLayout>
+    </androidx.cardview.widget.CardView>
 
 </layout>

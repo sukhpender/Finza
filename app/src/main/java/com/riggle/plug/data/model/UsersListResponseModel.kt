@@ -13,6 +13,7 @@ data class UsersListData(
     val aadhar_no: String?,
     val address: String,
     val city: String,
+    val toll_plaza_name: String,
     val created_at: String,
     val deleted_at: String?,
     val email: String,

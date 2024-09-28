@@ -312,9 +312,9 @@
 
     <string-array name="documentType">
         <item>Pan Card</item>
-        <item>Driving Licence</item>
+        <item>Driving License</item>
         <item>Voter ID</item>
-        <item>Passport No</item>
+        <item>Passport Number</item>
     </string-array>
     <string-array name="vehicleMaker">
         <item>Maker A</item>

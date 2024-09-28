@@ -77,8 +77,8 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     if (it.data != null) {
-                        binding.tv4.text = it.data.data.project_detail.title
-                        binding.tv5.text = it.data.data.project_detail.type
+                      //  binding.tv4.text = it.data.data.project_detail.title
+                      //  binding.tv5.text = it.data.data.project_detail.type
                     }
                 }
 
@@ -211,13 +211,13 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                     openCloseDrawer()
                 }
 
-                5 -> {
-                    /** change project */
-                    startActivity(ProjectListActivity.newIntent(this))
-                    openCloseDrawer()
-                }
+//                5 -> {
+//                    /** change project */
+//                    startActivity(ProjectListActivity.newIntent(this))
+//                    openCloseDrawer()
+//                }
 
-                6 -> {
+                5 -> {
                     /** help and support */
                     startActivity(HelpAndSupportActivity.newIntent(this))
                     openCloseDrawer()
@@ -229,13 +229,13 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
 //                    openCloseDrawer()
 //                }
 
-                7 -> {
+                6 -> {
                     /** profile */
                     startActivity(ProfileActivity.newIntent(this))
                     openCloseDrawer()
                 }
 
-                8 -> {
+                7 -> {
                     /** logout */
                     bsLogout()
                     openCloseDrawer()
@@ -283,7 +283,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         list.add(Drawer(R.drawable.inventory, "Inventory"))
         list.add(Drawer(R.drawable.ic_percentage_filled, "Issue Tag"))
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))
-        list.add(Drawer(R.drawable.change_project, "Change Project"))
+       // list.add(Drawer(R.drawable.change_project, "Change Project"))
         list.add(Drawer(R.drawable.replace1, "Help & Support"))
         //  list.add(Drawer(R.drawable.language, "Language"))
         list.add(Drawer(R.drawable.profile, "Profile"))

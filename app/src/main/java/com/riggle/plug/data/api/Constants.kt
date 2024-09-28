@@ -4,6 +4,7 @@ object Constants {
 
     // Finza
     const val IMAGE_BASE_URL= "https://finzaa.s3.amazonaws.com/"
+    const val IMAGE_BASE_URL1= "https://finzaa.s3.amazonaws.com"
     const val X_APP_ACCEPT= "Accept:application/json"
     const val X_APP_NAME= "Accept:application/json"
     const val FINZA_LOGIN = "api/user-login"
@@ -11,6 +12,11 @@ object Constants {
     const val FINZA_PROFILE = "api/profile"
     const val FORGOT_PASSWORD = "api/forgotPassword"
     const val SEND_OTP_TAG_ISSUE = "api/send-otp"
+    const val VERIFY_OTP_TAG_ISSUE = "api/verify-otp"
+    const val VEHICLE_MAKERS_LIST = "vehicle-maker-list"
+    const val CREATE_CUSTOMER_BAJAJ = "bajaj-customer-create"
+
+
     const val WALLET_CREATE_CUSTOMER = "api/customer-create"
     const val UPDATE_PROFILE = "api/updateProfile"
     const val USER_WALLET = "api/user-wallet"

@@ -19,6 +19,7 @@ import com.riggle.plug.data.model.CoOwnersListResponseModel
 import com.riggle.plug.data.model.CpInsightsResponseModel
 import com.riggle.plug.data.model.CpRemarksResponseModel
 import com.riggle.plug.data.model.CpStockResponseItem
+import com.riggle.plug.data.model.CreateCustomerRew
 import com.riggle.plug.data.model.DailyAnalysisCalenderResponseModel
 import com.riggle.plug.data.model.DeleteCoOwnerResponse
 import com.riggle.plug.data.model.DesignationSalesFilterResponseModel
@@ -86,6 +87,10 @@ import com.riggle.plug.data.model.UpdateProjectResponseModel
 import com.riggle.plug.data.model.UserProfileResponseModel
 import com.riggle.plug.data.model.UserWalletResponseModel
 import com.riggle.plug.data.model.UsersListResponseModel
+import com.riggle.plug.data.model.ValidateOtpRequest
+import com.riggle.plug.data.model.VehicleMakersListResponseModel
+import com.riggle.plug.data.model.VehicleMakersRequest
+import com.riggle.plug.data.model.VerifyOtpRequest
 import com.riggle.plug.data.model.VerifyOtpResponseModel
 import com.riggle.plug.data.model.WalletCreateCustomerResponseModel
 import com.riggle.plug.data.model.WalletTransactionsResponseModel
@@ -141,6 +146,24 @@ interface BaseApi {
         @Header("Authorization") header: String, @Body reqBody: SendOtpRequest
     ): Response<SendOtpIssueTagResponseModel>
 
+    @POST(Constants.VERIFY_OTP_TAG_ISSUE)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun verifyOtpTagIssue(
+        @Header("Authorization") header: String, @Body reqBody: ValidateOtpRequest
+    ): Response<VerifyOtpResponseModel>
+
+    @POST(Constants.VEHICLE_MAKERS_LIST)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun vehicleMakersList(
+        @Header("Authorization") header: String, @Body reqBody: VehicleMakersRequest
+    ): Response<VehicleMakersListResponseModel>
+
+    @POST(Constants.CREATE_CUSTOMER_BAJAJ)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun createCustomerBajaj(
+        @Header("Authorization") header: String, @Body reqBody: CreateCustomerRew
+    ): Response<VehicleMakersListResponseModel>
+
     @POST(Constants.WALLET_CREATE_CUSTOMER)
     @Headers(Constants.X_APP_ACCEPT)
     @FormUrlEncoded
@@ -160,6 +183,15 @@ interface BaseApi {
         @Part("first_name") body: RequestBody,
         @Part("last_name") body2: RequestBody,
         @Part profile_image: MultipartBody.Part
+    ): Response<FinzaProfileResponseModel>
+
+    @Headers(Constants.X_APP_ACCEPT)
+    @POST(Constants.UPDATE_PROFILE)
+    @FormUrlEncoded
+    suspend fun updateUserWithoutImage(
+        @Header("Authorization") header: String,
+        @Field("first_name") f_name: String,
+        @Field("last_name") l_name: String,
     ): Response<FinzaProfileResponseModel>
 
     @GET(Constants.USER_WALLET)
