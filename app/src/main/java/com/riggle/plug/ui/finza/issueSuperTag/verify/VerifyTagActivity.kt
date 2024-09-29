@@ -1,7 +1,9 @@
 package com.riggle.plug.ui.finza.issueSuperTag.verify
 
+import android.Manifest
 import android.app.Activity
 import android.app.DatePickerDialog
+import android.content.Context
 import android.content.Intent
 import android.os.Build
 import android.text.Editable
@@ -10,8 +12,11 @@ import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import androidx.activity.result.ActivityResult
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import com.github.dhaval2404.imagepicker.ImagePicker
 import com.riggle.plug.R
 import com.riggle.plug.data.model.CreateCustomerRew
 import com.riggle.plug.data.model.CustomerDetails
@@ -25,10 +30,19 @@ import com.riggle.plug.data.model.VerifyOtpRequest
 import com.riggle.plug.databinding.ActivityVerifyTagBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.ui.base.permission.PermissionHandler
+import com.riggle.plug.ui.base.permission.Permissions
+import com.riggle.plug.utils.AppUtils
+import com.riggle.plug.utils.RealPath.getFilePath
 import com.riggle.plug.utils.Status
 import com.riggle.plug.utils.showErrorToast
+import com.riggle.plug.utils.showInfoToast
 import com.riggle.plug.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
+import okhttp3.MediaType.Companion.toMediaTypeOrNull
+import okhttp3.MultipartBody
+import okhttp3.RequestBody.Companion.asRequestBody
+import java.io.File
 import java.text.SimpleDateFormat
 import java.time.LocalDateTime
 import java.time.format.DateTimeFormatter
@@ -79,7 +93,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initView() {
-        // verifyNumber()
+        verifyNumber()
 
         viewModel.obrSendOtp.observe(this) {
             when (it?.status) {
@@ -130,8 +144,11 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     if (it.data != null) {
                         it.data.message.let { it1 -> showSuccessToast(it1) }
                         Log.e("VerifyOtpResponseModel--->>>", it.data.data.toString())
-                        if (it.data.data.validateOtpResp.custDetails.walletStatus == "Active") {
-                            if (it.data.data.validateOtpResp.vrnDetails.vehicleManuf == null || it.data.data.validateOtpResp.vrnDetails.vehicleManuf == "" && it.data.data.validateOtpResp.vrnDetails.model == null || it.data.data.validateOtpResp.vrnDetails.model == "") {
+                        if (it.data.data.validateOtpResp.custDetails.walletStatus != "Active") {
+                            if (it.data.data.validateOtpResp.vrnDetails.vehicleManuf == null
+                                || it.data.data.validateOtpResp.vrnDetails.vehicleManuf == ""
+                                && it.data.data.validateOtpResp.vrnDetails.model == null
+                                || it.data.data.validateOtpResp.vrnDetails.model == "") {
                                 val req = VehicleMakersRequest(
                                     requestId = requestId1,
                                     sessionId = sessionId1,
@@ -146,9 +163,10 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             } else {
                                 vehicleManuf = it.data.data.validateOtpResp.vrnDetails.vehicleManuf
                                 model = it.data.data.validateOtpResp.vrnDetails.model.toString()
+                                createCustomer()
                             }
                         } else {
-
+                            uploadDocument()
                         }
                     }
                 }
@@ -207,7 +225,40 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     showHideLoader(false)
                     if (it.data != null) {
                         //   it.data.response.msg.let { it1 -> showSuccessToast(it1) }
-                        Log.e("VehicleMakerListResponseModel--->>>", it.data.toString())
+                        Log.e("UserCreateResponse------", it.data.toString())
+                        uploadDocument()
+                    } else {
+                        showErrorToast(it.message.toString())
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
+        viewModel.obrUploadDocument.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        //   it.data.response.msg.let { it1 -> showSuccessToast(it1) }
+                        Log.e("UploadDocumentResponse------", it.data.toString())
+                    } else {
+                        showErrorToast(it.message.toString())
                     }
                 }
 
@@ -310,6 +361,8 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                      * 4. Passport Number (Need expiry)
                      * */
                     val selectedItem = parent.getItemAtPosition(position) as String
+                    binding.etvDocumentExpiry.text = ""
+                    binding.etvDocumentNumber.setText("")
                     if (selectedItem == "Pan Card") {
                         documentType = 1
                         binding.llDocExpiry.visibility = View.GONE
@@ -427,7 +480,6 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                                 provider = provider
                             )
                         )
-
                         viewModel.verifyOtp(sharedPrefManager.getToken().toString(), validateOtpReq)
                     }
                 }
@@ -442,7 +494,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     val lName = binding.etvLName.text.toString()
                     val mobile = binding.etvMobile.text.toString()
                     val dob = binding.etvDob.text.toString()
-                    val documentNumber = binding.etvDob.text.toString()
+                    val documentNumber = binding.etvDocumentNumber.text.toString()
                     val documentExpiry = binding.etvDocumentExpiry.text.toString()
 
                     if (fName == "") {
@@ -455,7 +507,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         showErrorToast("Please enter date of birth")
                     } else if (documentNumber == "") {
                         showErrorToast("Please enter document number")
-                    } else if (documentType == 2 || documentType == 4 && documentExpiry == "") {
+                    } else if ((documentType == 2 || documentType == 4) && documentExpiry == "") {
                         showErrorToast("Please select document expiry date")
                     } else {
                         val request = CreateCustomerRew(
@@ -475,7 +527,8 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                                     doc = listOf(
                                         Document(
                                             docType = documentType.toString(),
-                                            docNo = documentNumber
+                                            docNo = documentNumber,
+                                            expiryDate = documentExpiry
                                         )
                                     ),
                                     udf1 = "",
@@ -496,51 +549,445 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
                 /// upload documents
                 R.id.tvSelectRcFront -> {
-
+                    checkPermission(binding.tvSelectRcFront, "1")
                 }
 
-                R.id.tvUploadRcFront -> {
 
+                R.id.tvUploadRcFront -> {
+                    if (rcFrontFile == null) {
+                        showErrorToast("Please select RC front image")
+                    } else {
+                        val requestFile =
+                            rcFrontFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                            "image", rcFrontFile?.name, requestFile!!
+                        )
+                        viewModel.uploadDocument(
+                            sharedPrefManager.getToken().toString(),
+                            AppUtils.textToRequestBody(requestId1),
+                            AppUtils.textToRequestBody(sessionId1),
+                            AppUtils.textToRequestBody(channel),
+                            AppUtils.textToRequestBody(agentId),
+                            AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                            AppUtils.textToRequestBody("RCFRONT"),
+                            body,
+                            AppUtils.textToRequestBody(provider)
+                        )
+                    }
                 }
 
                 R.id.tvSelectRcBack -> {
-
+                    checkPermission(binding.tvSelectRcBack, "2")
                 }
 
                 R.id.tvUploadRcBack -> {
-
+                    if (rcBackFile == null) {
+                        showErrorToast("Please select RC back image")
+                    } else {
+                        val requestFile =
+                            rcBackFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                            "image", rcBackFile?.name, requestFile!!
+                        )
+                        viewModel.uploadDocument(
+                            sharedPrefManager.getToken().toString(),
+                            AppUtils.textToRequestBody(requestId1),
+                            AppUtils.textToRequestBody(sessionId1),
+                            AppUtils.textToRequestBody(channel),
+                            AppUtils.textToRequestBody(agentId),
+                            AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                            AppUtils.textToRequestBody("RCBACK"),
+                            body,
+                            AppUtils.textToRequestBody(provider)
+                        )
+                    }
                 }
 
                 R.id.tvSelectCarSide -> {
-
+                    checkPermission(binding.tvSelectCarSide, "4")
                 }
 
                 R.id.tvUploadCarSide -> {
-
+                    if (carSideFile == null) {
+                        showErrorToast("Please select Car side image")
+                    } else {
+                        val requestFile =
+                            carSideFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                            "image", carSideFile?.name, requestFile!!
+                        )
+                        viewModel.uploadDocument(
+                            sharedPrefManager.getToken().toString(),
+                            AppUtils.textToRequestBody(requestId1),
+                            AppUtils.textToRequestBody(sessionId1),
+                            AppUtils.textToRequestBody(channel),
+                            AppUtils.textToRequestBody(agentId),
+                            AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                            AppUtils.textToRequestBody("VEHICLESIDE"),
+                            body,
+                            AppUtils.textToRequestBody(provider)
+                        )
+                    }
                 }
 
                 R.id.tvSelectCarFront -> {
-
+                    checkPermission(binding.tvSelectCarFront, "3")
                 }
 
                 R.id.tvUploadCarFront -> {
-
+                    if (carFrontFile == null) {
+                        showErrorToast("Please select Car front image")
+                    } else {
+                        val requestFile =
+                            carFrontFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                            "image", carFrontFile?.name, requestFile!!
+                        )
+                        viewModel.uploadDocument(
+                            sharedPrefManager.getToken().toString(),
+                            AppUtils.textToRequestBody(requestId1),
+                            AppUtils.textToRequestBody(sessionId1),
+                            AppUtils.textToRequestBody(channel),
+                            AppUtils.textToRequestBody(agentId),
+                            AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                            AppUtils.textToRequestBody("VEHICLEFRONT"),
+                            body,
+                            AppUtils.textToRequestBody(provider)
+                        )
+                    }
                 }
 
                 R.id.tvSelectTagaFix -> {
-
+                    checkPermission(binding.tvSelectTagaFix, "5")
                 }
 
                 R.id.tvUploadTagaFix -> {
-
+                    if (tagafixFile == null) {
+                        showErrorToast("Please select TagaFix image")
+                    } else {
+                        val requestFile =
+                            tagafixFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                        val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                            "image", tagafixFile?.name, requestFile!!
+                        )
+                        viewModel.uploadDocument(
+                            sharedPrefManager.getToken().toString(),
+                            AppUtils.textToRequestBody(requestId1),
+                            AppUtils.textToRequestBody(sessionId1),
+                            AppUtils.textToRequestBody(channel),
+                            AppUtils.textToRequestBody(agentId),
+                            AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                            AppUtils.textToRequestBody("TAGAFFIX"),
+                            body,
+                            AppUtils.textToRequestBody(provider)
+                        )
+                    }
                 }
 
                 R.id.tvContinueUpload -> {
-
+                    if (rcFrontFile == null) {
+                        showErrorToast("Please upload RC front")
+                    } else if (rcBackFile == null) {
+                        showErrorToast("Please upload RC back")
+                    } else if (carFrontFile == null) {
+                        showErrorToast("Please upload Car front")
+                    } else if (carSideFile == null) {
+                        showErrorToast("Please upload Car side")
+                    } else if (tagafixFile == null) {
+                        showErrorToast("Please upload TagaFix")
+                    } else {
+                        showSuccessToast("Thank You")
+                        finish()
+                    }
                 }
-
             }
         }
+    }
+
+    private fun checkPermission(v: View, forWhich: String) {
+        Permissions.check(this, permissions(), 0, null, object : PermissionHandler() {
+            override fun onGranted() {
+                when (forWhich) {
+                    "1" -> {
+                        getRCFront(v)
+                    }
+
+                    "2" -> {
+                        getRCBack(v)
+                    }
+
+                    "3" -> {
+                        getCarFront(v)
+                    }
+
+                    "4" -> {
+                        getCarSide(v)
+                    }
+
+                    "5" -> {
+                        getTagaFix(v)
+                    }
+                }
+            }
+
+            override fun onDenied(
+                context: Context?, deniedPermissions: ArrayList<String>?
+            ) {
+                super.onDenied(context, deniedPermissions)
+                showInfoToast("Accept Storage permission to continue")
+            }
+        })
+    }
+
+    private var tagafixFile: File? = null
+    private val startForTagaFixImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            if (resultCode == Activity.RESULT_OK) {
+                val fileUri = data?.data!!
+                tagafixFile = File(fileUri.getFilePath(this))
+                binding.ivTAGAFFIX.setImageURI(fileUri)
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                showErrorToast(ImagePicker.getError(data))
+            } else {
+                showErrorToast("Task Cancelled")
+            }
+        }
+
+    private fun getTagaFix(v: View) {
+        val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
+        popupMenu.menu.add("Select From Camera")
+        popupMenu.menu.add("Select From Gallery")
+        popupMenu.menu.add("Cancel")
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item?.title) {
+                "Select From Camera" -> {
+                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                        startForTagaFixImageResult.launch(intent)
+                    }
+                }
+
+                "Select From Gallery" -> {
+                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                        startForTagaFixImageResult.launch(intent)
+                    }
+                }
+
+                else -> {
+                    popupMenu.dismiss()
+                }
+            }
+            true
+        }
+        popupMenu.show()
+    }
+
+    private var carFrontFile: File? = null
+    private val startForCarFrontImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            if (resultCode == Activity.RESULT_OK) {
+                val fileUri = data?.data!!
+                carFrontFile = File(fileUri.getFilePath(this))
+                binding.ivCarFront.setImageURI(fileUri)
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                showErrorToast(ImagePicker.getError(data))
+            } else {
+                showErrorToast("Task Cancelled")
+            }
+        }
+
+    private fun getCarFront(v: View) {
+        val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
+        popupMenu.menu.add("Select From Camera")
+        popupMenu.menu.add("Select From Gallery")
+        popupMenu.menu.add("Cancel")
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item?.title) {
+                "Select From Camera" -> {
+                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                        startForCarFrontImageResult.launch(intent)
+                    }
+                }
+
+                "Select From Gallery" -> {
+                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                        startForCarFrontImageResult.launch(intent)
+                    }
+                }
+
+                else -> {
+                    popupMenu.dismiss()
+                }
+            }
+            true
+        }
+        popupMenu.show()
+    }
+
+    private var carSideFile: File? = null
+    private val startForCarSideImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            if (resultCode == Activity.RESULT_OK) {
+                val fileUri = data?.data!!
+                carSideFile = File(fileUri.getFilePath(this))
+                binding.ivCarSide.setImageURI(fileUri)
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                showErrorToast(ImagePicker.getError(data))
+            } else {
+                showErrorToast("Task Cancelled")
+            }
+        }
+
+    private fun getCarSide(v: View) {
+        val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
+        popupMenu.menu.add("Select From Camera")
+        popupMenu.menu.add("Select From Gallery")
+        popupMenu.menu.add("Cancel")
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item?.title) {
+                "Select From Camera" -> {
+                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                        startForCarSideImageResult.launch(intent)
+                    }
+                }
+
+                "Select From Gallery" -> {
+                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                        startForCarSideImageResult.launch(intent)
+                    }
+                }
+
+                else -> {
+                    popupMenu.dismiss()
+                }
+            }
+            true
+        }
+        popupMenu.show()
+    }
+
+    private var rcBackFile: File? = null
+    private val startForRCBackImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            if (resultCode == Activity.RESULT_OK) {
+                val fileUri = data?.data!!
+                rcBackFile = File(fileUri.getFilePath(this))
+                binding.ivRCBack.setImageURI(fileUri)
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                showErrorToast(ImagePicker.getError(data))
+            } else {
+                showErrorToast("Task Cancelled")
+            }
+        }
+
+    private fun getRCBack(v: View) {
+        val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
+        popupMenu.menu.add("Select From Camera")
+        popupMenu.menu.add("Select From Gallery")
+        popupMenu.menu.add("Cancel")
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item?.title) {
+                "Select From Camera" -> {
+                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                        startForRCBackImageResult.launch(intent)
+                    }
+                }
+
+                "Select From Gallery" -> {
+                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                        startForRCBackImageResult.launch(intent)
+                    }
+                }
+
+                else -> {
+                    popupMenu.dismiss()
+                }
+            }
+            true
+        }
+        popupMenu.show()
+    }
+
+    private fun getRCFront(v: View) {
+        val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
+        popupMenu.menu.add("Select From Camera")
+        popupMenu.menu.add("Select From Gallery")
+        popupMenu.menu.add("Cancel")
+        popupMenu.setOnMenuItemClickListener { item ->
+            when (item?.title) {
+                "Select From Camera" -> {
+                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                        startForRCFrontImageResult.launch(intent)
+                    }
+                }
+
+                "Select From Gallery" -> {
+                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                        startForRCFrontImageResult.launch(intent)
+                    }
+                }
+
+                else -> {
+                    popupMenu.dismiss()
+                }
+            }
+            true
+        }
+        popupMenu.show()
+    }
+
+    private var rcFrontFile: File? = null
+    private val startForRCFrontImageResult =
+        registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
+            val resultCode = result.resultCode
+            val data = result.data
+
+            if (resultCode == Activity.RESULT_OK) {
+                val fileUri = data?.data!!
+                rcFrontFile = File(fileUri.getFilePath(this))
+                binding.ivRCFront.setImageURI(fileUri)
+            } else if (resultCode == ImagePicker.RESULT_ERROR) {
+                showErrorToast(ImagePicker.getError(data))
+            } else {
+                showErrorToast("Task Cancelled")
+            }
+        }
+
+    private var storge_permissions = arrayOf(
+        Manifest.permission.WRITE_EXTERNAL_STORAGE,
+        Manifest.permission.READ_EXTERNAL_STORAGE,
+        Manifest.permission.CAMERA
+    )
+
+    private var storge_permissions1 = arrayOf(
+        Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.CAMERA
+    )
+
+    @RequiresApi(api = Build.VERSION_CODES.TIRAMISU)
+    var storge_permissions_33 = arrayOf(
+        Manifest.permission.READ_MEDIA_IMAGES, Manifest.permission.CAMERA
+    )
+
+    fun permissions(): Array<String> {
+        val p: Array<String> = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+            storge_permissions_33
+        } else if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.R && Build.VERSION.SDK_INT <= Build.VERSION_CODES.S_V2) {
+            storge_permissions1
+        } else {
+            storge_permissions
+        }
+        return p
     }
 
     private fun showDatePickerDialog() {
@@ -576,11 +1023,14 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
                 binding.etvDocumentExpiry.text = sdf.format(selectedDate.time)
             }, year, month, day)
-        datePickerDialog.datePicker.maxDate = System.currentTimeMillis() // Restrict to past dates
+
+        // Set the minimum date to tomorrow
+        calendar.add(Calendar.DAY_OF_MONTH, 1) // Move to the next day
+        datePickerDialog.datePicker.minDate = calendar.timeInMillis // Enable only future dates
+
         datePickerDialog.setOnCancelListener { }
         datePickerDialog.show()
     }
-
 
     private fun generateRandom15DigitId(): String {
         val random = Random.Default

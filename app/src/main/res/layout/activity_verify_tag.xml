@@ -382,8 +382,7 @@
                         android:layout_marginTop="8dp"
                         android:hint="Enter first name"
                         android:imeOptions="actionNext"
-                        android:inputType="phone"
-                        android:maxLength="10" />
+                        android:inputType="text"/>
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
@@ -404,8 +403,7 @@
                         android:layout_marginTop="8dp"
                         android:hint="Enter last name"
                         android:imeOptions="actionNext"
-                        android:inputType="phone"
-                        android:maxLength="10"
+                        android:inputType="text"
                         android:textAllCaps="true" />
 
                     <TextView
@@ -661,6 +659,7 @@
                                 android:background="@color/white"
                                 android:elevation="@dimen/_1sdp"
                                 android:layout_marginBottom="@dimen/_10sdp"
+                                android:scaleType="centerCrop"
                                 android:src="@drawable/rc"
                                 app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
 

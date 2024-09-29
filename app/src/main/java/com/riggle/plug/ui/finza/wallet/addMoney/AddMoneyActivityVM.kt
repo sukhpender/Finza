@@ -20,11 +20,11 @@ import javax.inject.Inject
 class AddMoneyActivityVM @Inject constructor(private val baseRepo: BaseRepo): BaseViewModel() {
 
     val obrCreateCustomer = SingleRequestEvent<WalletCreateCustomerResponseModel>()
-    fun createCustomer(header: String, name:String, email: String,phone: String) {
+    fun createCustomer(header: String) {
         Coroutines.io {
             obrCreateCustomer.postValue(Resource.loading(null))
             try {
-                baseRepo.createWalletCustomer(header,name,email,phone).let {
+                baseRepo.createWalletCustomer(header).let {
                     if (it.isSuccessful) {
                         it.body()?.let { results ->
                             obrCreateCustomer.postValue(Resource.success(results, "Success"))

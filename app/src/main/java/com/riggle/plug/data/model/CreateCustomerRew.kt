@@ -34,5 +34,6 @@ data class CustomerDetails(
 
 data class Document(
     val docType: String,
-    val docNo: String
+    val docNo: String,
+    val expiryDate: String = ""
 )

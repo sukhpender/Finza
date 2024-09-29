@@ -154,17 +154,9 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                         showErrorToast("Maximum amount 10000")
                     } else {
                         sharedPrefManager.getCurrentUser()?.let { it1 ->
-                            viewModel.createCustomer(
-                                sharedPrefManager.getToken().toString(),
-                                it1.full_name,
-                                it1.email,
-                                it1.phone_number
-                            )
+                            viewModel.createCustomer(sharedPrefManager.getToken().toString())
                         }
-//                        val totalAmount = binding.amount!!.toInt() * 1000
-//                        initPayment(totalAmount.toString())
                     }
-                    //  startActivity(SelectPaymentMethodActivity.newIntent(this))
                 }
 
                 R.id.tv500 -> {
