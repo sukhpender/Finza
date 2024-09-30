@@ -8,6 +8,7 @@ import com.riggle.plug.R
 import com.riggle.plug.databinding.ActivityInventoryBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
+import com.riggle.plug.ui.finza.avtivation.ActivationFragment
 import com.riggle.plug.ui.finza.inventory.available.AvailableInventoryFragment
 import com.riggle.plug.ui.finza.inventory.forwarded.ForwardedInventoryFragment
 import com.riggle.plug.ui.finza.inventory.incoming.IncomingInventoryFragment
@@ -55,9 +56,15 @@ class InventoryActivity : BaseActivity<ActivityInventoryBinding>() {
             when (it?.id) {
                 R.id.iv1 -> {
                     finish()
+                    ActivationFragment.isUpdatesAvailable.value = true
                 }
             }
         }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        ActivationFragment.isUpdatesAvailable.value = true
     }
 
     private fun initViewPager() {

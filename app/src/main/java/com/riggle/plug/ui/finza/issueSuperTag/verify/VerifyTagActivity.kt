@@ -19,14 +19,19 @@ import androidx.annotation.RequiresApi
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.riggle.plug.R
 import com.riggle.plug.data.model.CreateCustomerRew
+import com.riggle.plug.data.model.CustDetails2
 import com.riggle.plug.data.model.CustomerDetails
 import com.riggle.plug.data.model.CustomerRequest
 import com.riggle.plug.data.model.Document
+import com.riggle.plug.data.model.FasTagDetails
+import com.riggle.plug.data.model.RegDetails
+import com.riggle.plug.data.model.RegisterTagRequest
 import com.riggle.plug.data.model.RequestWallet
 import com.riggle.plug.data.model.SendOtpRequest
 import com.riggle.plug.data.model.ValidateOtpRequest
 import com.riggle.plug.data.model.VehicleMakersRequest
 import com.riggle.plug.data.model.VerifyOtpRequest
+import com.riggle.plug.data.model.VrnDetails1
 import com.riggle.plug.databinding.ActivityVerifyTagBinding
 import com.riggle.plug.ui.base.BaseActivity
 import com.riggle.plug.ui.base.BaseViewModel
@@ -50,6 +55,7 @@ import java.util.Calendar
 import java.util.Locale
 import kotlin.random.Random
 
+
 @AndroidEntryPoint
 class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
@@ -64,9 +70,29 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     private var channel = ""
     private var agentId = ""
     private var mobile1 = ""
+    private var walletId1 = ""
+    private var userName = ""
     private var vehicleManuf = ""
+    private var vehicleNumber = ""
+    private var vehicleColour1 = ""
+    private var vehicleDescriptor1 = ""
+    private var isNationalPermit1 = ""
+    private var permitExpiryDate1 = ""
+    private var stateOfRegistration1 = ""
+    private var tagVehicleClassID1 = ""
+    private var status = ""
+    private var npciStatus = ""
+    private var npciVehicleClassID1 = ""
+    private var vehicleType = ""
+    private var type = ""
+    private var vehicleChassisNumber = ""
+    private var vehicleEngineNumber = ""
     private var model = ""
+    private var tagCost = ""
+    private var rechargeAmount = ""
+    private var securityDeposit = ""
     private var documentType = 1
+    private var isCommerical = false
     private var vehicleMakersList = ArrayList<String>()
 
     companion object {
@@ -95,6 +121,10 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     private fun initView() {
         verifyNumber()
 
+        binding.cbIsCommerical.setOnCheckedChangeListener { buttonView, isChecked ->
+            isCommerical = isChecked
+        }
+
         viewModel.obrSendOtp.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {
@@ -112,6 +142,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             channel = it.data.data.validateCustResp.channel
                             agentId = it.data.data.validateCustResp.agentId
                             mobile1 = it.data.data.validateCustResp.mobileNo
+                            vehicleChassisNumber = it.data.data.validateCustResp.chassisNo
                             verifyOtp()
                         } else {
                             showErrorToast("Response Issue")
@@ -145,10 +176,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         it.data.message.let { it1 -> showSuccessToast(it1) }
                         Log.e("VerifyOtpResponseModel--->>>", it.data.data.toString())
                         if (it.data.data.validateOtpResp.custDetails.walletStatus != "Active") {
-                            if (it.data.data.validateOtpResp.vrnDetails.vehicleManuf == null
-                                || it.data.data.validateOtpResp.vrnDetails.vehicleManuf == ""
-                                && it.data.data.validateOtpResp.vrnDetails.model == null
-                                || it.data.data.validateOtpResp.vrnDetails.model == "") {
+                            if (it.data.data.validateOtpResp.vrnDetails.vehicleManuf == null || it.data.data.validateOtpResp.vrnDetails.vehicleManuf == "" && it.data.data.validateOtpResp.vrnDetails.model == null || it.data.data.validateOtpResp.vrnDetails.model == "") {
                                 val req = VehicleMakersRequest(
                                     requestId = requestId1,
                                     sessionId = sessionId1,
@@ -163,9 +191,64 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             } else {
                                 vehicleManuf = it.data.data.validateOtpResp.vrnDetails.vehicleManuf
                                 model = it.data.data.validateOtpResp.vrnDetails.model.toString()
+                                walletId1 = it.data.data.validateOtpResp.custDetails.walletId
+                                userName = it.data.data.validateOtpResp.custDetails.name
+                                vehicleNumber = it.data.data.validateOtpResp.vrnDetails.vehicleNo
+                                vehicleColour1 =
+                                    it.data.data.validateOtpResp.vrnDetails.vehicleColour
+                                vehicleDescriptor1 =
+                                    it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.toString()
+                                isNationalPermit1 =
+                                    it.data.data.validateOtpResp.vrnDetails.isNationalPermit.toString()
+                                permitExpiryDate1 =
+                                    it.data.data.validateOtpResp.vrnDetails.permitExpiryDate.toString()
+                                stateOfRegistration1 =
+                                    it.data.data.validateOtpResp.vrnDetails.stateOfRegistration.toString()
+                                tagVehicleClassID1 =
+                                    it.data.data.validateOtpResp.vrnDetails.tagVehicleClassID
+                                npciVehicleClassID1 =
+                                    it.data.data.validateOtpResp.vrnDetails.npciVehicleClassID
+                                type = it.data.data.validateOtpResp.vrnDetails.type
+                                vehicleType = it.data.data.validateOtpResp.vrnDetails.vehicleType
+                                vehicleEngineNumber =
+                                    it.data.data.validateOtpResp.vrnDetails.engineNo
+                                tagCost =
+                                    it.data.data.validateOtpResp.vrnDetails.tagCost
+                                securityDeposit =
+                                    it.data.data.validateOtpResp.vrnDetails.securityDeposit
+                                rechargeAmount =
+                                    it.data.data.validateOtpResp.vrnDetails.rechargeAmount
                                 createCustomer()
                             }
                         } else {
+                            vehicleManuf =
+                                it.data.data.validateOtpResp.vrnDetails.vehicleManuf.toString()
+                            model = it.data.data.validateOtpResp.vrnDetails.model.toString()
+                            walletId1 = it.data.data.validateOtpResp.custDetails.walletId
+                            userName = it.data.data.validateOtpResp.custDetails.name
+                            vehicleNumber = it.data.data.validateOtpResp.vrnDetails.vehicleNo
+                            vehicleColour1 = it.data.data.validateOtpResp.vrnDetails.vehicleColour
+                            vehicleDescriptor1 =
+                                it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.toString()
+                            isNationalPermit1 =
+                                it.data.data.validateOtpResp.vrnDetails.isNationalPermit.toString()
+                            permitExpiryDate1 =
+                                it.data.data.validateOtpResp.vrnDetails.permitExpiryDate.toString()
+                            stateOfRegistration1 =
+                                it.data.data.validateOtpResp.vrnDetails.stateOfRegistration.toString()
+                            tagVehicleClassID1 =
+                                it.data.data.validateOtpResp.vrnDetails.tagVehicleClassID
+                            npciVehicleClassID1 =
+                                it.data.data.validateOtpResp.vrnDetails.npciVehicleClassID
+                            type = it.data.data.validateOtpResp.vrnDetails.type
+                            vehicleType = it.data.data.validateOtpResp.vrnDetails.vehicleType
+                            vehicleEngineNumber = it.data.data.validateOtpResp.vrnDetails.engineNo
+                            tagCost =
+                                it.data.data.validateOtpResp.vrnDetails.tagCost
+                            securityDeposit =
+                                it.data.data.validateOtpResp.vrnDetails.securityDeposit
+                            rechargeAmount =
+                                it.data.data.validateOtpResp.vrnDetails.rechargeAmount
                             uploadDocument()
                         }
                     }
@@ -226,6 +309,8 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     if (it.data != null) {
                         //   it.data.response.msg.let { it1 -> showSuccessToast(it1) }
                         Log.e("UserCreateResponse------", it.data.toString())
+                        walletId1 = it.data.custDetails.walletId
+                        userName = it.data.custDetails.name
                         uploadDocument()
                     } else {
                         showErrorToast(it.message.toString())
@@ -259,6 +344,38 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         Log.e("UploadDocumentResponse------", it.data.toString())
                     } else {
                         showErrorToast(it.message.toString())
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
+        viewModel.obrRegisterTag.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                           it.data.response.msg.let { it1 -> showSuccessToast(it1) }
+                        Log.e("UploadDocumentResponse------", it.data.toString())
+                        finish()
+                    } else {
+                        showErrorToast(it.message.toString())
+                        finish()
                     }
                 }
 
@@ -327,8 +444,29 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         })
     }
 
+    private fun registerTag() {
+        binding.tvHeader.text = "Upload Document"
+        binding.llRegisterTag.visibility = View.VISIBLE
+        binding.llCreateCustomer.visibility = View.GONE
+        binding.llVerifyNumber.visibility = View.GONE
+        binding.llUploadDocument.visibility = View.GONE
+        binding.llVerifyOtp.visibility = View.GONE
+        binding.etv1.setText(userName)
+        binding.etv2.setText(mobile1)
+        binding.etv4.setText(vehicleNumber)
+        binding.etv5.setText(vehicleChassisNumber)
+        binding.etv6.setText(vehicleEngineNumber)
+        binding.etv8.setText(vehicleManuf)
+        binding.etv9.setText(model)
+
+        binding.etv20.setText(rechargeAmount)
+        binding.etv21.setText(securityDeposit)
+        binding.etv22.setText(tagCost)
+    }
+
     private fun uploadDocument() {
         binding.tvHeader.text = "Upload Document"
+        binding.llRegisterTag.visibility = View.GONE
         binding.llCreateCustomer.visibility = View.GONE
         binding.llVerifyNumber.visibility = View.GONE
         binding.llUploadDocument.visibility = View.VISIBLE
@@ -337,6 +475,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
     private fun createCustomer() {
         binding.tvHeader.text = "User Details"
+        binding.llRegisterTag.visibility = View.GONE
         binding.etvMobile.setText(mobile1)
         binding.llCreateCustomer.visibility = View.VISIBLE
         binding.llVerifyNumber.visibility = View.GONE
@@ -391,12 +530,15 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
     private fun verifyNumber() {
         binding.tvHeader.text = "Verify Number"
+        binding.llRegisterTag.visibility = View.GONE
         binding.llVerifyNumber.visibility = View.VISIBLE
         binding.llVerifyOtp.visibility = View.GONE
         binding.llUploadDocument.visibility = View.GONE
+        binding.llRegisterTag.visibility = View.GONE
     }
 
     private fun verifyOtp() {
+        binding.llRegisterTag.visibility = View.GONE
         binding.tvHeader.text = "Verify Otp"
         binding.llVerifyNumber.visibility = View.GONE
         binding.llVerifyOtp.visibility = View.VISIBLE
@@ -486,6 +628,91 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
                 R.id.ivCalender, R.id.llDob -> {
                     showDatePickerDialog()
+                }
+
+                /** ---- Register Tag ---- */
+                R.id.tvRegister -> {
+                    val tagNumber1 = binding.etvFastTagId1.text.toString()
+                    val tagNumber2 = binding.etvFastTagId2.text.toString()
+                    val tagNumber3 = binding.etvFastTagId3.text.toString()
+                    val engineNumberComplete = binding.etv6.text.toString()
+                    val rechargeAmount = binding.etv20.text.toString()
+                    val securityDeposit = binding.etv21.text.toString()
+                    val tagCost = binding.etv22.text.toString()
+                    val debitAmount = binding.etv23.text.toString()
+
+                    if (tagNumber1 == "") {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else if (tagNumber2 == "") {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else if (tagNumber3 == "") {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else if (engineNumberComplete == "") {
+                        showErrorToast("Please enter complete engine number")
+                    } else if (rechargeAmount == "") {
+                        showErrorToast("Please enter Recharge amount")
+                    } else if (securityDeposit == "") {
+                        showErrorToast("Please enter Security amount")
+                    } else if (tagCost == "") {
+                        showErrorToast("Please enter Tag amount")
+                    } else if (debitAmount == "") {
+                        showErrorToast("Please enter Debit amount")
+                    } else {
+                        val regDetails = RegDetails(
+                            requestId = requestId1,
+                            sessionId = sessionId1,
+                            channel = channel,
+                            agentId = agentId,
+                            reqDateTime = getCurrentDateFormatted()
+                        )
+
+                        val vrnDetails = VrnDetails1(
+                            vrn = vehicleNumber,
+                            chassis = vehicleChassisNumber,
+                            engine = engineNumberComplete,
+                            vehicleManuf = vehicleManuf,
+                            model = model,
+                            vehicleColour = vehicleColour1,
+                            type = type,
+                            status = "Active",
+                            npciStatus = "success",
+                            isCommercial = isCommerical,
+                            tagVehicleClassID = tagVehicleClassID1,
+                            npciVehicleClassID = npciVehicleClassID1,
+                            vehicleType = vehicleType,
+                            rechargeAmount = rechargeAmount,
+                            securityDeposit = securityDeposit,
+                            tagCost = tagCost,
+                            debitAmt = debitAmount,
+                            vehicleDescriptor = vehicleDescriptor1,
+                            isNationalPermit = isNationalPermit1,
+                            permitExpiryDate = permitExpiryDate1,
+                            stateOfRegistration = stateOfRegistration1
+                        )
+
+                        val custDetails = CustDetails2(
+                            name = userName, mobileNo = mobile1, walletId = walletId1
+                        )
+
+                        val fasTagDetails = FasTagDetails(
+                            serialNo = "608268-001-0062357",
+                            tid = "",
+                            udf1 = "",
+                            udf2 = "",
+                            udf3 = "",
+                            udf4 = "",
+                            udf5 = ""
+                        )
+
+                        val request = RegisterTagRequest(
+                            regDetails = regDetails,
+                            vrnDetails = vrnDetails,
+                            custDetails = custDetails,
+                            fasTagDetails = fasTagDetails,
+                            provider = provider
+                        )
+                        viewModel.registerTag(sharedPrefManager.getToken().toString(), request)
+                    }
                 }
 
                 /** ---------- user details ----------- */
@@ -696,8 +923,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     } else if (tagafixFile == null) {
                         showErrorToast("Please upload TagaFix")
                     } else {
-                        showSuccessToast("Thank You")
-                        finish()
+                        registerTag()
                     }
                 }
             }

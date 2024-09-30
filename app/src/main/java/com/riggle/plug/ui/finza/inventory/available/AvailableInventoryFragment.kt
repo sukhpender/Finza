@@ -14,6 +14,7 @@ import com.riggle.plug.databinding.HolderUsersBinding
 import com.riggle.plug.ui.base.BaseFragment
 import com.riggle.plug.ui.base.BaseViewModel
 import com.riggle.plug.ui.base.SimpleRecyclerViewAdapter
+import com.riggle.plug.ui.finza.avtivation.ActivationFragment
 import com.riggle.plug.ui.finza.avtivation.ActivationFragment.Companion.isUpdatesAvailable
 import com.riggle.plug.ui.finza.inventory.forwarded.ForwardedInventoryFragment
 import com.riggle.plug.utils.Status
@@ -143,6 +144,7 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                         assignToId = 0
                         viewModel.getInventory(sharedPrefManager.getToken().toString(), "2")
                         ForwardedInventoryFragment.isUpdatesAvailable.value = true
+                        ActivationFragment.isUpdatesAvailable.value = true
                     }
                 }
 
@@ -229,7 +231,7 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                     for (i in 0..usersList.size - 1) {
                         usersList[i].isUserSelected = false
                     }
-                    isUserSelected = false
+                   // isUserSelected = false
                     binding.llUserView.visibility = View.VISIBLE
                     binding.rvHomeDrawer.visibility = View.GONE
                 }

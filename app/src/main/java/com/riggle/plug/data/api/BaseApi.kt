@@ -63,6 +63,8 @@ import com.riggle.plug.data.model.NetworkPendingOrdersResponseModel
 import com.riggle.plug.data.model.OwnOrderDetailsResponseModel
 import com.riggle.plug.data.model.PaymentStoreRequest
 import com.riggle.plug.data.model.ProjectListResponseModel
+import com.riggle.plug.data.model.RegisterTagRequest
+import com.riggle.plug.data.model.RegisterTagResponseModel
 import com.riggle.plug.data.model.ReportingManagerResponseModel
 import com.riggle.plug.data.model.ResetPasswordResponseModel
 import com.riggle.plug.data.model.SalesBeatCountResponseModel
@@ -300,5 +302,11 @@ interface BaseApi {
         @Part image: MultipartBody.Part,
         @Part("provider") provider: RequestBody,
     ): Response<UploadDocumentResponseModel>
+
+    @POST(Constants.REGISTER_TAG)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun registerTag(
+        @Header("Authorization") header: String, @Body reqBody: RegisterTagRequest
+    ): Response<RegisterTagResponseModel>
 
 }

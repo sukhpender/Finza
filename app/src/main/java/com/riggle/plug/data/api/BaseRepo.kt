@@ -13,6 +13,8 @@ import com.riggle.plug.data.model.IssueTagCheckWalletResponseModel
 import com.riggle.plug.data.model.IssueTagUserCreateResponseModel
 import com.riggle.plug.data.model.PaymentStoreRequest
 import com.riggle.plug.data.model.ProjectListResponseModel
+import com.riggle.plug.data.model.RegisterTagRequest
+import com.riggle.plug.data.model.RegisterTagResponseModel
 import com.riggle.plug.data.model.ResetPasswordResponseModel
 import com.riggle.plug.data.model.SendOtpIssueTagResponseModel
 import com.riggle.plug.data.model.SendOtpRequest
@@ -30,6 +32,10 @@ import com.riggle.plug.data.model.WalletTransactionsResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.Body
+import retrofit2.http.Header
+import retrofit2.http.Headers
+import retrofit2.http.POST
 
 interface BaseRepo {
 
@@ -144,4 +150,7 @@ interface BaseRepo {
         provider: RequestBody,
     ): Response<UploadDocumentResponseModel>
 
+    suspend fun registerTag(
+        header: String, reqBody: RegisterTagRequest
+    ): Response<RegisterTagResponseModel>
 }

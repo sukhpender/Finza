@@ -13,6 +13,8 @@ import com.riggle.plug.data.model.IssueTagCheckWalletResponseModel
 import com.riggle.plug.data.model.IssueTagUserCreateResponseModel
 import com.riggle.plug.data.model.PaymentStoreRequest
 import com.riggle.plug.data.model.ProjectListResponseModel
+import com.riggle.plug.data.model.RegisterTagRequest
+import com.riggle.plug.data.model.RegisterTagResponseModel
 import com.riggle.plug.data.model.ResetPasswordResponseModel
 import com.riggle.plug.data.model.SendOtpIssueTagResponseModel
 import com.riggle.plug.data.model.SendOtpRequest
@@ -176,5 +178,12 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         return apiService.bajajUploadDocument(
             header, requestId, sessionId, channel, agentId, reqDateTime, imageType, image, provider
         )
+    }
+
+    override suspend fun registerTag(
+        header: String,
+        reqBody: RegisterTagRequest
+    ): Response<RegisterTagResponseModel> {
+        return apiService.registerTag(header,reqBody)
     }
 }

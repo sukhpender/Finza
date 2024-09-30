@@ -30,7 +30,7 @@ class ForwardedInventoryFragment : BaseFragment<FragmentForwardedInventoryBindin
         initAdapter()
         initOnClick()
 
-        ActivationFragment.isUpdatesAvailable.observe(viewLifecycleOwner){ it ->
+        isUpdatesAvailable.observe(viewLifecycleOwner){ it ->
             if (it){
                 viewModel.getInventory(sharedPrefManager.getToken().toString(), "0")
             }

@@ -3,6 +3,8 @@ package com.riggle.plug.ui.finza.issueSuperTag.verify
 import com.riggle.plug.data.api.BaseRepo
 import com.riggle.plug.data.model.CreateCustomerRew
 import com.riggle.plug.data.model.IssueTagUserCreateResponseModel
+import com.riggle.plug.data.model.RegisterTagRequest
+import com.riggle.plug.data.model.RegisterTagResponseModel
 import com.riggle.plug.data.model.SendOtpIssueTagResponseModel
 import com.riggle.plug.data.model.SendOtpRequest
 import com.riggle.plug.data.model.UploadDocumentResponseModel
@@ -169,6 +171,32 @@ class VerifyTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) : 
             } catch (e: Exception) {
                 parseException(e.cause)?.let {
                     obrUploadDocument.postValue(Resource.error(null, it))
+                }
+            }
+        }
+    }
+
+    val obrRegisterTag = SingleRequestEvent<RegisterTagResponseModel>()
+    fun registerTag(header: String, request: RegisterTagRequest, ) {
+        Coroutines.io {
+            obrRegisterTag.postValue(Resource.loading(null))
+            try {
+                baseRepo.registerTag(header, request).let {
+                    if (it.isSuccessful) {
+                        it.body()?.let { results ->
+                            obrRegisterTag.postValue(Resource.success(results, "Success"))
+                        }
+                    } else {
+                        obrRegisterTag.postValue(
+                            Resource.error(
+                                null, handleErrorResponse(it.errorBody(), it.code())
+                            )
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                parseException(e.cause)?.let {
+                    obrRegisterTag.postValue(Resource.error(null, it))
                 }
             }
         }

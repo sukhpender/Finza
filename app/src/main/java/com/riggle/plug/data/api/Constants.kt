@@ -13,6 +13,7 @@ object Constants {
     const val VEHICLE_MAKERS_LIST = "api/vehicle-maker-list"
     const val CREATE_CUSTOMER_BAJAJ = "api/bajaj-customer-create"
     const val UPLOAD_DOCUMENTS = "api/upload-document"
+    const val REGISTER_TAG = "api/reg-fas-tag"
 
     const val WALLET_CREATE_CUSTOMER = "api/customer-create"
     const val UPDATE_PROFILE = "api/updateProfile"
