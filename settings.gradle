@@ -14,5 +14,5 @@ dependencyResolutionManagement {
         maven { url 'https://jitpack.io' }
     }
 }
-rootProject.name = "Riggle Plug"
+rootProject.name = "Finza_Finza"
 include ':app'

@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.wallet.WalletActivityVM" />
+            type="com.riggle.finza_finza.ui.finza.wallet.WalletActivityVM" />
 
     </data>
 

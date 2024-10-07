@@ -5,7 +5,7 @@
     <data>
         <variable
             name="callback"
-            type="com.riggle.plug.ui.base.ProgressSheet.BaseCallback" />
+            type="com.riggle.finza_finza.ui.base.ProgressSheet.BaseCallback" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

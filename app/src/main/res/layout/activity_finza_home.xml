@@ -9,11 +9,11 @@
 
         <variable
             name="bean"
-            type="com.riggle.plug.data.model.FinzaLoginData" />
+            type="com.riggle.finza_finza.data.model.FinzaLoginData" />
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.FinzaHomeActivityVM" />
+            type="com.riggle.finza_finza.ui.finza.FinzaHomeActivityVM" />
 
     </data>
 

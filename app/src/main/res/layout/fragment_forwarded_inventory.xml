@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.inventory.forwarded.ForwardedInventoryFragmentVM" />
+            type="com.riggle.finza_finza.ui.finza.inventory.forwarded.ForwardedInventoryFragmentVM" />
 
     </data>
 

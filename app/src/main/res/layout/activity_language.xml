@@ -7,7 +7,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.language.LanguageActivityVM" />
+            type="com.riggle.finza_finza.ui.finza.language.LanguageActivityVM" />
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout

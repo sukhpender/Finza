@@ -6,7 +6,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.base.BaseViewModel" />
+            type="com.riggle.finza_finza.ui.base.BaseViewModel" />
 
     </data>
 

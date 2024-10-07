@@ -6,7 +6,7 @@
     <data>
         <variable
             name="vm"
-            type="com.riggle.plug.ui.splash_screen.SplashScreenActivityVm" />
+            type="com.riggle.finza_finza.ui.splash_screen.SplashScreenActivityVm" />
 
     </data>
 

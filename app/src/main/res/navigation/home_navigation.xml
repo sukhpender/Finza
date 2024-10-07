@@ -7,13 +7,13 @@
 
     <fragment
         android:id="@+id/navigation_activation"
-        android:name="com.riggle.plug.ui.finza.avtivation.ActivationFragment"
+        android:name="com.riggle.finza_finza.ui.finza.avtivation.ActivationFragment"
         android:label="Activation"
         tools:layout="@layout/fragment_activation" />
 
     <fragment
         android:id="@+id/navigation_rockstars"
-        android:name="com.riggle.plug.ui.finza.rockstarts.RockStartsFragment"
+        android:name="com.riggle.finza_finza.ui.finza.rockstarts.RockStartsFragment"
         android:label="Rockstar"
         tools:layout="@layout/fragment_rock_starts" />
 

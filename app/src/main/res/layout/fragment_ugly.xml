@@ -9,7 +9,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.issuance.ugly1.UglyFragmentVM" />
+            type="com.riggle.finza_finza.ui.finza.issuance.ugly1.UglyFragmentVM" />
 
     </data>
 

@@ -6,7 +6,7 @@
 
         <variable
             name="callback"
-            type="com.riggle.plug.utils.BaseCustomDialog.Listener" />
+            type="com.riggle.finza_finza.utils.BaseCustomDialog.Listener" />
     </data>
 
     <LinearLayout

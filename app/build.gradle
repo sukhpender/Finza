@@ -6,16 +6,16 @@ plugins {
 }
 
 android {
-    namespace 'com.riggle.plug'
+    namespace 'com.riggle.finza_finza'
     compileSdk 34
     flavorDimensions "default"
 
     defaultConfig {
-        applicationId "com.riggle.plug"
+        applicationId "com.riggle.finza_finza"
         minSdk 24
         targetSdk 34
-        versionCode 4
-        versionName "1.0.3"
+        versionCode 1
+        versionName "1.0.0"
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
        // buildConfigField 'String', 'BASE_URL', "\"https://api.riggleapp.in/api/v1/\""
@@ -30,8 +30,8 @@ android {
          //   buildConfigField 'String', 'BASE_URL', "\"https://stagging.cluecoded.com/api/\""
         }
         production {
-            resValue 'string', 'app_name', "Finza"
-            buildConfigField 'String', 'BASE_URL', "\"https://mythefinza.com/\""
+            resValue 'string', 'app_name', "Finza_Finza"
+            buildConfigField 'String', 'BASE_URL', "\"https://my.thefinza.com/\""
         }
 
         android.applicationVariants.all { variant ->

@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.helpAndSupport.updateVehicleNumber.UpdateVehicleNumberActivityVM" />
+            type="com.riggle.finza_finza.ui.finza.helpAndSupport.updateVehicleNumber.UpdateVehicleNumberActivityVM" />
 
     </data>
 

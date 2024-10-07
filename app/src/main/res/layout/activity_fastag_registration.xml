@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.issueSuperTag.fastagReg.FastagRegistrationActivityVM" />
+            type="com.riggle.finza_finza.ui.finza.issueSuperTag.fastagReg.FastagRegistrationActivityVM" />
 
     </data>
 

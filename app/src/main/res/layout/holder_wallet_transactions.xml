@@ -9,7 +9,7 @@
 
         <variable
             name="callback"
-            type="com.riggle.plug.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+            type="com.riggle.finza_finza.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
 
         <variable
             name="pos"
@@ -17,7 +17,7 @@
 
         <variable
             name="bean"
-            type="com.riggle.plug.data.model.WalletTransactionsData" />
+            type="com.riggle.finza_finza.data.model.WalletTransactionsData" />
 
     </data>
 

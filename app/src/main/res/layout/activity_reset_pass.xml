@@ -12,11 +12,11 @@
 
         <variable
             name="bean"
-            type="com.riggle.plug.data.model.FinzaProfileData" />
+            type="com.riggle.finza_finza.data.model.FinzaProfileData" />
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.resetPass.ResetPassActivityVM" />
+            type="com.riggle.finza_finza.ui.finza.resetPass.ResetPassActivityVM" />
 
     </data>
 

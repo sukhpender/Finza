@@ -8,7 +8,7 @@
 
         <variable
             name="vm"
-            type="com.riggle.plug.ui.finza.helpAndSupport.needFastag.NeedFastagActivityVM" />
+            type="com.riggle.finza_finza.ui.finza.helpAndSupport.needFastag.NeedFastagActivityVM" />
 
     </data>
 
