@@ -617,11 +617,11 @@
                 </LinearLayout>
 
                 <LinearLayout
+                    android:visibility="gone"
                     android:id="@+id/llUploadDocument"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
                         android:id="@+id/cv1"
@@ -637,18 +637,38 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <TextView
-                                style="@style/TextView.InterRegular_12ssp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginTop="@dimen/_15ssp"
-                                android:fontFamily="@font/inter_semibold"
-                                android:foreground="?selectableItemBackground"
-                                android:onClick="@{v->vm.onClick(v)}"
-                                android:text="Upload RC Front Image"
-                                android:textColor="@color/fsm_text_color"
-                                android:textSize="@dimen/_12sdp" />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tvRcFront"
+                                    style="@style/TextView.InterRegular_12ssp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_15ssp"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:foreground="?selectableItemBackground"
+                                    android:onClick="@{v->vm.onClick(v)}"
+                                    android:text="Upload RC Front Image"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:textColor="@color/fsm_text_color"
+                                    android:textSize="@dimen/_12sdp" />
+
+                                <ImageView
+                                    android:id="@+id/ivRcFrontUploaded"
+                                    android:layout_width="@dimen/_24sdp"
+                                    android:layout_height="@dimen/_24sdp"
+                                    android:src="@drawable/check"
+                                    android:visibility="gone"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/tvRcFront"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tvRcFront" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/ivRCFront"
@@ -727,18 +747,37 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <TextView
-                                style="@style/TextView.InterRegular_12ssp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginTop="@dimen/_15ssp"
-                                android:fontFamily="@font/inter_semibold"
-                                android:foreground="?selectableItemBackground"
-                                android:onClick="@{v->vm.onClick(v)}"
-                                android:text="Upload RC Back Image"
-                                android:textColor="@color/fsm_text_color"
-                                android:textSize="@dimen/_12sdp" />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tvRcBack"
+                                    style="@style/TextView.InterRegular_12ssp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_15ssp"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:foreground="?selectableItemBackground"
+                                    android:onClick="@{v->vm.onClick(v)}"
+                                    android:text="Upload RC Back Image"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:textColor="@color/fsm_text_color"
+                                    android:textSize="@dimen/_12sdp" />
+                                <ImageView
+                                    android:id="@+id/ivRcBackUploaded"
+                                    android:layout_width="@dimen/_24sdp"
+                                    android:layout_height="@dimen/_24sdp"
+                                    android:visibility="gone"
+                                    android:src="@drawable/check"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/tvRcBack"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tvRcBack" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/ivRCBack"
@@ -817,18 +856,37 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <TextView
-                                style="@style/TextView.InterRegular_12ssp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginTop="@dimen/_15ssp"
-                                android:fontFamily="@font/inter_semibold"
-                                android:foreground="?selectableItemBackground"
-                                android:onClick="@{v->vm.onClick(v)}"
-                                android:text="Upload Car Front Image"
-                                android:textColor="@color/fsm_text_color"
-                                android:textSize="@dimen/_12sdp" />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tvCarFront"
+                                    style="@style/TextView.InterRegular_12ssp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_15ssp"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:foreground="?selectableItemBackground"
+                                    android:onClick="@{v->vm.onClick(v)}"
+                                    android:text="Upload Car Front Image"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:textColor="@color/fsm_text_color"
+                                    android:textSize="@dimen/_12sdp" />
+                                <ImageView
+                                    android:id="@+id/ivCarFrontUploaded"
+                                    android:layout_width="@dimen/_24sdp"
+                                    android:layout_height="@dimen/_24sdp"
+                                    android:visibility="gone"
+                                    android:src="@drawable/check"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/tvCarFront"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tvCarFront" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/ivCarFront"
@@ -919,18 +977,37 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <TextView
-                                style="@style/TextView.InterRegular_12ssp"
-                                android:layout_width="wrap_content"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginTop="@dimen/_15ssp"
-                                android:fontFamily="@font/inter_semibold"
-                                android:foreground="?selectableItemBackground"
-                                android:onClick="@{v->vm.onClick(v)}"
-                                android:text="Upload Car Side Image"
-                                android:textColor="@color/fsm_text_color"
-                                android:textSize="@dimen/_12sdp" />
+                            <androidx.constraintlayout.widget.ConstraintLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content">
+
+                                <TextView
+                                    android:id="@+id/tvCarSide"
+                                    style="@style/TextView.InterRegular_12ssp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_15ssp"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:foreground="?selectableItemBackground"
+                                    android:onClick="@{v->vm.onClick(v)}"
+                                    android:text="Upload Car Side Image"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:textColor="@color/fsm_text_color"
+                                    android:textSize="@dimen/_12sdp" />
+                                <ImageView
+                                    android:id="@+id/ivCarSdieUploaded"
+                                    android:layout_width="@dimen/_24sdp"
+                                    android:layout_height="@dimen/_24sdp"
+                                    android:visibility="gone"
+                                    android:src="@drawable/check"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/tvCarSide"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tvCarSide" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
 
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/ivCarSide"
@@ -1009,19 +1086,37 @@
                             android:layout_height="wrap_content"
                             android:orientation="vertical">
 
-                            <TextView
-                                style="@style/TextView.InterRegular_12ssp"
+                            <androidx.constraintlayout.widget.ConstraintLayout
                                 android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:layout_marginHorizontal="@dimen/_12sdp"
-                                android:layout_marginTop="@dimen/_15ssp"
-                                android:fontFamily="@font/inter_semibold"
-                                android:foreground="?selectableItemBackground"
-                                android:onClick="@{v->vm.onClick(v)}"
-                                android:text="Upload TAGAFFIX"
-                                android:textColor="@color/fsm_text_color"
-                                android:textSize="@dimen/_12sdp" />
+                                android:layout_height="wrap_content">
 
+                                <TextView
+                                    android:id="@+id/tvTagaFix"
+                                    style="@style/TextView.InterRegular_12ssp"
+                                    android:layout_width="wrap_content"
+                                    android:layout_height="wrap_content"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    android:layout_marginTop="@dimen/_15ssp"
+                                    android:fontFamily="@font/inter_semibold"
+                                    android:foreground="?selectableItemBackground"
+                                    android:onClick="@{v->vm.onClick(v)}"
+                                    android:text="Upload TAGAFFIX"
+                                    app:layout_constraintStart_toStartOf="parent"
+                                    app:layout_constraintTop_toTopOf="parent"
+                                    android:textColor="@color/fsm_text_color"
+                                    android:textSize="@dimen/_12sdp" />
+                                <ImageView
+                                    android:id="@+id/ivTagaFixUploaded"
+                                    android:layout_width="@dimen/_24sdp"
+                                    android:layout_height="@dimen/_24sdp"
+                                    android:src="@drawable/check"
+                                    android:visibility="gone"
+                                    android:layout_marginHorizontal="@dimen/_12sdp"
+                                    app:layout_constraintEnd_toEndOf="parent"
+                                    app:layout_constraintTop_toTopOf="@+id/tvTagaFix"
+                                    app:layout_constraintBottom_toBottomOf="@+id/tvTagaFix" />
+
+                            </androidx.constraintlayout.widget.ConstraintLayout>
                             <com.google.android.material.imageview.ShapeableImageView
                                 android:id="@+id/ivTAGAFFIX"
                                 android:layout_width="@dimen/_180sdp"
@@ -1091,7 +1186,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="@dimen/_40sdp"
                         android:layout_marginVertical="@dimen/_25sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
+                        android:layout_marginStart="@dimen/_10sdp"
                         android:layout_marginEnd="@dimen/_10sdp"
                         android:layout_weight="1"
                         android:background="@drawable/edit_back_view"
@@ -1142,9 +1237,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="8dp"
-                        android:clickable="false"
-                        android:editable="false"
-                        android:enabled="false"
                         android:imeOptions="actionNext"
                         android:inputType="text" />
 
@@ -1271,8 +1363,6 @@
                         android:layout_width="match_parent"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="8dp"
-                        android:clickable="false"
-                        android:editable="false"
                         android:enabled="false"
                         android:imeOptions="actionNext"
                         android:inputType="text" />
@@ -1292,10 +1382,7 @@
                         style="@style/EditText.Phone"
                         android:layout_width="match_parent"
                         android:layout_marginHorizontal="@dimen/_10sdp"
-                        android:layout_marginTop="8dp"
-                        android:clickable="false"
-                        android:editable="false"
-                        android:enabled="false" />
+                        android:layout_marginTop="8dp" />
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
@@ -1333,11 +1420,29 @@
                         android:layout_width="match_parent"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="8dp"
-                        android:clickable="false"
-                        android:editable="false"
-                        android:enabled="false"
                         android:imeOptions="actionNext"
                         android:inputType="text" />
+
+                    <LinearLayout
+                        android:id="@+id/llManufacturer"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/spManufacturer"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+                    </LinearLayout>
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
@@ -1349,17 +1454,235 @@
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_12sdp" />
 
+                    <LinearLayout
+                        android:id="@+id/llModel"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/spModel"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+
+                    </LinearLayout>
+
                     <EditText
                         android:id="@+id/etv9"
                         style="@style/EditText.Phone"
                         android:layout_width="match_parent"
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="8dp"
-                        android:clickable="false"
-                        android:editable="false"
-                        android:enabled="false"
                         android:imeOptions="actionNext"
                         android:inputType="text" />
+
+                    <TextView
+                        android:id="@+id/tvVehicleColor"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Vehicle Color"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/llVehicleColor"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/spVehicleColor"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+
+                    </LinearLayout>
+
+
+                    <TextView
+                        android:id="@+id/tvVehicleDiscriptor"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Vehicle Descriptor"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/llVehicleDoscriptor"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/spVehicleDiscriptor"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvType"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Type"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/llType"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/spType"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvVehicleType"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Vehicle Type"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/llVehicleType"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/spVehicleType"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvVehicleClassId"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Tag Vehicle Class ID"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/llVehicleClassID"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/spVehicleClassId"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/tvNPCIVehicleClassId"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="NPCI Tag Vehicle Class ID"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/llNPCIVehicleClassID"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center">
+
+                        <Spinner
+                            android:id="@+id/spNpciVehicleClassId"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+
+                    </LinearLayout>
 
                     <!--                    <TextView-->
                     <!--                        style="@style/TextView.InterRegular_12ssp"-->
@@ -1566,72 +1889,99 @@
                     <!--                    </LinearLayout>-->
 
 
-                    <!--                    <CheckBox-->
-                    <!--                        android:layout_width="wrap_content"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginHorizontal="@dimen/_15sdp"-->
-                    <!--                        android:layout_marginTop="@dimen/_10sdp"-->
-                    <!--                        android:buttonTint="@color/line_color"-->
-                    <!--                        android:fontFamily="@font/inter_regular"-->
-                    <!--                        android:paddingStart="@dimen/_5sdp"-->
-                    <!--                        android:text="National Permit"-->
-                    <!--                        android:textSize="@dimen/_12ssp" />-->
+                                        <CheckBox
+                                            android:id="@+id/cbNationalPermit"
+                                            android:layout_width="wrap_content"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginHorizontal="@dimen/_5sdp"
+                                            android:layout_marginTop="@dimen/_10sdp"
+                                            android:buttonTint="@color/line_color"
+                                            android:fontFamily="@font/inter_regular"
+                                            android:paddingStart="@dimen/_5sdp"
+                                            android:text="National Permit"
+                                            android:textSize="@dimen/_12ssp" />
 
-                    <!--                    <TextView-->
-                    <!--                        style="@style/TextView.InterRegular_12ssp"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginStart="@dimen/_16sdp"-->
-                    <!--                        android:layout_marginEnd="@dimen/_16sdp"-->
-                    <!--                        android:text="Permit Expiry Date"-->
-                    <!--                        android:textColor="@color/fsm_text_color"-->
-                    <!--                        android:textSize="@dimen/_12sdp" />-->
+                                        <TextView
+                                            android:id="@+id/tvNationalPermit"
+                                            style="@style/TextView.InterRegular_12ssp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_10sdp"
+                                            android:layout_marginEnd="@dimen/_16sdp"
+                                            android:text="Permit Expiry Date"
+                                            android:textColor="@color/fsm_text_color"
+                                            android:textSize="@dimen/_12sdp" />
 
-                    <!--                    <EditText-->
-                    <!--                        android:id="@+id/etv17"-->
-                    <!--                        style="@style/EditText.Phone"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_marginHorizontal="@dimen/_15sdp"-->
-                    <!--                        android:layout_marginTop="8dp"-->
-                    <!--                        android:clickable="false"-->
-                    <!--                        android:editable="false"-->
-                    <!--                        android:drawableTint="@color/line_color"-->
-                    <!--                        android:drawableEnd="@drawable/calendar1"-->
-                    <!--                        android:enabled="false"-->
-                    <!--                        android:imeOptions="actionNext"-->
-                    <!--                        android:inputType="text"-->
-                    <!--                        android:text="2025-05-25" />-->
+                    <LinearLayout
+                        android:id="@+id/llPermitExpiry"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view"
+                        android:foreground="?selectableItemBackground"
+                        android:onClick="@{v-> vm.onClick(v)}">
 
-                    <!--                    <TextView-->
-                    <!--                        style="@style/TextView.InterRegular_12ssp"-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="wrap_content"-->
-                    <!--                        android:layout_marginStart="@dimen/_16sdp"-->
-                    <!--                        android:layout_marginTop="@dimen/_10ssp"-->
-                    <!--                        android:layout_marginEnd="@dimen/_16sdp"-->
-                    <!--                        android:text="State of Registration"-->
-                    <!--                        android:textColor="@color/fsm_text_color"-->
-                    <!--                        android:textSize="@dimen/_12sdp" />-->
+                        <TextView
+                            android:id="@+id/etvPermitExpiry"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:editable="false"
+                            android:gravity="center_vertical"
+                            android:hint="Select permit expiry date"
+                            android:onClick="@{v-> vm.onClick(v)}"
+                            android:paddingHorizontal="@dimen/_10sdp"
+                            android:textAllCaps="true"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_13ssp" />
 
-                    <!--                    <LinearLayout-->
-                    <!--                        android:layout_width="match_parent"-->
-                    <!--                        android:layout_height="@dimen/_40sdp"-->
-                    <!--                        android:layout_gravity="center"-->
-                    <!--                        android:layout_marginHorizontal="@dimen/_15sdp"-->
-                    <!--                        android:layout_marginTop="8dp"-->
-                    <!--                        android:background="@drawable/edit_back_view1"-->
-                    <!--                        android:gravity="center">-->
+                        <ImageView
+                            android:id="@+id/ivPermitExpiry"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="0.1"
+                            android:onClick="@{v-> vm.onClick(v)}"
+                            android:padding="@dimen/_3sdp"
+                            android:src="@drawable/calendar1"
+                            app:tint="@color/line_color" />
 
-                    <!--                        <Spinner-->
-                    <!--                            android:id="@+id/spStates"-->
-                    <!--                            style="@style/spinnerStyle"-->
-                    <!--                            android:layout_width="wrap_content"-->
-                    <!--                            android:layout_height="@dimen/_25sdp"-->
-                    <!--                            android:layout_gravity="center"-->
-                    <!--                            android:dropDownVerticalOffset="@dimen/_25sdp"-->
-                    <!--                            android:gravity="center"-->
-                    <!--                            android:paddingEnd="@dimen/_15sdp" />-->
-                    <!--                    </LinearLayout>-->
+                    </LinearLayout>
+
+
+                    <TextView
+                                            android:id="@+id/tvStateOfRegistration"
+                                            style="@style/TextView.InterRegular_12ssp"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="wrap_content"
+                                            android:layout_marginStart="@dimen/_10sdp"
+                                            android:layout_marginTop="@dimen/_10ssp"
+                                            android:layout_marginEnd="@dimen/_16sdp"
+                                            android:text="State of Registration"
+                                            android:textColor="@color/fsm_text_color"
+                                            android:textSize="@dimen/_12sdp" />
+
+                                        <LinearLayout
+                                            android:id="@+id/llStateOfRegistration"
+                                            android:layout_width="match_parent"
+                                            android:layout_height="@dimen/_40sdp"
+                                            android:layout_gravity="center"
+                                            android:layout_marginHorizontal="@dimen/_10sdp"
+                                            android:layout_marginTop="8dp"
+                                            android:background="@drawable/edit_back_view1"
+                                            android:gravity="center">
+
+                                            <Spinner
+                                                android:id="@+id/spStates"
+                                                style="@style/spinnerStyle"
+                                                android:layout_width="wrap_content"
+                                                android:layout_height="@dimen/_25sdp"
+                                                android:layout_gravity="center"
+                                                android:dropDownVerticalOffset="@dimen/_25sdp"
+                                                android:gravity="center"
+                                                android:paddingEnd="@dimen/_15sdp" />
+                                        </LinearLayout>
 
 
                     <CheckBox
@@ -1772,6 +2122,7 @@
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="8dp"
                         android:imeOptions="actionNext"
+                        android:enabled="false"
                         android:inputType="number" />
 
                     <TextView
@@ -1792,6 +2143,7 @@
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="8dp"
                         android:imeOptions="actionNext"
+                        android:enabled="false"
                         android:inputType="number" />
 
                     <TextView
@@ -1811,6 +2163,7 @@
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="8dp"
                         android:imeOptions="actionNext"
+                        android:enabled="false"
                         android:inputType="number" />
 
                     <TextView
@@ -1830,6 +2183,8 @@
                         android:layout_marginHorizontal="@dimen/_10sdp"
                         android:layout_marginTop="8dp"
                         android:imeOptions="actionNext"
+                        android:enabled="false"
+                        android:text="400"
                         android:inputType="number" />
 
                     <TextView

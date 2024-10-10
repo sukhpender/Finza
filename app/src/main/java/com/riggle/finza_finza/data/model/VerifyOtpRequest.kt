@@ -7,7 +7,8 @@ class VerifyOtpRequest(
     var channel: String = "",
     var agentId: String = "",
     var reqDateTime: String = "",
-    var provider: String = ""
+    var provider: String = "",
+    var inventory_id: String = ""
 )
 
 

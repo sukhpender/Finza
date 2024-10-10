@@ -11,6 +11,8 @@ import com.riggle.finza_finza.data.model.UploadDocumentResponseModel
 import com.riggle.finza_finza.data.model.ValidateOtpRequest
 import com.riggle.finza_finza.data.model.VehicleMakersListResponseModel
 import com.riggle.finza_finza.data.model.VehicleMakersRequest
+import com.riggle.finza_finza.data.model.VehicleModelListResponseModel
+import com.riggle.finza_finza.data.model.VehicleModelRequest
 import com.riggle.finza_finza.data.model.VerifyOtpResponseModel
 import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.utils.Coroutines
@@ -104,6 +106,32 @@ class VerifyTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) : 
         }
     }
 
+    val obrModelList = SingleRequestEvent<VehicleModelListResponseModel>()
+    fun getModelsList(header: String, reqBody: VehicleModelRequest) {
+        Coroutines.io {
+            obrModelList.postValue(Resource.loading(null))
+            try {
+                baseRepo.vehicleModelList(header, reqBody).let {
+                    if (it.isSuccessful) {
+                        it.body()?.let { results ->
+                            obrModelList.postValue(Resource.success(results, "Success"))
+                        }
+                    } else {
+                        obrModelList.postValue(
+                            Resource.error(
+                                null, handleErrorResponse(it.errorBody(), it.code())
+                            )
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                parseException(e.cause)?.let {
+                    obrModelList.postValue(Resource.error(null, it))
+                }
+            }
+        }
+    }
+
     val obrCreateBajajCustomer = SingleRequestEvent<IssueTagUserCreateResponseModel>()
     fun createCustomer(header: String, reqBody: CreateCustomerRew) {
         Coroutines.io {
@@ -141,6 +169,7 @@ class VerifyTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) : 
         imageType: RequestBody,
         image: MultipartBody.Part,
         provider: RequestBody,
+        inventory_id: RequestBody,
     ) {
         Coroutines.io {
             obrUploadDocument.postValue(Resource.loading(null))
@@ -154,7 +183,8 @@ class VerifyTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) : 
                     reqDateTime,
                     imageType,
                     image,
-                    provider
+                    provider,
+                    inventory_id
                 ).let {
                     if (it.isSuccessful) {
                         it.body()?.let { results ->

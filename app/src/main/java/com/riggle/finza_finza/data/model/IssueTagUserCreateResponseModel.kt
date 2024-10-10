@@ -15,7 +15,7 @@ data class CustDetails1(
     val udf3: String,
     val udf4: String,
     val udf5: String,
-    val walletId: String,
+    val walletId: String?,
     val walletStatus: String
 )
 

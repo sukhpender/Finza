@@ -89,6 +89,12 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     if (it.data != null) {
+                        val tagNumber1 = binding.etvFastTagId1.text.toString()
+                        val tagNumber2 = binding.etvFastTagId2.text.toString()
+                        val tagNumber3 = binding.etvFastTagId3.text.toString()
+                        val finalTN = "$tagNumber1-$tagNumber2-$tagNumber3"
+                        VerifyTagActivity.FastTagNumber = finalTN
+                        VerifyTagActivity.FastTagId = it.data.data.id.toString()
                         startActivity(VerifyTagActivity.newIntent(this))
                     }
                 }

@@ -11,6 +11,8 @@ data class HomeInventoryData(
     val inHandInventory: Int,
     val incomingInventory: Int,
     val old_inventory: Int,
+    val today_performance: Int,
+    val today_income: Int,
     val project_detail: ProjectDetail2
 )
 

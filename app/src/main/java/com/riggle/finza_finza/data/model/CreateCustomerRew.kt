@@ -7,7 +7,8 @@ data class CreateCustomerRew(
 data class CustomerRequest(
     val reqWallet: RequestWallet,
     val custDetails: CustomerDetails,
-    val provider: String
+    val provider: String,
+    val inventory_id: String
 )
 
 data class RequestWallet(

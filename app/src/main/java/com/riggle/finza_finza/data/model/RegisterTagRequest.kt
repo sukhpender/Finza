@@ -7,7 +7,8 @@ data class RegisterTagRequest(
     @Json(name = "vrnDetails") val vrnDetails: VrnDetails1,
     @Json(name = "custDetails") val custDetails: CustDetails2,
     @Json(name = "fasTagDetails") val fasTagDetails: FasTagDetails,
-    @Json(name = "provider") val provider: String
+    @Json(name = "provider") val provider: String,
+    @Json(name = "inventory_id") val inventory_id: String
 )
 
 data class RegDetails(
@@ -20,7 +21,7 @@ data class RegDetails(
 
 data class VrnDetails1(
     val vrn: String,
-    val chassis: String,
+    val chassis: String?,
     val engine: String,
     val vehicleManuf: String,
     val model: String,

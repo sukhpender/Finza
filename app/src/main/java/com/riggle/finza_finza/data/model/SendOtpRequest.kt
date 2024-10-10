@@ -15,9 +15,10 @@ data class SendOtpRequest(
     var udf3: String = "",
     var udf4: String = "",
     var udf5: String = "",
-    var vehicleNo: String = ""
+    var vehicleNo: String = "",
+    var inventory_id: String = ""
 ) {
     override fun toString(): String {
-        return "SendOtpRequest(chassisNo=$chassisNo, engineNo=$engineNo, isChassis=$isChassis, mobileNo=$mobileNo, provider=$provider, reqDateTime=$reqDateTime, reqType=$reqType, requestId=$requestId, resend=$resend, udf1=\"$udf1\", udf2=\"$udf2\", udf3=\"$udf3\", udf4=\"$udf4\", udf5=\"$udf5\", vehicleNo=$vehicleNo)"
+        return "SendOtpRequest(chassisNo=$chassisNo, engineNo=$engineNo, isChassis=$isChassis, mobileNo=$mobileNo, provider=$provider, reqDateTime=$reqDateTime, reqType=$reqType, requestId=$requestId, resend=$resend, udf1=\"$udf1\", udf2=\"$udf2\", udf3=\"$udf3\", udf4=\"$udf4\", udf5=\"$udf5\",vehicleNo=\"$vehicleNo\", inventory_id=$inventory_id)"
     }
 }

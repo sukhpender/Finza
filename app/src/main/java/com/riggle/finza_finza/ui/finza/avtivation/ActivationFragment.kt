@@ -43,6 +43,8 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
                     if (it.data != null) {
                         binding.tv4.text = it.data.data.incomingInventory.toString()
                         binding.tv6.text = it.data.data.inHandInventory.toString()
+                        binding.tvTFCount.text = it.data.data.today_performance.toString()
+                        binding.tvTFCountAmount.text = "₹ "+it.data.data.today_income.toString()
                         binding.tv8.text = it.data.data.old_inventory.toString()
                     }
                 }

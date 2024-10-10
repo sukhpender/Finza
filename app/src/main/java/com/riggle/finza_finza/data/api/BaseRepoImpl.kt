@@ -27,6 +27,8 @@ import com.riggle.finza_finza.data.model.UsersListResponseModel
 import com.riggle.finza_finza.data.model.ValidateOtpRequest
 import com.riggle.finza_finza.data.model.VehicleMakersListResponseModel
 import com.riggle.finza_finza.data.model.VehicleMakersRequest
+import com.riggle.finza_finza.data.model.VehicleModelListResponseModel
+import com.riggle.finza_finza.data.model.VehicleModelRequest
 import com.riggle.finza_finza.data.model.VerifyOtpResponseModel
 import com.riggle.finza_finza.data.model.WalletCreateCustomerResponseModel
 import com.riggle.finza_finza.data.model.WalletTransactionsResponseModel
@@ -70,6 +72,13 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         header: String, reqBody: VehicleMakersRequest
     ): Response<VehicleMakersListResponseModel> {
         return apiService.vehicleMakersList(header, reqBody)
+    }
+
+    override suspend fun vehicleModelList(
+        header: String,
+        reqBody: VehicleModelRequest
+    ): Response<VehicleModelListResponseModel> {
+        return apiService.vehicleModelList(header,reqBody)
     }
 
     override suspend fun createCustomerBajaj(
@@ -181,10 +190,11 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         reqDateTime: RequestBody,
         imageType: RequestBody,
         image: MultipartBody.Part,
-        provider: RequestBody
+        provider: RequestBody,
+        inventory_id: RequestBody
     ): Response<UploadDocumentResponseModel> {
         return apiService.bajajUploadDocument(
-            header, requestId, sessionId, channel, agentId, reqDateTime, imageType, image, provider
+            header, requestId, sessionId, channel, agentId, reqDateTime, imageType, image, provider,inventory_id
         )
     }
 

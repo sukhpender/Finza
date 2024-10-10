@@ -27,12 +27,15 @@ import com.riggle.finza_finza.data.model.UsersListResponseModel
 import com.riggle.finza_finza.data.model.ValidateOtpRequest
 import com.riggle.finza_finza.data.model.VehicleMakersListResponseModel
 import com.riggle.finza_finza.data.model.VehicleMakersRequest
+import com.riggle.finza_finza.data.model.VehicleModelListResponseModel
+import com.riggle.finza_finza.data.model.VehicleModelRequest
 import com.riggle.finza_finza.data.model.VerifyOtpResponseModel
 import com.riggle.finza_finza.data.model.WalletCreateCustomerResponseModel
 import com.riggle.finza_finza.data.model.WalletTransactionsResponseModel
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
+import retrofit2.http.Body
 import retrofit2.http.Header
 
 interface BaseRepo {
@@ -64,6 +67,10 @@ interface BaseRepo {
     suspend fun vehicleMakersList(
         header: String, reqBody: VehicleMakersRequest
     ): Response<VehicleMakersListResponseModel>
+
+    suspend fun vehicleModelList(
+        header: String,reqBody: VehicleModelRequest
+    ): Response<VehicleModelListResponseModel>
 
     suspend fun createCustomerBajaj(
         header: String, reqBody: CreateCustomerRew
@@ -151,6 +158,7 @@ interface BaseRepo {
         imageType: RequestBody,
         image: MultipartBody.Part,
         provider: RequestBody,
+        inventory_id: RequestBody,
     ): Response<UploadDocumentResponseModel>
 
     suspend fun registerTag(

@@ -27,6 +27,8 @@ import com.riggle.finza_finza.data.model.UsersListResponseModel
 import com.riggle.finza_finza.data.model.ValidateOtpRequest
 import com.riggle.finza_finza.data.model.VehicleMakersListResponseModel
 import com.riggle.finza_finza.data.model.VehicleMakersRequest
+import com.riggle.finza_finza.data.model.VehicleModelListResponseModel
+import com.riggle.finza_finza.data.model.VehicleModelRequest
 import com.riggle.finza_finza.data.model.VerifyOtpResponseModel
 import com.riggle.finza_finza.data.model.WalletCreateCustomerResponseModel
 import com.riggle.finza_finza.data.model.WalletTransactionsResponseModel
@@ -87,6 +89,13 @@ interface BaseApi {
     suspend fun vehicleMakersList(
         @Header("Authorization") header: String, @Body reqBody: VehicleMakersRequest
     ): Response<VehicleMakersListResponseModel>
+
+
+    @POST(Constants.VEHICLE_MODE_LIST)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun vehicleModelList(
+        @Header("Authorization") header: String, @Body reqBody: VehicleModelRequest
+    ): Response<VehicleModelListResponseModel>
 
     @POST(Constants.CREATE_CUSTOMER_BAJAJ)
     @Headers(Constants.X_APP_ACCEPT)
@@ -235,6 +244,7 @@ interface BaseApi {
         @Part("imageType") imageType: RequestBody,
         @Part image: MultipartBody.Part,
         @Part("provider") provider: RequestBody,
+        @Part("inventory_id") inventory_id: RequestBody,
     ): Response<UploadDocumentResponseModel>
 
     @POST(Constants.REGISTER_TAG)

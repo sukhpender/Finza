@@ -117,7 +117,7 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                     WalletActivity.isMoneyAdded.value = true
                     showHideLoader(false)
                     if (it.data != null) {
-                       // it.data.message.let { it1 -> showSuccessToast(it1) }
+                        // it.data.message.let { it1 -> showSuccessToast(it1) }
                     }
                     finish()
                 }
@@ -144,7 +144,7 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
-                  showSuccessToast(it.data?.message.toString())
+                    showSuccessToast(it.data?.message.toString())
                     finish()
                 }
 
@@ -174,18 +174,24 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                     // value will ended in subunits like for 1 Ruppe send 1000
                     if (binding.amount == "") {
                         showErrorToast("Enter minimum amount 200")
-                    } else if (binding.amount != "" && binding.amount!!.toInt() < 200) {
-                        showErrorToast("Minimum amount required 200")
-                    } else if (binding.amount != "" && binding.amount!!.toInt() > 10000) {
-                        showErrorToast("Maximum amount 10000")
                     } else {
                         sharedPrefManager.getCurrentUser()?.let { it1 ->
                             val totalAmount = binding.amount!!.toInt() * 1000
                             amount = (totalAmount / 1000).toString()
-                             viewModel.createPaymentLink(sharedPrefManager.getToken().toString(),amount)
-                           // viewModel.createCustomer(sharedPrefManager.getToken().toString())
+                            viewModel.createPaymentLink(
+                                sharedPrefManager.getToken().toString(),
+                                amount
+                            )
+                            // viewModel.createCustomer(sharedPrefManager.getToken().toString())
                         }
                     }
+
+//                    else if (binding.amount != "" && binding.amount!!.toInt() < 200) {
+//                        showErrorToast("Minimum amount required 200")
+//                    } else if (binding.amount != "" && binding.amount!!.toInt() > 10000) {
+//                        showErrorToast("Maximum amount 10000")
+//                   608268 001 0624245 }
+
                 }
 
                 R.id.tv500 -> {

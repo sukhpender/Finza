@@ -154,6 +154,7 @@
                         android:background="@color/white" />
 
                     <TextView
+                        android:id="@+id/tvTFCount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_30sdp"
@@ -207,6 +208,7 @@
                         android:background="@color/white" />
 
                     <TextView
+                        android:id="@+id/tvTFCountAmount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="@dimen/_30sdp"

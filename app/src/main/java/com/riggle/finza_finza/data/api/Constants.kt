@@ -11,6 +11,7 @@ object Constants {
     const val SEND_OTP_TAG_ISSUE = "api/send-otp"
     const val VERIFY_OTP_TAG_ISSUE = "api/verify-otp"
     const val VEHICLE_MAKERS_LIST = "api/vehicle-maker-list"
+    const val VEHICLE_MODE_LIST = "api/vehicle-model-list"
     const val CREATE_CUSTOMER_BAJAJ = "api/bajaj-customer-create"
     const val UPLOAD_DOCUMENTS = "api/upload-document"
     const val REGISTER_TAG = "api/reg-fas-tag"
