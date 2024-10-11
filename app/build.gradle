@@ -25,7 +25,7 @@ android {
     productFlavors {
         develop {
             applicationIdSuffix ".dev"
-            resValue 'string', 'app_name', "Finza Dev"
+            resValue 'string', 'app_name', "Finza"
             buildConfigField 'String', 'BASE_URL', "\"https://my.thefinza.com/\""
          //   buildConfigField 'String', 'BASE_URL', "\"https://stagging.cluecoded.com/api/\""
         }
