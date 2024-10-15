@@ -10,10 +10,14 @@ data class HomeInventoryResponseModel(
 data class HomeInventoryData(
     val inHandInventory: Int,
     val incomingInventory: Int,
+    val last_month_income: Int,
+    val last_month_performance: Int,
     val old_inventory: Int,
-    val today_performance: Int,
+    val project_detail: ProjectDetail2,
+    val this_month_income: String,
+    val this_month_performance: Int,
     val today_income: Int,
-    val project_detail: ProjectDetail2
+    val today_performance: Int
 )
 
 data class ProjectDetail2(

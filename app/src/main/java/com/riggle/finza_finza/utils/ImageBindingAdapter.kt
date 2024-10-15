@@ -61,6 +61,9 @@ object ImageBindingAdapter {
             1 -> {
                 textView.text = "Debited"
             }
+            4 -> {
+                textView.text = "Debited"
+            }
 
             2 -> {
                 textView.text = "Refunded"
@@ -81,6 +84,9 @@ object ImageBindingAdapter {
             }
 
             1 -> {
+                textView.text = "Debit"
+            }
+            4 -> {
                 textView.text = "Debit"
             }
 

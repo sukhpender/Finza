@@ -52,7 +52,7 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
     @CallSuper
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
+      //  AppCompatDelegate.setDefaultNightMode(AppCompatDelegate.MODE_NIGHT_NO)
 
         val layout: Int = getLayoutResource()
         binding = DataBindingUtil.setContentView(this, layout)
@@ -149,7 +149,6 @@ abstract class BaseActivity<Binding : ViewDataBinding> : AppCompatActivity(),
     }
 
     override fun onDestroy() {
-
         connectivityProvider.removeListener(this)
         super.onDestroy()
     }

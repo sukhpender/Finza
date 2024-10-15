@@ -2,6 +2,7 @@ package com.riggle.finza_finza.ui.finza.issueSuperTag.verify
 
 import com.riggle.finza_finza.data.api.BaseRepo
 import com.riggle.finza_finza.data.model.CreateCustomerRew
+import com.riggle.finza_finza.data.model.IssueTagCheckWalletResponseModel
 import com.riggle.finza_finza.data.model.IssueTagUserCreateResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
 import com.riggle.finza_finza.data.model.RegisterTagResponseModel
@@ -66,7 +67,7 @@ class VerifyTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) : 
                     } else {
                         obrVerifyOtp.postValue(
                             Resource.error(
-                                null, handleErrorResponse(it.errorBody(), it.code())
+                                it.body(), handleErrorResponse(it.errorBody(), it.code())
                             )
                         )
                     }
@@ -78,7 +79,6 @@ class VerifyTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) : 
             }
         }
     }
-
 
     val obrMakersList = SingleRequestEvent<VehicleMakersListResponseModel>()
     fun getMakersList(header: String, reqBody: VehicleMakersRequest) {
@@ -227,6 +227,32 @@ class VerifyTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) : 
             } catch (e: Exception) {
                 parseException(e.cause)?.let {
                     obrRegisterTag.postValue(Resource.error(null, it))
+                }
+            }
+        }
+    }
+
+    val obrIssueTagCheckWallet = SingleRequestEvent<IssueTagCheckWalletResponseModel>()
+    fun issueTagCheckWallet(token: String) {
+        Coroutines.io {
+            obrIssueTagCheckWallet.postValue(Resource.loading(null))
+            try {
+                baseRepo.issueTagCheckWallet(token).let {
+                    if (it.isSuccessful) {
+                        it.body()?.let { results ->
+                            obrIssueTagCheckWallet.postValue(Resource.success(results, "Success"))
+                        }
+                    } else {
+                        obrIssueTagCheckWallet.postValue(
+                            Resource.error(
+                                null, handleErrorResponse(it.errorBody(),it.code())
+                            )
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                parseException(e.cause)?.let {
+                    obrIssueTagCheckWallet.postValue(Resource.error(null, it))
                 }
             }
         }

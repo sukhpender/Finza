@@ -1,6 +1,14 @@
 package com.riggle.finza_finza.data.model
 
+
 data class RegisterTagResponseModel(
+    val `data`: Data7,
+    val message: String,
+    val status: String,
+    val statusCode: Int
+)
+
+data class Data7(
     val response: RegisterTagResponse,
     val tagRegistrationResp: TagRegistrationResp
 )

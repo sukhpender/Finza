@@ -165,6 +165,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
+                        android:id="@+id/tvCurrentValue"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -175,6 +176,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
+                        android:id="@+id/tvLastValue"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -219,6 +221,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
+                        android:id="@+id/tvCMAmount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -229,6 +232,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
+                        android:id="@+id/tvLMAmount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

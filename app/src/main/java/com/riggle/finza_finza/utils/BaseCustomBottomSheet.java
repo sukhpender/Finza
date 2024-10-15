@@ -17,7 +17,6 @@ import com.riggle.finza_finza.BR;
 import com.riggle.finza_finza.R;
 import com.google.android.material.bottomsheet.BottomSheetDialog;
 
-
 public class BaseCustomBottomSheet<V extends ViewDataBinding> extends BottomSheetDialog {
 
     private Context context;

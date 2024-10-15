@@ -59,7 +59,6 @@ import java.util.Calendar
 import java.util.Locale
 import kotlin.random.Random
 
-
 @AndroidEntryPoint
 class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
@@ -105,16 +104,78 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     private var vehicleMakersList = ArrayList<String>()
     private var vehicleModelList = ArrayList<String>()
     val vehicleColors = arrayListOf(
-        "Black", "White", "Silver", "Gray", "Blue", "Red", "Green", "Yellow", "Orange",
-        "Brown", "Beige", "Purple", "Pink", "Gold", "Bronze", "Turquoise", "Maroon",
-        "Teal", "Copper", "Champagne", "Emerald", "Lavender", "Burgundy", "Tan",
-        "Charcoal", "Cream", "Platinum", "Pearl", "Sky Blue", "Aqua", "Rose Gold"
+        "Black",
+        "White",
+        "Silver",
+        "Gray",
+        "Blue",
+        "Red",
+        "Green",
+        "Yellow",
+        "Orange",
+        "Brown",
+        "Beige",
+        "Purple",
+        "Pink",
+        "Gold",
+        "Bronze",
+        "Turquoise",
+        "Maroon",
+        "Teal",
+        "Copper",
+        "Champagne",
+        "Emerald",
+        "Lavender",
+        "Burgundy",
+        "Tan",
+        "Charcoal",
+        "Cream",
+        "Platinum",
+        "Pearl",
+        "Sky Blue",
+        "Aqua",
+        "Rose Gold"
     )
-    private val vehicleTagClassId = arrayListOf("SEDAN","SUV","TRUCK","MOTORCYCLE","VAN","COUPE","BUS")
-    private val statesList = arrayListOf("AP", "AR", "AS", "BR", "CG", "GA", "GJ", "HR", "HP", "JH", "KA",
-        "KL", "MP", "MH", "MN", "ML", "MZ", "NL", "OD", "PB", "RJ", "SK", "TN",
-        "TS", "TR", "UP", "UK", "WB", "AN", "CH", "DN", "DD", "DL", "LD", "PY")
-    private val vehicleDescriptorList = arrayListOf("DIESEL", "PETROL",)
+    private val vehicleTagClassId =
+        arrayListOf("SEDAN", "SUV", "TRUCK", "MOTORCYCLE", "VAN", "COUPE", "BUS")
+    private val statesList = arrayListOf(
+        "AP",
+        "AR",
+        "AS",
+        "BR",
+        "CG",
+        "GA",
+        "GJ",
+        "HR",
+        "HP",
+        "JH",
+        "KA",
+        "KL",
+        "MP",
+        "MH",
+        "MN",
+        "ML",
+        "MZ",
+        "NL",
+        "OD",
+        "PB",
+        "RJ",
+        "SK",
+        "TN",
+        "TS",
+        "TR",
+        "UP",
+        "UK",
+        "WB",
+        "AN",
+        "CH",
+        "DN",
+        "DD",
+        "DL",
+        "LD",
+        "PY"
+    )
+    private val vehicleDescriptorList = arrayListOf("DIESEL", "PETROL")
     private val typeList = arrayListOf("LMV")
     private val vehicleClassIdList = arrayListOf("4")
     private val npciVehicleClassIdList = arrayListOf("4")
@@ -125,6 +186,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             return intent
         }
+
         var FastTagNumber = ""
         var FastTagId = ""
     }
@@ -209,203 +271,203 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     showHideLoader(false)
                     if (it.data != null) {
                         it.data.message.let { it1 -> showSuccessToast(it1) }
-                        Log.e("VerifyOtpResponseModel--->>>", it.data.data.toString())
                         if (it.data.data.validateOtpResp.custDetails.walletStatus != "Active") {
                             it.data.data.validateOtpResp.vrnDetails.vehicleManuf.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleManuf = it1
-                                    }
+                                if (it1 != null) {
+                                    vehicleManuf = it1
                                 }
-                                it.data.data.validateOtpResp.vrnDetails.model.let {it1 ->
-                                    if (it1 != null) {
-                                        model = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.custDetails.walletId.let { it1 ->
-                                    if (it1 != null) {
-                                        walletId1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.custDetails.name.let { it1 ->
-                                    if (it1 != null) {
-                                        userName = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.vehicleNo.let { it1 ->
-                                    if (it1 != null) {
-                                        //   vehicleNumber = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.vehicleColour.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleColour1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleDescriptor1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.isNationalPermit.let { it1 ->
-                                    if (it1 != null) {
-                                        isNationalPermit1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.permitExpiryDate.let { it1 ->
-                                    if (it1 != null) {
-                                        permitExpiryDate1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.stateOfRegistration.let { it1 ->
-                                    if (it1 != null) {
-                                        stateOfRegistration1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.tagVehicleClassID.let { it1 ->
-                                    if (it1 != null) {
-                                        tagVehicleClassID1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.npciVehicleClassID.let { it1 ->
-                                    if (it1 != null) {
-                                        npciVehicleClassID1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.type.let { it1 ->
-                                    if (it1 != null) {
-                                        type = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.vehicleType.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleType = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.engineNo.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleEngineNumber = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.tagCost.let { it1 ->
-                                    if (it1 != null) {
-                                        tagCost = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.securityDeposit.let { it1 ->
-                                    if (it1 != null) {
-                                        securityDeposit = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.rechargeAmount.let { it1 ->
-                                    if (it1 != null) {
-                                        rechargeAmount = it1
-                                    }
-                                }
-                                createCustomer()
-                            } else {
-                                it.data.data.validateOtpResp.vrnDetails.vehicleManuf.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleManuf = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.model.let {it1 ->
-                                    if (it1 != null) {
-                                        model = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.custDetails.walletId.let { it1 ->
-                                    if (it1 != null) {
-                                        walletId1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.custDetails.name.let { it1 ->
-                                    if (it1 != null) {
-                                        userName = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.vehicleNo.let { it1 ->
-                                    if (it1 != null) {
-                                    //    vehicleNumber = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.vehicleColour.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleColour1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleDescriptor1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.isNationalPermit.let { it1 ->
-                                    if (it1 != null) {
-                                        isNationalPermit1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.permitExpiryDate.let { it1 ->
-                                    if (it1 != null) {
-                                        permitExpiryDate1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.stateOfRegistration.let { it1 ->
-                                    if (it1 != null) {
-                                        stateOfRegistration1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.tagVehicleClassID.let { it1 ->
-                                    if (it1 != null) {
-                                        tagVehicleClassID1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.npciVehicleClassID.let { it1 ->
-                                    if (it1 != null) {
-                                        npciVehicleClassID1 = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.type.let { it1 ->
-                                    if (it1 != null) {
-                                        type = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.vehicleType.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleType = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.engineNo.let { it1 ->
-                                    if (it1 != null) {
-                                        vehicleEngineNumber = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.tagCost.let { it1 ->
-                                    if (it1 != null) {
-                                        tagCost = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.securityDeposit.let { it1 ->
-                                    if (it1 != null) {
-                                        securityDeposit = it1
-                                    }
-                                }
-                                it.data.data.validateOtpResp.vrnDetails.rechargeAmount.let { it1 ->
-                                    if (it1 != null) {
-                                        rechargeAmount = it1
-                                    }
-                                }
-                                uploadDocument()
                             }
+                            it.data.data.validateOtpResp.vrnDetails.model.let { it1 ->
+                                if (it1 != null) {
+                                    model = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.custDetails.walletId.let { it1 ->
+                                if (it1 != null) {
+                                    walletId1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.custDetails.name.let { it1 ->
+                                if (it1 != null) {
+                                    userName = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.vehicleNo.let { it1 ->
+                                if (it1 != null) {
+                                    //   vehicleNumber = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.vehicleColour.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleColour1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleDescriptor1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.isNationalPermit.let { it1 ->
+                                if (it1 != null) {
+                                    isNationalPermit1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.permitExpiryDate.let { it1 ->
+                                if (it1 != null) {
+                                    permitExpiryDate1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.stateOfRegistration.let { it1 ->
+                                if (it1 != null) {
+                                    stateOfRegistration1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.tagVehicleClassID.let { it1 ->
+                                if (it1 != null) {
+                                    tagVehicleClassID1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.npciVehicleClassID.let { it1 ->
+                                if (it1 != null) {
+                                    npciVehicleClassID1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.type.let { it1 ->
+                                if (it1 != null) {
+                                    type = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.vehicleType.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleType = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.engineNo.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleEngineNumber = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.tagCost.let { it1 ->
+                                if (it1 != null) {
+                                    tagCost = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.securityDeposit.let { it1 ->
+                                if (it1 != null) {
+                                    securityDeposit = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.rechargeAmount.let { it1 ->
+                                if (it1 != null) {
+                                    rechargeAmount = it1
+                                }
+                            }
+                            createCustomer()
+                        } else {
+                            it.data.data.validateOtpResp.vrnDetails.vehicleManuf.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleManuf = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.model.let { it1 ->
+                                if (it1 != null) {
+                                    model = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.custDetails.walletId.let { it1 ->
+                                if (it1 != null) {
+                                    walletId1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.custDetails.name.let { it1 ->
+                                if (it1 != null) {
+                                    userName = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.vehicleNo.let { it1 ->
+                                if (it1 != null) {
+                                    //    vehicleNumber = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.vehicleColour.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleColour1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleDescriptor1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.isNationalPermit.let { it1 ->
+                                if (it1 != null) {
+                                    isNationalPermit1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.permitExpiryDate.let { it1 ->
+                                if (it1 != null) {
+                                    permitExpiryDate1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.stateOfRegistration.let { it1 ->
+                                if (it1 != null) {
+                                    stateOfRegistration1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.tagVehicleClassID.let { it1 ->
+                                if (it1 != null) {
+                                    tagVehicleClassID1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.npciVehicleClassID.let { it1 ->
+                                if (it1 != null) {
+                                    npciVehicleClassID1 = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.type.let { it1 ->
+                                if (it1 != null) {
+                                    type = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.vehicleType.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleType = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.engineNo.let { it1 ->
+                                if (it1 != null) {
+                                    vehicleEngineNumber = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.tagCost.let { it1 ->
+                                if (it1 != null) {
+                                    tagCost = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.securityDeposit.let { it1 ->
+                                if (it1 != null) {
+                                    securityDeposit = it1
+                                }
+                            }
+                            it.data.data.validateOtpResp.vrnDetails.rechargeAmount.let { it1 ->
+                                if (it1 != null) {
+                                    rechargeAmount = it1
+                                }
+                            }
+                            uploadDocument()
+                        }
                     }
                 }
 
                 Status.WARN -> {
                     showHideLoader(false)
-                    showErrorToast(it.data?.message.toString())
+                    showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
+                 //   showErrorToast(it.data?.data?.response?.msg.toString())
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                  showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -423,7 +485,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     if (it.data != null) {
                         //   it.data.response.msg.let { it1 -> showSuccessToast(it1) }
                         Log.e("VehicleMakerListResponseModel--->>>", it.data.toString())
-                        if (it.data.data.vehicleMakerList.isNotEmpty()){
+                        if (it.data.data.vehicleMakerList.isNotEmpty()) {
                             vehicleMakersList = it.data.data.vehicleMakerList as ArrayList<String>
                             //createCustomer()
                             initManufacturerSP(vehicleMakersList)
@@ -454,7 +516,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     if (it.data != null) {
-                        if (it.data.data.vehicleModelList.isNotEmpty()){
+                        if (it.data.data.vehicleModelList.isNotEmpty()) {
                             vehicleModelList = it.data.data.vehicleModelList as ArrayList<String>
                             initModelSP(vehicleModelList)
                         }
@@ -483,20 +545,27 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
-                    if (it.data != null) {
-                        if (it.data.custDetails.walletId != null){
-                            walletId1 = it.data.custDetails.walletId
-                        }
-                        userName = it.data.custDetails.name
-                        uploadDocument()
-                    } else {
-                        showErrorToast(it.message.toString())
-                    }
+                    uploadDocument()
+//                    if (it.data != null) {
+////                        it.data.custDetails.let { it2 ->
+//////                            it2.walletId.let { it1 ->
+//////                                if (it1 != null) {
+//////                                //    walletId1 = it1
+//////                                }
+//////                            }
+////                            userName = it2.name
+////
+////                        }
+//                        userName = it.data.custDetails.name
+//                        uploadDocument()
+//                    } else {
+//                        showErrorToast(it.message.toString())
+//                    }
                 }
 
                 Status.WARN -> {
                     showHideLoader(false)
-                    showErrorToast(it.data?.response?.msg.toString())
+                    showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
@@ -519,26 +588,30 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     if (it.data != null) {
                         //   it.data.response.msg.let { it1 -> showSuccessToast(it1) }
                         Log.e("UploadDocumentResponse------", it.data.toString())
-                        when (it.data.documentDetails.imageType) {
+                        when (it.data.data.documentDetails.imageType) {
                             "RCFRONT" -> {
                                 binding.ivRcFrontUploaded.visibility = View.VISIBLE
-                                img1 = it.data.documentDetails.imageType
+                                img1 = it.data.data.documentDetails.imageType
                             }
+
                             "RCBACK" -> {
                                 binding.ivRcBackUploaded.visibility = View.VISIBLE
-                                img2 = it.data.documentDetails.imageType
+                                img2 = it.data.data.documentDetails.imageType
                             }
+
                             "VEHICLESIDE" -> {
                                 binding.ivCarSdieUploaded.visibility = View.VISIBLE
-                                img4 = it.data.documentDetails.imageType
+                                img4 = it.data.data.documentDetails.imageType
                             }
+
                             "VEHICLEFRONT" -> {
                                 binding.ivCarFrontUploaded.visibility = View.VISIBLE
-                                img3 = it.data.documentDetails.imageType
+                                img3 = it.data.data.documentDetails.imageType
                             }
+
                             "TAGAFFIX" -> {
                                 binding.ivTagaFixUploaded.visibility = View.VISIBLE
-                                img5 = it.data.documentDetails.imageType
+                                img5 = it.data.data.documentDetails.imageType
                             }
                         }
                     } else {
@@ -560,6 +633,95 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             }
         }
 
+        viewModel.obrIssueTagCheckWallet.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    val code = FastTagNumber
+                    val parts = code.split('-')
+                    val string1 = parts[0]
+                    val string2 = parts[1]
+                    val string3 = parts[2]
+                    val engineNumberComplete = binding.etv6.text.toString()
+                    val rechargeAmount = binding.etv20.text.toString()
+                    val securityDeposit = binding.etv21.text.toString()
+                    val tagCost = binding.etv22.text.toString()
+                    val debitAmount = binding.etv23.text.toString()
+                    userName = binding.etv1.text.toString()
+                    vehicleEngineNumber = binding.etv6.text.toString()
+
+                    val regDetails = RegDetails(
+                        requestId = requestId1,
+                        sessionId = sessionId1,
+                        channel = channel,
+                        agentId = agentId,
+                        reqDateTime = getCurrentDateFormatted()
+                    )
+                    val vrnDetails = VrnDetails1(
+                        vrn = vehicleNumber,
+                        chassis = vehicleChassisNumber,
+                        engine = engineNumberComplete,
+                        vehicleManuf = vehicleManuf,
+                        model = model,
+                        vehicleColour = vehicleColour1,
+                        type = type,
+                        status = "Active",
+                        npciStatus = "success",
+                        isCommercial = isCommerical,
+                        tagVehicleClassID = tagVehicleClassID1,
+                        npciVehicleClassID = npciVehicleClassID1,
+                        vehicleType = vehicleType,
+                        rechargeAmount = rechargeAmount,
+                        securityDeposit = securityDeposit,
+                        tagCost = tagCost,
+                        debitAmt = debitAmount,
+                        vehicleDescriptor = vehicleDescriptor1,
+                        isNationalPermit = isNationalPermit1,
+                        permitExpiryDate = permitExpiryDate1,
+                        stateOfRegistration = stateOfRegistration1
+                    )
+                    val custDetails = CustDetails2(
+                        name = userName, mobileNo = mobile1, walletId = walletId1
+                    )
+                    val fasTagDetails = FasTagDetails(
+                        serialNo = "$string1-$string2-$string3",
+                        tid = "",
+                        udf1 = "",
+                        udf2 = "",
+                        udf3 = "",
+                        udf4 = "",
+                        udf5 = ""
+                    )
+                    val request = RegisterTagRequest(
+                        regDetails = regDetails,
+                        vrnDetails = vrnDetails,
+                        custDetails = custDetails,
+                        fasTagDetails = fasTagDetails,
+                        provider = provider,
+                        inventory_id = FastTagId
+                    )
+                    viewModel.registerTag(sharedPrefManager.getToken().toString(), request)
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
+
+
         viewModel.obrRegisterTag.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {
@@ -569,10 +731,12 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     if (it.data != null) {
-                        if (it.data.response.msg.toString().contains("Invalid request parameters")){
-                            showErrorToast(it.data.response.msg.toString())
-                        }else{
-                            it.data.response.msg.let { it1 -> showSuccessToast(it1) }
+                        if (it.data.data.response.msg.toString()
+                                .contains("Invalid request parameters")
+                        ) {
+                            showErrorToast(it.message.toString())
+                        } else {
+                            it.message?.let { it1 -> showSuccessToast(it1) }
                             finish()
                         }
                     } else {
@@ -668,20 +832,21 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         binding.etv4.setText(vehicleNumber)
         binding.etv5.setText(vehicleChassisNumber)
         binding.etv6.setText(vehicleEngineNumber)
-        if (vehicleManuf != null && vehicleManuf != ""){
+        if (vehicleManuf != null && vehicleManuf != "") {
             binding.etv8.setText(vehicleManuf)
             binding.etv8.visibility = View.VISIBLE
             binding.llManufacturer.visibility = View.GONE
-        }else{
+        } else {
             val requestBody = VehicleMakersRequest(
-                getVehicleMake  = GetVehicleMake(
+                getVehicleMake = GetVehicleMake(
                     requestId = requestId1,
                     sessionId = sessionId1,
                     channel = channel,
                     agentId = agentId,
                     reqDateTime = getCurrentDateFormatted(),
                     provider = provider,
-                    inventory_id = FastTagId)
+                    inventory_id = FastTagId
+                )
             )
             viewModel.getMakersList(
                 sharedPrefManager.getToken().toString(), requestBody
@@ -689,11 +854,11 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             binding.etv8.visibility = View.GONE
             binding.llManufacturer.visibility = View.VISIBLE
         }
-        if (model != null && model != ""){
+        if (model != null && model != "") {
             binding.etv9.setText(model)
             binding.etv9.visibility = View.VISIBLE
             binding.llModel.visibility = View.GONE
-        }else{
+        } else {
             binding.etv9.visibility = View.GONE
             binding.llModel.visibility = View.VISIBLE
         }
@@ -703,72 +868,72 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         binding.etv21.setText(securityDeposit)
         binding.etv22.setText(tagCost)
 
-        if (vehicleColour1 == "" || vehicleColour1 == null){
+        if (vehicleColour1 == "" || vehicleColour1 == null) {
             binding.tvVehicleColor.visibility = View.VISIBLE
             binding.llVehicleColor.visibility = View.VISIBLE
             initVehicleColorSP(vehicleColors)
-        }else{
+        } else {
             binding.tvVehicleColor.visibility = View.GONE
             binding.llVehicleColor.visibility = View.GONE
         }
 
-        if (vehicleType == "" || vehicleType == null){
+        if (vehicleType == "" || vehicleType == null) {
             binding.tvVehicleType.visibility = View.VISIBLE
             binding.llVehicleType.visibility = View.VISIBLE
             initTagVehicleClassIdSP(vehicleTagClassId)
-        }else{
+        } else {
             binding.tvVehicleType.visibility = View.GONE
             binding.llVehicleType.visibility = View.GONE
         }
-        if (stateOfRegistration1 == "" || stateOfRegistration1 == null){
+        if (stateOfRegistration1 == "" || stateOfRegistration1 == null) {
             binding.tvStateOfRegistration.visibility = View.VISIBLE
             binding.llStateOfRegistration.visibility = View.VISIBLE
             initStateOfRegistrationSP(statesList)
-        }else{
+        } else {
             binding.tvStateOfRegistration.visibility = View.GONE
             binding.llStateOfRegistration.visibility = View.GONE
         }
 
-        if (vehicleDescriptor1 == "" || vehicleDescriptor1 == null){
+        if (vehicleDescriptor1 == "" || vehicleDescriptor1 == null) {
             binding.tvVehicleDiscriptor.visibility = View.VISIBLE
             binding.llVehicleDoscriptor.visibility = View.VISIBLE
             initVehicleDescriptorSP(vehicleDescriptorList)
-        }else{
+        } else {
             binding.tvStateOfRegistration.visibility = View.GONE
             binding.llVehicleDoscriptor.visibility = View.GONE
         }
 
-        if (type == "" || type == null){
+        if (type == "" || type == null) {
             binding.tvType.visibility = View.VISIBLE
             binding.llType.visibility = View.VISIBLE
             initTypeSP(typeList)
-        }else{
+        } else {
             binding.tvType.visibility = View.GONE
             binding.llType.visibility = View.GONE
         }
 
-        if (tagVehicleClassID1 == "" || tagVehicleClassID1 == null){
+        if (tagVehicleClassID1 == "" || tagVehicleClassID1 == null) {
             binding.tvVehicleClassId.visibility = View.VISIBLE
             binding.llVehicleClassID.visibility = View.VISIBLE
             initVehicleClassIdSP(vehicleClassIdList)
-        }else{
+        } else {
             binding.tvVehicleClassId.visibility = View.GONE
             binding.llVehicleClassID.visibility = View.GONE
         }
-        if (npciVehicleClassID1 == "" || npciVehicleClassID1 == null){
+        if (npciVehicleClassID1 == "" || npciVehicleClassID1 == null) {
             binding.tvNPCIVehicleClassId.visibility = View.VISIBLE
             binding.llNPCIVehicleClassID.visibility = View.VISIBLE
             initNPCITagVehicleClassIdSP(npciVehicleClassIdList)
-        }else{
+        } else {
             binding.tvNPCIVehicleClassId.visibility = View.GONE
             binding.llNPCIVehicleClassID.visibility = View.GONE
         }
-        if (isNationalPermit1 == "" || isNationalPermit1 == null){
+        if (isNationalPermit1 == "" || isNationalPermit1 == null) {
             binding.cbNationalPermit.visibility = View.VISIBLE
             binding.tvNationalPermit.visibility = View.VISIBLE
             binding.llPermitExpiry.visibility = View.VISIBLE
             isNationalPermit1 = "2"
-        }else{
+        } else {
             binding.cbNationalPermit.visibility = View.GONE
             binding.tvNationalPermit.visibility = View.GONE
             binding.llPermitExpiry.visibility = View.GONE
@@ -777,115 +942,94 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
     private fun initNPCITagVehicleClassIdSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spNpciVehicleClassId.adapter = adapter
 
-        binding.spNpciVehicleClassId.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            @SuppressLint("NewApi")
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent.getItemAtPosition(position)
-                npciVehicleClassID1 = selectedItem as String
-            }
+        binding.spNpciVehicleClassId.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("NewApi")
+                override fun onItemSelected(
+                    parent: AdapterView<*>, view: View, position: Int, id: Long
+                ) {
+                    val selectedItem = parent.getItemAtPosition(position)
+                    npciVehicleClassID1 = selectedItem as String
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
+                override fun onNothingSelected(parent: AdapterView<*>) {}
+            }
     }
 
     private fun initVehicleClassIdSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spVehicleClassId.adapter = adapter
 
-        binding.spVehicleClassId.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            @SuppressLint("NewApi")
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent.getItemAtPosition(position)
-                tagVehicleClassID1 = selectedItem as String
-            }
+        binding.spVehicleClassId.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("NewApi")
+                override fun onItemSelected(
+                    parent: AdapterView<*>, view: View, position: Int, id: Long
+                ) {
+                    val selectedItem = parent.getItemAtPosition(position)
+                    tagVehicleClassID1 = selectedItem as String
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
+                override fun onNothingSelected(parent: AdapterView<*>) {}
+            }
     }
 
     private fun initTypeSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spType.adapter = adapter
 
-        binding.spVehicleDiscriptor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            @SuppressLint("NewApi")
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent.getItemAtPosition(position)
-                type = selectedItem as String
-            }
+        binding.spVehicleDiscriptor.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("NewApi")
+                override fun onItemSelected(
+                    parent: AdapterView<*>, view: View, position: Int, id: Long
+                ) {
+                    val selectedItem = parent.getItemAtPosition(position)
+                    type = selectedItem as String
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
+                override fun onNothingSelected(parent: AdapterView<*>) {}
+            }
     }
 
     private fun initVehicleDescriptorSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spVehicleDiscriptor.adapter = adapter
 
-        binding.spVehicleDiscriptor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            @SuppressLint("NewApi")
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent.getItemAtPosition(position)
-                vehicleDescriptor1 = selectedItem as String
-            }
+        binding.spVehicleDiscriptor.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("NewApi")
+                override fun onItemSelected(
+                    parent: AdapterView<*>, view: View, position: Int, id: Long
+                ) {
+                    val selectedItem = parent.getItemAtPosition(position)
+                    vehicleDescriptor1 = selectedItem as String
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
+                override fun onNothingSelected(parent: AdapterView<*>) {}
+            }
     }
 
     private fun initStateOfRegistrationSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spStates.adapter = adapter
 
         binding.spStates.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             @SuppressLint("NewApi")
             override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>, view: View, position: Int, id: Long
             ) {
                 val selectedItem = parent.getItemAtPosition(position)
                 stateOfRegistration1 = selectedItem as String
@@ -897,19 +1041,14 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
     private fun initTagVehicleClassIdSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spVehicleType.adapter = adapter
 
         binding.spVehicleType.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             @SuppressLint("NewApi")
             override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>, view: View, position: Int, id: Long
             ) {
                 val selectedItem = parent.getItemAtPosition(position)
                 vehicleType = selectedItem as String
@@ -921,80 +1060,68 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
     private fun initVehicleColorSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spVehicleColor.adapter = adapter
 
-        binding.spVehicleColor.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            @SuppressLint("NewApi")
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent.getItemAtPosition(position)
-                vehicleColour1 = selectedItem as String
-            }
+        binding.spVehicleColor.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("NewApi")
+                override fun onItemSelected(
+                    parent: AdapterView<*>, view: View, position: Int, id: Long
+                ) {
+                    val selectedItem = parent.getItemAtPosition(position)
+                    vehicleColour1 = selectedItem as String
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
+                override fun onNothingSelected(parent: AdapterView<*>) {}
+            }
     }
 
     private fun initManufacturerSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spManufacturer.adapter = adapter
 
-        binding.spManufacturer.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
-            @SuppressLint("NewApi")
-            override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
-            ) {
-                val selectedItem = parent.getItemAtPosition(position)
-                vehicleManuf = selectedItem as String
-                val requestBody = VehicleModelRequest(
-                    getVehicleModel  = GetVehicleModel(
-                        requestId = requestId1,
-                        sessionId = sessionId1,
-                        channel = channel,
-                        agentId = agentId,
-                        reqDateTime = getCurrentDateFormatted(),
-                        provider = provider,
-                        vehicleMake = vehicleManuf,
-                        inventory_id = FastTagId)
-                )
-                viewModel.getModelsList(
-                    sharedPrefManager.getToken().toString(), requestBody
-                )
-            }
+        binding.spManufacturer.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("NewApi")
+                override fun onItemSelected(
+                    parent: AdapterView<*>, view: View, position: Int, id: Long
+                ) {
+                    val selectedItem = parent.getItemAtPosition(position)
+                    vehicleManuf = selectedItem as String
+                    val requestBody = VehicleModelRequest(
+                        getVehicleModel = GetVehicleModel(
+                            requestId = requestId1,
+                            sessionId = sessionId1,
+                            channel = channel,
+                            agentId = agentId,
+                            reqDateTime = getCurrentDateFormatted(),
+                            provider = provider,
+                            vehicleMake = vehicleManuf,
+                            inventory_id = FastTagId
+                        )
+                    )
+                    viewModel.getModelsList(
+                        sharedPrefManager.getToken().toString(), requestBody
+                    )
+                }
 
-            override fun onNothingSelected(parent: AdapterView<*>) {}
-        }
+                override fun onNothingSelected(parent: AdapterView<*>) {}
+            }
     }
 
     private fun initModelSP(manulist: ArrayList<String>) {
         val adapter = ArrayAdapter(
-            this,
-            android.R.layout.simple_spinner_dropdown_item,
-            manulist
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
         )
         binding.spModel.adapter = adapter
 
         binding.spModel.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(
-                parent: AdapterView<*>,
-                view: View,
-                position: Int,
-                id: Long
+                parent: AdapterView<*>, view: View, position: Int, id: Long
             ) {
                 val selectedItem = parent.getItemAtPosition(position)
                 model = selectedItem as String
@@ -1139,7 +1266,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             udf4 = "",
                             udf5 = "",
                             vehicleNo = vehicleNumber,
-                            inventory_id  = FastTagId
+                            inventory_id = FastTagId
                         )
                         Log.e("SendOtpRequest--->>>", requestBody.toString())
                         viewModel.sendOtp(sharedPrefManager.getToken().toString(), requestBody)
@@ -1192,12 +1319,11 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     userName = binding.etv1.text.toString()
                     vehicleEngineNumber = binding.etv6.text.toString()
 
-                    if (userName == ""){
+                    if (userName == "") {
                         showErrorToast("Please enter user name")
-                    }else if (vehicleEngineNumber == ""){
+                    } else if (vehicleEngineNumber == "") {
                         showErrorToast("Please enter complete engine number")
-                    }
-                    else if (tagNumber1 == "") {
+                    } else if (tagNumber1 == "") {
                         showErrorToast("Please enter complete FASTag number")
                     } else if (tagNumber2 == "") {
                         showErrorToast("Please enter complete FASTag number")
@@ -1268,8 +1394,10 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             provider = provider,
                             inventory_id = FastTagId
                         )
-                        viewModel.registerTag(sharedPrefManager.getToken().toString(), request)
+                        // viewModel.registerTag(sharedPrefManager.getToken().toString(), request)
                     }
+                    viewModel.issueTagCheckWallet(sharedPrefManager.getToken().toString())
+
                 }
 
                 /** ---------- user details ----------- */
@@ -1320,8 +1448,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                                     udf3 = "",
                                     udf4 = "",
                                     udf5 = ""
-                                ), provider = provider,
-                                inventory_id = FastTagId
+                                ), provider = provider, inventory_id = FastTagId
                             )
                         )
                         viewModel.createCustomer(sharedPrefManager.getToken().toString(), request)
@@ -1342,9 +1469,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 }
 
                 R.id.tvUploadRcFront -> {
-                    if (binding.ivRcFrontUploaded.visibility == View.VISIBLE){
+                    if (binding.ivRcFrontUploaded.visibility == View.VISIBLE) {
                         showInfoToast("Already Uploaded.")
-                    }else{
+                    } else {
                         if (rcFrontFile == null) {
                             showErrorToast("Please select RC front image")
                         } else {
@@ -1375,9 +1502,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 }
 
                 R.id.tvUploadRcBack -> {
-                    if (binding.ivRcBackUploaded.visibility == View.VISIBLE){
+                    if (binding.ivRcBackUploaded.visibility == View.VISIBLE) {
                         showInfoToast("Already Uploaded.")
-                    }else{
+                    } else {
                         if (rcBackFile == null) {
                             showErrorToast("Please select RC back image")
                         } else {
@@ -1408,9 +1535,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 }
 
                 R.id.tvUploadCarSide -> {
-                    if (binding.ivCarSdieUploaded.visibility == View.VISIBLE){
+                    if (binding.ivCarSdieUploaded.visibility == View.VISIBLE) {
                         showInfoToast("Already Uploaded.")
-                    }else{
+                    } else {
                         if (carSideFile == null) {
                             showErrorToast("Please select Car side image")
                         } else {
@@ -1442,9 +1569,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 }
 
                 R.id.tvUploadCarFront -> {
-                    if (binding.ivCarFrontUploaded.visibility == View.VISIBLE){
+                    if (binding.ivCarFrontUploaded.visibility == View.VISIBLE) {
                         showInfoToast("Already Uploaded.")
-                    }else{
+                    } else {
                         if (carFrontFile == null) {
                             showErrorToast("Please select Car front image")
                         } else {
@@ -1476,9 +1603,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 }
 
                 R.id.tvUploadTagaFix -> {
-                    if (binding.ivTagaFixUploaded.visibility == View.VISIBLE){
+                    if (binding.ivTagaFixUploaded.visibility == View.VISIBLE) {
                         showInfoToast("Already Uploaded.")
-                    }else{
+                    } else {
                         if (tagafixFile == null) {
                             showErrorToast("Please select TagaFix image")
                         } else {
@@ -1863,7 +1990,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     set(selectedYear, selectedMonth, selectedDay)
                 }
                 val sdf = SimpleDateFormat("dd-MM-yyyy", Locale.getDefault())
-                binding.etvPermitExpiry.setText(sdf.format(selectedDate.time))
+                binding.etvPermitExpiry.text = sdf.format(selectedDate.time)
             }, year, month, day)
 
         // Set the minimum date to tomorrow

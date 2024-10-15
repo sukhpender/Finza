@@ -172,9 +172,10 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
 
                 R.id.ll3 -> { // select payment method
                     // value will ended in subunits like for 1 Ruppe send 1000
-                    if (binding.amount == "") {
-                        showErrorToast("Enter minimum amount 200")
-                    } else {
+                     if (binding.amount != "" && binding.amount!!.toInt() < 200) {
+                        showErrorToast("Minimum amount required 200")
+                    }
+                    else {
                         sharedPrefManager.getCurrentUser()?.let { it1 ->
                             val totalAmount = binding.amount!!.toInt() * 1000
                             amount = (totalAmount / 1000).toString()

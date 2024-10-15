@@ -24,7 +24,6 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
     }
 
     override fun onCreateView(view: View) {
-
         viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
 
         isUpdatesAvailable.observe(viewLifecycleOwner){ it ->
@@ -44,7 +43,12 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
                         binding.tv4.text = it.data.data.incomingInventory.toString()
                         binding.tv6.text = it.data.data.inHandInventory.toString()
                         binding.tvTFCount.text = it.data.data.today_performance.toString()
+                        binding.tvCurrentValue.text = it.data.data.this_month_performance.toString()
+                        binding.tvLastValue.text = it.data.data.last_month_performance.toString()
+
                         binding.tvTFCountAmount.text = "₹ "+it.data.data.today_income.toString()
+                        binding.tvLMAmount.text = "₹ "+it.data.data.last_month_income.toString()
+                        binding.tvCMAmount.text = "₹ "+ it.data.data.this_month_income
                         binding.tv8.text = it.data.data.old_inventory.toString()
                     }
                 }
@@ -93,6 +97,22 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
 
         initOnClick()
     }
+
+    fun formatNumberDynamic(value: Double): String {
+        val units = listOf("K", "Lakh", "Crore", "B", "T")  // Units for thousands, lakh, crore, etc.
+        var number = value
+        var index = 0
+
+        // While loop to scale down the number and increase the unit index
+        while (number >= 1000 && index < units.size - 1) {
+            number /= 1000
+            index++
+        }
+
+        // Format the number with 2 decimal places and append the unit
+        return String.format("%.2f %s", number, units[index])
+    }
+
 
     private fun initOnClick() {
         viewModel.onClick.observe(viewLifecycleOwner) {

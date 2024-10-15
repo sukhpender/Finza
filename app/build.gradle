@@ -3,6 +3,8 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-kapt'
     id 'com.google.dagger.hilt.android'
+    id("com.google.firebase.crashlytics")
+    id("com.google.gms.google-services")
 }
 
 android {
@@ -24,7 +26,7 @@ android {
 
     productFlavors {
         develop {
-            applicationIdSuffix ".dev"
+           // applicationIdSuffix ".dev"
             resValue 'string', 'app_name', "Finza"
             buildConfigField 'String', 'BASE_URL', "\"https://my.thefinza.com/\""
          //   buildConfigField 'String', 'BASE_URL', "\"https://stagging.cluecoded.com/api/\""
@@ -163,6 +165,9 @@ dependencies {
     implementation 'com.github.mukeshsolanki.android-otpview-pinview:otpview:3.1.0'
     implementation 'com.github.dhaval2404:imagepicker:2.1'
 
+    implementation(platform("com.google.firebase:firebase-bom:33.4.0"))
+    implementation("com.google.firebase:firebase-crashlytics")
+    implementation("com.google.firebase:firebase-analytics")
 }
 kapt {
     correctErrorTypes true

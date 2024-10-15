@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "610685908969",
+    "project_id": "finza-55a59",
+    "storage_bucket": "finza-55a59.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:610685908969:android:bb13b83adf57fcf171fd78",
+        "android_client_info": {
+          "package_name": "com.riggle.finza_finza"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCrvuwJtrAK8veDzjKBoCYafTKEM3r60mg"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
