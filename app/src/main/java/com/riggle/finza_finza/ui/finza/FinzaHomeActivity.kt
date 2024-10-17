@@ -45,7 +45,6 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             return intent
         }
-
     }
 
     override fun getLayoutResource(): Int {

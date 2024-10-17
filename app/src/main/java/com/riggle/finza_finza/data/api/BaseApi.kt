@@ -16,6 +16,7 @@ import com.riggle.finza_finza.data.model.PaymentStoreRequest
 import com.riggle.finza_finza.data.model.ProjectListResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
 import com.riggle.finza_finza.data.model.RegisterTagResponseModel
+import com.riggle.finza_finza.data.model.ResendOtpResponseModel
 import com.riggle.finza_finza.data.model.ResetPasswordResponseModel
 import com.riggle.finza_finza.data.model.SendOtpIssueTagResponseModel
 import com.riggle.finza_finza.data.model.SendOtpRequest
@@ -29,6 +30,7 @@ import com.riggle.finza_finza.data.model.VehicleMakersListResponseModel
 import com.riggle.finza_finza.data.model.VehicleMakersRequest
 import com.riggle.finza_finza.data.model.VehicleModelListResponseModel
 import com.riggle.finza_finza.data.model.VehicleModelRequest
+import com.riggle.finza_finza.data.model.VerifyOtpPasswordResponseModel
 import com.riggle.finza_finza.data.model.VerifyOtpResponseModel
 import com.riggle.finza_finza.data.model.WalletCreateCustomerResponseModel
 import com.riggle.finza_finza.data.model.WalletTransactionsResponseModel
@@ -59,6 +61,19 @@ interface BaseApi {
     suspend fun forgotPass(
         @Field("email") email: String,
     ): Response<FinzaForgotPassResponseModel>
+
+    @POST(Constants.RESEND_OTP)
+    @FormUrlEncoded
+    suspend fun resendOtp(
+        @Field("email") email: String,
+    ): Response<ResendOtpResponseModel>
+
+    @POST(Constants.VERIFY_OTP_PASSWORD)
+    @FormUrlEncoded
+    suspend fun verifyOtpPass(
+        @Field("user_id") user_id: String,
+        @Field("otp") otp: String,
+    ): Response<VerifyOtpPasswordResponseModel>
 
     @POST(Constants.FINZA_LOGOUT)
     @Headers(Constants.X_APP_ACCEPT)

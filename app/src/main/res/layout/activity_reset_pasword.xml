@@ -18,6 +18,7 @@
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
+        android:background="@color/white"
         android:layout_height="match_parent"
         android:animateLayoutChanges="true">
 
@@ -73,7 +74,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_25ssp"
+            android:layout_marginTop="@dimen/_5ssp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:text="Email*"
             android:textColor="@color/fsm_text_color"
@@ -95,11 +96,52 @@
             app:layout_constraintTop_toBottomOf="@+id/tvOldPass" />
 
         <TextView
+            android:id="@+id/tvResend"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_height="@dimen/_20sdp"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:fontFamily="@font/inter_semibold"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{v->vm.onClick(v)}"
+            android:text="Resend Otp"
+            android:textColor="@color/line_color"
+            android:visibility="gone"
+            app:layout_constraintEnd_toEndOf="@+id/etvEmail"
+            app:layout_constraintTop_toBottomOf="@+id/etvEmail"
+            android:textSize="@dimen/_14sdp"/>
+
+        <com.mukeshsolanki.OtpView
+            android:id="@+id/otp_view"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginTop="@dimen/_70sdp"
+            android:cursorVisible="true"
+            android:focusable="true"
+            android:focusableInTouchMode="true"
+            android:visibility="gone"
+            android:gravity="center"
+            android:inputType="number"
+            android:textAllCaps="true"
+            android:textColor="@color/line_color"
+            app:OtpCursorColor="@color/line_color"
+            app:OtpHideLineWhenFilled="false"
+            app:OtpItemCount="6"
+            app:OtpItemSpacing="6dp"
+            app:OtpLineColor="@color/line_color"
+            app:OtpState_filled="true"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/etvEmail"
+            app:OtpViewType="rectangle" />
+
+        <TextView
             android:id="@+id/tvContinue"
             style="@style/TextView.InterRegular_12ssp"
             android:layout_width="0dp"
             android:layout_height="@dimen/_40sdp"
-            android:layout_marginHorizontal="@dimen/_45sdp"
+            android:layout_marginHorizontal="@dimen/_16sdp"
             android:layout_marginTop="@dimen/_65sdp"
             android:background="@drawable/edit_back_view"
             android:backgroundTint="@color/line_color"
@@ -112,7 +154,7 @@
             android:textSize="@dimen/_16sdp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/etvEmail" />
+            app:layout_constraintTop_toBottomOf="@+id/otp_view" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

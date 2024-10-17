@@ -16,6 +16,7 @@ import com.riggle.finza_finza.data.model.PaymentStoreRequest
 import com.riggle.finza_finza.data.model.ProjectListResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
 import com.riggle.finza_finza.data.model.RegisterTagResponseModel
+import com.riggle.finza_finza.data.model.ResendOtpResponseModel
 import com.riggle.finza_finza.data.model.ResetPasswordResponseModel
 import com.riggle.finza_finza.data.model.SendOtpIssueTagResponseModel
 import com.riggle.finza_finza.data.model.SendOtpRequest
@@ -29,6 +30,7 @@ import com.riggle.finza_finza.data.model.VehicleMakersListResponseModel
 import com.riggle.finza_finza.data.model.VehicleMakersRequest
 import com.riggle.finza_finza.data.model.VehicleModelListResponseModel
 import com.riggle.finza_finza.data.model.VehicleModelRequest
+import com.riggle.finza_finza.data.model.VerifyOtpPasswordResponseModel
 import com.riggle.finza_finza.data.model.VerifyOtpResponseModel
 import com.riggle.finza_finza.data.model.WalletCreateCustomerResponseModel
 import com.riggle.finza_finza.data.model.WalletTransactionsResponseModel
@@ -54,6 +56,17 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
 
     override suspend fun forgotPass(email: String): Response<FinzaForgotPassResponseModel> {
         return apiService.forgotPass(email)
+    }
+
+    override suspend fun resendOtp(email: String): Response<ResendOtpResponseModel> {
+        return apiService.resendOtp(email)
+    }
+
+    override suspend fun verifyOtpPass(
+        user_id: String,
+        otp: String
+    ): Response<VerifyOtpPasswordResponseModel> {
+        return apiService.verifyOtpPass(user_id,otp)
     }
 
     override suspend fun sendOtpTagIssue(

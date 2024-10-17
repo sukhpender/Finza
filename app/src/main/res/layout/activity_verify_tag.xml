@@ -70,8 +70,7 @@
                     android:id="@+id/llVerifyNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
                         android:layout_width="@dimen/_140sdp"
@@ -334,8 +333,8 @@
                     android:id="@+id/llCreateCustomer"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:orientation="vertical"
-                    android:visibility="gone">
+                    android:visibility="gone"
+                    android:orientation="vertical">
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"

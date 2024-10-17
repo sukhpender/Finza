@@ -25,6 +25,9 @@ class ResetPassActivity : BaseActivity<ActivityResetPassBinding>() {
             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP)
             return intent
         }
+
+        var from = ""
+        var userId = ""
     }
 
     override fun getLayoutResource(): Int {
@@ -55,7 +58,6 @@ class ResetPassActivity : BaseActivity<ActivityResetPassBinding>() {
                     showHideLoader(false)
                     it.data?.message?.let { it1 -> showSuccessToast(it1) }
                     finish()
-
                 }
 
                 Status.WARN -> {
@@ -95,11 +97,15 @@ class ResetPassActivity : BaseActivity<ActivityResetPassBinding>() {
                     } else if (pass.toString() != confirmPass.toString()) {
                         showErrorToast("Password and Confirm Password not match")
                     } else {
-                        viewModel.resetPass(
-                            sharedPrefManager.getCurrentUser()?.id.toString(),
-                            pass,
-                            confirmPass
-                        )
+                        if (from == "ForgetPassword") {
+                            viewModel.resetPass(
+                                userId, pass, confirmPass
+                            )
+                        } else {
+                            viewModel.resetPass(
+                                sharedPrefManager.getCurrentUser()?.id.toString(), pass, confirmPass
+                            )
+                        }
                     }
                 }
             }

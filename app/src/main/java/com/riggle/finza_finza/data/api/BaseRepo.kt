@@ -16,6 +16,7 @@ import com.riggle.finza_finza.data.model.PaymentStoreRequest
 import com.riggle.finza_finza.data.model.ProjectListResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
 import com.riggle.finza_finza.data.model.RegisterTagResponseModel
+import com.riggle.finza_finza.data.model.ResendOtpResponseModel
 import com.riggle.finza_finza.data.model.ResetPasswordResponseModel
 import com.riggle.finza_finza.data.model.SendOtpIssueTagResponseModel
 import com.riggle.finza_finza.data.model.SendOtpRequest
@@ -29,6 +30,7 @@ import com.riggle.finza_finza.data.model.VehicleMakersListResponseModel
 import com.riggle.finza_finza.data.model.VehicleMakersRequest
 import com.riggle.finza_finza.data.model.VehicleModelListResponseModel
 import com.riggle.finza_finza.data.model.VehicleModelRequest
+import com.riggle.finza_finza.data.model.VerifyOtpPasswordResponseModel
 import com.riggle.finza_finza.data.model.VerifyOtpResponseModel
 import com.riggle.finza_finza.data.model.WalletCreateCustomerResponseModel
 import com.riggle.finza_finza.data.model.WalletTransactionsResponseModel
@@ -36,6 +38,7 @@ import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Response
 import retrofit2.http.Body
+import retrofit2.http.Field
 import retrofit2.http.Header
 
 interface BaseRepo {
@@ -55,6 +58,15 @@ interface BaseRepo {
     suspend fun forgotPass(
         email: String,
     ): Response<FinzaForgotPassResponseModel>
+
+    suspend fun resendOtp(
+        email: String,
+    ): Response<ResendOtpResponseModel>
+
+    suspend fun verifyOtpPass(
+       user_id: String,
+        otp: String,
+    ): Response<VerifyOtpPasswordResponseModel>
 
     suspend fun sendOtpTagIssue(
         header: String, reqBody: SendOtpRequest

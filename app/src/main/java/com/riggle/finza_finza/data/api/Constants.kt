@@ -8,6 +8,8 @@ object Constants {
     const val FINZA_LOGOUT = "api/user-logout"
     const val FINZA_PROFILE = "api/profile"
     const val FORGOT_PASSWORD = "api/forgotPassword"
+    const val RESEND_OTP = "api/re-sendotp"
+    const val VERIFY_OTP_PASSWORD = "api/verify-otp-password"
     const val SEND_OTP_TAG_ISSUE = "api/send-otp"
     const val VERIFY_OTP_TAG_ISSUE = "api/verify-otp"
     const val VEHICLE_MAKERS_LIST = "api/vehicle-maker-list"

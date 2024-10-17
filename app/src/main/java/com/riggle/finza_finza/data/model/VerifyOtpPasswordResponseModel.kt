@@ -1,13 +1,13 @@
 package com.riggle.finza_finza.data.model
 
-data class FinzaForgotPassResponseModel(
-    val `data`: FinzaForgotPassData,
+data class VerifyOtpPasswordResponseModel(
+    val `data`: VerifyOtpPasswordData,
     val message: String,
     val status: String,
     val statusCode: Int
 )
 
-data class FinzaForgotPassData(
+data class VerifyOtpPasswordData(
     val aadhar_back_photo: String,
     val aadhar_front_photo: String,
     val aadhar_no: String,
@@ -16,7 +16,7 @@ data class FinzaForgotPassData(
     val created_at: String,
     val designation: String,
     val email: String,
-    val email_verified_at: Any,
+    val email_verified_at: String,
     val first_name: String,
     val full_name: String,
     val gender: String,

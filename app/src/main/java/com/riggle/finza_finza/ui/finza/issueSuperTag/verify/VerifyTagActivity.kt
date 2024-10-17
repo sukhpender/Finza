@@ -6,6 +6,7 @@ import android.app.Activity
 import android.app.DatePickerDialog
 import android.content.Context
 import android.content.Intent
+import android.content.res.ColorStateList
 import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
@@ -17,6 +18,7 @@ import androidx.activity.result.ActivityResult
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.core.content.ContextCompat
 import com.github.dhaval2404.imagepicker.ImagePicker
 import com.riggle.finza_finza.R
 import com.riggle.finza_finza.data.model.CreateCustomerRew
@@ -541,11 +543,15 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             when (it?.status) {
                 Status.LOADING -> {
                     showHideLoader(true)
+                    binding.tvContinue.isEnabled = false
+                    binding.tvContinue.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.dark_grey_txt_color20))
                 }
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     uploadDocument()
+                    binding.tvContinue.isEnabled = true
+                    binding.tvContinue.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.line_color))
 //                    if (it.data != null) {
 ////                        it.data.custDetails.let { it2 ->
 //////                            it2.walletId.let { it1 ->
@@ -571,6 +577,8 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 Status.ERROR -> {
                     showHideLoader(false)
                     showErrorToast(it.message.toString())
+                    binding.tvContinue.isEnabled = true
+                    binding.tvContinue.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.line_color))
                 }
 
                 else -> {}
