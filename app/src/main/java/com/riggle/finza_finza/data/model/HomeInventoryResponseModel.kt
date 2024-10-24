@@ -8,6 +8,8 @@ data class HomeInventoryResponseModel(
 )
 
 data class HomeInventoryData(
+    val badfast_tag_count: Int,
+    val badfast_tag_sum: Int,
     val inHandInventory: Int,
     val incomingInventory: Int,
     val last_month_income: Int,
@@ -17,7 +19,9 @@ data class HomeInventoryData(
     val this_month_income: String,
     val this_month_performance: Int,
     val today_income: Int,
-    val today_performance: Int
+    val today_performance: Int,
+    val wrong_urt_count: Int,
+    val wrong_urt_sum: Int
 )
 
 data class ProjectDetail2(

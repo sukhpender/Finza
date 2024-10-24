@@ -19,15 +19,15 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
 
     private val viewModel: ActivationFragmentVM by viewModels()
 
-    companion object{
+    companion object {
         var isUpdatesAvailable = SingleLiveEvent<Boolean>()
     }
 
     override fun onCreateView(view: View) {
         viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
 
-        isUpdatesAvailable.observe(viewLifecycleOwner){ it ->
-            if (it){
+        isUpdatesAvailable.observe(viewLifecycleOwner) { it ->
+            if (it) {
                 viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
             }
         }
@@ -43,12 +43,17 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
                         binding.tv4.text = it.data.data.incomingInventory.toString()
                         binding.tv6.text = it.data.data.inHandInventory.toString()
                         binding.tvTFCount.text = it.data.data.today_performance.toString()
+                        binding.tvBadTagCount.text = it.data.data.badfast_tag_count.toString()
+                        binding.tvUrtCount.text = it.data.data.wrong_urt_count.toString()
+                        binding.tvTFCount.text = it.data.data.today_performance.toString()
                         binding.tvCurrentValue.text = it.data.data.this_month_performance.toString()
                         binding.tvLastValue.text = it.data.data.last_month_performance.toString()
 
-                        binding.tvTFCountAmount.text = "₹ "+it.data.data.today_income.toString()
-                        binding.tvLMAmount.text = "₹ "+it.data.data.last_month_income.toString()
-                        binding.tvCMAmount.text = "₹ "+ it.data.data.this_month_income
+                        binding.tvUrtAmount.text = "₹ " + it.data.data.wrong_urt_sum.toString()
+                        binding.tvBadTagAmount.text = "₹ " + it.data.data.badfast_tag_sum.toString()
+                        binding.tvTFCountAmount.text = "₹ " + it.data.data.today_income.toString()
+                        binding.tvLMAmount.text = "₹ " + it.data.data.last_month_income.toString()
+                        binding.tvCMAmount.text = "₹ " + it.data.data.this_month_income
                         binding.tv8.text = it.data.data.old_inventory.toString()
                     }
                 }
@@ -62,7 +67,6 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
                     showHideLoader(false)
                     showErrorToast(it.message.toString())
                 }
-
                 else -> {}
             }
         }
@@ -75,10 +79,10 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
-                  //  showSuccessToast(it.message.toString())
-                   if (it.data != null){
-                       startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
-                   }
+                    //  showSuccessToast(it.message.toString())
+                    if (it.data != null) {
+                        startActivity(IssueSuperTagActivity.newIntent(requireActivity()))
+                    }
                 }
 
                 Status.WARN -> {
@@ -99,7 +103,8 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
     }
 
     fun formatNumberDynamic(value: Double): String {
-        val units = listOf("K", "Lakh", "Crore", "B", "T")  // Units for thousands, lakh, crore, etc.
+        val units =
+            listOf("K", "Lakh", "Crore", "B", "T")  // Units for thousands, lakh, crore, etc.
         var number = value
         var index = 0
 

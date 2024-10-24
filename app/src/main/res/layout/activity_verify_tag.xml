@@ -229,7 +229,7 @@
                         android:layout_marginTop="8dp"
                         android:hint="last 5 digits"
                         android:imeOptions="actionDone"
-                        android:inputType="number"
+                        android:inputType="text"
                         android:maxLength="5"
                         android:textAllCaps="true" />
 

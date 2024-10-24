@@ -16,33 +16,36 @@
 
         <variable
             name="bean"
-            type="com.riggle.finza_finza.data.model.InventryData" />
+            type="com.riggle.finza_finza.data.model.ForwardUsersData" />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@color/line_colo10">
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:background="@drawable/rounded_2"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_5sdp">
 
-        <androidx.cardview.widget.CardView
-            android:layout_width="match_parent"
+        <LinearLayout
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_5sdp"
-            app:cardCornerRadius="@dimen/_8sdp">
+            android:layout_weight="1">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginVertical="@dimen/_10sdp"
+                android:layout_margin="@dimen/_8sdp"
                 android:orientation="vertical">
 
                 <TextView
                     style="@style/TextView.InterRegular_12ssp"
+                    android:fontFamily="@font/inter_semibold"
                     android:singleLine="true"
-                    android:text='@{"FasTag Number: " + bean.inventory.bar_code}'
+                    android:text="Tags shipped by :"
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -52,7 +55,7 @@
                     style="@style/TextView.InterRegular_12ssp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:singleLine="true"
-                    android:text='@{"Assignee Name: " + bean.assigned_by.first_name}'
+                    android:text='@{bean.assigned_by_name +" ("+bean.role_name+")"}'
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -62,57 +65,45 @@
                     style="@style/TextView.InterRegular_12ssp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:singleLine="true"
-                    android:text='@{"Provider: " + bean.inventory.provider}'
+                    android:text='@{"Tag Count : "+String.valueOf(bean.total_inventories)}'
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <TextView
-                        android:id="@+id/tvReject"
-                        style="@style/TextView.InterRegular_12ssp"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_marginEnd="@dimen/_5sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/edit_back_view"
-                        android:backgroundTint="@android:color/holo_red_dark"
-                        android:fontFamily="@font/inter_medium"
-                        android:foreground="?selectableItemBackground"
-                        android:gravity="center"
-                        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
-                        android:text="Reject"
-                        android:textColor="@color/fsm_bg_light_teal"
-                        android:textSize="@dimen/_14sdp" />
-
-                    <TextView
-                        android:id="@+id/tvAccept"
-                        style="@style/TextView.InterRegular_12ssp"
-                        android:layout_width="0dp"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_marginStart="@dimen/_5sdp"
-                        android:layout_marginTop="@dimen/_5sdp"
-                        android:layout_weight="1"
-                        android:background="@drawable/edit_back_view"
-                        android:backgroundTint="@color/line_color"
-                        android:fontFamily="@font/inter_medium"
-                        android:foreground="?selectableItemBackground"
-                        android:gravity="center"
-                        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
-                        android:text="Accept"
-                        android:textColor="@color/fsm_bg_light_teal"
-                        android:textSize="@dimen/_14sdp" />
-
-                </LinearLayout>
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_marginTop="@dimen/_10sdp"
+                    android:singleLine="true"
+                    android:text="Bank Name : Bajaj"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
             </LinearLayout>
 
-        </androidx.cardview.widget.CardView>
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvClaimNow"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="0dp"
+            android:layout_height="@dimen/_30sdp"
+            android:layout_marginEnd="@dimen/_8sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:layout_weight="0.5"
+            android:background="@drawable/edit_back_view"
+            android:backgroundTint="@color/line_color"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+            android:text="Claim Now"
+            android:textColor="@color/fsm_bg_light_teal"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/llFilterInHand"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </LinearLayout>
 

@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="callback"
+            type="com.riggle.finza_finza.utils.BaseCustomBottomSheet.Listener" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:background="@color/line_color"
+        android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/_30sdp"
+        android:gravity="center"
+        android:layout_marginTop="@dimen/_15sdp"
+        android:layout_marginHorizontal="@dimen/_15sdp"
+        android:background="@color/line_color">
+
+        <TextView
+            style="@style/TextView.InterRegular_12ssp"
+            android:text="Tag Activated"
+            android:textColor="@color/white"
+            android:layout_weight="1"
+            android:gravity="center_vertical"
+            android:fontFamily="@font/inter_semibold"
+            android:textSize="@dimen/_14sdp" />
+
+        <ImageView
+            android:layout_width="@dimen/_16sdp"
+            android:layout_height="@dimen/_16sdp"
+            android:background="@drawable/check"
+            android:backgroundTint="@color/white"/>
+
+    </LinearLayout>
+
+        <com.google.android.material.imageview.ShapeableImageView
+            app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_width="wrap_content"
+            android:layout_marginTop="@dimen/_5sdp"
+            android:paddingBottom="@dimen/_15sdp"
+            android:layout_height="@dimen/_150sdp"
+            android:background="@drawable/congratulations" />
+
+        <TextView
+            style="@style/TextView.InterRegular_12ssp"
+            android:text="Congratulations"
+            android:textColor="@color/white"
+            android:fontFamily="@font/inter_semibold"
+            android:visibility="gone"
+            android:layout_marginTop="-130dp"
+            android:textSize="@dimen/_18sdp" />
+
+        <TextView
+            android:id="@+id/tvVerifyNumber"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_20sdp"
+            android:layout_marginBottom="@dimen/_15sdp"
+            android:background="@drawable/edit_back_view"
+            android:fontFamily="@font/inter_semibold"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{v->callback.onViewClick(v)}"
+            android:text="Return To Home"
+            android:textColor="@color/line_color"
+            android:textSize="@dimen/_16sdp" />
+
+    </LinearLayout>
+
+</layout>

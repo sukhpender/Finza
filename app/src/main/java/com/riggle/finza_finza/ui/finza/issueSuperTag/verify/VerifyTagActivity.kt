@@ -39,11 +39,13 @@ import com.riggle.finza_finza.data.model.VehicleModelRequest
 import com.riggle.finza_finza.data.model.VerifyOtpRequest
 import com.riggle.finza_finza.data.model.VrnDetails1
 import com.riggle.finza_finza.databinding.ActivityVerifyTagBinding
+import com.riggle.finza_finza.databinding.TagSuccessBinding
 import com.riggle.finza_finza.ui.base.BaseActivity
 import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.ui.base.permission.PermissionHandler
 import com.riggle.finza_finza.ui.base.permission.Permissions
 import com.riggle.finza_finza.utils.AppUtils
+import com.riggle.finza_finza.utils.BaseCustomBottomSheet
 import com.riggle.finza_finza.utils.RealPath.getFilePath
 import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.showErrorToast
@@ -467,9 +469,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 }
 
                 Status.ERROR -> {
-                 //   showErrorToast(it.data?.data?.response?.msg.toString())
+                    //   showErrorToast(it.data?.data?.response?.msg.toString())
                     showHideLoader(false)
-                  showErrorToast(it.message.toString())
+                    showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -544,14 +546,20 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 Status.LOADING -> {
                     showHideLoader(true)
                     binding.tvContinue.isEnabled = false
-                    binding.tvContinue.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.dark_grey_txt_color20))
+                    binding.tvContinue.backgroundTintList = ColorStateList.valueOf(
+                        ContextCompat.getColor(
+                            this,
+                            R.color.dark_grey_txt_color20
+                        )
+                    )
                 }
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     uploadDocument()
                     binding.tvContinue.isEnabled = true
-                    binding.tvContinue.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.line_color))
+                    binding.tvContinue.backgroundTintList =
+                        ColorStateList.valueOf(ContextCompat.getColor(this, R.color.line_color))
 //                    if (it.data != null) {
 ////                        it.data.custDetails.let { it2 ->
 //////                            it2.walletId.let { it1 ->
@@ -578,7 +586,8 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     showHideLoader(false)
                     showErrorToast(it.message.toString())
                     binding.tvContinue.isEnabled = true
-                    binding.tvContinue.backgroundTintList = ColorStateList.valueOf(ContextCompat.getColor(this,R.color.line_color))
+                    binding.tvContinue.backgroundTintList =
+                        ColorStateList.valueOf(ContextCompat.getColor(this, R.color.line_color))
                 }
 
                 else -> {}
@@ -744,8 +753,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         ) {
                             showErrorToast(it.message.toString())
                         } else {
-                            it.message?.let { it1 -> showSuccessToast(it1) }
-                            finish()
+                            initBs()
+                            //it.message?.let { it1 -> showSuccessToast(it1) }
+                            //finish()
                         }
                     } else {
                         showErrorToast(it.message.toString())
@@ -765,6 +775,8 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 else -> {}
             }
         }
+
+
 
         binding.otpView.setOtpCompletionListener {
             enteredOtp = it
@@ -815,6 +827,21 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
             override fun afterTextChanged(s: Editable) {}
         })
+    }
+
+    private lateinit var otherOptionBs: BaseCustomBottomSheet<TagSuccessBinding>
+    private fun initBs() {
+        otherOptionBs = BaseCustomBottomSheet(
+            this, R.layout.tag_success, ""
+        ) {
+            when (it.id) {
+                R.id.tvVerifyNumber -> {
+                    finish()
+                }
+            }
+        }
+        otherOptionBs.setCancelable(false)
+        otherOptionBs.show()
     }
 
     @SuppressLint("NewApi")

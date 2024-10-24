@@ -513,6 +513,7 @@
                         android:background="@color/white" />
 
                     <TextView
+                        android:id="@+id/tvUrtCount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -522,6 +523,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
+                        android:id="@+id/tvBadTagCount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -554,6 +556,7 @@
                         android:background="@color/white" />
 
                     <TextView
+                        android:id="@+id/tvUrtAmount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
@@ -563,6 +566,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
+                        android:id="@+id/tvBadTagAmount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"

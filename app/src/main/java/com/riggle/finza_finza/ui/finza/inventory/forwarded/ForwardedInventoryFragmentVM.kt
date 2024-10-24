@@ -1,6 +1,8 @@
 package com.riggle.finza_finza.ui.finza.inventory.forwarded
 
 import com.riggle.finza_finza.data.api.BaseRepo
+import com.riggle.finza_finza.data.model.DispatchUsersResponseModel
+import com.riggle.finza_finza.data.model.ForwardUsersResponseModel
 import com.riggle.finza_finza.data.model.InventryResponseModel
 import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.utils.Coroutines
@@ -13,13 +15,13 @@ import javax.inject.Inject
 @HiltViewModel
 class ForwardedInventoryFragmentVM @Inject constructor(private val baseRepo: BaseRepo): BaseViewModel() {
 
-    val obrInverntory = SingleRequestEvent<InventryResponseModel>()
+    val obrInverntory = SingleRequestEvent<DispatchUsersResponseModel>()
 
     fun getInventory(header: String,status: String) {
         Coroutines.io {
             obrInverntory.postValue(Resource.loading(null))
             try {
-                baseRepo.getInventoriesList(header,status).let {
+                baseRepo.getForwardUsersList(header,status).let {
                     if (it.isSuccessful) {
                         it.body()?.let { results ->
                             obrInverntory.postValue(Resource.success(results, "Success"))

@@ -16,19 +16,19 @@
 
         <variable
             name="bean"
-            type="com.riggle.finza_finza.data.model.UglyIssuence" />
+            type="com.riggle.finza_finza.data.model.DataXX" />
 
     </data>
 
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:cardBackgroundColor="@color/white"
-        app:cardCornerRadius="@dimen/_8sdp"
         android:layout_marginHorizontal="@dimen/_12sdp"
         android:layout_marginVertical="@dimen/_5sdp"
         android:foreground="?selectableItemBackground"
-        android:onClick="@{v-> callback.onItemClick(v,bean,pos)}">
+        android:onClick="@{v-> callback.onItemClick(v,bean,pos)}"
+        app:cardBackgroundColor="@color/white"
+        app:cardCornerRadius="@dimen/_8sdp">
 
         <LinearLayout
             android:layout_width="match_parent"
@@ -37,34 +37,84 @@
             android:layout_marginVertical="@dimen/_10sdp"
             android:orientation="vertical">
 
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:singleLine="true"
-                android:text='@{"FasTag Number: " + bean.FNumber}'
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:singleLine="true"
-                android:layout_marginTop="@dimen/_2sdp"
-                android:text='@{"Assigned Date: " + bean.date}'
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:singleLine="true"
+                    android:text="FasTag Number : "
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
 
-            <TextView
-                style="@style/TextView.InterRegular_12ssp"
-                android:singleLine="true"
-                android:text='@{"Issuance: " + bean.bank}'
-                android:layout_marginTop="@dimen/_2sdp"
-                android:textColor="@color/fsm_text_color"
-                android:textSize="@dimen/_12sdp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:singleLine="true"
+                    android:text='@{bean.inventory.bar_code}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:singleLine="true"
+                    android:text="Agent Name : "
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:singleLine="true"
+                    android:text='@{bean.urt.agent_name}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:singleLine="true"
+                    android:text="Provider : "
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:layout_marginTop="@dimen/_2sdp"
+                    android:singleLine="true"
+                    android:text='@{bean.inventory.provider}'
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </LinearLayout>
 
         </LinearLayout>
 

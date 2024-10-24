@@ -89,6 +89,7 @@
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="0dp"
+                        android:layout_height="@dimen/_30sdp"
                         android:layout_weight="1.5"
                         android:drawableEnd="@drawable/forward_svgrepo_com_small"
                         android:drawableTint="@color/white"
@@ -107,6 +108,7 @@
                         android:layout_weight="0.5" />
 
                     <TextView
+                        android:id="@+id/tvUrtCount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -117,6 +119,7 @@
                         android:textSize="@dimen/_12sdp" />
 
                     <TextView
+                        android:id="@+id/tvUrtAmount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="0dp"
                         android:layout_weight="1"
@@ -157,7 +160,7 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv1"
-            tools:listitem="@layout/holder_ugly_issuence" />
+            tools:listitem="@layout/bad_issuence_holder" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

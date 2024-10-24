@@ -24,24 +24,48 @@
             android:layout_height="0dp"
             android:layout_marginTop="@dimen/_5sdp"
             android:overScrollMode="never"
-            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             tools:listitem="@layout/holder_incomg_inventory" />
 
-        <ImageView
+        <TextView
             android:id="@+id/ivNoData"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="center_vertical"
+            android:text="No Tag to Show"
+            android:textColor="@color/line_color"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
-            android:layout_width="@dimen/_150sdp"
-            android:scaleType="centerCrop"
-            android:layout_height="@dimen/_150sdp"
-            android:src="@drawable/no_data"
-            />
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"/>
+
+        <LinearLayout
+            android:id="@+id/llFilterDispatch"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_margin="@dimen/_25sdp"
+            android:background="@drawable/white_circle"
+            android:backgroundTint="@color/line_color"
+            android:foreground="?selectableItemBackground"
+            android:visibility="gone"
+            android:gravity="center"
+            android:onClick="@{v-> vm.onClick(v)}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/filte1"
+                android:tint="@color/white"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+        </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -2,6 +2,8 @@ package com.riggle.finza_finza.ui.finza.inventory.incoming
 
 import com.riggle.finza_finza.data.api.BaseRepo
 import com.riggle.finza_finza.data.model.AssignInventoryResponseModel
+import com.riggle.finza_finza.data.model.DispatchUsersResponseModel
+import com.riggle.finza_finza.data.model.ForwardUsersResponseModel
 import com.riggle.finza_finza.data.model.InventryResponseModel
 import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.utils.Coroutines
@@ -15,13 +17,12 @@ import javax.inject.Inject
 class IncomingInventoryFragmentVM @Inject constructor(private val baseRepo: BaseRepo) :
     BaseViewModel() {
 
-    val obrInverntory = SingleRequestEvent<InventryResponseModel>()
-
-    fun getInventory(header: String, status: String) {
+    val obrInverntory = SingleRequestEvent<ForwardUsersResponseModel>()
+    fun getInventory(header: String,status: String) {
         Coroutines.io {
             obrInverntory.postValue(Resource.loading(null))
             try {
-                baseRepo.getInventoriesList(header, status).let {
+                baseRepo.getDispatchUsersList(header,status).let {
                     if (it.isSuccessful) {
                         it.body()?.let { results ->
                             obrInverntory.postValue(Resource.success(results, "Success"))
@@ -29,7 +30,7 @@ class IncomingInventoryFragmentVM @Inject constructor(private val baseRepo: Base
                     } else {
                         obrInverntory.postValue(
                             Resource.error(
-                                null, handleErrorResponse(it.errorBody(), it.code())
+                                null, handleErrorResponse(it.errorBody(),it.code())
                             )
                         )
                     }

@@ -10,12 +10,16 @@ import com.riggle.finza_finza.R
 import com.riggle.finza_finza.databinding.ActivityNeedFastagBinding
 import com.riggle.finza_finza.ui.base.BaseActivity
 import com.riggle.finza_finza.ui.base.BaseViewModel
+import com.riggle.finza_finza.utils.Status
+import com.riggle.finza_finza.utils.showErrorToast
+import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 
 @AndroidEntryPoint
 class NeedFastagActivity : BaseActivity<ActivityNeedFastagBinding>() {
 
     private val viewModel: NeedFastagActivityVM by viewModels()
+    private var provider = ""
 
     companion object {
         fun newIntent(activity: Activity): Intent {
@@ -40,19 +44,56 @@ class NeedFastagActivity : BaseActivity<ActivityNeedFastagBinding>() {
     }
 
     private fun initView() {
-        val adapter = ArrayAdapter(this,
-            android.R.layout.simple_spinner_dropdown_item, resources.getStringArray(R.array.banks))
+        val adapter = ArrayAdapter(
+            this,
+            android.R.layout.simple_spinner_dropdown_item,
+            resources.getStringArray(R.array.banks)
+        )
         binding.spinner.adapter = adapter
 
-        binding.spinner.onItemSelectedListener = object :
-            AdapterView.OnItemSelectedListener {
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) { }
-            override fun onNothingSelected(parent: AdapterView<*>) { }
+        binding.spinner.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(
+                parent: AdapterView<*>,
+                view: View,
+                position: Int,
+                id: Long
+            ) {
+                provider = parent.getItemAtPosition(position).toString()
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {
+            }
         }
     }
 
     private fun observers() {
+        viewModel.obrNeedFastag.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
 
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        showSuccessToast(it.data.message)
+                        finish()
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
     }
 
     private fun initOnClick() {
@@ -60,8 +101,14 @@ class NeedFastagActivity : BaseActivity<ActivityNeedFastagBinding>() {
             when (it?.id) {
                 R.id.iv1 -> {
                     finish()
-                }R.id.tvConfirm -> {
-                    finish()
+                }
+
+                R.id.tvProceed -> {
+                    if (provider == "") {
+                        showErrorToast("Please select Provider")
+                    } else {
+                        viewModel.needFastag(sharedPrefManager.getToken().toString(), provider)
+                    }
                 }
             }
         }

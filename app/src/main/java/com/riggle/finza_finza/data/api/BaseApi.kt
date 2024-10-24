@@ -1,17 +1,28 @@
 package com.riggle.finza_finza.data.api
 
+import com.riggle.finza_finza.data.model.AcceptRejectRequest
+import com.riggle.finza_finza.data.model.AcceptRejectResponseModel
 import com.riggle.finza_finza.data.model.AssignInventoryResponseModel
+import com.riggle.finza_finza.data.model.BadResponseModel
+import com.riggle.finza_finza.data.model.CancelRequest
+import com.riggle.finza_finza.data.model.Cancelled1
+import com.riggle.finza_finza.data.model.CancelledResponseModel
 import com.riggle.finza_finza.data.model.CheckTagAvailabilityResponseModel
 import com.riggle.finza_finza.data.model.CreateCustomerRew
 import com.riggle.finza_finza.data.model.CreatePaymentLinkResponseModel
+import com.riggle.finza_finza.data.model.DispatchUsersResponseModel
 import com.riggle.finza_finza.data.model.FinzaForgotPassResponseModel
 import com.riggle.finza_finza.data.model.FinzaLoginResponseModel
 import com.riggle.finza_finza.data.model.FinzaLogoutResponseModel
 import com.riggle.finza_finza.data.model.FinzaProfileResponseModel
+import com.riggle.finza_finza.data.model.ForwardUsersResponseModel
 import com.riggle.finza_finza.data.model.HomeInventoryResponseModel
+import com.riggle.finza_finza.data.model.InventoryResponseModel1
 import com.riggle.finza_finza.data.model.InventryResponseModel
 import com.riggle.finza_finza.data.model.IssueTagCheckWalletResponseModel
 import com.riggle.finza_finza.data.model.IssueTagUserCreateResponseModel
+import com.riggle.finza_finza.data.model.MultipleTransferResponseModel
+import com.riggle.finza_finza.data.model.NeedFastagResponseModel
 import com.riggle.finza_finza.data.model.PaymentStoreRequest
 import com.riggle.finza_finza.data.model.ProjectListResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
@@ -21,8 +32,11 @@ import com.riggle.finza_finza.data.model.ResetPasswordResponseModel
 import com.riggle.finza_finza.data.model.SendOtpIssueTagResponseModel
 import com.riggle.finza_finza.data.model.SendOtpRequest
 import com.riggle.finza_finza.data.model.StorePaymentResponseModel
+import com.riggle.finza_finza.data.model.Transfer
+import com.riggle.finza_finza.data.model.TransferRequest
 import com.riggle.finza_finza.data.model.UpdateProjectResponseModel
 import com.riggle.finza_finza.data.model.UploadDocumentResponseModel
+import com.riggle.finza_finza.data.model.UrtResponseModel
 import com.riggle.finza_finza.data.model.UserWalletResponseModel
 import com.riggle.finza_finza.data.model.UsersListResponseModel
 import com.riggle.finza_finza.data.model.ValidateOtpRequest
@@ -46,6 +60,7 @@ import retrofit2.http.Headers
 import retrofit2.http.Multipart
 import retrofit2.http.POST
 import retrofit2.http.Part
+import retrofit2.http.Query
 
 interface BaseApi {
 
@@ -128,8 +143,7 @@ interface BaseApi {
     @Headers(Constants.X_APP_ACCEPT)
     @FormUrlEncoded
     suspend fun paymentLinkCreate(
-        @Header("Authorization") header: String,
-        @Field("amount") amount: String
+        @Header("Authorization") header: String, @Field("amount") amount: String
     ): Response<CreatePaymentLinkResponseModel>
 
     @JvmSuppressWildcards
@@ -171,6 +185,57 @@ interface BaseApi {
         @Header("Authorization") header: String, @Field("status") status: String
     ): Response<InventryResponseModel>
 
+    @POST(Constants.INVENTORY_LIST1)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun getForwardUSerList(
+        @Header("Authorization") header: String, @Field("status") status: String
+    ): Response<DispatchUsersResponseModel>
+
+    @POST(Constants.INVENTORY_LIST1)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun getDispatchUSerList(
+        @Header("Authorization") header: String, @Field("status") status: String
+    ): Response<ForwardUsersResponseModel>
+
+ @POST(Constants.INVENTORY_LIST1)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun getInventoriesOldList(
+        @Header("Authorization") header: String, @Field("status") status: String
+    ): Response<InventoryResponseModel1>
+
+    @POST(Constants.INVENTORY_LIST1)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun getInventoriesList1(
+        @Header("Authorization") header: String,
+        @Field("status") status: String,
+        @Field("page") page: Int
+    ): Response<InventoryResponseModel1>
+
+    @POST(Constants.INVENTORY_LIST1)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun getInventoriesList2(
+        @Header("Authorization") header: String,
+        @Field("status") status: String,
+        @Field("page") page: Int,
+        @Field("user_id") user_id: Int
+    ): Response<InventoryResponseModel1>
+
+    @POST(Constants.INVENTORY_LIST1)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun getFilterInventoriesList1(
+        @Header("Authorization") header: String,
+        @Field("status") status: String,
+        @Field("from_bar_code") from_bar_code: String,
+        @Field("to_bar_code") to_bar_code: String,
+        @Field("page") page: Int
+    ): Response<InventoryResponseModel1>
+
     @POST(Constants.ASSIGN_INVENTORY)
     @Headers(Constants.X_APP_ACCEPT)
     @FormUrlEncoded
@@ -179,6 +244,44 @@ interface BaseApi {
         @Field("inventory_id") inventory_id: String,
         @Field("assigned_to") assigned_to: String
     ): Response<AssignInventoryResponseModel>
+
+
+    @POST(Constants.CANCEL_INVENTORY2)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun cancelInventory(
+        @Header("Authorization") header: String,
+        @Body reqBody: CancelRequest,
+    ): Response<CancelledResponseModel>
+
+    @POST(Constants.ACCEPT_REJECT)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun acceptReject(
+        @Header("Authorization") header: String,
+        @Body reqBody: AcceptRejectRequest,
+    ): Response<AcceptRejectResponseModel>
+
+    @GET(Constants.URT_LISTING)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun urtListing(
+        @Header("Authorization") header: String,
+        @Query("month ") month : String,
+        @Query("year") year: String
+    ): Response<UrtResponseModel>
+
+    @GET(Constants.BAD_LISTING)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun badListing(
+        @Header("Authorization") header: String,
+        @Query("month ") month : String,
+        @Query("year") year: String
+    ): Response<BadResponseModel>
+
+    @POST(Constants.ASSIGN_INVENTORY1)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun assignInventory1(
+        @Header("Authorization") header: String,
+        @Body reqBody: TransferRequest,
+    ): Response<MultipleTransferResponseModel>
 
     @POST(Constants.CHANGE_INVENTORY_STATUS)
     @Headers(Constants.X_APP_ACCEPT)
@@ -209,12 +312,19 @@ interface BaseApi {
         @Header("Authorization") header: String, @Body reqBody: PaymentStoreRequest
     ): Response<StorePaymentResponseModel>
 
+    @POST(Constants.NEED_FASTAG)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun needFastag(
+        @Header("Authorization") header: String,
+        @Field("provider") provider: String,
+    ): Response<NeedFastagResponseModel>
+
     @POST(Constants.UPDATE_PROJECT)
     @Headers(Constants.X_APP_ACCEPT)
     @FormUrlEncoded
     suspend fun updateProject(
-        @Header("Authorization") header: String,
-        @Field("project_id") project_id: String
+        @Header("Authorization") header: String, @Field("project_id") project_id: String
     ): Response<UpdateProjectResponseModel>
 
     @POST(Constants.WALLET_TRANSACTIONS)
@@ -222,7 +332,7 @@ interface BaseApi {
     @FormUrlEncoded
     suspend fun getTransactionsList(
         @Header("Authorization") header: String,
-        @Field("status") status:Int,
+        @Field("status") status: Int,
     ): Response<WalletTransactionsResponseModel>
 
     @GET(Constants.HOME_INVENTORY)
@@ -243,7 +353,7 @@ interface BaseApi {
     suspend fun checkTagAvailable(
         @Header("Authorization") header: String,
         @Field("tag_id") tag_id: String,
-        ): Response<CheckTagAvailabilityResponseModel>
+    ): Response<CheckTagAvailabilityResponseModel>
 
     @JvmSuppressWildcards
     @Multipart

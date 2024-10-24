@@ -198,16 +198,20 @@
             app:layout_constraintTop_toBottomOf="@+id/tv11"
             tools:listitem="@layout/holder_wallet_transactions" />
 
-        <ImageView
+        <TextView
             android:id="@+id/ivNoData"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/no_data"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="center_vertical"
+            android:text="No Wallet Transaction Done"
+            android:textColor="@color/line_color"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/tv11" />
+            app:layout_constraintTop_toBottomOf="@+id/tv11"/>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

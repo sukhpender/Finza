@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+
+        <variable
+            name="callback"
+            type="com.riggle.finza_finza.utils.BaseCustomBottomSheet.Listener" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:gravity="center_vertical"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:background="@color/line_color"
+            android:elevation="@dimen/_15sdp"
+            android:gravity="center"
+            android:paddingHorizontal="@dimen/_15sdp">
+
+            <TextView
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_weight="1"
+                android:fontFamily="@font/inter_semibold"
+                android:gravity="center_vertical"
+                android:text="Filter"
+                android:textColor="@color/white"
+                android:textSize="@dimen/_16sdp" />
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/icClose"
+                android:layout_width="@dimen/_20sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v->callback.onViewClick(v)}"
+                android:padding="@dimen/_2sdp"
+                android:src="@drawable/cross_svg"
+                android:tint="@color/white"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
+
+        </LinearLayout>
+
+        <TextView
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center_vertical"
+            android:text="Bank"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp" />
+
+        <TextView
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_35sdp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_2sdp"
+            android:background="@drawable/rounded_1"
+            android:gravity="center_vertical"
+            android:paddingHorizontal="@dimen/_15sdp"
+            android:text="Bajaj"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp" />
+
+        <TextView
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center_vertical"
+            android:text="From(Lower Limit) last 9 digits"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp" />
+
+        <EditText
+            android:id="@+id/etLastDigits"
+            style="@style/EditText.Phone"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="8dp"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:hint="1-0123456"
+            android:maxLength="9" />
+
+        <TextView
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_15sdp"
+            android:gravity="center_vertical"
+            android:text="From(Upper Limit) last 9 digits"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp" />
+
+        <EditText
+            android:id="@+id/etUpperDigits"
+            style="@style/EditText.Phone"
+            android:layout_width="match_parent"
+            android:layout_marginHorizontal="@dimen/_15sdp"
+            android:layout_marginTop="8dp"
+            android:hint="1-0123456"
+            android:imeOptions="actionNext"
+            android:inputType="text"
+            android:maxLength="9" />
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_marginVertical="@dimen/_20sdp"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/tvClearFilter"
+        style="@style/TextView.InterRegular_12ssp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/edit_back_view"
+        android:fontFamily="@font/inter_semibold"
+        android:foreground="?selectableItemBackground"
+        android:layout_marginStart="@dimen/_15sdp"
+        android:layout_marginEnd="@dimen/_5sdp"
+        android:gravity="center"
+        android:onClick="@{v->callback.onViewClick(v)}"
+        android:text="Clear"
+        android:textColor="@color/line_color"
+        android:textSize="@dimen/_14sdp" />
+
+    <TextView
+        android:id="@+id/tvApplyFilter"
+        style="@style/TextView.InterRegular_12ssp"
+        android:layout_width="match_parent"
+        android:layout_weight="1"
+        android:layout_height="@dimen/_40sdp"
+        android:background="@drawable/edit_back_view"
+        android:backgroundTint="@color/line_color"
+        android:fontFamily="@font/inter_semibold"
+        android:layout_marginStart="@dimen/_5sdp"
+        android:layout_marginEnd="@dimen/_15sdp"
+        android:foreground="?selectableItemBackground"
+        android:gravity="center"
+        android:onClick="@{v->callback.onViewClick(v)}"
+        android:text="Apply"
+        android:textColor="@color/white"
+        android:textSize="@dimen/_14sdp" />
+
+</LinearLayout>
+
+
+    </LinearLayout>
+
+</layout>

@@ -293,6 +293,13 @@
     <string name="fitment_certificate">Fitment Certificate</string>
     <string name="update_kyc">Update KYC</string>
     <string name="upload_aadhaar_front">Upload Aadhaar Front</string>
+    <string-array name="nextCounts">
+        <item>Select next 10</item>
+        <item>Select next 20</item>
+        <item>Select next 30</item>
+        <item>Select next 40</item>
+        <item>Select next 50</item>
+    </string-array>
     <string-array name="banks">
         <item>Bajaj</item>
     </string-array>

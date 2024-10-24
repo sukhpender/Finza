@@ -17,27 +17,65 @@
         android:id="@+id/clMain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@color/white">
+        android:background="@color/line_colo10">
+
+        <TextView
+            android:id="@+id/tvShowingTags"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_marginStart="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_17sdp"
+            android:singleLine="true"
+            android:text="Showing tags"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginEnd="@dimen/_15sdp"
+            android:background="@drawable/edit_back_view1"
+            android:gravity="center"
+            app:layout_constraintBottom_toBottomOf="@+id/tvShowingTags"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/tvShowingTags">
+
+            <Spinner
+                android:id="@+id/spInHand"
+                style="@style/spinnerStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="@dimen/_28sdp"
+                android:layout_gravity="center"
+                android:dropDownVerticalOffset="@dimen/_35sdp"
+                android:gravity="center" />
+
+        </LinearLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHomeDrawer"
             android:layout_width="match_parent"
             android:layout_height="0dp"
-            android:layout_marginTop="@dimen/_5sdp"
+            android:layout_marginTop="@dimen/_15sdp"
             android:overScrollMode="never"
-            android:visibility="gone"
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/tvAssign1"
+            android:layout_marginBottom="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tvShowingTags"
             tools:listitem="@layout/holder_available_inventory" />
 
-        <ImageView
+        <TextView
             android:id="@+id/ivNoData"
-            android:layout_width="@dimen/_150sdp"
-            android:layout_height="@dimen/_150sdp"
-            android:scaleType="centerCrop"
-            android:src="@drawable/no_data"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/_5sdp"
+            android:gravity="center_vertical"
+            android:text="No Tag to Show"
+            android:textColor="@color/line_color"
+            android:textSize="@dimen/_16sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -131,6 +169,49 @@
 
             </LinearLayout>
 
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/tvAssign1"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_40sdp"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginBottom="@dimen/_5sdp"
+            android:background="@drawable/edit_back_view"
+            android:backgroundTint="@color/line_color"
+            android:fontFamily="@font/inter_medium"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:visibility="gone"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:text="Assign"
+            android:textColor="@color/fsm_bg_light_teal"
+            android:textSize="@dimen/_14sdp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/llFilterInHand"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/llFilterInHand"
+            android:layout_width="@dimen/_40sdp"
+            android:layout_height="@dimen/_40sdp"
+            android:visibility="gone"
+            android:layout_margin="@dimen/_10sdp"
+            android:background="@drawable/white_circle"
+            android:backgroundTint="@color/line_color"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center"
+            android:onClick="@{v-> vm.onClick(v)}"
+            app:layout_constraintBottom_toTopOf="@+id/tvAssign1"
+            app:layout_constraintEnd_toEndOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:layout_width="@dimen/_25sdp"
+                android:layout_height="@dimen/_20sdp"
+                android:src="@drawable/filte1"
+                android:tint="@color/white"
+                app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize50Percent" />
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>

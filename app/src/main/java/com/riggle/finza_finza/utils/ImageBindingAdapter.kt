@@ -127,6 +127,17 @@ object ImageBindingAdapter {
     }
 
     @JvmStatic
+    @BindingAdapter("setIsChecked")
+    fun setIsChecked(iv: ImageView, status: Boolean) {
+        if (status){
+            iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context, R.drawable.check))
+            }else{
+            iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context, R.drawable.round_8dp_border_rec))
+        }
+
+    }
+
+    @JvmStatic
     @BindingAdapter("getInitials")
     fun getInitials(textView: TextView, data: UsersListData) {
         var firstName = data.first_name + " " + data.last_name

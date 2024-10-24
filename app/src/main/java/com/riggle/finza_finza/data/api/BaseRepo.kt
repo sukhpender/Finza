@@ -1,17 +1,27 @@
 package com.riggle.finza_finza.data.api
 
+import com.riggle.finza_finza.data.model.AcceptRejectRequest
+import com.riggle.finza_finza.data.model.AcceptRejectResponseModel
 import com.riggle.finza_finza.data.model.AssignInventoryResponseModel
+import com.riggle.finza_finza.data.model.BadResponseModel
+import com.riggle.finza_finza.data.model.CancelRequest
+import com.riggle.finza_finza.data.model.CancelledResponseModel
 import com.riggle.finza_finza.data.model.CheckTagAvailabilityResponseModel
 import com.riggle.finza_finza.data.model.CreateCustomerRew
 import com.riggle.finza_finza.data.model.CreatePaymentLinkResponseModel
+import com.riggle.finza_finza.data.model.DispatchUsersResponseModel
 import com.riggle.finza_finza.data.model.FinzaForgotPassResponseModel
 import com.riggle.finza_finza.data.model.FinzaLoginResponseModel
 import com.riggle.finza_finza.data.model.FinzaLogoutResponseModel
 import com.riggle.finza_finza.data.model.FinzaProfileResponseModel
+import com.riggle.finza_finza.data.model.ForwardUsersResponseModel
 import com.riggle.finza_finza.data.model.HomeInventoryResponseModel
+import com.riggle.finza_finza.data.model.InventoryResponseModel1
 import com.riggle.finza_finza.data.model.InventryResponseModel
 import com.riggle.finza_finza.data.model.IssueTagCheckWalletResponseModel
 import com.riggle.finza_finza.data.model.IssueTagUserCreateResponseModel
+import com.riggle.finza_finza.data.model.MultipleTransferResponseModel
+import com.riggle.finza_finza.data.model.NeedFastagResponseModel
 import com.riggle.finza_finza.data.model.PaymentStoreRequest
 import com.riggle.finza_finza.data.model.ProjectListResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
@@ -21,8 +31,10 @@ import com.riggle.finza_finza.data.model.ResetPasswordResponseModel
 import com.riggle.finza_finza.data.model.SendOtpIssueTagResponseModel
 import com.riggle.finza_finza.data.model.SendOtpRequest
 import com.riggle.finza_finza.data.model.StorePaymentResponseModel
+import com.riggle.finza_finza.data.model.TransferRequest
 import com.riggle.finza_finza.data.model.UpdateProjectResponseModel
 import com.riggle.finza_finza.data.model.UploadDocumentResponseModel
+import com.riggle.finza_finza.data.model.UrtResponseModel
 import com.riggle.finza_finza.data.model.UserWalletResponseModel
 import com.riggle.finza_finza.data.model.UsersListResponseModel
 import com.riggle.finza_finza.data.model.ValidateOtpRequest
@@ -40,6 +52,7 @@ import retrofit2.Response
 import retrofit2.http.Body
 import retrofit2.http.Field
 import retrofit2.http.Header
+import retrofit2.http.Query
 
 interface BaseRepo {
 
@@ -115,6 +128,56 @@ interface BaseRepo {
         header: String, status: String
     ): Response<InventryResponseModel>
 
+    suspend fun getForwardUsersList(
+        header: String, status: String
+    ): Response<DispatchUsersResponseModel>
+
+    suspend fun getDispatchUsersList(
+        header: String, status: String
+    ): Response<ForwardUsersResponseModel>
+
+    suspend fun getInventoriesOldList(
+        header: String, status: String
+    ): Response<InventoryResponseModel1>
+
+    suspend fun getInventoriesList1(
+        header: String, status: String,page: Int
+    ): Response<InventoryResponseModel1>
+
+    suspend fun getInventoriesList2(
+        header: String, status: String,page: Int,user_id: Int
+    ): Response<InventoryResponseModel1>
+
+    suspend fun cancelInventory(
+        header: String,
+       reqBody: CancelRequest,
+    ): Response<CancelledResponseModel>
+
+    suspend fun acceptReject(
+        header: String,
+       reqBody: AcceptRejectRequest,
+    ): Response<AcceptRejectResponseModel>
+
+    suspend fun urtListing(
+        header: String,
+        month : String,
+        year: String
+    ): Response<UrtResponseModel>
+
+    suspend fun badListing(
+        header: String,
+        month : String,
+        year: String
+    ): Response<BadResponseModel>
+
+    suspend fun getFilterInventoriesList1(
+        header: String,
+       status: String,
+       from_bar_code: String,
+        to_bar_code: String,
+        page: Int
+    ): Response<InventoryResponseModel1>
+
     suspend fun finzaUsersList(
         header: String,
     ): Response<UsersListResponseModel>
@@ -122,6 +185,11 @@ interface BaseRepo {
     suspend fun assignInventory(
         header: String, inventory_id: String, assigned_to: String
     ): Response<AssignInventoryResponseModel>
+
+    suspend fun assignInventory1(
+        header: String,
+        reqBody: TransferRequest,
+    ): Response<MultipleTransferResponseModel>
 
     suspend fun resetPasssword(
         user_id: String, new_password: String, confirm_new_password: String
@@ -150,6 +218,11 @@ interface BaseRepo {
     suspend fun getHomeInventoryList(
         header: String,
     ): Response<HomeInventoryResponseModel>
+
+    suspend fun needFastag(
+       header: String,
+        provider: String,
+    ): Response<NeedFastagResponseModel>
 
     suspend fun issueTagCheckWallet(
         header: String,

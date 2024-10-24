@@ -56,12 +56,12 @@ class QrCodeAnalyzer(
                     if (barcodes.isNotEmpty()) {
                         for (barcode in barcodes) {
                             // Handle received barcodes...
-                            Toast.makeText(
-                                context,
-                                "Value: " + barcode.rawValue,
-                                Toast.LENGTH_LONG
-                            )
-                                .show()
+//                            Toast.makeText(
+//                                context,
+//                                "Value: " + barcode.rawValue,
+//                                Toast.LENGTH_LONG
+//                            )
+//                                .show()
                             if (barcode.rawValue != "") {
                                 IssueSuperTagActivity.scannedResult.value = barcode.rawValue
                             }

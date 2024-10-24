@@ -4,6 +4,8 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import com.riggle.finza_finza.BR
 import com.riggle.finza_finza.R
+import com.riggle.finza_finza.data.model.DispatchUsersData
+import com.riggle.finza_finza.data.model.ForwardUsersData
 import com.riggle.finza_finza.data.model.InventryData
 import com.riggle.finza_finza.databinding.FragmentIncomingInventoryBinding
 import com.riggle.finza_finza.databinding.HolderIncomgInventoryBinding
@@ -12,6 +14,7 @@ import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.finza_finza.ui.finza.avtivation.ActivationFragment
 import com.riggle.finza_finza.ui.finza.inventory.available.AvailableInventoryFragment
+import com.riggle.finza_finza.ui.finza.inventory.forwarded.ForwardedDetailsActivity
 import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.showErrorToast
 import com.riggle.finza_finza.utils.showSuccessToast
@@ -27,7 +30,7 @@ class IncomingInventoryFragment : BaseFragment<FragmentIncomingInventoryBinding>
         initOnClick()
 
         //  Status for  Forwarded list 0 , Status for Incoming 1 , 2 for in-hand inventory , 3 = old inventory
-        viewModel.getInventory(sharedPrefManager.getToken().toString(), "1")
+        viewModel.getInventory(sharedPrefManager.getToken().toString(), "4")
 
         viewModel.obrInverntory.observe(viewLifecycleOwner) {
             when (it?.status) {
@@ -70,8 +73,8 @@ class IncomingInventoryFragment : BaseFragment<FragmentIncomingInventoryBinding>
                 }
 
                 Status.SUCCESS -> {
-                    showHideLoader(false)
-                    viewModel.getInventory(sharedPrefManager.getToken().toString(), "1")
+                    //  showHideLoader(false)
+                    viewModel.getInventory(sharedPrefManager.getToken().toString(), "4")
                     ActivationFragment.isUpdatesAvailable.value = true
                     AvailableInventoryFragment.isUpdatesAvailable.value = true
                     showSuccessToast(it.data?.message.toString())
@@ -108,24 +111,32 @@ class IncomingInventoryFragment : BaseFragment<FragmentIncomingInventoryBinding>
         return viewModel
     }
 
-    private lateinit var adapter: SimpleRecyclerViewAdapter<InventryData, HolderIncomgInventoryBinding>
+    private lateinit var adapter: SimpleRecyclerViewAdapter<ForwardUsersData, HolderIncomgInventoryBinding>
     private fun initAdapter() {
         adapter = SimpleRecyclerViewAdapter(
             R.layout.holder_incomg_inventory, BR.bean
         ) { v, m, pos ->
-            when (v?.id) {
-                R.id.tvReject -> {// status = 0
-                    viewModel.acceptReject(
-                        sharedPrefManager.getToken().toString(), m.inventory_id.toString(), "0"
-                    )
-                }
-
-                R.id.tvAccept -> { // status = 1
-                    viewModel.acceptReject(
-                        sharedPrefManager.getToken().toString(), m.inventory_id.toString(), "1"
-                    )
+            when(v?.id){
+                R.id.tvClaimNow -> {
+                    DispatchDetailsActivity.userID = m.user_id.toString()
+                    startActivity(DispatchDetailsActivity.newIntent(requireActivity()))
                 }
             }
+//            when (v?.id) {
+//                R.id.tvReject -> { // status = 0
+//                    showHideLoader(true)
+//                    viewModel.acceptReject(
+//                        sharedPrefManager.getToken().toString(), m.inventory_id.toString(), "0"
+//                    )
+//                }
+//
+//                R.id.tvAccept -> { // status = 1
+//                    showHideLoader(true)
+//                    viewModel.acceptReject(
+//                        sharedPrefManager.getToken().toString(), m.inventory_id.toString(), "1"
+//                    )
+//                }
+//            }
         }
         binding.rvHomeDrawer.adapter = adapter
     }

@@ -16,73 +16,112 @@
 
         <variable
             name="bean"
-            type="com.riggle.finza_finza.data.model.InventryData" />
+            type="com.riggle.finza_finza.data.model.InventoryResponseDataX" />
 
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/line_colo10">
+        android:layout_height="wrap_content">
 
         <androidx.cardview.widget.CardView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardCornerRadius="@dimen/_8sdp"
-            android:layout_marginHorizontal="@dimen/_12sdp"
-            android:layout_marginVertical="@dimen/_5sdp">
+            android:layout_marginHorizontal="@dimen/_8sdp"
+            android:layout_marginVertical="@dimen/_5sdp"
+            app:cardCornerRadius="@dimen/_8sdp">
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginHorizontal="@dimen/_10sdp"
-                android:layout_marginVertical="@dimen/_10sdp"
-                android:orientation="vertical">
+                android:gravity="center_vertical">
 
-                <TextView
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:singleLine="true"
-                    android:text='@{"FasTag Number: " + bean.inventory.bar_code}'
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <ImageView
+                    android:id="@+id/ivIsChecked"
+                    setIsChecked="@{bean.selected}"
+                    android:layout_width="@dimen/_18sdp"
+                    android:layout_height="@dimen/_18sdp"
+                    android:layout_marginHorizontal="@dimen/_5sdp"
+                    android:elevation="@dimen/_10sdp"
+                    android:foreground="?selectableItemBackground"
+                    android:onClick="@{v-> callback.onItemClick(v,bean,pos)}" />
 
-                <TextView
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:singleLine="true"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:text='@{"Assignee Name: " + bean.assigned_by.first_name}'
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginVertical="@dimen/_10sdp"
+                    android:layout_marginStart="@dimen/_5sdp"
+                    android:orientation="vertical">
 
-                <TextView
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:singleLine="true"
-                    android:text='@{"Provider: " + bean.inventory.provider}'
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:singleLine="true"
+                        android:text='@{bean.inventory.bar_code+" ("+bean.inventory.provider+")"}'
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:singleLine="true"
-                    android:text="Accepted On: Need to add key in response"
-                    android:layout_marginTop="@dimen/_2sdp"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:singleLine="true"
+                        android:text='@{"Assigned to " + bean.assigned_to.first_name +" ("+bean.assigned_to.designation+")"}'
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:singleLine="true"
+                        android:text='@{"Age : " + String.valueOf(bean.age_in_days)+" days"}'
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        setAssignedDate1="@{bean.assigned_to.created_at}"
+                        android:layout_marginTop="@dimen/_2sdp"
+                        android:singleLine="true"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <TextView
+                        android:id="@+id/tvAssign1"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_30sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:background="@drawable/edit_back_view"
+                        android:backgroundTint="@color/line_color"
+                        android:fontFamily="@font/inter_medium"
+                        android:foreground="?selectableItemBackground"
+                        android:gravity="center"
+                        android:onClick="@{v -> callback.onItemClick(v,bean,pos)}"
+                        android:text="Assign"
+                        android:textColor="@color/fsm_bg_light_teal"
+                        android:textSize="@dimen/_14sdp"
+                        android:visibility="gone"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvResetPass" />
+
+                </LinearLayout>
 
             </LinearLayout>
+
 
         </androidx.cardview.widget.CardView>
 
     </LinearLayout>
+
 
 
 </layout>

@@ -4,6 +4,8 @@ import android.Manifest
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import androidx.activity.viewModels
 import androidx.camera.core.CameraSelector
@@ -58,20 +60,44 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
         initOnClick()
 
         scannedResult.observe(this) {
-            Log.e("-------------------",it)
+            Log.e("-------------------", it)
             if (it.toString() != "") {
-              //  cameraExecutor.shutdown()
+                //  cameraExecutor.shutdown()
                 val code = it
-                val parts = code.split('-')
-                val string1 = parts[0]
-                val string2 = parts[1]
-                val string3 = parts[2]
-                binding.etvFastTagId1.setText(string1)
-                binding.etvFastTagId2.setText(string2)
-                binding.etvFastTagId3.setText(string3)
+                if (code.length == 16 || code.length == 18) {
+                    var firstPart = ""
+                    var secondPart = ""
+                    var thirdPart = ""
+                    if (code.contains("-")) {
+                        val cleanedCode = code.replace("-", "")
+                        firstPart = cleanedCode.substring(0, 6)
+                        secondPart = cleanedCode.substring(6, 9)
+                        thirdPart = cleanedCode.substring(9, 16)
+                    } else {
+                        firstPart = code.substring(0, 6)
+                        secondPart = code.substring(6, 9)
+                        thirdPart = code.substring(9, 16)
+                    }
+                    binding.etvFastTagId1.setText(firstPart)
+                    binding.etvFastTagId2.setText(secondPart)
+                    binding.etvFastTagId3.setText(thirdPart)
+
+                    val final = "$firstPart-$secondPart-$thirdPart"
+                    viewModel.checkAvailability(sharedPrefManager.getToken().toString(), final)
+                } else {
+                    showErrorToast("Barcode is not of expected 16 digits")
+                }
+//                val parts = code.split('-')
+//                val string1 = parts[0]
+//                val string2 = parts[1]
+//                val string3 = parts[2]
+//                binding.etvFastTagId1.setText(string1)
+//                binding.etvFastTagId2.setText(string2)
+//                binding.etvFastTagId3.setText(string3)
+
             } else {
-                showErrorToast("Scan Failure")
-                finish()
+                showErrorToast("Something went wrong! Please enter barcode manually.")
+                // finish()
             }
         }
     }
@@ -79,6 +105,61 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
     private fun initView() {
         barcodeBoxView = BarcodeBoxView(this)
         startCamera()
+
+        binding.etvFastTagId1.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s != null && s.length == 6) {
+                    binding.etvFastTagId2.requestFocus()
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        binding.etvFastTagId2.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s != null && s.length == 3) {
+                    binding.etvFastTagId3.requestFocus()
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
+
+        binding.etvFastTagId3.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                if (s != null && s.length == 7) {
+                    val tagNumber1 = binding.etvFastTagId1.text.toString()
+                    val tagNumber2 = binding.etvFastTagId2.text.toString()
+                    val tagNumber3 = binding.etvFastTagId3.text.toString()
+                    if (tagNumber1 == "") {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else if (tagNumber1.length != 6) {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else if (tagNumber2 == "") {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else if (tagNumber2.length != 3) {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else if (tagNumber3 == "") {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else if (tagNumber3.length != 7) {
+                        showErrorToast("Please enter complete FASTag number")
+                    } else {
+                        val final = "$tagNumber1-$tagNumber2-$tagNumber3"
+                        viewModel.checkAvailability(sharedPrefManager.getToken().toString(), final)
+
+                    }
+                }
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
+        })
 
         viewModel.obrCheckTagAvailable.observe(this) {
             when (it?.status) {
@@ -96,6 +177,7 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
                         VerifyTagActivity.FastTagNumber = finalTN
                         VerifyTagActivity.FastTagId = it.data.data.id.toString()
                         startActivity(VerifyTagActivity.newIntent(this))
+                        finish()
                     }
                 }
 
@@ -126,21 +208,21 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
                     val tagNumber1 = binding.etvFastTagId1.text.toString()
                     val tagNumber2 = binding.etvFastTagId2.text.toString()
                     val tagNumber3 = binding.etvFastTagId3.text.toString()
-                    if (tagNumber1 == ""){
+                    if (tagNumber1 == "") {
                         showErrorToast("Please enter complete FASTag number")
-                    }else if(tagNumber1.length != 6){
+                    } else if (tagNumber1.length != 6) {
                         showErrorToast("Please enter complete FASTag number")
-                    } else if (tagNumber2 == ""){
+                    } else if (tagNumber2 == "") {
                         showErrorToast("Please enter complete FASTag number")
-                    }else if (tagNumber2.length != 3){
+                    } else if (tagNumber2.length != 3) {
                         showErrorToast("Please enter complete FASTag number")
-                    } else if (tagNumber3 == ""){
+                    } else if (tagNumber3 == "") {
                         showErrorToast("Please enter complete FASTag number")
-                    }else if (tagNumber3.length != 7){
+                    } else if (tagNumber3.length != 7) {
                         showErrorToast("Please enter complete FASTag number")
-                    } else{
+                    } else {
                         val final = "$tagNumber1-$tagNumber2-$tagNumber3"
-                        viewModel.checkAvailability(sharedPrefManager.getToken().toString(),final)
+                        viewModel.checkAvailability(sharedPrefManager.getToken().toString(), final)
 
                     }
                 }
@@ -159,8 +241,7 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
 
     private fun checkIfCameraPermissionIsGranted() {
         if (ContextCompat.checkSelfPermission(
-                this,
-                Manifest.permission.CAMERA
+                this, Manifest.permission.CAMERA
             ) == PackageManager.PERMISSION_GRANTED
         ) {
             // Permission granted: start the preview
@@ -195,8 +276,8 @@ class IssueSuperTagActivity : BaseActivity<ActivityIssueSuperTagBinding>() {
 
             // Preview
             val preview = Preview.Builder().build().also {
-                    it.setSurfaceProvider(binding.previewView.surfaceProvider)
-                }
+                it.setSurfaceProvider(binding.previewView.surfaceProvider)
+            }
 
             // Image analyzer
             val imageAnalyzer = ImageAnalysis.Builder()
