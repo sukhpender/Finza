@@ -54,12 +54,12 @@ class IncomingInventoryFragment : BaseFragment<FragmentIncomingInventoryBinding>
 
                 Status.WARN -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                 //   showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                  //  showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -76,7 +76,7 @@ class IncomingInventoryFragment : BaseFragment<FragmentIncomingInventoryBinding>
                     //  showHideLoader(false)
                     viewModel.getInventory(sharedPrefManager.getToken().toString(), "4")
                     ActivationFragment.isUpdatesAvailable.value = true
-                    AvailableInventoryFragment.isUpdatesAvailable.value = true
+                  //  AvailableInventoryFragment.isUpdatesAvailable.value = true
                     showSuccessToast(it.data?.message.toString())
                 }
 

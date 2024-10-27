@@ -315,7 +315,7 @@ class DispatchDetailsActivity : BaseActivity<ActivityDispatchDetailsBinding>(),
                     if (selectedItems.size == 0) {
                         showInfoToast("Please select tag")
                     } else { //or reject ka case me status 0 bhj dena
-                        val req = AcceptRejectRequest(ids = selectedItems,0)
+                        val req = AcceptRejectRequest(selectedItems,0)
                         viewModel.acceptReject(sharedPrefManager.getToken().toString(), req)
                     }
                 }
@@ -331,7 +331,11 @@ class DispatchDetailsActivity : BaseActivity<ActivityDispatchDetailsBinding>(),
                     if (selectedItems.size == 0) {
                         showInfoToast("Please select tag")
                     } else { //or accept ka case me status 0 bhj dena
-                        val req = AcceptRejectRequest(ids = selectedItems,1)
+                        val req = AcceptRejectRequest(selectedItems,1)
+//                        {
+//                            "inventory_ids": [101, 102, 103],
+//                            "status": 1
+//                        }
                         viewModel.acceptReject(sharedPrefManager.getToken().toString(), req)
                     }
                 }

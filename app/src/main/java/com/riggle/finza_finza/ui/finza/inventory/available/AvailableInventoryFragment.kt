@@ -179,12 +179,12 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                         }
                         if (it.data.data.data.size != 0) {
                             binding.rvHomeDrawer.visibility = View.VISIBLE
-                            binding.tvAssign1.visibility = View.VISIBLE
+                            binding.tvAssign123.visibility = View.VISIBLE
                             binding.llFilterInHand.visibility = View.VISIBLE
                             binding.ivNoData.visibility = View.GONE
                         } else {
                             binding.rvHomeDrawer.visibility = View.GONE
-                            binding.tvAssign1.visibility = View.GONE
+                            binding.tvAssign123.visibility = View.GONE
                             binding.llFilterInHand.visibility = View.GONE
                             binding.ivNoData.visibility = View.VISIBLE
                         }
@@ -193,12 +193,12 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
 
                 Status.WARN -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                   // showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                   // showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -229,16 +229,16 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                         }
                         if (it.data.data.data.size != 0) {
                             binding.rvHomeDrawer.visibility = View.VISIBLE
-                            binding.tvAssign1.visibility = View.VISIBLE
+                            binding.tvAssign123.visibility = View.VISIBLE
                             binding.llFilterInHand.visibility = View.VISIBLE
                             binding.llFilterInHand.visibility = View.VISIBLE
-                            binding.tvAssign1.visibility = View.VISIBLE
+                            binding.tvAssign123.visibility = View.VISIBLE
                             binding.ivNoData.visibility = View.GONE
                         } else {
                             binding.rvHomeDrawer.visibility = View.GONE
                             binding.llFilterInHand.visibility = View.GONE
-                            binding.tvAssign1.visibility = View.GONE
-                            binding.tvAssign1.visibility = View.GONE
+                            binding.tvAssign123.visibility = View.GONE
+                            binding.tvAssign123.visibility = View.GONE
                             binding.llFilterInHand.visibility = View.GONE
                             binding.ivNoData.visibility = View.VISIBLE
                         }
@@ -296,12 +296,11 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
-                    if (it.data != null) {
-                        showSuccessToast(it.data.message.toString())
+                       // showSuccessToast(it.data.message.toString())
                         binding.llUserView.visibility = View.GONE
                         binding.rvHomeDrawer.visibility = View.VISIBLE
                         binding.llFilterInHand.visibility = View.VISIBLE
-                        binding.tvAssign1.visibility = View.VISIBLE
+                        binding.tvAssign123.visibility = View.VISIBLE
                         inventoryId = 0
                         assignToId = 0
                         currentPage = 1
@@ -310,17 +309,17 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                         )
                         ForwardedInventoryFragment.isUpdatesAvailable.value = true
                         ActivationFragment.isUpdatesAvailable.value = true
-                    }
+
                 }
 
                 Status.WARN -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                   // showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                  //  showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -425,7 +424,7 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                     filterBs.show()
                 }
 
-                R.id.tvAssign1 -> {
+                R.id.tvAssign123 -> {
                     selectedItems.clear()
                     if (adapter.list.size != 0) {
                         for (i in 0 until adapter.list.size) {
@@ -447,7 +446,7 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                         binding.llUserView.visibility = View.VISIBLE
                         binding.rvHomeDrawer.visibility = View.GONE
                         binding.llFilterInHand.visibility = View.GONE
-                        binding.tvAssign1.visibility = View.GONE
+                        binding.tvAssign123.visibility = View.GONE
                     }
                 }
 
@@ -455,7 +454,7 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                     binding.llUserView.visibility = View.GONE
                     binding.rvHomeDrawer.visibility = View.VISIBLE
                     binding.llFilterInHand.visibility = View.VISIBLE
-                    binding.tvAssign1.visibility = View.VISIBLE
+                    binding.tvAssign123.visibility = View.VISIBLE
                 }
 
                 R.id.tvAssign -> {
@@ -470,6 +469,16 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
 //                            inventoryId.toString(),
 //                            assignToId.toString()
 //                        )
+                        selectedItems.clear()
+                        for (i in 0 until adapter.list.size) {
+                            if (adapter.list[i].isSelected) {
+                                selectedItems.add(
+                                    Transfer(
+                                        adapter.list[i].inventory_id, assignToId
+                                    )
+                                )
+                            }
+                        }
                         val reqBody = TransferRequest(transfers = selectedItems)
                         viewModel.assignInventory1(sharedPrefManager.getToken().toString(), reqBody)
                     } else {

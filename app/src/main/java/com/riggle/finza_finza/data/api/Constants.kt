@@ -29,7 +29,7 @@ object Constants {
     const val ASSIGN_INVENTORY = "api/inventory-assigned"
     const val ASSIGN_INVENTORY1 = "api/multiple-inventory-transfer"
     const val CANCEL_INVENTORY2 = "api/multiple-inventory-cancel"
-    const val ACCEPT_REJECT = "api/change-inventory-status"
+    const val ACCEPT_REJECT = "api/change-multiinventory-status"
     const val URT_LISTING = "api/urt-list"
     const val BAD_LISTING = "api/bad-issuance-list"
     const val RESET_PASSWORD = "api/resetPassword"

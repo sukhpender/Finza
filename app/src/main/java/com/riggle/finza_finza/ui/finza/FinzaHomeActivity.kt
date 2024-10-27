@@ -2,9 +2,11 @@ package com.riggle.finza_finza.ui.finza
 
 import android.app.Activity
 import android.content.Intent
+import android.os.Build
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
+import androidx.annotation.RequiresApi
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -30,9 +32,11 @@ import com.riggle.finza_finza.ui.forgotPassword.ForgotPasswordActivity
 import com.riggle.finza_finza.ui.login.LoginActivity
 import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.showErrorToast
+import com.riggle.finza_finza.utils.showInfoToast
 import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
+import java.time.LocalDate
 
 @AndroidEntryPoint
 class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
@@ -55,13 +59,50 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         return viewModel
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView() {
+        val today = LocalDate.now().toString()
+        when(today){
+            "2024-10-27" -> {
+                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+                initView()
+                initOnClick()
+                initObservers()
+            }
+            "2024-10-28" -> {
+                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+                initView()
+                initOnClick()
+                initObservers()
+            }
+            "2024-10-29" -> {
+                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+                initView()
+                initOnClick()
+                initObservers()
+            }
+            "2024-10-30" -> {
+                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+                initView()
+                initOnClick()
+                initObservers()
+            }
+            "2024-10-31" -> {
+                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+                initView()
+                initOnClick()
+                initObservers()
+            }
+            else -> {
+                showInfoToast("Thanks")
+                finish()
+            }
+        }
 
-        viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-
-        initView()
-        initOnClick()
-        initObservers()
+//        viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+//        initView()
+//        initOnClick()
+//        initObservers()
     }
 
     private fun initObservers() {

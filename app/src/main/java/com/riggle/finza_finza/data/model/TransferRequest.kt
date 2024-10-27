@@ -20,6 +20,6 @@ data class CancelRequest(
 )
 
 data class AcceptRejectRequest(
-    val ids : ArrayList<Int>,
+    val inventory_ids : List<Int>,
     var status: Int
 )

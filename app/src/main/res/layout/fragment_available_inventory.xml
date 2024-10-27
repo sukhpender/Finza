@@ -172,7 +172,7 @@
         </LinearLayout>
 
         <TextView
-            android:id="@+id/tvAssign1"
+            android:id="@+id/tvAssign123"
             style="@style/TextView.InterRegular_12ssp"
             android:layout_width="match_parent"
             android:layout_height="@dimen/_40sdp"
@@ -203,7 +203,7 @@
             android:foreground="?selectableItemBackground"
             android:gravity="center"
             android:onClick="@{v-> vm.onClick(v)}"
-            app:layout_constraintBottom_toTopOf="@+id/tvAssign1"
+            app:layout_constraintBottom_toTopOf="@+id/tvAssign123"
             app:layout_constraintEnd_toEndOf="parent">
 
             <com.google.android.material.imageview.ShapeableImageView

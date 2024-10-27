@@ -63,12 +63,12 @@ class UrtFragment : BaseFragment<FragmentUrtBinding>(), VerticalPagination.Verti
 
                 Status.WARN -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                   // showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                   // showErrorToast(it.message.toString())
                 }
 
                 else -> {}
