@@ -32,11 +32,9 @@ import com.riggle.finza_finza.ui.forgotPassword.ForgotPasswordActivity
 import com.riggle.finza_finza.ui.login.LoginActivity
 import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.showErrorToast
-import com.riggle.finza_finza.utils.showInfoToast
 import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
-import java.time.LocalDate
 
 @AndroidEntryPoint
 class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
@@ -61,48 +59,47 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView() {
-        val today = LocalDate.now().toString()
-        when(today){
-            "2024-10-27" -> {
-                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-                initView()
-                initOnClick()
-                initObservers()
-            }
-            "2024-10-28" -> {
-                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-                initView()
-                initOnClick()
-                initObservers()
-            }
-            "2024-10-29" -> {
-                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-                initView()
-                initOnClick()
-                initObservers()
-            }
-            "2024-10-30" -> {
-                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-                initView()
-                initOnClick()
-                initObservers()
-            }
-            "2024-10-31" -> {
-                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-                initView()
-                initOnClick()
-                initObservers()
-            }
-            else -> {
-                showInfoToast("Thanks")
-                finish()
-            }
-        }
-
-//        viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-//        initView()
-//        initOnClick()
-//        initObservers()
+        viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+        initView()
+        initOnClick()
+        initObservers()
+//        val today = LocalDate.now().toString()
+//        when(today){
+//            "2024-10-27" -> {
+//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+//                initView()
+//                initOnClick()
+//                initObservers()
+//            }
+//            "2024-10-28" -> {
+//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+//                initView()
+//                initOnClick()
+//                initObservers()
+//            }
+//            "2024-10-29" -> {
+//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+//                initView()
+//                initOnClick()
+//                initObservers()
+//            }
+//            "2024-10-30" -> {
+//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+//                initView()
+//                initOnClick()
+//                initObservers()
+//            }
+//            "2024-10-31" -> {
+//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
+//                initView()
+//                initOnClick()
+//                initObservers()
+//            }
+//            else -> {
+//                showInfoToast("Thanks")
+//                finish()
+//            }
+//        }
     }
 
     private fun initObservers() {
@@ -116,8 +113,8 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     if (it.data != null) {
-                      //  binding.tv4.text = it.data.data.project_detail.title
-                      //  binding.tv5.text = it.data.data.project_detail.type
+                        //  binding.tv4.text = it.data.data.project_detail.title
+                        //  binding.tv5.text = it.data.data.project_detail.type
                     }
                 }
 
@@ -322,7 +319,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         list.add(Drawer(R.drawable.inventory, "Inventory"))
         list.add(Drawer(R.drawable.ic_percentage_filled, "Issue Tag"))
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))
-       // list.add(Drawer(R.drawable.change_project, "Change Project"))
+        // list.add(Drawer(R.drawable.change_project, "Change Project"))
         list.add(Drawer(R.drawable.replace1, "Help & Support"))
         //  list.add(Drawer(R.drawable.language, "Language"))
         list.add(Drawer(R.drawable.profile, "Profile"))
