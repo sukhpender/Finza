@@ -2,8 +2,14 @@ package com.riggle.finza_finza.ui.finza.wallet.addMoney
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.text.Editable
 import android.text.TextWatcher
+import android.util.Log
+import android.view.View
+import android.webkit.WebSettings
+import android.webkit.WebView
+import android.webkit.WebViewClient
 import androidx.activity.viewModels
 import com.razorpay.Checkout
 import com.razorpay.PaymentData
@@ -23,6 +29,7 @@ import org.json.JSONObject
 import java.text.SimpleDateFormat
 import java.util.Date
 import java.util.TimeZone
+
 
 @AndroidEntryPoint
 class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultWithDataListener {
@@ -144,8 +151,24 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
-                    showSuccessToast(it.data?.message.toString())
-                    finish()
+                    openUrlInChrome(it.data?.data.toString())
+//                    showSuccessToast(it.data?.message.toString())
+//                    finish()
+
+
+//                    binding.webview.visibility = View.VISIBLE
+//                    val webView: WebView = findViewById(R.id.webview)
+//                    val webSettings: WebSettings = webView.settings
+//                    webSettings.javaScriptEnabled = true
+//                    webView.loadUrl(main123(it.data?.data.toString()))
+//                    Log.e("adsdsdas",main123(it.data?.data.toString()))
+//                    webView.webViewClient = WebViewClient()
+//                    webView.webChromeClient = object : android.webkit.WebChromeClient() {
+//                        override fun onProgressChanged(view: WebView, newProgress: Int) {
+//                            super.onProgressChanged(view, newProgress)
+//
+//                        }
+//                    }
                 }
 
                 Status.WARN -> {
@@ -160,6 +183,30 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
 
                 else -> {}
             }
+        }
+    }
+
+    private fun openUrlInChrome(url: String) {
+        val intent = Intent(Intent.ACTION_VIEW, Uri.parse(url))
+        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+       // intent.setPackage("com.android.chrome") // Specify Chrome package
+        intent.setPackage(null)
+        startActivity(intent)
+//        try {
+//            startActivity(intent)
+//        } catch (e: Exception) {
+//            // If Chrome is not available, open in the default browser
+//            intent.setPackage(null)
+//            startActivity(intent)
+//        }
+    }
+
+    override fun onBackPressed() {
+        val webView: WebView = findViewById(R.id.webview)
+        if (webView.canGoBack()) {
+            webView.goBack() // Go back to previous page in WebView
+        } else {
+            super.onBackPressed() // Exit activity if no more history
         }
     }
 
@@ -216,6 +263,12 @@ class AddMoneyActivity : BaseActivity<ActivityAddMoneyBinding>(), PaymentResultW
                 }
             }
         }
+    }
+
+    fun main123(url:String): String {
+        val url = url
+        val fixedUrl = url.replace(" ", "")  // Remove all spaces
+        return fixedUrl
     }
 
     private fun initPayment(amount: String) {
