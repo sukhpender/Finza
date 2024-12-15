@@ -79,7 +79,7 @@
                     android:layout_marginHorizontal="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:singleLine="true"
-                    android:text='@{bean.phone_number}'
+                    maskPhoneNumber="@{bean.phone_number}"
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintBottom_toTopOf="@+id/tv3"
@@ -94,6 +94,7 @@
                     android:layout_marginHorizontal="@dimen/_5sdp"
                     android:layout_weight="1"
                     android:singleLine="true"
+                    android:visibility="gone"
                     android:text='@{"Toll Plaza : "+ bean.toll_plaza_name}'
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_11sdp"
@@ -110,6 +111,7 @@
                     android:layout_weight="1"
                     android:singleLine="true"
                     android:text='@{"City : "+ bean.city}'
+                    android:visibility="gone"
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_11sdp"
                     app:layout_constraintBottom_toBottomOf="@+id/iv1"

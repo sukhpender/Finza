@@ -1135,6 +1135,21 @@ object ImageBindingAdapter {
     }
 
     @JvmStatic
+    @BindingAdapter(value = ["maskPhoneNumber"])
+    fun maskPhoneNumber(tv: TextView,phoneNumber: String) {
+        if (phoneNumber != null || phoneNumber != "") {
+            if (phoneNumber.length >= 5) {
+                val lastFive = phoneNumber.takeLast(5)
+               // val masked = "*".repeat(phoneNumber.length - 5) + lastFive
+                tv.text = "*****"+lastFive
+            }
+           // tv.text = "Not provided"
+        }else{
+            tv.text = "Not provided"
+        }
+    }
+
+    @JvmStatic
     @BindingAdapter(value = ["setImageWithFullUrl2"])
     fun setImageWithFullUrl2(imageView: ImageView, image: String?) {
         Glide.with(imageView.context).load(Constants.IMAGE_BASE_URL+image).placeholder(R.drawable.dummy1).into(imageView)

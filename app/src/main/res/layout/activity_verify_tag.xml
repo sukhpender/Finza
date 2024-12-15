@@ -715,6 +715,7 @@
                                     android:layout_marginVertical="@dimen/_5sdp"
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginEnd="@dimen/_10sdp"
+                                    android:visibility="gone"
                                     android:layout_weight="1"
                                     android:background="@drawable/edit_back_view"
                                     android:backgroundTint="@color/line_color"
@@ -824,6 +825,7 @@
                                     android:layout_marginVertical="@dimen/_5sdp"
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginEnd="@dimen/_10sdp"
+                                    android:visibility="gone"
                                     android:layout_weight="1"
                                     android:background="@drawable/edit_back_view"
                                     android:backgroundTint="@color/line_color"
@@ -933,11 +935,12 @@
                                     android:foreground="?selectableItemBackground"
                                     android:gravity="center"
                                     android:onClick="@{v->vm.onClick(v)}"
-                                    android:text="Select"
+                                    android:text="Capture"
                                     android:textColor="@color/line_color"
                                     android:textSize="@dimen/_14sdp" />
 
                                 <TextView
+                                    android:visibility="gone"
                                     android:id="@+id/tvUploadCarFront"
                                     style="@style/TextView.InterRegular_12ssp"
                                     android:layout_width="0dp"
@@ -1042,7 +1045,7 @@
                                     android:foreground="?selectableItemBackground"
                                     android:gravity="center"
                                     android:onClick="@{v->vm.onClick(v)}"
-                                    android:text="Select"
+                                    android:text="Capture"
                                     android:textColor="@color/line_color"
                                     android:textSize="@dimen/_14sdp" />
 
@@ -1051,6 +1054,7 @@
                                     style="@style/TextView.InterRegular_12ssp"
                                     android:layout_width="0dp"
                                     android:layout_height="@dimen/_30sdp"
+                                    android:visibility="gone"
                                     android:layout_marginVertical="@dimen/_5sdp"
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginEnd="@dimen/_10sdp"
@@ -1159,6 +1163,7 @@
                                     style="@style/TextView.InterRegular_12ssp"
                                     android:layout_width="0dp"
                                     android:layout_height="@dimen/_30sdp"
+                                    android:visibility="gone"
                                     android:layout_marginVertical="@dimen/_5sdp"
                                     android:layout_marginStart="@dimen/_5sdp"
                                     android:layout_marginEnd="@dimen/_10sdp"

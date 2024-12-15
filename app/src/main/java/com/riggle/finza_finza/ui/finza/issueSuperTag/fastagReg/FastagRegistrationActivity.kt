@@ -134,6 +134,16 @@ class FastagRegistrationActivity : BaseActivity<ActivityFastagRegistrationBindin
         initVehicleStatus()
         initVehicleCategory()
         initVehicleColors()
+//
+//        binding.cbIsCommerical.setOnCheckedChangeListener { _, isChecked ->
+//            if (isChecked) {
+//                // Checkbox is checked
+//                statusTextView.text = "Checked"
+//            } else {
+//                // Checkbox is unchecked
+//                statusTextView.text = "Unchecked"
+//            }
+//        }
     }
 
     private fun initStatesSP() {

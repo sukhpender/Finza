@@ -548,8 +548,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     binding.tvContinue.isEnabled = false
                     binding.tvContinue.backgroundTintList = ColorStateList.valueOf(
                         ContextCompat.getColor(
-                            this,
-                            R.color.dark_grey_txt_color20
+                            this, R.color.dark_grey_txt_color20
                         )
                     )
                 }
@@ -1259,15 +1258,17 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 // send otp -------------------------------
                 R.id.tvVerifyNumber -> {
                     val mNumber = binding.etPhone.text.toString()
-                    val vehicleNumber = binding.etvVehicleNumber.text.toString()
+                    var vehicleNumber = binding.etvVehicleNumber.text.toString()
                     val isChassis = binding.cbChassisNumber.isChecked
                     val chassisNumber = binding.etvChassisNumber.text.toString()
                     val engineNumber = binding.etvEngineNumber.text.toString()
 
                     if (isChassis) {
                         isChassi = 1
+                        vehicleNumber = "Test"
                     } else {
                         isChassi = 0
+                        vehicleNumber = ""
                     }
 
                     if (mNumber == "") {
@@ -1687,6 +1688,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
     private fun checkPermission(v: View, forWhich: String) {
         Permissions.check(this, permissions(), 0, null, object : PermissionHandler() {
+            @RequiresApi(Build.VERSION_CODES.O)
             override fun onGranted() {
                 when (forWhich) {
                     "1" -> {
@@ -1698,11 +1700,17 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     }
 
                     "3" -> {
-                        getCarFront(v)
+                        ImagePicker.with(this@VerifyTagActivity).cameraOnly().createIntent { intent ->
+                            startForCarFrontImageResult.launch(intent)
+                        }
+                        //getCarFront(v)
                     }
 
                     "4" -> {
-                        getCarSide(v)
+                        ImagePicker.with(this@VerifyTagActivity).cameraOnly().createIntent { intent ->
+                            startForCarSideImageResult.launch(intent)
+                        }
+                       // getCarSide(v)
                     }
 
                     "5" -> {
@@ -1721,6 +1729,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var tagafixFile: File? = null
+    @RequiresApi(Build.VERSION_CODES.O)
     private val startForTagaFixImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -1730,6 +1739,28 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 val fileUri = data?.data!!
                 tagafixFile = File(fileUri.getFilePath(this))
                 binding.ivTAGAFFIX.setImageURI(fileUri)
+                // updated code from here ***/
+                if (tagafixFile == null) {
+                    showErrorToast("Please select TagaFix image")
+                } else {
+                    val requestFile =
+                        tagafixFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                    val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "image", tagafixFile?.name, requestFile!!
+                    )
+                    viewModel.uploadDocument(
+                        sharedPrefManager.getToken().toString(),
+                        AppUtils.textToRequestBody(requestId1),
+                        AppUtils.textToRequestBody(sessionId1),
+                        AppUtils.textToRequestBody(channel),
+                        AppUtils.textToRequestBody(agentId),
+                        AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                        AppUtils.textToRequestBody("TAGAFFIX"),
+                        body,
+                        AppUtils.textToRequestBody(provider),
+                        AppUtils.textToRequestBody(FastTagId)
+                    )
+                }
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 showErrorToast(ImagePicker.getError(data))
             } else {
@@ -1737,6 +1768,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             }
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getTagaFix(v: View) {
         val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
         popupMenu.menu.add("Select From Camera")
@@ -1745,13 +1777,13 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         popupMenu.setOnMenuItemClickListener { item ->
             when (item?.title) {
                 "Select From Camera" -> {
-                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                    ImagePicker.with(this).cameraOnly().createIntent { intent ->
                         startForTagaFixImageResult.launch(intent)
                     }
                 }
 
                 "Select From Gallery" -> {
-                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                    ImagePicker.with(this).galleryOnly().createIntent { intent ->
                         startForTagaFixImageResult.launch(intent)
                     }
                 }
@@ -1766,6 +1798,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var carFrontFile: File? = null
+    @RequiresApi(Build.VERSION_CODES.O)
     private val startForCarFrontImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -1775,6 +1808,28 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 val fileUri = data?.data!!
                 carFrontFile = File(fileUri.getFilePath(this))
                 binding.ivCarFront.setImageURI(fileUri)
+                if (carFrontFile == null) {
+                    showErrorToast("Please select Car front image")
+                } else {
+                    val requestFile =
+                        carFrontFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                    val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "image", carFrontFile?.name, requestFile!!
+                    )
+                    viewModel.uploadDocument(
+                        sharedPrefManager.getToken().toString(),
+                        AppUtils.textToRequestBody(requestId1),
+                        AppUtils.textToRequestBody(sessionId1),
+                        AppUtils.textToRequestBody(channel),
+                        AppUtils.textToRequestBody(agentId),
+                        AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                        AppUtils.textToRequestBody("VEHICLEFRONT"),
+                        body,
+                        AppUtils.textToRequestBody(provider),
+                        AppUtils.textToRequestBody(FastTagId)
+
+                    )
+                }
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 showErrorToast(ImagePicker.getError(data))
             } else {
@@ -1782,6 +1837,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             }
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getCarFront(v: View) {
         val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
         popupMenu.menu.add("Select From Camera")
@@ -1790,13 +1846,13 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         popupMenu.setOnMenuItemClickListener { item ->
             when (item?.title) {
                 "Select From Camera" -> {
-                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                    ImagePicker.with(this).cameraOnly().createIntent { intent ->
                         startForCarFrontImageResult.launch(intent)
                     }
                 }
 
                 "Select From Gallery" -> {
-                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                    ImagePicker.with(this).galleryOnly().createIntent { intent ->
                         startForCarFrontImageResult.launch(intent)
                     }
                 }
@@ -1811,6 +1867,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var carSideFile: File? = null
+    @RequiresApi(Build.VERSION_CODES.O)
     private val startForCarSideImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -1820,6 +1877,29 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 val fileUri = data?.data!!
                 carSideFile = File(fileUri.getFilePath(this))
                 binding.ivCarSide.setImageURI(fileUri)
+                // car side image update code ***/
+                if (carSideFile == null) {
+                    showErrorToast("Please select Car side image")
+                } else {
+                    val requestFile =
+                        carSideFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                    val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "image", carSideFile?.name, requestFile!!
+                    )
+                    viewModel.uploadDocument(
+                        sharedPrefManager.getToken().toString(),
+                        AppUtils.textToRequestBody(requestId1),
+                        AppUtils.textToRequestBody(sessionId1),
+                        AppUtils.textToRequestBody(channel),
+                        AppUtils.textToRequestBody(agentId),
+                        AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                        AppUtils.textToRequestBody("VEHICLESIDE"),
+                        body,
+                        AppUtils.textToRequestBody(provider),
+                        AppUtils.textToRequestBody(FastTagId)
+
+                    )
+                }
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 showErrorToast(ImagePicker.getError(data))
             } else {
@@ -1827,6 +1907,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             }
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getCarSide(v: View) {
         val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
         popupMenu.menu.add("Select From Camera")
@@ -1835,13 +1916,13 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         popupMenu.setOnMenuItemClickListener { item ->
             when (item?.title) {
                 "Select From Camera" -> {
-                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                    ImagePicker.with(this).cameraOnly().createIntent { intent ->
                         startForCarSideImageResult.launch(intent)
                     }
                 }
 
                 "Select From Gallery" -> {
-                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                    ImagePicker.with(this).galleryOnly().createIntent { intent ->
                         startForCarSideImageResult.launch(intent)
                     }
                 }
@@ -1856,6 +1937,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var rcBackFile: File? = null
+    @RequiresApi(Build.VERSION_CODES.O)
     private val startForRCBackImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -1865,6 +1947,28 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 val fileUri = data?.data!!
                 rcBackFile = File(fileUri.getFilePath(this))
                 binding.ivRCBack.setImageURI(fileUri)
+                // updated code from here ***/
+                if (rcBackFile == null) {
+                    showErrorToast("Please select RC back image")
+                } else {
+                    val requestFile =
+                        rcBackFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                    val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "image", rcBackFile?.name, requestFile!!
+                    )
+                    viewModel.uploadDocument(
+                        sharedPrefManager.getToken().toString(),
+                        AppUtils.textToRequestBody(requestId1),
+                        AppUtils.textToRequestBody(sessionId1),
+                        AppUtils.textToRequestBody(channel),
+                        AppUtils.textToRequestBody(agentId),
+                        AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                        AppUtils.textToRequestBody("RCBACK"),
+                        body,
+                        AppUtils.textToRequestBody(provider),
+                        AppUtils.textToRequestBody(FastTagId)
+                    )
+                }
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 showErrorToast(ImagePicker.getError(data))
             } else {
@@ -1872,6 +1976,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             }
         }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getRCBack(v: View) {
         val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
         popupMenu.menu.add("Select From Camera")
@@ -1880,13 +1985,13 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         popupMenu.setOnMenuItemClickListener { item ->
             when (item?.title) {
                 "Select From Camera" -> {
-                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                    ImagePicker.with(this).cameraOnly().createIntent { intent ->
                         startForRCBackImageResult.launch(intent)
                     }
                 }
 
                 "Select From Gallery" -> {
-                    ImagePicker.with(this).cropSquare().galleryOnly().createIntent { intent ->
+                    ImagePicker.with(this).galleryOnly().createIntent { intent ->
                         startForRCBackImageResult.launch(intent)
                     }
                 }
@@ -1900,6 +2005,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         popupMenu.show()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun getRCFront(v: View) {
         val popupMenu = androidx.appcompat.widget.PopupMenu(this, v)
         popupMenu.menu.add("Select From Camera")
@@ -1908,7 +2014,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         popupMenu.setOnMenuItemClickListener { item ->
             when (item?.title) {
                 "Select From Camera" -> {
-                    ImagePicker.with(this).cropSquare().cameraOnly().createIntent { intent ->
+                    ImagePicker.with(this).cameraOnly().createIntent { intent ->
                         startForRCFrontImageResult.launch(intent)
                     }
                 }
@@ -1929,6 +2035,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var rcFrontFile: File? = null
+    @RequiresApi(Build.VERSION_CODES.O)
     private val startForRCFrontImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
             val resultCode = result.resultCode
@@ -1938,6 +2045,28 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 val fileUri = data?.data!!
                 rcFrontFile = File(fileUri.getFilePath(this))
                 binding.ivRCFront.setImageURI(fileUri)
+                // updated code from here ***/
+                if (rcFrontFile == null) {
+                    showErrorToast("Please select RC front image")
+                } else {
+                    val requestFile =
+                        rcFrontFile?.asRequestBody("multipart/form-data".toMediaTypeOrNull())
+                    val body: MultipartBody.Part = MultipartBody.Part.createFormData(
+                        "image", rcFrontFile?.name, requestFile!!
+                    )
+                    viewModel.uploadDocument(
+                        sharedPrefManager.getToken().toString(),
+                        AppUtils.textToRequestBody(requestId1),
+                        AppUtils.textToRequestBody(sessionId1),
+                        AppUtils.textToRequestBody(channel),
+                        AppUtils.textToRequestBody(agentId),
+                        AppUtils.textToRequestBody(getCurrentDateFormatted()),
+                        AppUtils.textToRequestBody("RCFRONT"),
+                        body,
+                        AppUtils.textToRequestBody(provider),
+                        AppUtils.textToRequestBody(FastTagId)
+                    )
+                }
             } else if (resultCode == ImagePicker.RESULT_ERROR) {
                 showErrorToast(ImagePicker.getError(data))
             } else {
