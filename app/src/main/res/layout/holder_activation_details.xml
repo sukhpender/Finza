@@ -1,0 +1,113 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="callback"
+            type="com.riggle.finza_finza.ui.base.SimpleRecyclerViewAdapter.SimpleCallback" />
+
+        <variable
+            name="pos"
+            type="Integer" />
+
+        <variable
+            name="bean"
+            type="com.riggle.finza_finza.data.model.ActivationsResponseData1" />
+
+    </data>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/_10sdp"
+        android:layout_marginVertical="@dimen/_5sdp"
+        android:background="@drawable/rounded_2"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingVertical="@dimen/_5sdp">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginTop="@dimen/_6sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:singleLine="true"
+                    android:text="FasTag Number : "
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:singleLine="true"
+                    android:text="@{bean.fast_tag_no}"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:singleLine="true"
+                    android:text="Vehicle Number : "
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:singleLine="true"
+                    android:text="@{bean.vehicle_no}"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="@dimen/_8sdp"
+                android:layout_marginBottom="@dimen/_6sdp"
+                android:orientation="horizontal">
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:fontFamily="@font/inter_semibold"
+                    android:singleLine="true"
+                    android:text="Created On : "
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+                <TextView
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:singleLine="true"
+                    setAssignedDate31="@{bean.created_at}"
+                    android:textColor="@color/fsm_text_color"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </LinearLayout>
+
+</layout>

@@ -16,6 +16,7 @@
         android:id="@+id/container"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@color/white"
         android:orientation="vertical">
 
         <LinearLayout
@@ -37,12 +38,13 @@
                 app:tint="@color/fsm_bg_light_teal" />
 
             <TextView
+                android:id="@+id/tvHeader"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/_5sdp"
                 android:gravity="center_vertical"
-                android:text="Replace FASTag"
+                android:text="Verify Number"
                 android:textColor="@color/fsm_bg_light_teal"
                 android:textSize="@dimen/_16sdp" />
 
@@ -60,151 +62,696 @@
                 android:orientation="vertical">
 
                 <LinearLayout
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="@dimen/_15sdp"
-                    android:background="@drawable/edit_back_view1"
-                    android:gravity="center">
-
-                    <Spinner
-                        android:id="@+id/spinner"
-                        style="@style/spinnerStyle"
-                        android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_gravity="center"
-                        android:dropDownVerticalOffset="@dimen/_35sdp"
-                        android:elevation="@dimen/_15sdp"
-                        android:gravity="center" />
-                </LinearLayout>
-
-                <RadioGroup
-                    android:id="@+id/radioGroup1"
+                    android:id="@+id/llVerifyNumber"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:orientation="horizontal">
+                    android:orientation="vertical">
 
-                    <RadioButton
-                        android:id="@+id/radioButton1"
-                        android:layout_width="wrap_content"
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_15sdp"
+                        android:background="@color/line_color"
+                        android:scaleType="centerCrop"
+                        android:visibility="gone"
+                        app:cardBackgroundColor="@color/line_color"
+                        app:cardCornerRadius="@dimen/_10sdp">
+
+                        <TextView
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:fontFamily="@font/inter_semibold"
+                            android:gravity="center"
+                            android:text="Get Tag"
+                            android:textColor="@color/white"
+                            android:textSize="@dimen/_22sdp" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:checked="true"
-                        android:fontFamily="@font/inter_regular"
-                        android:text="Vehicle Number"
-                        android:textSize="@dimen/_11ssp" />
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_5ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
+                        android:text="Verify number to continue"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
 
-                    <RadioButton
-                        android:id="@+id/radioButton2"
-                        android:layout_width="wrap_content"
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_25ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:text="Request Type*"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="8dp"
+                        android:background="@drawable/edit_back_view1"
+                        android:gravity="center"
+                        android:visibility="gone">
+
+                        <Spinner
+                            android:id="@+id/spinner"
+                            style="@style/spinnerStyle"
+                            android:layout_width="wrap_content"
+                            android:layout_height="@dimen/_25sdp"
+                            android:layout_gravity="center"
+                            android:dropDownVerticalOffset="@dimen/_25sdp"
+                            android:gravity="center"
+                            android:paddingEnd="@dimen/_15sdp" />
+                    </LinearLayout>
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_10sdp"
-                        android:fontFamily="@font/inter_regular"
-                        android:text="Chassis Number"
-                        android:textSize="@dimen/_11ssp" />
+                        android:layout_marginTop="@dimen/_25ssp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="Phone Number*"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
 
-                </RadioGroup>
-
-                <EditText
-                    style="@style/EditText.Phone"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="8dp"
-                    android:hint="Enter VRN (DL12AA1234)"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="10" />
-
-                <TextView
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_25ssp"
-                    android:text="Enter Mobile Number"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp" />
-
-                <EditText
-                    style="@style/EditText.Phone"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="8dp"
-                    android:hint="0123456789"
-                    android:imeOptions="actionNext"
-                    android:inputType="phone"
-                    android:maxLength="10" />
-
-                <TextView
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_15ssp"
-                    android:text="Enter New FASTag barcode"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp" />
-
-                <EditText
-                    style="@style/EditText.Phone"
-                    android:layout_width="match_parent"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="8dp"
-                    android:hint="Enter fastag id"
-                    android:imeOptions="actionNext"
-                    android:inputType="text"
-                    android:textAllCaps="true" />
-
-                <TextView
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_15ssp"
-                    android:text="Reason For Replacment"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp" />
-
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:background="@drawable/edit_back_view1"
-                    android:gravity="center">
-
-                    <Spinner
-                        android:id="@+id/spinnerReason"
-                        style="@style/spinnerStyle"
+                    <EditText
+                        android:id="@+id/etPhone"
+                        style="@style/EditText.Phone"
                         android:layout_width="match_parent"
-                        android:layout_height="@dimen/_30sdp"
-                        android:layout_gravity="center"
-                        android:dropDownVerticalOffset="@dimen/_35sdp"
-                        android:elevation="@dimen/_15sdp"
-                        android:gravity="center" />
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:hint="0000000000"
+                        android:imeOptions="actionNext"
+                        android:inputType="phone"
+                        android:maxLength="10" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="Vehicle Number*"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etvVehicleNumber"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:hint="HR20AS0000"
+                        android:imeOptions="actionNext"
+                        android:inputType="textNoSuggestions"
+                        android:textAllCaps="true" />
+
+                    <CheckBox
+                        android:id="@+id/cbChassisNumber"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:buttonTint="@color/line_color"
+                        android:fontFamily="@font/inter_regular"
+                        android:paddingStart="@dimen/_5sdp"
+                        android:text="Chassis Number"
+                        android:textSize="@dimen/_12ssp"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/etvChassisNumber"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="-5dp"
+                        android:hint="Enter chassis number"
+                        android:imeOptions="actionNext"
+                        android:inputType="textNoSuggestions"
+                        android:maxLength="17"
+                        android:textAllCaps="true"
+                        android:visibility="gone" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginEnd="@dimen/_10sdp"
+                        android:text="Engine Number"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etvEngineNumber"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:hint="last 5 digits"
+                        android:imeOptions="actionDone"
+                        android:inputType="phone"
+                        android:maxLength="5"
+                        android:textAllCaps="true" />
+
+                    <TextView
+                        android:id="@+id/tvVerifyNumber"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginHorizontal="@dimen/_45sdp"
+                        android:layout_marginTop="@dimen/_65sdp"
+                        android:layout_marginBottom="@dimen/_25sdp"
+                        android:background="@drawable/edit_back_view"
+                        android:backgroundTint="@color/line_color"
+                        android:fontFamily="@font/inter_semibold"
+                        android:foreground="?selectableItemBackground"
+                        android:gravity="center"
+                        android:onClick="@{v->vm.onClick(v)}"
+                        android:text="Verify Number"
+                        android:textColor="@color/fsm_bg_light_teal"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvResetPass" />
 
                 </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tvProceed"
-                    style="@style/TextView.InterRegular_12ssp"
+                <LinearLayout
+                    android:id="@+id/llVerifyOtp"
                     android:layout_width="match_parent"
-                    android:layout_height="@dimen/_40sdp"
-                    android:layout_marginHorizontal="@dimen/_12sdp"
-                    android:layout_marginTop="@dimen/_35sdp"
-                    android:layout_marginBottom="@dimen/_20sdp"
-                    android:background="@drawable/edit_back_view"
-                    android:backgroundTint="@color/line_color"
-                    android:fontFamily="@font/inter_semibold"
-                    android:foreground="?selectableItemBackground"
-                    android:gravity="center"
-                    android:onClick="@{v->vm.onClick(v)}"
-                    android:text="Proceed"
-                    android:textColor="@color/fsm_bg_light_teal"
-                    android:textSize="@dimen/_16sdp" />
+                    android:layout_height="wrap_content"
+                    android:background="@color/white"
+                    android:orientation="vertical"
+                    android:visibility="gone"
+                    android:weightSum="2">
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:layout_width="@dimen/_140sdp"
+                        android:layout_height="@dimen/_70sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_35sdp"
+                        android:src="@drawable/otp1"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:fontFamily="@font/inter_medium"
+                        android:gravity="center"
+                        android:text="Please enter the Bank OTP the customer has received."
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <com.mukeshsolanki.OtpView
+                        android:id="@+id/otp_view"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="72dp"
+                        android:cursorVisible="true"
+                        android:focusable="true"
+                        android:focusableInTouchMode="true"
+                        android:gravity="center"
+                        android:inputType="number"
+                        android:textAllCaps="true"
+                        android:textColor="@color/line_color"
+                        app:OtpCursorColor="@color/line_color"
+                        app:OtpHideLineWhenFilled="false"
+                        app:OtpItemCount="6"
+                        app:OtpItemSpacing="6dp"
+                        app:OtpLineColor="@color/line_color"
+                        app:OtpState_filled="true"
+                        app:OtpViewType="rectangle" />
+
+                    <TextView
+                        android:id="@+id/tvSubmit"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginHorizontal="@dimen/_45sdp"
+                        android:layout_marginTop="@dimen/_65sdp"
+                        android:background="@drawable/edit_back_view"
+                        android:backgroundTint="@color/line_color"
+                        android:fontFamily="@font/inter_semibold"
+                        android:foreground="?selectableItemBackground"
+                        android:gravity="center"
+                        android:onClick="@{v->vm.onClick(v)}"
+                        android:text="Submit"
+                        android:textColor="@color/fsm_bg_light_teal"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvResetPass" />
+
+                </LinearLayout>
+
+                <LinearLayout
+                    android:id="@+id/llReplacement"
+                    android:layout_width="match_parent"
+                    android:visibility="gone"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:visibility="gone"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Customer Details:"
+                        android:textColor="@color/line_color"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:text="Name"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/etv1"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:visibility="gone"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:text="Phone Number"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/etv2"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_8sdp"
+                        android:clickable="false"
+                        android:editable="false"
+                        android:visibility="gone"
+                        android:enabled="false"
+                        android:inputType="text" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_16sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:text="Wallet Id"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp"
+                        android:visibility="gone" />
+
+                    <EditText
+                        android:id="@+id/etv3"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_15sdp"
+                        android:layout_marginTop="8dp"
+                        android:clickable="false"
+                        android:editable="false"
+                        android:enabled="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="text"
+                        android:text="ASDF7841251"
+                        android:visibility="gone" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:visibility="gone"
+                        android:layout_height="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/dark_grey_txt_color10" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:visibility="gone"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Vehicle Details:"
+                        android:textColor="@color/line_color"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:visibility="gone"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="FASTag Details:"
+                        android:textColor="@color/line_color"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="FASTag Details:"
+                        android:textColor="@color/line_color"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:text="Fastag Number : "
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <androidx.cardview.widget.CardView
+                        android:id="@+id/cvPreview"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_180sdp"
+                        android:layout_marginHorizontal="@dimen/_5sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:layout_weight="1"
+                        app:cardCornerRadius="@dimen/_10sdp"
+                        app:cardElevation="@dimen/_5sdp">
+
+                        <androidx.camera.view.PreviewView
+                            android:id="@+id/previewView"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
+
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:drawablePadding="@dimen/_5sdp"
+                        android:gravity="center"
+                        android:text="---- OR ----"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        app:layout_constraintEnd_toEndOf="@id/tvPhone"
+                        app:layout_constraintStart_toStartOf="@id/tvPhone"
+                        app:layout_constraintTop_toBottomOf="@+id/tvPhone">
+
+                        <EditText
+                            android:id="@+id/etvFastTagId1"
+                            style="@style/EditText.Phone"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="XXXXXX"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="6" />
+
+                        <View
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_2sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:background="@color/fsm_text_color" />
+
+                        <EditText
+                            android:id="@+id/etvFastTagId2"
+                            style="@style/EditText.Phone"
+                            android:layout_width="0dp"
+                            android:layout_weight="0.5"
+                            android:gravity="center"
+                            android:hint="XXX"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="3" />
+
+                        <View
+                            android:layout_width="@dimen/_10sdp"
+                            android:layout_height="@dimen/_2sdp"
+                            android:layout_gravity="center"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:background="@color/fsm_text_color" />
+
+                        <EditText
+                            android:id="@+id/etvFastTagId3"
+                            style="@style/EditText.Phone"
+                            android:layout_width="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:hint="XXXXXXX"
+                            android:imeOptions="actionDone"
+                            android:inputType="number"
+                            android:maxLength="7" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="@dimen/_20sdp"
+                        android:layout_marginHorizontal="@dimen/_5sdp"
+                        android:background="@color/black_54" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_6sdp"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:fontFamily="@font/inter_semibold"
+                        android:text="Other Details ->"
+                        android:visibility="gone"
+                        android:textColor="@color/line_color"
+                        android:textSize="@dimen/_14sdp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:layout_marginEnd="@dimen/_16sdp"
+                        android:text="Mobile Number"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etv4"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:enabled="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:visibility="gone"
+                        android:text="Wallet Id"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etv5"
+                        android:enabled="false"
+                        android:visibility="gone"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Vehicle Number"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etv6"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:imeOptions="actionNext"
+                        android:enabled="false"
+                        android:inputType="text" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Chassis Number"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etv8"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:enabled="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Engine Number"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etv9"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:enabled="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                    <TextView
+                        android:id="@+id/tvVehicleDiscriptor"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Vehicle Descriptor"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etv99"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:enabled="false"
+                        android:imeOptions="actionNext"
+                        android:inputType="text" />
+
+                    <TextView
+                        android:id="@+id/tvReason"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="@dimen/_10sdp"
+                        android:layout_marginTop="@dimen/_10ssp"
+                        android:text="Replacement Reason"
+                        android:textColor="@color/fsm_text_color"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <EditText
+                        android:id="@+id/etReason"
+                        style="@style/EditText.Phone"
+                        android:layout_width="match_parent"
+                        android:layout_marginHorizontal="@dimen/_10sdp"
+                        android:layout_marginTop="8dp"
+                        android:imeOptions="actionDone"
+                        android:inputType="text" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_2sdp"
+                        android:layout_marginTop="@dimen/_10sdp"
+                        android:background="@color/dark_grey_txt_color10" />
+
+                    <TextView
+                        android:id="@+id/tvSendRequest"
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_40sdp"
+                        android:layout_marginHorizontal="@dimen/_45sdp"
+                        android:layout_marginTop="@dimen/_25sdp"
+                        android:layout_marginBottom="@dimen/_25sdp"
+                        android:background="@drawable/edit_back_view"
+                        android:backgroundTint="@color/line_color"
+                        android:fontFamily="@font/inter_semibold"
+                        android:foreground="?selectableItemBackground"
+                        android:gravity="center"
+                        android:onClick="@{v->vm.onClick(v)}"
+                        android:text="Send Request"
+                        android:textColor="@color/fsm_bg_light_teal"
+                        android:textSize="@dimen/_16sdp"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/tvResetPass" />
+
+                </LinearLayout>
 
             </LinearLayout>
 

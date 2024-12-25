@@ -134,6 +134,9 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
                 R.id.tv16 -> {
                     startActivity(InventoryActivity.newIntent(requireActivity()))
                 }
+                R.id.tv25 -> { // activation summary details navigation
+                    startActivity(ActivationSummaryDetailsActivity.newIntent(requireActivity()))
+                }
             }
         }
     }

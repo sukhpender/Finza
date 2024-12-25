@@ -2,6 +2,7 @@ package com.riggle.finza_finza.data.api
 
 import com.riggle.finza_finza.data.model.AcceptRejectRequest
 import com.riggle.finza_finza.data.model.AcceptRejectResponseModel
+import com.riggle.finza_finza.data.model.ActivationsResponseModel
 import com.riggle.finza_finza.data.model.AssignInventoryResponseModel
 import com.riggle.finza_finza.data.model.BadResponseModel
 import com.riggle.finza_finza.data.model.CancelRequest
@@ -27,11 +28,13 @@ import com.riggle.finza_finza.data.model.PaymentStoreRequest
 import com.riggle.finza_finza.data.model.ProjectListResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
 import com.riggle.finza_finza.data.model.RegisterTagResponseModel
+import com.riggle.finza_finza.data.model.ReplacementResponseModel
 import com.riggle.finza_finza.data.model.ResendOtpResponseModel
 import com.riggle.finza_finza.data.model.ResetPasswordResponseModel
 import com.riggle.finza_finza.data.model.SendOtpIssueTagResponseModel
 import com.riggle.finza_finza.data.model.SendOtpRequest
 import com.riggle.finza_finza.data.model.StorePaymentResponseModel
+import com.riggle.finza_finza.data.model.TagReplaceRequest
 import com.riggle.finza_finza.data.model.Transfer
 import com.riggle.finza_finza.data.model.TransferRequest
 import com.riggle.finza_finza.data.model.UpdateProjectResponseModel
@@ -114,6 +117,12 @@ interface BaseApi {
         @Header("Authorization") header: String, @Body reqBody: ValidateOtpRequest
     ): Response<VerifyOtpResponseModel>
 
+    @POST(Constants.TAG_REPLACEMENT)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun tagReplacement(
+        @Header("Authorization") header: String, @Body reqBody: TagReplaceRequest
+    ): Response<ReplacementResponseModel>
+
     @POST(Constants.VEHICLE_MAKERS_LIST)
     @Headers(Constants.X_APP_ACCEPT)
     suspend fun vehicleMakersList(
@@ -177,6 +186,14 @@ interface BaseApi {
     suspend fun finzaUsersList(
         @Header("Authorization") header: String,
     ): Response<UsersListResponseModel>
+
+    @POST(Constants.ACTIVATIONS)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun activations(
+        @Header("Authorization") header: String,
+        @Field("month") month: String,
+    ): Response<ActivationsResponseModel>
 
     @POST(Constants.INVENTORY_LIST)
     @Headers(Constants.X_APP_ACCEPT)

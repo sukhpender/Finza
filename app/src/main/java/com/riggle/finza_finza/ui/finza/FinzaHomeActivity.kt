@@ -2,6 +2,7 @@ package com.riggle.finza_finza.ui.finza
 
 import android.app.Activity
 import android.content.Intent
+import android.net.Uri
 import android.os.Build
 import android.widget.ImageView
 import android.widget.TextView
@@ -35,6 +36,7 @@ import com.riggle.finza_finza.utils.showErrorToast
 import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
+
 
 @AndroidEntryPoint
 class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
@@ -243,8 +245,9 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
 
                 4 -> {
                     /** vehicle status */
-                    startActivity(CheckVehicleStatusActivity.newIntent(this))
                     openCloseDrawer()
+                    openChrome()
+                   // startActivity(CheckVehicleStatusActivity.newIntent(this))
                 }
 
 //                5 -> {
@@ -280,6 +283,19 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         }
         binding.rvHomeDrawer.adapter = adapter
         adapter.list = prepareList()
+    }
+
+    private fun openChrome() {
+        val uri = Uri.parse("https://www.npci.org.in/what-we-do/netc-fastag/check-your-netc-fastag-status")
+        val intent = Intent(Intent.ACTION_VIEW, uri)
+        intent.setPackage("com.android.chrome")
+
+        if (intent.resolveActivity(packageManager) != null) {
+            startActivity(intent)
+        } else {
+            intent.setPackage(null)
+            startActivity(intent)
+        }
     }
 
     private lateinit var dialog: BottomSheetDialog

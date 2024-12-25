@@ -61,6 +61,23 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <TextView
+            android:id="@+id/tv25"
+            style="@style/TextView.InterRegular_12ssp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/_10sdp"
+            android:layout_marginTop="@dimen/_25ssp"
+            android:fontFamily="@font/inter_semibold"
+            android:foreground="?selectableItemBackground"
+            android:gravity="center_vertical"
+            android:onClick="@{v -> vm.onClick(v)}"
+            android:text="@string/see_more"
+            android:textColor="@color/fsm_text_color"
+            android:textSize="@dimen/_12sdp"
+            app:layout_constraintBottom_toBottomOf="@+id/tv91"
+            app:layout_constraintEnd_toEndOf="parent" />
+
         <androidx.cardview.widget.CardView
             android:id="@+id/cv4"
             android:layout_width="match_parent"
@@ -90,6 +107,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
+                        android:text="Performance"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
@@ -102,11 +120,11 @@
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_height="wrap_content"
                         android:layout_marginStart="@dimen/_5sdp"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:gravity="center"
-                        android:text="Today\nPerformance"
+                        android:text="Today"
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp" />
 
@@ -157,7 +175,7 @@
                         android:id="@+id/tvTFCount"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="wrap_content"
-                        android:layout_height="@dimen/_30sdp"
+                        android:layout_height="wrap_content"
                         android:layout_marginTop="@dimen/_12sdp"
                         android:gravity="center"
                         android:text="0"
@@ -192,6 +210,7 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
+                    android:visibility="gone"
                     android:gravity="center"
                     android:orientation="vertical">
 

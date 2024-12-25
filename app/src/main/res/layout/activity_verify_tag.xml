@@ -196,11 +196,13 @@
                         android:fontFamily="@font/inter_regular"
                         android:paddingStart="@dimen/_5sdp"
                         android:text="Chassis Number"
+                        android:visibility="gone"
                         android:textSize="@dimen/_12ssp" />
 
                     <EditText
                         android:id="@+id/etvChassisNumber"
                         style="@style/EditText.Phone"
+                        android:visibility="gone"
                         android:layout_width="match_parent"
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="-5dp"

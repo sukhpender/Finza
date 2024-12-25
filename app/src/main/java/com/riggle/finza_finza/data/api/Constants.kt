@@ -42,4 +42,6 @@ object Constants {
     const val CHECK_TAG_AVAILABILITY = "api/scan-tag"
     const val UPDATE_PROJECT = "api/update-user-project"
     const val NEED_FASTAG = "api/need-fastag"
+    const val ACTIVATIONS = "api/fas-tags-range"
+    const val TAG_REPLACEMENT = "api/rep-fas-tag"
 }

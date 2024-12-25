@@ -1268,7 +1268,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         vehicleNumber = "Test"
                     } else {
                         isChassi = 0
-                        vehicleNumber = ""
+                        vehicleNumber = binding.etvVehicleNumber.text.toString()
                     }
 
                     if (mNumber == "") {
