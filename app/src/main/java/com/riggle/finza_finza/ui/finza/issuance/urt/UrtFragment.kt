@@ -1,9 +1,15 @@
 package com.riggle.finza_finza.ui.finza.issuance.urt
 
-import android.app.DatePickerDialog
+import android.content.DialogInterface
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
+import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.kal.rackmonthpicker.RackMonthPicker
+import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener
 import com.riggle.finza_finza.BR
 import com.riggle.finza_finza.R
 import com.riggle.finza_finza.data.model.DataXX
@@ -14,9 +20,13 @@ import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.VerticalPagination
-import com.riggle.finza_finza.utils.showErrorToast
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.Month
+import java.time.format.DateTimeFormatter
+import java.time.format.TextStyle
 import java.util.Calendar
+import java.util.Locale
 
 @AndroidEntryPoint
 class UrtFragment : BaseFragment<FragmentUrtBinding>(), VerticalPagination.VerticalScrollListener {
@@ -27,7 +37,10 @@ class UrtFragment : BaseFragment<FragmentUrtBinding>(), VerticalPagination.Verti
     private var year = ""
     private lateinit var verticalPagination: VerticalPagination
 
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(view: View) {
+        binding.tvMonth.text = getCurrentMonthAndYear()
+
         val calendar = Calendar.getInstance()
         month = (calendar.get(Calendar.MONTH) + 1).toString()
         year = calendar.get(Calendar.YEAR).toString()
@@ -63,12 +76,12 @@ class UrtFragment : BaseFragment<FragmentUrtBinding>(), VerticalPagination.Verti
 
                 Status.WARN -> {
                     showHideLoader(false)
-                   // showErrorToast(it.message.toString())
+                    // showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                   // showErrorToast(it.message.toString())
+                    // showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -79,33 +92,56 @@ class UrtFragment : BaseFragment<FragmentUrtBinding>(), VerticalPagination.Verti
         initOnClick()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getCurrentMonthAndYear(): String {
+        val currentDate = LocalDate.now() // Get the current date
+        val formatter = DateTimeFormatter.ofPattern("MMM yyyy") // Define the pattern for formatting
+        return currentDate.format(formatter) // Format the date to "MMM yyyy"
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getShortMonthName(month: Int): String {
+        return try {
+            Month.of(month).getDisplayName(TextStyle.SHORT, Locale.ENGLISH)
+        } catch (e: Exception) {
+            "Invalid month"
+        }
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     private fun initOnClick() {
         viewModel.onClick.observe(viewLifecycleOwner) {
             when (it?.id) {
                 R.id.tvMonth -> {
-                    showMonthYearPicker()
+                    val picker = RackMonthPicker(requireContext()).setLocale(Locale.ENGLISH)
+                        .setPositiveButton { month, startDate, endDate, year, monthLabel ->
+                            binding.tvMonth.text = getShortMonthName(month) + " " + year.toString()
+                            viewModel.getList(
+                                sharedPrefManager.getToken().toString(),
+                                month.toString(),
+                                year.toString()
+                            )
+                        }.setNegativeButton(object : DialogInterface.OnClickListener,
+                            OnCancelMonthDialogListener {
+                            override fun onClick(dialog: DialogInterface, which: Int) {
+                                // Dismiss the dialog using DialogInterface when the negative button is clicked
+                                dialog.dismiss()
+                            }
+
+                            override fun onCancel(dialog: AlertDialog?) {
+                                dialog?.dismiss()
+                            }
+                        })
+                    picker.setColorTheme(
+                        ContextCompat.getColor(
+                            requireContext(), R.color.app_color
+                        )
+                    )
+                    picker.show()
+
                 }
             }
         }
-    }
-
-    private fun showMonthYearPicker() {
-        val calendar = Calendar.getInstance()
-        val year1 = calendar.get(Calendar.YEAR)
-        val month1 = calendar.get(Calendar.MONTH)
-
-        val datePickerDialog =
-            DatePickerDialog(requireContext(), { _, selectedYear, selectedMonth, _ ->
-                month = (selectedMonth + 1).toString()
-                year = selectedYear.toString()
-                viewModel.getList(
-                    sharedPrefManager.getToken().toString(), month, year
-                )
-            }, year1, month1, 1)
-
-        datePickerDialog.datePicker.maxDate = calendar.timeInMillis
-        datePickerDialog.datePicker.init(year1, month1, 1, null)
-        datePickerDialog.show()
     }
 
     override fun getLayoutResource(): Int {

@@ -18,6 +18,40 @@
         android:layout_height="match_parent"
         android:background="@color/line_colo10">
 
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cv1"
+            android:layout_width="@dimen/_110sdp"
+            android:layout_height="@dimen/_32sdp"
+            android:layout_marginTop="@dimen/_10sdp"
+            android:layout_marginEnd="@dimen/_10sdp"
+            android:foreground="?selectableItemBackground"
+            app:cardBackgroundColor="@color/line_color"
+            app:cardCornerRadius="@dimen/_10sdp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <LinearLayout
+                android:id="@+id/llCalender"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:gravity="center"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tvMonth"
+                    style="@style/TextView.InterRegular_12ssp"
+                    android:drawableEnd="@drawable/forward_svgrepo_com_small"
+                    android:drawablePadding="@dimen/_5sdp"
+                    android:drawableTint="@color/white"
+                    android:gravity="center"
+                    android:textColor="@color/white"
+                    android:textSize="@dimen/_12sdp" />
+
+            </LinearLayout>
+
+        </androidx.cardview.widget.CardView>
+
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHomeDrawer"
             android:layout_width="match_parent"
@@ -27,7 +61,7 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv1"
             tools:listitem="@layout/holder_activation_details" />
 
         <TextView

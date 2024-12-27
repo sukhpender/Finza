@@ -79,8 +79,8 @@ class ActivationSummaryDetailsActivity : BaseActivity<ActivityActivationSummaryD
 
     private val titleList = ArrayList<String>()
     private fun titleList1(): ArrayList<String> {
-        titleList.add("Activations")
-        titleList.add("Bad Activations")
+        titleList.add("Activation Report")
+        titleList.add("Bad Issuance")
         return titleList
     }
 }

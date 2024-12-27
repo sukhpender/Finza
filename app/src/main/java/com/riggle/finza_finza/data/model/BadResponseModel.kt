@@ -60,6 +60,7 @@ data class Fastag(
     val error_code: String,
     val error_desc: String,
     val id: Int,
+    val vehicle_no: String,
     val is_commercial: Boolean,
     val is_national_permit: Boolean,
     val mobile_no: String,

@@ -1,6 +1,8 @@
 package com.riggle.finza_finza.ui.finza.avtivation
 
+import android.os.Build
 import android.view.View
+import androidx.annotation.RequiresApi
 import androidx.fragment.app.viewModels
 import com.riggle.finza_finza.R
 import com.riggle.finza_finza.databinding.FragmentActivationBinding
@@ -13,6 +15,8 @@ import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.event.SingleLiveEvent
 import com.riggle.finza_finza.utils.showErrorToast
 import dagger.hilt.android.AndroidEntryPoint
+import java.time.LocalDate
+import java.time.format.DateTimeFormatter
 
 @AndroidEntryPoint
 class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
@@ -23,7 +27,16 @@ class ActivationFragment : BaseFragment<FragmentActivationBinding>() {
         var isUpdatesAvailable = SingleLiveEvent<Boolean>()
     }
 
+    @RequiresApi(Build.VERSION_CODES.O)
+    fun getCurrentMonthAndYear(): String {
+        val currentDate = LocalDate.now() // Get the current date
+        val formatter = DateTimeFormatter.ofPattern("MMM yyyy") // Define the pattern for formatting
+        return currentDate.format(formatter) // Format the date to "MMM yyyy"
+    }
+
+    @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView(view: View) {
+        binding.tv9.text = "Deductions "+getCurrentMonthAndYear()
         viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
 
         isUpdatesAvailable.observe(viewLifecycleOwner) { it ->

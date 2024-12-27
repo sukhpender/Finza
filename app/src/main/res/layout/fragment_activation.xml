@@ -423,7 +423,6 @@
             android:layout_marginTop="@dimen/_25ssp"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center_vertical"
-            android:text="Deductions Aug 2024"
             android:textColor="@color/fsm_text_color"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintStart_toStartOf="parent"
