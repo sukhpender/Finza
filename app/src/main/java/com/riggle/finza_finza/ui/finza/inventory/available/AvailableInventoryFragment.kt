@@ -28,7 +28,6 @@ import com.riggle.finza_finza.utils.VerticalPagination
 import com.riggle.finza_finza.utils.event.SingleLiveEvent
 import com.riggle.finza_finza.utils.showErrorToast
 import com.riggle.finza_finza.utils.showInfoToast
-import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.util.Locale
 
@@ -193,12 +192,12 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
 
                 Status.WARN -> {
                     showHideLoader(false)
-                   // showErrorToast(it.message.toString())
+                    // showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                   // showErrorToast(it.message.toString())
+                    // showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -217,16 +216,18 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                         if (filterBs.isShowing) {
                             filterBs.cancel()
                         }
-                        if (currentPage < it.data.data.last_page) {
-                            verticalPagination.isLoading = false
-                        }
-                        if (it.data.data.current_page == 1) {
-                            adapter.list = it.data.data.data
-                        } else {
-                            if (it.data.data.data.isNotEmpty()) {
-                                adapter.addToList(it.data.data.data)
-                            }
-                        }
+                        filterApplied = "true"
+                        adapter.list = it.data.data.data
+//                        if (currentPage < it.data.data.last_page) {
+//                            verticalPagination.isLoading = false
+//                        }
+//                        if (it.data.data.current_page == 1) {
+//                            adapter.list = it.data.data.data
+//                        } else {
+//                            if (it.data.data.data.isNotEmpty()) {
+//                                adapter.addToList(it.data.data.data)
+//                            }
+//                        }
                         if (it.data.data.data.size != 0) {
                             binding.rvHomeDrawer.visibility = View.VISIBLE
                             binding.tvAssign123.visibility = View.VISIBLE
@@ -296,30 +297,30 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
-                       // showSuccessToast(it.data.message.toString())
-                        binding.llUserView.visibility = View.GONE
-                        binding.rvHomeDrawer.visibility = View.VISIBLE
-                        binding.llFilterInHand.visibility = View.VISIBLE
-                        binding.tvAssign123.visibility = View.VISIBLE
-                        inventoryId = 0
-                        assignToId = 0
-                        currentPage = 1
-                        viewModel.getInventory1(
-                            sharedPrefManager.getToken().toString(), "2", currentPage
-                        )
-                        ForwardedInventoryFragment.isUpdatesAvailable.value = true
-                        ActivationFragment.isUpdatesAvailable.value = true
+                    // showSuccessToast(it.data.message.toString())
+                    binding.llUserView.visibility = View.GONE
+                    binding.rvHomeDrawer.visibility = View.VISIBLE
+                    binding.llFilterInHand.visibility = View.VISIBLE
+                    binding.tvAssign123.visibility = View.VISIBLE
+                    inventoryId = 0
+                    assignToId = 0
+                    currentPage = 1
+                    viewModel.getInventory1(
+                        sharedPrefManager.getToken().toString(), "2", currentPage
+                    )
+                    ForwardedInventoryFragment.isUpdatesAvailable.value = true
+                    ActivationFragment.isUpdatesAvailable.value = true
 
                 }
 
                 Status.WARN -> {
                     showHideLoader(false)
-                   // showErrorToast(it.message.toString())
+                    // showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                  //  showErrorToast(it.message.toString())
+                    //  showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -332,6 +333,7 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
         currentPage = 1
     }
 
+    var filterApplied = "false"
     private lateinit var filterBs: BaseCustomBottomSheet<FilterBinding>
     private fun initBs() {
         filterBs = BaseCustomBottomSheet(
@@ -366,6 +368,7 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
                 }
 
                 R.id.tvClearFilter -> {
+                    filterApplied = "false"
                     currentPage = 1
                     viewModel.getInventory1(
                         sharedPrefManager.getToken().toString(), "2", currentPage
@@ -544,7 +547,9 @@ class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBindin
     }
 
     override fun onLoadMore() {
-        currentPage++
-        viewModel.getInventory1(sharedPrefManager.getToken().toString(), "2", currentPage)
+        if (filterApplied == "false") {
+            currentPage++
+            viewModel.getInventory1(sharedPrefManager.getToken().toString(), "2", currentPage)
+        }
     }
 }

@@ -1,6 +1,7 @@
 package com.riggle.finza_finza.ui.finza.helpAndSupport.replaceFASTag
 
 import android.Manifest
+import android.annotation.SuppressLint
 import android.app.Activity
 import android.content.Intent
 import android.content.pm.PackageManager
@@ -9,6 +10,8 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.View
+import android.widget.AdapterView
+import android.widget.ArrayAdapter
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.camera.core.CameraSelector
@@ -74,6 +77,8 @@ class ReplaceFASTagActivity : BaseActivity<ActivityReplaceFastagBinding>() {
 
     @RequiresApi(Build.VERSION_CODES.O)
     override fun onCreateView() {
+        initDescriptor(descriptorList)
+        initReason(reasonsList)
         cameraExecutor = Executors.newSingleThreadExecutor()
 
         scannedResult.observe(this) {
@@ -288,6 +293,62 @@ class ReplaceFASTagActivity : BaseActivity<ActivityReplaceFastagBinding>() {
         cameraExecutor.shutdown()
     }
 
+    private val descriptorList = arrayListOf("Petrol", "Diesel")
+    private val reasonsList = arrayListOf("Tag Damaged", "Lost Tag", "Tag Not Working", "Others")
+    var descriptor = ""
+    var reason = ""
+    private fun initDescriptor(manulist: ArrayList<String>) {
+        val adapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
+        )
+        binding.spVehicleDescriptor.adapter = adapter
+
+        binding.spVehicleDescriptor.onItemSelectedListener =
+            object : AdapterView.OnItemSelectedListener {
+                @SuppressLint("NewApi")
+                override fun onItemSelected(
+                    parent: AdapterView<*>, view: View, position: Int, id: Long
+                ) {
+                    val selectedItem = parent.getItemAtPosition(position)
+                    descriptor = selectedItem as String
+                }
+
+                override fun onNothingSelected(parent: AdapterView<*>) {}
+            }
+    }
+
+    private fun initReason(manulist: ArrayList<String>) {
+        val adapter = ArrayAdapter(
+            this, android.R.layout.simple_spinner_dropdown_item, manulist
+        )
+        binding.spReason.adapter = adapter
+
+        binding.spReason.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            @SuppressLint("NewApi")
+            override fun onItemSelected(
+                parent: AdapterView<*>, view: View, position: Int, id: Long
+            ) {
+                val selectedItem = parent.getItemAtPosition(position)
+                reason = selectedItem as String
+                if (selectedItem == "Tag Damaged") {
+                    reason = "1"
+                    binding.etvReasonDescription.visibility = View.GONE
+                } else if (selectedItem == "Lost Tag") {
+                    reason = "2"
+                    binding.etvReasonDescription.visibility = View.GONE
+                } else if (selectedItem == "Tag Not Working") {
+                    reason = "3"
+                    binding.etvReasonDescription.visibility = View.GONE
+                } else if (selectedItem == "Others") {
+                    reason = "99"
+                    binding.etvReasonDescription.visibility = View.VISIBLE
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>) {}
+        }
+    }
+
     private var enteredOtp = ""
     private var requestId1 = ""
     private var sessionId1 = ""
@@ -401,7 +462,7 @@ class ReplaceFASTagActivity : BaseActivity<ActivityReplaceFastagBinding>() {
 
                         it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.let { it1 ->
                             if (it1 != null) {
-                                binding.etv99.setText(it1)
+                                descriptor = it1
                             }
                         }
                     }
@@ -537,34 +598,80 @@ class ReplaceFASTagActivity : BaseActivity<ActivityReplaceFastagBinding>() {
                 }
 
                 R.id.tvSendRequest -> {
-
                     if (::verifyOtpResponseModel.isInitialized) {
-                        val request = TagReplaceReq(
-                            binding.etv4.text.toString(),
-                            binding.etv5.text.toString(),
-                            binding.etv6.text.toString(),
-                            "",
-                            "",
-                            getCurrentDateFormatted(),
-                            "100",
-                            verifyOtpResponseModel.requestId,
-                            sessionId1,
-                            serialNumber,
-                            "1",
-                            binding.etv8.text.toString(),
-                            binding.etv9.text.toString(),
-                            verifyOtpResponseModel.vrnDetails.isNationalPermit.toString(),
-                            verifyOtpResponseModel.vrnDetails.permitExpiryDate.toString(),
-                            verifyOtpResponseModel.vrnDetails.stateOfRegistration.toString(),
-                            binding.etv99.text.toString(),
-                            "",
-                            "",
-                            "",
-                            "",
-                            ""
-                        )
-                        val req1 = TagReplaceRequest(request)
-                        viewModel.tagReplacement(sharedPrefManager.getToken().toString(), req1)
+                        if (reason == "99") {
+                            if (binding.etvReasonDescription.text.toString() == "") {
+                                showErrorToast("Please enter reason")
+                            } else if (serialNumber == "") {
+                                showErrorToast("Please enter complete FASTag number")
+                            } else {
+                                val request = TagReplaceReq(
+                                    binding.etv4.text.toString(),
+                                    binding.etv5.text.toString(),
+                                    binding.etv6.text.toString(),
+                                    "",
+                                    "",
+                                    getCurrentDateFormatted(),
+                                    "100",
+                                    verifyOtpResponseModel.requestId,
+                                    sessionId1,
+                                    serialNumber,
+                                    reason,
+                                    reasonDesc = binding.etvReasonDescription.text.toString(),
+                                    binding.etv8.text.toString(),
+                                    binding.etv9.text.toString(),
+                                    verifyOtpResponseModel.vrnDetails.isNationalPermit.toString(),
+                                    verifyOtpResponseModel.vrnDetails.permitExpiryDate.toString(),
+                                    verifyOtpResponseModel.vrnDetails.stateOfRegistration.toString(),
+                                    descriptor,
+                                    "",
+                                    "",
+                                    "",
+                                    "",
+                                    ""
+                                )
+                                val req1 = TagReplaceRequest(request)
+                                viewModel.tagReplacement(
+                                    sharedPrefManager.getToken().toString(),
+                                    req1
+                                )
+                            }
+
+                        } else {
+                            if (serialNumber == "") {
+                                showErrorToast("Please enter complete FASTag number")
+                            } else {
+                                val request = TagReplaceReq(
+                                    binding.etv4.text.toString(),
+                                    binding.etv5.text.toString(),
+                                    binding.etv6.text.toString(),
+                                    "",
+                                    "",
+                                    getCurrentDateFormatted(),
+                                    "100",
+                                    verifyOtpResponseModel.requestId,
+                                    sessionId1,
+                                    serialNumber,
+                                    reason,
+                                    reasonDesc = "",
+                                    binding.etv8.text.toString(),
+                                    binding.etv9.text.toString(),
+                                    verifyOtpResponseModel.vrnDetails.isNationalPermit.toString(),
+                                    verifyOtpResponseModel.vrnDetails.permitExpiryDate.toString(),
+                                    verifyOtpResponseModel.vrnDetails.stateOfRegistration.toString(),
+                                    descriptor,
+                                    "",
+                                    "",
+                                    "",
+                                    "",
+                                    ""
+                                )
+                                val req1 = TagReplaceRequest(request)
+                                viewModel.tagReplacement(
+                                    sharedPrefManager.getToken().toString(), req1
+                                )
+                            }
+                        }
                     } else {
                         showErrorToast("Something went wrong")
                     }

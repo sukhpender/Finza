@@ -16,7 +16,8 @@ import dagger.hilt.android.lifecycle.HiltViewModel
 import javax.inject.Inject
 
 @HiltViewModel
-class ReplaceFASTagActivityVM @Inject constructor(private val baseRepo: BaseRepo): BaseViewModel() {
+class ReplaceFASTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) :
+    BaseViewModel() {
 
     val obrSendOtp = SingleRequestEvent<SendOtpIssueTagResponseModel>()
     fun sendOtp(header: String, reqBody: SendOtpRequest) {

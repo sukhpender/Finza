@@ -20,6 +20,8 @@ import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.VerticalPagination
+import com.riggle.finza_finza.utils.showErrorToast
+import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.Month
@@ -49,11 +51,17 @@ class ActivationDetailFragment : BaseFragment<FragmentActivationDetailBinding>()
         val calendar = Calendar.getInstance()
         val month = (calendar.get(Calendar.MONTH) + 1).toString()
         val year = calendar.get(Calendar.YEAR).toString()
-
-        viewModel.getActivations(sharedPrefManager.getToken().toString(), "$year-$month")
-
+        var mon1 = ""
+        if (month.toInt() < 10) {
+            mon1 = "0$month"
+        } else {
+            mon1 = month
+        }
+        newMonthYear = "$year-$mon1"
+        viewModel.getActivations(sharedPrefManager.getToken().toString(), newMonthYear)
     }
 
+    var newMonthYear = ""
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initOnClick() {
         viewModel.onClick.observe(viewLifecycleOwner) {
@@ -61,10 +69,17 @@ class ActivationDetailFragment : BaseFragment<FragmentActivationDetailBinding>()
                 R.id.llCalender -> {
                     val picker = RackMonthPicker(requireContext()).setLocale(Locale.ENGLISH)
                         .setPositiveButton { month, startDate, endDate, year, monthLabel ->
+                            var newMonth = ""
+                            if (month < 10) {
+                                newMonth = "0$month"
+                            } else {
+                                newMonth = month.toString()
+                            }
+                            newMonthYear = "$year-$newMonth"
                             binding.tvMonth.text = getShortMonthName(month) + " " + year.toString()
+                            currentPage = 1
                             viewModel.getActivations(
-                                sharedPrefManager.getToken().toString(),
-                                "$year-$month"
+                                sharedPrefManager.getToken().toString(), newMonthYear
                             )
                         }.setNegativeButton(object : DialogInterface.OnClickListener,
                             OnCancelMonthDialogListener {
@@ -118,7 +133,7 @@ class ActivationDetailFragment : BaseFragment<FragmentActivationDetailBinding>()
                         if (currentPage < it.data.data.last_page) {
                             verticalPagination.isLoading = false
                         }
-                        if (it.data.data.current_page == 1) {
+                        if (currentPage == 1) {
                             adapter.list = it.data.data.data
                         } else {
                             if (it.data.data.data.isNotEmpty()) {
@@ -142,7 +157,7 @@ class ActivationDetailFragment : BaseFragment<FragmentActivationDetailBinding>()
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                    // showErrorToast(it.message.toString())
+                     showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -179,7 +194,7 @@ class ActivationDetailFragment : BaseFragment<FragmentActivationDetailBinding>()
 
     override fun onLoadMore() {
         currentPage++
-        viewModel.getActivations(sharedPrefManager.getToken().toString(), "2024-07")
+        viewModel.getActivations(sharedPrefManager.getToken().toString(), newMonthYear)
     }
 
 }

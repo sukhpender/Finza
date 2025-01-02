@@ -277,7 +277,7 @@
                     android:backgroundTint="@color/fsm_bg_teal"
                     android:fontFamily="@font/inter_bold"
                     android:gravity="center"
-                    android:text="App Version: v0.12.26"
+                    android:text="App Version: v0.01.01"
                     android:textColor="@color/white"
                     android:textSize="@dimen/_12sdp"
                     app:layout_constraintBottom_toBottomOf="parent"

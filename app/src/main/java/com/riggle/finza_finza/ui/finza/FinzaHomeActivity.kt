@@ -286,7 +286,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
     }
 
     private fun openChrome() {
-        val uri = Uri.parse("https://www.npci.org.in/what-we-do/netc-fastag/check-your-netc-fastag-status")
+        val uri = Uri.parse("https://acqweb.icicibank.com/ONLINEPASS/OnlinePass.aspx?PlazaCode=049001")
         val intent = Intent(Intent.ACTION_VIEW, uri)
         intent.setPackage("com.android.chrome")
 

@@ -275,7 +275,8 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     showHideLoader(false)
                     if (it.data != null) {
                         it.data.message.let { it1 -> showSuccessToast(it1) }
-                        if (it.data.data.validateOtpResp.custDetails.walletStatus != "Active") {
+                        if (it.data.data.validateOtpResp.custDetails.walletStatus != "Active")
+                        {
                             it.data.data.validateOtpResp.vrnDetails.vehicleManuf.let { it1 ->
                                 if (it1 != null) {
                                     vehicleManuf = it1
@@ -556,6 +557,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 Status.SUCCESS -> {
                     showHideLoader(false)
                     uploadDocument()
+
                     binding.tvContinue.isEnabled = true
                     binding.tvContinue.backgroundTintList =
                         ColorStateList.valueOf(ContextCompat.getColor(this, R.color.line_color))
@@ -679,7 +681,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     )
                     val vrnDetails = VrnDetails1(
                         vrn = vehicleNumber,
-                        chassis = vehicleChassisNumber,
+                        chassis = binding.etv5.text.toString(),
                         engine = engineNumberComplete,
                         vehicleManuf = vehicleManuf,
                         model = model,
@@ -700,6 +702,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         permitExpiryDate = permitExpiryDate1,
                         stateOfRegistration = stateOfRegistration1
                     )
+                    if (userName == ""){
+                        userName = userName123
+                    }
                     val custDetails = CustDetails2(
                         name = userName, mobileNo = mobile1, walletId = walletId1
                     )
@@ -1247,6 +1252,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
         binding.llUploadDocument.visibility = View.GONE
     }
 
+    var userName123 = ""
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initOnClick() {
         viewModel.onClick.observe(this) {
@@ -1375,6 +1381,10 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         showErrorToast("Please enter Tag amount")
                     } else if (debitAmount == "") {
                         showErrorToast("Please enter Debit amount")
+                    } else if (binding.etv5.text.toString() == ""){
+                      showErrorToast("Please enter chassis number")
+                    } else if (binding.etv5.text.toString().length != 17){
+                        showErrorToast("Please enter compltete chassis number")
                     } else {
                         val regDetails = RegDetails(
                             requestId = requestId1,
@@ -1386,7 +1396,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
 
                         val vrnDetails = VrnDetails1(
                             vrn = vehicleNumber,
-                            chassis = vehicleChassisNumber,
+                            chassis = binding.etv5.text.toString(),
                             engine = engineNumberComplete,
                             vehicleManuf = vehicleManuf,
                             model = model,
@@ -1458,6 +1468,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     } else if ((documentType == 2 || documentType == 4) && documentExpiry == "") {
                         showErrorToast("Please select document expiry date")
                     } else {
+                        userName123 = fName+" "+lName
                         val request = CreateCustomerRew(
                             createCustomerReq = CustomerRequest(
                                 reqWallet = RequestWallet(

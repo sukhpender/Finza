@@ -65,12 +65,20 @@ class BadActivationDetailFragment : BaseFragment<FragmentBadActivationDetailBind
             when (it?.id) {
                 R.id.llCalender -> {
                     val picker = RackMonthPicker(requireContext()).setLocale(Locale.ENGLISH)
-                        .setPositiveButton { month, startDate, endDate, year, monthLabel ->
-                            binding.tvMonth.text = getShortMonthName(month)+" "+year.toString()
+                        .setPositiveButton { month1, startDate, endDate, year1, monthLabel ->
+                            binding.tvMonth.text = getShortMonthName(month1)+" "+year1.toString()
+                            var newMonth = ""
+                            if (month1 < 10){
+                                newMonth = "0$month1"
+                            }else{
+                                newMonth = "$month1"
+                            }
+                            month = month1.toString()
+                            year = year1.toString()
                             viewModel.getList(
                                 sharedPrefManager.getToken().toString(),
-                                month.toString(),
-                                year.toString()
+                                newMonth,
+                                year1.toString()
                             )
                         }.setNegativeButton(object : DialogInterface.OnClickListener,
                             OnCancelMonthDialogListener {
@@ -90,7 +98,6 @@ class BadActivationDetailFragment : BaseFragment<FragmentBadActivationDetailBind
                         )
                     )
                     picker.show()
-
                 }
             }
         }

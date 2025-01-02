@@ -16,6 +16,7 @@ data class TagReplaceReq(
     val sessionId: String,
     val serialNo: String,
     val reason: String,
+    val reasonDesc: String = "",
     val chassisNo: String,
     val engineNo: String,
     val isNationalPermit: String,
