@@ -346,7 +346,8 @@ class ForwardedDetailsActivity : BaseActivity<ActivityForwardedDetailsBinding>()
                             "0",
                             lowerLimit,
                             upperLimit,
-                            currentPage
+                            currentPage,
+                            userID
                         )
                     }
                 }

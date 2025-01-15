@@ -22,8 +22,8 @@
             android:id="@+id/cv1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:cardBackgroundColor="@color/line_color"
             android:layout_marginVertical="@dimen/_10sdp"
+            app:cardBackgroundColor="@color/line_color"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent">
 
@@ -87,20 +87,20 @@
                     android:gravity="center">
 
                     <TextView
+                        android:id="@+id/tvMonth"
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_width="0dp"
                         android:layout_height="@dimen/_30sdp"
                         android:layout_weight="1.5"
                         android:drawableEnd="@drawable/forward_svgrepo_com_small"
                         android:drawableTint="@color/white"
-                        android:gravity="center"
-                        android:singleLine="true"
                         android:foreground="?selectableItemBackground"
+                        android:gravity="center"
                         android:onClick="@{v->vm.onClick(v)}"
-                        android:id="@+id/tvMonth"
+                        android:singleLine="true"
                         android:text="Sept 2024"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp"/>
+                        android:textSize="@dimen/_12sdp" />
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
@@ -139,6 +139,7 @@
             android:id="@+id/tv1"
             style="@style/TextView.InterRegular_12ssp"
             android:layout_width="0dp"
+            android:layout_margin="@dimen/_10sdp"
             android:layout_weight="1"
             android:fontFamily="@font/inter_semibold"
             android:gravity="center"
@@ -147,8 +148,7 @@
             android:textColor="@color/fsm_text_color"
             android:textSize="@dimen/_12sdp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cv1"
-            android:layout_margin="@dimen/_10sdp"/>
+            app:layout_constraintTop_toBottomOf="@+id/cv1" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rvHomeDrawer"
@@ -161,6 +161,18 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tv1"
             tools:listitem="@layout/bad_issuence_holder" />
+
+        <ImageView
+            android:id="@+id/ivNoData"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:background="@color/white"
+            android:padding="@dimen/_80sdp"
+            android:src="@drawable/no_data"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/cv1" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

@@ -98,10 +98,10 @@
                     android:layout_marginTop="@dimen/_2sdp"
                     android:fontFamily="@font/inter_semibold"
                     android:singleLine="true"
-                    android:visibility="gone"
                     android:text="Mobile : "
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -111,8 +111,8 @@
                     android:singleLine="true"
                     android:text='@{bean.fastag.mobile_no}'
                     android:textColor="@color/fsm_text_color"
-                    android:visibility="gone"
                     android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -128,9 +128,9 @@
                     android:fontFamily="@font/inter_semibold"
                     android:singleLine="true"
                     android:text="Provider : "
-                    android:visibility="gone"
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -138,10 +138,10 @@
                     style="@style/TextView.InterRegular_12ssp"
                     android:layout_marginTop="@dimen/_2sdp"
                     android:singleLine="true"
-                    android:visibility="gone"
                     android:text="Bajaj"
                     android:textColor="@color/fsm_text_color"
                     android:textSize="@dimen/_12sdp"
+                    android:visibility="gone"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -175,7 +175,7 @@
             </LinearLayout>
 
             <TextView
-                android:id="@+id/tvVerifyNumber"
+                android:id="@+id/tvView"
                 style="@style/TextView.InterRegular_12ssp"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/_30sdp"
@@ -190,7 +190,6 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tvResetPass" />
-
 
         </LinearLayout>
 

@@ -36,6 +36,7 @@ import com.riggle.finza_finza.data.model.StorePaymentResponseModel
 import com.riggle.finza_finza.data.model.TagReplaceRequest
 import com.riggle.finza_finza.data.model.TransferRequest
 import com.riggle.finza_finza.data.model.UpdateProjectResponseModel
+import com.riggle.finza_finza.data.model.UploadDocResponseModel
 import com.riggle.finza_finza.data.model.UploadDocumentResponseModel
 import com.riggle.finza_finza.data.model.UrtResponseModel
 import com.riggle.finza_finza.data.model.UserWalletResponseModel
@@ -218,9 +219,19 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         status: String,
         from_bar_code: String,
         to_bar_code: String,
-        page: Int
+        page: Int,
     ): Response<InventoryResponseModel1> {
         return apiService.getFilterInventoriesList1(header,status,from_bar_code,to_bar_code,page)
+    }
+    override suspend fun getFilterInventoriesList2(
+        header: String,
+        status: String,
+        from_bar_code: String,
+        to_bar_code: String,
+        page: Int,
+        userId:String
+    ): Response<InventoryResponseModel1> {
+        return apiService.getFilterInventoriesList2(header,status,from_bar_code,to_bar_code,page,userId)
     }
 
     override suspend fun finzaUsersList(header: String): Response<UsersListResponseModel> {
@@ -311,6 +322,15 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         return apiService.bajajUploadDocument(
             header, requestId, sessionId, channel, agentId, reqDateTime, imageType, image, provider,inventory_id
         )
+    }
+
+    override suspend fun uploadDocument(
+        header: String,
+        audit_id: RequestBody,
+        image: MultipartBody.Part,
+        type: RequestBody
+    ): Response<UploadDocResponseModel> {
+        return apiService.uploadDocument(header,audit_id,image,type)
     }
 
     override suspend fun registerTag(

@@ -1,0 +1,417 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <data>
+
+        <import type="android.view.View" />
+
+        <variable
+            name="vm"
+            type="com.riggle.finza_finza.ui.finza.issuance.bad.BadDetailsActivityVM" />
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:background="@color/white">
+
+        <LinearLayout
+            android:id="@+id/llHeader"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/_50sdp"
+            android:background="@drawable/round_bottom_app_bg"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.google.android.material.imageview.ShapeableImageView
+                android:id="@+id/iv1"
+                android:layout_width="@dimen/_40sdp"
+                android:layout_height="@dimen/_40sdp"
+                android:layout_marginStart="@dimen/_3sdp"
+                android:foreground="?selectableItemBackground"
+                android:onClick="@{v-> vm.onClick(v)}"
+                android:padding="@dimen/_10sdp"
+                android:src="@drawable/ic_back"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:tint="@color/fsm_bg_light_teal" />
+
+            <TextView
+                android:id="@+id/tvHeader"
+                style="@style/TextView.InterRegular_12ssp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:gravity="center_vertical"
+                android:text="Upload Document"
+                android:textColor="@color/fsm_bg_light_teal"
+                android:textSize="@dimen/_16sdp" />
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:id="@+id/llUploadDocument"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            app:layout_constraintEnd_toEndOf="@+id/llHeader"
+            app:layout_constraintStart_toStartOf="@+id/llHeader"
+            app:layout_constraintTop_toBottomOf="@+id/llHeader">
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvRcFront"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvRcFront"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_15ssp"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Upload RC Image"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivRcFrontUploaded"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:src="@drawable/check"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvRcFront"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvRcFront" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivRCFront"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:elevation="@dimen/_1sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/rc"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                    <LinearLayout
+                        android:id="@+id/llUploadRcFrontButtons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp">
+
+                        <TextView
+                            android:id="@+id/tvSelectRcFront1"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_round_stroke_fsm"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Select"
+                            android:textColor="@color/line_color"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <TextView
+                            android:id="@+id/tvUploadRcFront"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_back_view"
+                            android:backgroundTint="@color/line_color"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Upload"
+                            android:textColor="@color/fsm_bg_light_teal"
+                            android:textSize="@dimen/_14sdp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCarFrontImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvCarFront"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_15ssp"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Upload Car Front Image"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivCarFrontUploaded"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:src="@drawable/check"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvCarFront"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvCarFront" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivCarFront"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:elevation="@dimen/_1sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/car"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_15ssp"
+                        android:foreground="?selectableItemBackground"
+                        android:onClick="@{v->vm.onClick(v)}"
+                        android:text="Note: Number plate view should be clearly visible"
+                        android:textColor="@android:color/holo_red_dark"
+                        android:textSize="@dimen/_12sdp" />
+
+                    <LinearLayout
+                        android:id="@+id/llUploadCarFrontButtons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp">
+
+                        <TextView
+                            android:id="@+id/tvSelectCarFront"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_round_stroke_fsm"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Capture"
+                            android:textColor="@color/line_color"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <TextView
+                            android:id="@+id/tvUploadCarFront"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_back_view"
+                            android:backgroundTint="@color/line_color"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Upload"
+                            android:textColor="@color/fsm_bg_light_teal"
+                            android:textSize="@dimen/_14sdp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cvCarSideImage"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="@dimen/_8sdp"
+                android:visibility="gone"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/_8sdp"
+                app:cardElevation="@dimen/_5sdp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <androidx.constraintlayout.widget.ConstraintLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                        <TextView
+                            android:id="@+id/tvCarSide"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:layout_marginTop="@dimen/_15ssp"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Upload Car Side Image"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp"
+                            app:layout_constraintStart_toStartOf="parent"
+                            app:layout_constraintTop_toTopOf="parent" />
+
+                        <ImageView
+                            android:id="@+id/ivCarSdieUploaded"
+                            android:layout_width="@dimen/_24sdp"
+                            android:layout_height="@dimen/_24sdp"
+                            android:layout_marginHorizontal="@dimen/_12sdp"
+                            android:src="@drawable/check"
+                            android:visibility="gone"
+                            app:layout_constraintBottom_toBottomOf="@+id/tvCarSide"
+                            app:layout_constraintEnd_toEndOf="parent"
+                            app:layout_constraintTop_toTopOf="@+id/tvCarSide" />
+
+                    </androidx.constraintlayout.widget.ConstraintLayout>
+
+                    <com.google.android.material.imageview.ShapeableImageView
+                        android:id="@+id/ivCarSide"
+                        android:layout_width="@dimen/_180sdp"
+                        android:layout_height="@dimen/_100sdp"
+                        android:layout_gravity="center"
+                        android:layout_marginHorizontal="@dimen/_12sdp"
+                        android:layout_marginTop="@dimen/_5sdp"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:background="@color/white"
+                        android:elevation="@dimen/_1sdp"
+                        android:scaleType="centerCrop"
+                        android:src="@drawable/car_side"
+                        app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+
+                    <LinearLayout
+                        android:id="@+id/llUploadCarSideButtons"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginVertical="@dimen/_5sdp">
+
+                        <TextView
+                            android:id="@+id/tvSelectCarSide"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_10sdp"
+                            android:layout_marginEnd="@dimen/_5sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/custom_round_stroke_fsm"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Capture"
+                            android:textColor="@color/line_color"
+                            android:textSize="@dimen/_14sdp" />
+
+                        <TextView
+                            android:id="@+id/tvUploadCarSide"
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="0dp"
+                            android:layout_height="@dimen/_30sdp"
+                            android:layout_marginVertical="@dimen/_5sdp"
+                            android:layout_marginStart="@dimen/_5sdp"
+                            android:layout_marginEnd="@dimen/_10sdp"
+                            android:layout_weight="1"
+                            android:background="@drawable/edit_back_view"
+                            android:backgroundTint="@color/line_color"
+                            android:fontFamily="@font/inter_semibold"
+                            android:foreground="?selectableItemBackground"
+                            android:gravity="center"
+                            android:onClick="@{v->vm.onClick(v)}"
+                            android:text="Upload"
+                            android:textColor="@color/fsm_bg_light_teal"
+                            android:textSize="@dimen/_14sdp"
+                            android:visibility="gone" />
+
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </androidx.cardview.widget.CardView>
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</layout>

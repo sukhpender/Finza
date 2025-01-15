@@ -38,6 +38,7 @@ import com.riggle.finza_finza.data.model.TagReplaceRequest
 import com.riggle.finza_finza.data.model.Transfer
 import com.riggle.finza_finza.data.model.TransferRequest
 import com.riggle.finza_finza.data.model.UpdateProjectResponseModel
+import com.riggle.finza_finza.data.model.UploadDocResponseModel
 import com.riggle.finza_finza.data.model.UploadDocumentResponseModel
 import com.riggle.finza_finza.data.model.UrtResponseModel
 import com.riggle.finza_finza.data.model.UserWalletResponseModel
@@ -250,7 +251,19 @@ interface BaseApi {
         @Field("status") status: String,
         @Field("from_bar_code") from_bar_code: String,
         @Field("to_bar_code") to_bar_code: String,
-        @Field("page") page: Int
+        @Field("page") page: Int,
+    ): Response<InventoryResponseModel1>
+
+    @POST(Constants.INVENTORY_LIST1)
+    @Headers(Constants.X_APP_ACCEPT)
+    @FormUrlEncoded
+    suspend fun getFilterInventoriesList2(
+        @Header("Authorization") header: String,
+        @Field("status") status: String,
+        @Field("from_bar_code") from_bar_code: String,
+        @Field("to_bar_code") to_bar_code: String,
+        @Field("page") page: Int,
+        @Field("user_id") user_id: String
     ): Response<InventoryResponseModel1>
 
     @POST(Constants.ASSIGN_INVENTORY)
@@ -388,6 +401,17 @@ interface BaseApi {
         @Part("provider") provider: RequestBody,
         @Part("inventory_id") inventory_id: RequestBody,
     ): Response<UploadDocumentResponseModel>
+
+    @JvmSuppressWildcards
+    @Multipart
+    @POST(Constants.UPLOAD_DOCUMENTS1)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun uploadDocument(
+        @Header("Authorization") header: String,
+        @Part("audit_id") requestId: RequestBody,
+        @Part image: MultipartBody.Part,
+        @Part("type") type: RequestBody,
+        ): Response<UploadDocResponseModel>
 
     @POST(Constants.REGISTER_TAG)
     @Headers(Constants.X_APP_ACCEPT)

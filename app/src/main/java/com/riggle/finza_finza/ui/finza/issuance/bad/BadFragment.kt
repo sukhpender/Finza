@@ -1,6 +1,5 @@
 package com.riggle.finza_finza.ui.finza.issuance.bad
 
-import android.app.DatePickerDialog
 import android.content.DialogInterface
 import android.os.Build
 import android.view.View
@@ -14,17 +13,13 @@ import com.kal.rackmonthpicker.listener.OnCancelMonthDialogListener
 import com.riggle.finza_finza.BR
 import com.riggle.finza_finza.R
 import com.riggle.finza_finza.data.model.BadDataXX
-import com.riggle.finza_finza.data.model.DataXX
-import com.riggle.finza_finza.data.model.UglyIssuence
 import com.riggle.finza_finza.databinding.BadIssuenceHolderBinding
 import com.riggle.finza_finza.databinding.FragmentBadBinding
-import com.riggle.finza_finza.databinding.HolderUglyIssuenceBinding
 import com.riggle.finza_finza.ui.base.BaseFragment
 import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.VerticalPagination
-import com.riggle.finza_finza.utils.showErrorToast
 import dagger.hilt.android.AndroidEntryPoint
 import java.time.LocalDate
 import java.time.Month
@@ -34,7 +29,7 @@ import java.util.Calendar
 import java.util.Locale
 
 @AndroidEntryPoint
-class BadFragment : BaseFragment<FragmentBadBinding>(), VerticalPagination.VerticalScrollListener  {
+class BadFragment : BaseFragment<FragmentBadBinding>(), VerticalPagination.VerticalScrollListener {
 
     private val viewModel: BadFragmentVM by viewModels()
     private var currentPage: Int = 1
@@ -62,6 +57,7 @@ class BadFragment : BaseFragment<FragmentBadBinding>(), VerticalPagination.Verti
 
                 Status.SUCCESS -> {
                     showHideLoader(false)
+                    adapter.list = null
                     if (it.data != null) {
                         if (currentPage < it.data.data.data.last_page) {
                             verticalPagination.isLoading = false
@@ -76,17 +72,23 @@ class BadFragment : BaseFragment<FragmentBadBinding>(), VerticalPagination.Verti
                         binding.tvUrtAmount.text = "₹ " + it.data.data.total_amount.toString()
                         binding.tvUrtCount.text = it.data.data.total_count.toString()
                         adapter.list = it.data.data.data.data
+
+                        if (it.data.data.data.data.size != 0){
+                            binding.ivNoData.visibility = View.GONE
+                        }else{
+                            binding.ivNoData.visibility = View.VISIBLE
+                        }
                     }
                 }
 
                 Status.WARN -> {
                     showHideLoader(false)
-                  //  showErrorToast(it.message.toString())
+                    //  showErrorToast(it.message.toString())
                 }
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                  //  showErrorToast(it.message.toString())
+                    //  showErrorToast(it.message.toString())
                 }
 
                 else -> {}
@@ -122,7 +124,9 @@ class BadFragment : BaseFragment<FragmentBadBinding>(), VerticalPagination.Verti
                         .setPositiveButton { month, startDate, endDate, year, monthLabel ->
                             binding.tvMonth.text = getShortMonthName(month) + " " + year.toString()
                             viewModel.getList(
-                                sharedPrefManager.getToken().toString(), month.toString(), year.toString()
+                                sharedPrefManager.getToken().toString(),
+                                month.toString(),
+                                year.toString()
                             )
                         }.setNegativeButton(object : DialogInterface.OnClickListener,
                             OnCancelMonthDialogListener {
@@ -160,7 +164,13 @@ class BadFragment : BaseFragment<FragmentBadBinding>(), VerticalPagination.Verti
         adapter = SimpleRecyclerViewAdapter(
             R.layout.bad_issuence_holder, BR.bean
         ) { v, m, pos ->
-
+            when (v?.id) {
+                R.id.tvView -> {
+                    sharedPrefManager.saveTypeId(m.reason)
+                    sharedPrefManager.saveAuditId(m.id.toString())
+                    startActivity(BadDetailsActivity.newIntent(requireActivity()))
+                }
+            }
         }
         val layoutManager = LinearLayoutManager(requireContext())
         binding.rvHomeDrawer.layoutManager = layoutManager
@@ -175,5 +185,12 @@ class BadFragment : BaseFragment<FragmentBadBinding>(), VerticalPagination.Verti
     override fun onLoadMore() {
         currentPage++
         viewModel.getList(sharedPrefManager.getToken().toString(), month, year)
+    }
+
+    override fun onResume() {
+        super.onResume()
+        viewModel.getList(
+            sharedPrefManager.getToken().toString(), month, year
+        )
     }
 }

@@ -34,7 +34,8 @@ import java.util.Locale
 @AndroidEntryPoint
 class AvailableInventoryFragment : BaseFragment<FragmentAvailableInventoryBinding>(),
     VerticalPagination.VerticalScrollListener {
-
+// 1-0626392
+        // 1-06258
     private val viewModel: AvailableInventoryFragmentVM by viewModels()
     private var isUserSelected = false
     private var usersList = ArrayList<UsersListData>()

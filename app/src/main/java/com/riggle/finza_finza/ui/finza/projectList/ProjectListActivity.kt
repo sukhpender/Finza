@@ -119,7 +119,7 @@ class ProjectListActivity : BaseActivity<ActivityProjectListBinding>() {
                     showHideLoader(false)
                     if (it.data != null) {
                         showSuccessToast(it.data.message.toString())
-                        sharedPrefManager.saveProjectId(project_id.toString())
+                     //   sharedPrefManager.saveProjectId(project_id.toString())
                         startActivity(FinzaHomeActivity.newIntent(this))
                         finish()
                     }

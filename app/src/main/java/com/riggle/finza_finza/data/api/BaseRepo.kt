@@ -36,6 +36,7 @@ import com.riggle.finza_finza.data.model.StorePaymentResponseModel
 import com.riggle.finza_finza.data.model.TagReplaceRequest
 import com.riggle.finza_finza.data.model.TransferRequest
 import com.riggle.finza_finza.data.model.UpdateProjectResponseModel
+import com.riggle.finza_finza.data.model.UploadDocResponseModel
 import com.riggle.finza_finza.data.model.UploadDocumentResponseModel
 import com.riggle.finza_finza.data.model.UrtResponseModel
 import com.riggle.finza_finza.data.model.UserWalletResponseModel
@@ -178,7 +179,16 @@ interface BaseRepo {
        status: String,
        from_bar_code: String,
         to_bar_code: String,
-        page: Int
+        page: Int,
+    ): Response<InventoryResponseModel1>
+
+    suspend fun getFilterInventoriesList2(
+        header: String,
+       status: String,
+       from_bar_code: String,
+        to_bar_code: String,
+        page: Int,
+        userId:String
     ): Response<InventoryResponseModel1>
 
     suspend fun finzaUsersList(
@@ -248,6 +258,13 @@ interface BaseRepo {
         provider: RequestBody,
         inventory_id: RequestBody,
     ): Response<UploadDocumentResponseModel>
+
+    suspend fun uploadDocument(
+        header: String,
+        audit_id: RequestBody,
+        image: MultipartBody.Part,
+        channel: RequestBody,
+    ): Response<UploadDocResponseModel>
 
     suspend fun registerTag(
         header: String, reqBody: RegisterTagRequest

@@ -39,5 +39,4 @@ class BadFragmentVM @Inject constructor(private val baseRepo: BaseRepo): BaseVie
             }
         }
     }
-
 }

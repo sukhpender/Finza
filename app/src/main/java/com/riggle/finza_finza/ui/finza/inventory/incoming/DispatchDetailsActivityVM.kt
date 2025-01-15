@@ -18,11 +18,12 @@ import javax.inject.Inject
 class DispatchDetailsActivityVM @Inject constructor(private val baseRepo: BaseRepo): BaseViewModel() {
 
     val obrFilterInverntory = SingleRequestEvent<InventoryResponseModel1>()
-    fun getFilterInventory1(header: String,status: String,from_bar_code: String,to_bar_code: String,page: Int) {
+    fun getFilterInventory1(header: String,status: String,from_bar_code: String,to_bar_code: String,page: Int, userId:String) {
         Coroutines.io {
             obrFilterInverntory.postValue(Resource.loading(null))
             try {
-                baseRepo.getFilterInventoriesList1(header,status,from_bar_code,to_bar_code,page).let {
+                baseRepo.getFilterInventoriesList2(header,status,from_bar_code,to_bar_code,page, userId
+                ).let {
                     if (it.isSuccessful) {
                         it.body()?.let { results ->
                             obrFilterInverntory.postValue(Resource.success(results, "Success"))

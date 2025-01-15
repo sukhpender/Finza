@@ -372,7 +372,8 @@ class DispatchDetailsActivity : BaseActivity<ActivityDispatchDetailsBinding>(),
                             "1",
                             lowerLimit,
                             upperLimit,
-                            currentPage
+                            currentPage,
+                            userID
                         )
                     }
                 }

@@ -56,14 +56,25 @@ class SharedPrefManager @Inject constructor(private val sharedPreferences: Share
         return token
     }
 
-    fun saveProjectId(id: String) {
+    fun saveAuditId(id: String) {
         val editor = sharedPreferences.edit()
         editor.putString(KEY.PROJECT_ID, id)
         editor.apply()
     }
 
-    fun getProjectId(): String? {
+    fun getAuditId(): String? {
         val token: String? = sharedPreferences.getString(KEY.PROJECT_ID, null)
+        return token
+    }
+
+    fun saveTypeId(id: String) {
+        val editor = sharedPreferences.edit()
+        editor.putString("Type1", id)
+        editor.apply()
+    }
+
+    fun getTypeId(): String? {
+        val token: String? = sharedPreferences.getString("Type1", null)
         return token
     }
 
