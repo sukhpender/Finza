@@ -370,4 +370,10 @@
         libero vel nunc consequat, quis tincidunt nisl eleifend. Cras bibendum enim a justo luctus
         vestibulum. Fusce dictum libero quis erat maximus, vitae volutpat diam dignissim.
     </string>
+    <string name="download">Download</string>
+    <string name="vehicle_number">Vehicle Number*</string>
+    <string name="indian_rupee">Indian Rupee</string>
+    <string name="available_balance">Available Balance :</string>
+    <string name="user_name">User Name :</string>
+    <string name="download_rc">Download RC</string>
 </resources>

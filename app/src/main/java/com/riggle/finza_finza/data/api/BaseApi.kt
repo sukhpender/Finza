@@ -12,11 +12,13 @@ import com.riggle.finza_finza.data.model.CheckTagAvailabilityResponseModel
 import com.riggle.finza_finza.data.model.CreateCustomerRew
 import com.riggle.finza_finza.data.model.CreatePaymentLinkResponseModel
 import com.riggle.finza_finza.data.model.DispatchUsersResponseModel
+import com.riggle.finza_finza.data.model.DownloadDocResponseModel
 import com.riggle.finza_finza.data.model.FinzaForgotPassResponseModel
 import com.riggle.finza_finza.data.model.FinzaLoginResponseModel
 import com.riggle.finza_finza.data.model.FinzaLogoutResponseModel
 import com.riggle.finza_finza.data.model.FinzaProfileResponseModel
 import com.riggle.finza_finza.data.model.ForwardUsersResponseModel
+import com.riggle.finza_finza.data.model.GetVehicleDetailsResponseModel
 import com.riggle.finza_finza.data.model.HomeInventoryResponseModel
 import com.riggle.finza_finza.data.model.InventoryResponseModel1
 import com.riggle.finza_finza.data.model.InventryResponseModel
@@ -418,5 +420,23 @@ interface BaseApi {
     suspend fun registerTag(
         @Header("Authorization") header: String, @Body reqBody: RegisterTagRequest
     ): Response<RegisterTagResponseModel>
+
+    @POST(Constants.GET_VEHICLE_DETAILS)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun getVehicleDetails(
+        @Header("Authorization") header: String,
+        @Field("rc_no") rc_no: String,
+        @Field("type") type: Int
+    ): Response<GetVehicleDetailsResponseModel>
+
+    @FormUrlEncoded
+    @POST(Constants.DOWNLOAD_PDF)
+    @Headers(Constants.X_APP_ACCEPT)
+    suspend fun downloadPdf(
+        @Header("Authorization") header: String,
+        @Field("rc_no") rc_no: String,
+        @Field("type") type: Int,
+        @Field("status") status: Int
+    ): Response<DownloadDocResponseModel>
 
 }

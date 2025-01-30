@@ -18,6 +18,8 @@ object Constants {
     const val UPLOAD_DOCUMENTS = "api/upload-document"
     const val UPLOAD_DOCUMENTS1 = "api/bad-issuance-image-upload"
     const val REGISTER_TAG = "api/reg-fas-tag"
+    const val GET_VEHICLE_DETAILS    = "/api/vehicle-get"
+    const val DOWNLOAD_PDF    = "/api/generate-pdf"
 
     const val WALLET_CREATE_CUSTOMER = "api/customer-create"
     const val PAYMENT_LINK_CREATE = "api/payment-link-create"

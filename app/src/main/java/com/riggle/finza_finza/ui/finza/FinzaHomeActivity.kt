@@ -23,6 +23,7 @@ import com.riggle.finza_finza.ui.base.BaseActivity
 import com.riggle.finza_finza.ui.base.BaseViewModel
 import com.riggle.finza_finza.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.finza_finza.ui.finza.checkVehicleStatus.CheckVehicleStatusActivity
+import com.riggle.finza_finza.ui.finza.downloadRc.DownloadRCActivity
 import com.riggle.finza_finza.ui.finza.helpAndSupport.HelpAndSupportActivity
 import com.riggle.finza_finza.ui.finza.inWallet.InventoryWalletActivity
 import com.riggle.finza_finza.ui.finza.inventory.InventoryActivity
@@ -36,7 +37,6 @@ import com.riggle.finza_finza.utils.showErrorToast
 import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
-
 
 @AndroidEntryPoint
 class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
@@ -65,43 +65,6 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         initView()
         initOnClick()
         initObservers()
-//        val today = LocalDate.now().toString()
-//        when(today){
-//            "2024-10-27" -> {
-//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-//                initView()
-//                initOnClick()
-//                initObservers()
-//            }
-//            "2024-10-28" -> {
-//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-//                initView()
-//                initOnClick()
-//                initObservers()
-//            }
-//            "2024-10-29" -> {
-//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-//                initView()
-//                initOnClick()
-//                initObservers()
-//            }
-//            "2024-10-30" -> {
-//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-//                initView()
-//                initOnClick()
-//                initObservers()
-//            }
-//            "2024-10-31" -> {
-//                viewModel.getHomeInventoryCount(sharedPrefManager.getToken().toString())
-//                initView()
-//                initOnClick()
-//                initObservers()
-//            }
-//            else -> {
-//                showInfoToast("Thanks")
-//                finish()
-//            }
-//        }
     }
 
     private fun initObservers() {
@@ -133,7 +96,6 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
                 else -> {}
             }
         }
-
 
         viewModel.obrLogout.observe(this) {
             when (it?.status) {
@@ -255,8 +217,12 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
 //                    startActivity(ProjectListActivity.newIntent(this))
 //                    openCloseDrawer()
 //                }
+                5 -> { // download RC
+                    startActivity(DownloadRCActivity.newIntent(this))
+                    openCloseDrawer()
+                }
 
-                5 -> {
+                6 -> {
                     /** help and support */
                     startActivity(HelpAndSupportActivity.newIntent(this))
                     openCloseDrawer()
@@ -268,13 +234,13 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
 //                    openCloseDrawer()
 //                }
 
-                6 -> {
+                7 -> {
                     /** profile */
                     startActivity(ProfileActivity.newIntent(this))
                     openCloseDrawer()
                 }
 
-                7 -> {
+                8 -> {
                     /** logout */
                     bsLogout()
                     openCloseDrawer()
@@ -335,6 +301,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         list.add(Drawer(R.drawable.inventory, "Inventory"))
         list.add(Drawer(R.drawable.ic_percentage_filled, "Issue Tag"))
         list.add(Drawer(R.drawable.vehicle_status, "Check Vehicle Status"))
+        list.add(Drawer(R.drawable.baseline_cloud_download_24, "Download RC"))
         // list.add(Drawer(R.drawable.change_project, "Change Project"))
         list.add(Drawer(R.drawable.replace1, "Help & Support"))
         //  list.add(Drawer(R.drawable.language, "Language"))

@@ -742,7 +742,6 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             }
         }
 
-
         viewModel.obrRegisterTag.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {
@@ -780,7 +779,34 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
             }
         }
 
+        viewModel.obrVehicleDetails.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
 
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+
+                    } else {
+                        showErrorToast(it.message.toString())
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                else -> {}
+            }
+        }
 
         binding.otpView.setOtpCompletionListener {
             enteredOtp = it

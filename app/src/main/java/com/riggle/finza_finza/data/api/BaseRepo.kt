@@ -11,11 +11,13 @@ import com.riggle.finza_finza.data.model.CheckTagAvailabilityResponseModel
 import com.riggle.finza_finza.data.model.CreateCustomerRew
 import com.riggle.finza_finza.data.model.CreatePaymentLinkResponseModel
 import com.riggle.finza_finza.data.model.DispatchUsersResponseModel
+import com.riggle.finza_finza.data.model.DownloadDocResponseModel
 import com.riggle.finza_finza.data.model.FinzaForgotPassResponseModel
 import com.riggle.finza_finza.data.model.FinzaLoginResponseModel
 import com.riggle.finza_finza.data.model.FinzaLogoutResponseModel
 import com.riggle.finza_finza.data.model.FinzaProfileResponseModel
 import com.riggle.finza_finza.data.model.ForwardUsersResponseModel
+import com.riggle.finza_finza.data.model.GetVehicleDetailsResponseModel
 import com.riggle.finza_finza.data.model.HomeInventoryResponseModel
 import com.riggle.finza_finza.data.model.InventoryResponseModel1
 import com.riggle.finza_finza.data.model.InventryResponseModel
@@ -277,4 +279,14 @@ interface BaseRepo {
     suspend fun tagReplacement(
         header: String, reqBody: TagReplaceRequest
     ): Response<ReplacementResponseModel>
+
+    suspend fun getVehicleDetails(token: String,rc_no: String, type: Int,
+    ): Response<GetVehicleDetailsResponseModel>
+
+    suspend fun downloadPdf(
+        header: String,
+        rc_no: String,
+        type: Int,
+        status: Int
+    ): Response<DownloadDocResponseModel>
 }

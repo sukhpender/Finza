@@ -111,6 +111,7 @@ class WalletActivity : BaseActivity<ActivityWalletBinding>() {
                 }
             }
         }
+
         viewModel.obrWallet.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {

@@ -2,6 +2,7 @@ package com.riggle.finza_finza.ui.finza.issueSuperTag.verify
 
 import com.riggle.finza_finza.data.api.BaseRepo
 import com.riggle.finza_finza.data.model.CreateCustomerRew
+import com.riggle.finza_finza.data.model.GetVehicleDetailsResponseModel
 import com.riggle.finza_finza.data.model.IssueTagCheckWalletResponseModel
 import com.riggle.finza_finza.data.model.IssueTagUserCreateResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
@@ -253,6 +254,32 @@ class VerifyTagActivityVM @Inject constructor(private val baseRepo: BaseRepo) : 
             } catch (e: Exception) {
                 parseException(e.cause)?.let {
                     obrIssueTagCheckWallet.postValue(Resource.error(null, it))
+                }
+            }
+        }
+    }
+
+    val obrVehicleDetails = SingleRequestEvent<GetVehicleDetailsResponseModel>()
+    fun getVehicleDetails(token: String,rc_no: String,type: Int) {
+        Coroutines.io {
+            obrVehicleDetails.postValue(Resource.loading(null))
+            try {
+                baseRepo.getVehicleDetails(token,rc_no,type).let {
+                    if (it.isSuccessful) {
+                        it.body()?.let { results ->
+                            obrVehicleDetails.postValue(Resource.success(results, "Success"))
+                        }
+                    } else {
+                        obrVehicleDetails.postValue(
+                            Resource.error(
+                                null, handleErrorResponse(it.errorBody(),it.code())
+                            )
+                        )
+                    }
+                }
+            } catch (e: Exception) {
+                parseException(e.cause)?.let {
+                    obrVehicleDetails.postValue(Resource.error(null, it))
                 }
             }
         }
