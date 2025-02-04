@@ -163,7 +163,7 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
 
                 Status.ERROR -> {
                     showHideLoader(false)
-                    showErrorToast(it.message.toString())
+                    showErrorToast(it.data?.error.toString())
                 }
 
                 else -> {}

@@ -28,6 +28,22 @@ import com.riggle.finza_finza.utils.showInfoToast
 import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 
+
+/**
+ *
+ - Replacement edit chassi number and engine number fixed.
+ - Filter last barcode fixed.
+ - Download error shown handling done.
+ - Vehicle details data send like chassi and vehicle number done update register tag.
+ -
+
+
+
+
+
+ * */
+
+
 @AndroidEntryPoint
 class LoginActivity : BaseActivity<ActivityLoginBinding>() {
 

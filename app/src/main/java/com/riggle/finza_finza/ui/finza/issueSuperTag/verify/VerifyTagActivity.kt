@@ -242,7 +242,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             channel = it.data.data.validateCustResp.channel
                             agentId = it.data.data.validateCustResp.agentId
                             mobile1 = it.data.data.validateCustResp.mobileNo
-                            vehicleChassisNumber = it.data.data.validateCustResp.chassisNo
+                            //    vehicleChassisNumber = it.data.data.validateCustResp.chassisNo
                             vehicleNumber = binding.etvVehicleNumber.text.toString()
                             verifyOtp()
                         } else {
@@ -275,8 +275,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     showHideLoader(false)
                     if (it.data != null) {
                         it.data.message.let { it1 -> showSuccessToast(it1) }
-                        if (it.data.data.validateOtpResp.custDetails.walletStatus != "Active")
-                        {
+                        if (it.data.data.validateOtpResp.custDetails.walletStatus != "Active") {
                             it.data.data.validateOtpResp.vrnDetails.vehicleManuf.let { it1 ->
                                 if (it1 != null) {
                                     vehicleManuf = it1
@@ -304,7 +303,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             }
                             it.data.data.validateOtpResp.vrnDetails.vehicleColour.let { it1 ->
                                 if (it1 != null) {
-                                    vehicleColour1 = it1
+                                    //  vehicleColour1 = it1
                                 }
                             }
                             it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.let { it1 ->
@@ -349,7 +348,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             }
                             it.data.data.validateOtpResp.vrnDetails.engineNo.let { it1 ->
                                 if (it1 != null) {
-                                    vehicleEngineNumber = it1
+                                    //   vehicleEngineNumber = it1
                                 }
                             }
                             it.data.data.validateOtpResp.vrnDetails.tagCost.let { it1 ->
@@ -396,7 +395,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             }
                             it.data.data.validateOtpResp.vrnDetails.vehicleColour.let { it1 ->
                                 if (it1 != null) {
-                                    vehicleColour1 = it1
+                                    //   vehicleColour1 = it1
                                 }
                             }
                             it.data.data.validateOtpResp.vrnDetails.vehicleDescriptor.let { it1 ->
@@ -441,7 +440,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             }
                             it.data.data.validateOtpResp.vrnDetails.engineNo.let { it1 ->
                                 if (it1 != null) {
-                                    vehicleEngineNumber = it1
+                                    //   vehicleEngineNumber = it1
                                 }
                             }
                             it.data.data.validateOtpResp.vrnDetails.tagCost.let { it1 ->
@@ -664,13 +663,14 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     val string1 = parts[0]
                     val string2 = parts[1]
                     val string3 = parts[2]
-                    val engineNumberComplete = binding.etv6.text.toString()
+                    //   val engineNumberComplete = binding.etv6.text.toString()
+                    val engineNumberComplete = vehicleEngineNumber
                     val rechargeAmount = binding.etv20.text.toString()
                     val securityDeposit = binding.etv21.text.toString()
                     val tagCost = binding.etv22.text.toString()
                     val debitAmount = binding.etv23.text.toString()
                     userName = binding.etv1.text.toString()
-                    vehicleEngineNumber = binding.etv6.text.toString()
+                    // vehicleEngineNumber = binding.etv6.text.toString()
 
                     val regDetails = RegDetails(
                         requestId = requestId1,
@@ -702,7 +702,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         permitExpiryDate = permitExpiryDate1,
                         stateOfRegistration = stateOfRegistration1
                     )
-                    if (userName == ""){
+                    if (userName == "") {
                         userName = userName123
                     }
                     val custDetails = CustDetails2(
@@ -786,9 +786,50 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 }
 
                 Status.SUCCESS -> {
-                    showHideLoader(false)
+                    //  showHideLoader(false)
                     if (it.data != null) {
+                        val requestBody = SendOtpRequest(
+                            chassisNo = it.data.data.data.chassisNo,
+                            engineNo = it.data.data.data.engineNo,
+                            isChassis = isChassi,
+                            mobileNo = binding.etPhone.text.toString(),
+                            provider = provider,
+                            reqDateTime = getCurrentDateFormatted(),
+                            reqType = reqType,
+                            requestId = generateRandom15DigitId(),
+                            resend = resend,
+                            udf1 = "",
+                            udf2 = "",
+                            udf3 = "",
+                            udf4 = "",
+                            udf5 = "",
+                            vehicleNo = vehicleNumber,
+                            inventory_id = FastTagId
+                        )
+                        vehicleChassisNumber = it.data.data.data.chassisNo
+                        vehicleEngineNumber = it.data.data.data.engineNo
+                        vehicleColour1 = it.data.data.data.vehicleColor
 
+
+//                        vehicleManuf = it.data.data.data
+//                        model = it.data.data.data
+//                        walletId1 = it.data.data.data
+//                        userName = it.data.data.data
+//                        //    vehicleNumber = it1
+//                        vehicleDescriptor1 = it.data.data.data
+//                        isNationalPermit1 = it.data.data.data
+//                        permitExpiryDate1 = it.data.data.data
+//                        stateOfRegistration1 = it.data.data.data
+//                        tagVehicleClassID1 = it.data.data.data
+//                        npciVehicleClassID1 = it.data.data.data
+//                        type = it.data.data.data
+//                        vehicleType = it.data.data.data
+//                        tagCost = it.data.data.data
+//                        securityDeposit = it.data.data.data
+//                        rechargeAmount = it.data.data.data
+
+                        Log.e("SendOtpRequest--->>>", requestBody.toString())
+                        viewModel.sendOtp(sharedPrefManager.getToken().toString(), requestBody)
                     } else {
                         showErrorToast(it.message.toString())
                     }
@@ -1279,6 +1320,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     var userName123 = ""
+
     @RequiresApi(Build.VERSION_CODES.O)
     private fun initOnClick() {
         viewModel.onClick.observe(this) {
@@ -1293,7 +1335,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     var vehicleNumber = binding.etvVehicleNumber.text.toString()
                     val isChassis = binding.cbChassisNumber.isChecked
                     val chassisNumber = binding.etvChassisNumber.text.toString()
-                    val engineNumber = binding.etvEngineNumber.text.toString()
+                    //  val engineNumber = binding.etvEngineNumber.text.toString()
 
                     if (isChassis) {
                         isChassi = 1
@@ -1313,31 +1355,37 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         showErrorToast("Please enter chassis number")
                     } else if (isChassis && chassisNumber.length != 17) {
                         showErrorToast("Please enter a valid chassis number")
-                    } else if (!isChassis && engineNumber == "") {
-                        showErrorToast("Please enter engine number")
-                    } else if (isChassis && engineNumber.length != 5) {
-                        showErrorToast("Please enter valid last 5 digit ")
                     } else {
-                        val requestBody = SendOtpRequest(
-                            chassisNo = chassisNumber,
-                            engineNo = engineNumber,
-                            isChassis = isChassi,
-                            mobileNo = mNumber,
-                            provider = provider,
-                            reqDateTime = getCurrentDateFormatted(),
-                            reqType = reqType,
-                            requestId = generateRandom15DigitId(),
-                            resend = resend,
-                            udf1 = "",
-                            udf2 = "",
-                            udf3 = "",
-                            udf4 = "",
-                            udf5 = "",
-                            vehicleNo = vehicleNumber,
-                            inventory_id = FastTagId
+                        viewModel.getVehicleDetails(
+                            sharedPrefManager.getToken().toString(), vehicleNumber, 1
                         )
-                        Log.e("SendOtpRequest--->>>", requestBody.toString())
-                        viewModel.sendOtp(sharedPrefManager.getToken().toString(), requestBody)
+                        //                    else if (!isChassis && engineNumber == "") {
+//                        showErrorToast("Please enter engine number")
+//                    } else if (isChassis && engineNumber.length != 5) {
+//                        showErrorToast("Please enter valid last 5 digit ")
+//                    }  // type is static passed
+
+
+//                        val requestBody = SendOtpRequest(
+//                            chassisNo = chassisNumber,
+//                            engineNo = engineNumber,
+//                            isChassis = isChassi,
+//                            mobileNo = mNumber,
+//                            provider = provider,
+//                            reqDateTime = getCurrentDateFormatted(),
+//                            reqType = reqType,
+//                            requestId = generateRandom15DigitId(),
+//                            resend = resend,
+//                            udf1 = "",
+//                            udf2 = "",
+//                            udf3 = "",
+//                            udf4 = "",
+//                            udf5 = "",
+//                            vehicleNo = vehicleNumber,
+//                            inventory_id = FastTagId
+//                        )
+//                        Log.e("SendOtpRequest--->>>", requestBody.toString())
+//                        viewModel.sendOtp(sharedPrefManager.getToken().toString(), requestBody)
                     }
                 }
 
@@ -1385,7 +1433,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     val tagCost = binding.etv22.text.toString()
                     val debitAmount = binding.etv23.text.toString()
                     userName = binding.etv1.text.toString()
-                    vehicleEngineNumber = binding.etv6.text.toString()
+                    // vehicleEngineNumber = binding.etv6.text.toString()
 
                     if (userName == "") {
                         showErrorToast("Please enter user name")
@@ -1407,9 +1455,9 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                         showErrorToast("Please enter Tag amount")
                     } else if (debitAmount == "") {
                         showErrorToast("Please enter Debit amount")
-                    } else if (binding.etv5.text.toString() == ""){
-                      showErrorToast("Please enter chassis number")
-                    } else if (binding.etv5.text.toString().length != 17){
+                    } else if (binding.etv5.text.toString() == "") {
+                        showErrorToast("Please enter chassis number")
+                    } else if (binding.etv5.text.toString().length != 17) {
                         showErrorToast("Please enter compltete chassis number")
                     } else {
                         val regDetails = RegDetails(
@@ -1494,7 +1542,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     } else if ((documentType == 2 || documentType == 4) && documentExpiry == "") {
                         showErrorToast("Please select document expiry date")
                     } else {
-                        userName123 = fName+" "+lName
+                        userName123 = fName + " " + lName
                         val request = CreateCustomerRew(
                             createCustomerReq = CustomerRequest(
                                 reqWallet = RequestWallet(
@@ -1737,17 +1785,19 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                     }
 
                     "3" -> {
-                        ImagePicker.with(this@VerifyTagActivity).cameraOnly().createIntent { intent ->
-                            startForCarFrontImageResult.launch(intent)
-                        }
+                        ImagePicker.with(this@VerifyTagActivity).cameraOnly()
+                            .createIntent { intent ->
+                                startForCarFrontImageResult.launch(intent)
+                            }
                         //getCarFront(v)
                     }
 
                     "4" -> {
-                        ImagePicker.with(this@VerifyTagActivity).cameraOnly().createIntent { intent ->
-                            startForCarSideImageResult.launch(intent)
-                        }
-                       // getCarSide(v)
+                        ImagePicker.with(this@VerifyTagActivity).cameraOnly()
+                            .createIntent { intent ->
+                                startForCarSideImageResult.launch(intent)
+                            }
+                        // getCarSide(v)
                     }
 
                     "5" -> {
@@ -1766,6 +1816,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var tagafixFile: File? = null
+
     @RequiresApi(Build.VERSION_CODES.O)
     private val startForTagaFixImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -1835,6 +1886,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var carFrontFile: File? = null
+
     @RequiresApi(Build.VERSION_CODES.O)
     private val startForCarFrontImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -1904,6 +1956,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var carSideFile: File? = null
+
     @RequiresApi(Build.VERSION_CODES.O)
     private val startForCarSideImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -1974,6 +2027,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var rcBackFile: File? = null
+
     @RequiresApi(Build.VERSION_CODES.O)
     private val startForRCBackImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->
@@ -2072,6 +2126,7 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
     }
 
     private var rcFrontFile: File? = null
+
     @RequiresApi(Build.VERSION_CODES.O)
     private val startForRCFrontImageResult =
         registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result: ActivityResult ->

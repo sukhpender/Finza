@@ -219,6 +219,7 @@
                         android:layout_marginStart="@dimen/_16sdp"
                         android:layout_marginTop="@dimen/_15ssp"
                         android:layout_marginEnd="@dimen/_16sdp"
+                        android:visibility="gone"
                         android:text="Engine Number"
                         android:textColor="@color/fsm_text_color"
                         android:textSize="@dimen/_12sdp" />
@@ -230,6 +231,7 @@
                         android:layout_marginHorizontal="@dimen/_15sdp"
                         android:layout_marginTop="8dp"
                         android:hint="last 5 digits"
+                        android:visibility="gone"
                         android:imeOptions="actionDone"
                         android:inputType="text"
                         android:maxLength="5"
