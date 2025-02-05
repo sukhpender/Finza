@@ -71,11 +71,11 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
         window.statusBarColor = ContextCompat.getColor(this, R.color.line_color)
 
         sharedPrefManager.getCurrentUser().let {
-            binding.tv3.text = it?.full_name
+         //   binding.tv3.text = it?.full_name
         }
 
         sharedPrefManager.getToken()?.let {
-            viewModel.getWallet(it)
+           // viewModel.getWallet(it)
         }
 
         binding.rb.setOnCheckedChangeListener { group, checkedId ->
@@ -180,7 +180,7 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
                       showHideLoader(false)
                     // showSuccessToast(it.data?.message.toString())
                     if (it.data != null) {
-                        binding.tv5.text = "₹ ${it.data.wallet}"
+                    //    binding.tv5.text = "₹ ${it.data.wallet}"
                     }
                 }
 

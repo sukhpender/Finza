@@ -421,12 +421,12 @@ interface BaseApi {
         @Header("Authorization") header: String, @Body reqBody: RegisterTagRequest
     ): Response<RegisterTagResponseModel>
 
-    @POST(Constants.GET_VEHICLE_DETAILS)
+    @GET(Constants.GET_VEHICLE_DETAILS)
     @Headers(Constants.X_APP_ACCEPT)
     suspend fun getVehicleDetails(
         @Header("Authorization") header: String,
-        @Field("rc_no") rc_no: String,
-        @Field("type") type: Int
+        @Query("rc_no") rc_no: String,
+        @Query("type") type: Int
     ): Response<GetVehicleDetailsResponseModel>
 
     @FormUrlEncoded

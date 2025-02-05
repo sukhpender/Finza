@@ -1332,30 +1332,31 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 // send otp -------------------------------
                 R.id.tvVerifyNumber -> {
                     val mNumber = binding.etPhone.text.toString()
-                    var vehicleNumber = binding.etvVehicleNumber.text.toString()
+                    var vehicleNumber1 = binding.etvVehicleNumber.text.toString()
                     val isChassis = binding.cbChassisNumber.isChecked
                     val chassisNumber = binding.etvChassisNumber.text.toString()
                     //  val engineNumber = binding.etvEngineNumber.text.toString()
 
                     if (isChassis) {
                         isChassi = 1
-                        vehicleNumber = "Test"
+                        vehicleNumber1 = "Test"
                     } else {
                         isChassi = 0
-                        vehicleNumber = binding.etvVehicleNumber.text.toString()
+                        vehicleNumber1 = binding.etvVehicleNumber.text.toString()
                     }
 
                     if (mNumber == "") {
                         showErrorToast("Please enter phone number")
                     } else if (mNumber.length != 10) {
                         showErrorToast("Please enter a valid phone number")
-                    } else if (vehicleNumber == "") {
+                    } else if (vehicleNumber1 == "") {
                         showErrorToast("Please enter vehicle number")
                     } else if (isChassis && chassisNumber == "") {
                         showErrorToast("Please enter chassis number")
                     } else if (isChassis && chassisNumber.length != 17) {
                         showErrorToast("Please enter a valid chassis number")
                     } else {
+                        vehicleNumber = vehicleNumber1
                         viewModel.getVehicleDetails(
                             sharedPrefManager.getToken().toString(), vehicleNumber, 1
                         )

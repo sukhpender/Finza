@@ -20,7 +20,7 @@
         <LinearLayout
             android:id="@+id/ll1"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_105sdp"
+            android:layout_height="@dimen/_165sdp"
             android:background="@drawable/round_bottom_app_bg"
             android:gravity="start"
             android:orientation="horizontal"
@@ -56,7 +56,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cvBalance"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/_120sdp"
+            android:layout_height="wrap_content"
             android:layout_marginHorizontal="@dimen/_15sdp"
             app:cardBackgroundColor="@color/white"
             app:cardCornerRadius="@dimen/_10sdp"
@@ -65,105 +65,264 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/ll1">
 
-            <androidx.constraintlayout.widget.ConstraintLayout
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content">
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/tv1"
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:layout_width="wrap_content"
+                <LinearLayout
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginStart="@dimen/_10sdp"
                     android:layout_marginTop="@dimen/_10sdp"
-                    android:gravity="center"
-                    android:text="@string/user_name"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent" />
+                    android:gravity="end"
+                    android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/tv3"
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="start"
-                    android:maxLines="2"
-                    android:text="----"
-                    android:ellipsize="end"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_16sdp"
-                    app:layout_constraintEnd_toStartOf="@+id/tv6"
-                    app:layout_constraintStart_toStartOf="@+id/tv1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv1" />
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
 
-                <View
-                    android:id="@+id/v1"
-                    android:layout_width="0dp"
-                    android:layout_height="@dimen/_1sdp"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:background="@color/dark_grey_txt_color35"
-                    app:layout_constraintEnd_toStartOf="@+id/tv6"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/tv3" />
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="0 Activation"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_11sdp" />
 
-                <TextView
-                    android:id="@+id/tv4"
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_8sdp"
-                    android:gravity="center"
-                    android:text="@string/available_balance"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/v1" />
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text=" - "
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
 
-                <TextView
-                    android:id="@+id/tv5"
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="center"
-                    android:text="0.0"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_18sdp"
-                    app:layout_constraintStart_toStartOf="@+id/tv1"
-                    app:layout_constraintTop_toBottomOf="@+id/tv4" />
+                        <TextView
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="No RC download"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
 
-                <com.google.android.material.imageview.ShapeableImageView
-                    android:id="@+id/iv2"
-                    android:layout_width="@dimen/_70sdp"
-                    android:layout_height="@dimen/_75sdp"
-                    android:layout_marginHorizontal="@dimen/_10sdp"
-                    android:layout_marginTop="@dimen/_10sdp"
-                    android:scaleType="centerCrop"
-                    android:src="@drawable/india"
-                    app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:shapeAppearance="@style/ShapeAppearanceOverlay.App.CornerSize10Percent" />
+                    </LinearLayout>
 
-                <TextView
-                    android:id="@+id/tv6"
-                    style="@style/TextView.InterRegular_12ssp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="@dimen/_5sdp"
-                    android:fontFamily="@font/inter_semibold"
-                    android:gravity="center"
-                    android:text="@string/indian_rupee"
-                    android:textColor="@color/fsm_text_color"
-                    android:textSize="@dimen/_12sdp"
-                    app:layout_constraintEnd_toEndOf="@+id/iv2"
-                    app:layout_constraintTop_toBottomOf="@+id/iv2" />
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@color/line_colo10" />
 
-            </androidx.constraintlayout.widget.ConstraintLayout>
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="1-20\nActivation"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text=" - "
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="50rs Smart card /\n30rs QR RC"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@color/line_colo10" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="21-30\nActivation"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text=" - "
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="40rs Smart card /\n20rs QR RC"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@color/line_colo10" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="31 - 40 \nActivation"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text=" - "
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="30rs  Smart card /\n15rs QR RC"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_11sdp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@color/line_colo10" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="41 - 50\nActivation"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text=" - "
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="20rs Smart card /\n10rs QR RC"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="@dimen/_1sdp"
+                        android:layout_marginVertical="@dimen/_5sdp"
+                        android:background="@color/line_colo10" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="@dimen/_10sdp"
+                        android:gravity="center">
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center"
+                            android:text="51+\nActivation"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_11sdp" />
+
+                        <TextView
+                            style="@style/TextView.PoppinsMedium"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginHorizontal="@dimen/_5sdp"
+                            android:gravity="center"
+                            android:text=" - "
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                        <TextView
+                            style="@style/TextView.InterRegular_12ssp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="start"
+                            android:text="15rs Smart card /\n10rs QR RC"
+                            android:textColor="@color/fsm_text_color"
+                            android:textSize="@dimen/_12sdp" />
+
+                    </LinearLayout>
+
+
+                </LinearLayout>
+
+            </LinearLayout>
 
         </androidx.cardview.widget.CardView>
 
@@ -173,7 +332,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/_16sdp"
-            android:layout_marginTop="@dimen/_25ssp"
+            android:layout_marginTop="@dimen/_10ssp"
             android:layout_marginEnd="@dimen/_16sdp"
             android:text="@string/vehicle_number"
             android:textColor="@color/fsm_text_color"
@@ -198,7 +357,7 @@
             android:id="@+id/rb"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/_15sdp"
+            android:layout_marginTop="@dimen/_5sdp"
             android:buttonTint="@color/color_primary"
             android:textColor="@color/black"
             app:layout_constraintStart_toStartOf="@+id/etvVehicleNumber"
@@ -208,7 +367,7 @@
                 android:id="@+id/rbDownloadPrivahan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Download MParivahan"
+                android:text="Download QR RC "
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/etvVehicleNumber"
                 app:layout_constraintTop_toBottomOf="@+id/rbDownloadPrivahan" />
@@ -217,7 +376,7 @@
                 android:id="@+id/rbDownloadRC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Download Rc"
+                android:text="⁠Download Smart Card RC"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/etvVehicleNumber"
                 app:layout_constraintTop_toBottomOf="@+id/rbDownloadPrivahan" />
