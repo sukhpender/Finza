@@ -27,6 +27,7 @@ import com.riggle.finza_finza.data.model.MultipleTransferResponseModel
 import com.riggle.finza_finza.data.model.NeedFastagResponseModel
 import com.riggle.finza_finza.data.model.PaymentStoreRequest
 import com.riggle.finza_finza.data.model.ProjectListResponseModel
+import com.riggle.finza_finza.data.model.RcDownloadedResponseModel
 import com.riggle.finza_finza.data.model.RegisterTagRequest
 import com.riggle.finza_finza.data.model.RegisterTagResponseModel
 import com.riggle.finza_finza.data.model.ReplacementResponseModel
@@ -368,5 +369,9 @@ class BaseRepoImpl @Inject constructor(private val apiService: BaseApi) : BaseRe
         status: Int
     ): Response<DownloadDocResponseModel> {
         return apiService.downloadPdf(header,rc_no,type,status)
+    }
+
+    override suspend fun downloadRcList(header: String,page: Int): Response<RcDownloadedResponseModel> {
+        return apiService.downloadRcList(header,page)
     }
 }

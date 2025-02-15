@@ -788,48 +788,49 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                 Status.SUCCESS -> {
                     //  showHideLoader(false)
                     if (it.data != null) {
-                        val requestBody = SendOtpRequest(
-                            chassisNo = it.data.data.data.chassisNo,
-                            engineNo = it.data.data.data.engineNo,
-                            isChassis = isChassi,
-                            mobileNo = binding.etPhone.text.toString(),
-                            provider = provider,
-                            reqDateTime = getCurrentDateFormatted(),
-                            reqType = reqType,
-                            requestId = generateRandom15DigitId(),
-                            resend = resend,
-                            udf1 = "",
-                            udf2 = "",
-                            udf3 = "",
-                            udf4 = "",
-                            udf5 = "",
-                            vehicleNo = vehicleNumber,
-                            inventory_id = FastTagId
-                        )
-                        vehicleChassisNumber = it.data.data.data.chassisNo
-                        vehicleEngineNumber = it.data.data.data.engineNo
-                        vehicleColour1 = it.data.data.data.vehicleColor
+                        it.data.data.let { it1->
+                            val requestBody = SendOtpRequest(
+                                chassisNo = it1.data.chassisNo,
+                                engineNo = it1.data.engineNo,
+                                isChassis = isChassi,
+                                mobileNo = binding.etPhone.text.toString(),
+                                provider = provider,
+                                reqDateTime = getCurrentDateFormatted(),
+                                reqType = reqType,
+                                requestId = generateRandom15DigitId(),
+                                resend = resend,
+                                udf1 = "",
+                                udf2 = "",
+                                udf3 = "",
+                                udf4 = "",
+                                udf5 = "",
+                                vehicleNo = vehicleNumber,
+                                inventory_id = FastTagId
+                            )
+                            vehicleChassisNumber = it1.data.chassisNo
+                            vehicleEngineNumber = it1.data.engineNo
+                            vehicleColour1 = it1.data.vehicleColor
 
 
-//                        vehicleManuf = it.data.data.data
-//                        model = it.data.data.data
-//                        walletId1 = it.data.data.data
-//                        userName = it.data.data.data
+//                        vehicleManuf = it1.data
+//                        model = it1.data
+//                        walletId1 = it1.data
+//                        userName = it1.data
 //                        //    vehicleNumber = it1
-//                        vehicleDescriptor1 = it.data.data.data
-//                        isNationalPermit1 = it.data.data.data
-//                        permitExpiryDate1 = it.data.data.data
-//                        stateOfRegistration1 = it.data.data.data
-//                        tagVehicleClassID1 = it.data.data.data
-//                        npciVehicleClassID1 = it.data.data.data
-//                        type = it.data.data.data
-//                        vehicleType = it.data.data.data
-//                        tagCost = it.data.data.data
-//                        securityDeposit = it.data.data.data
-//                        rechargeAmount = it.data.data.data
-
-                        Log.e("SendOtpRequest--->>>", requestBody.toString())
-                        viewModel.sendOtp(sharedPrefManager.getToken().toString(), requestBody)
+//                        vehicleDescriptor1 = it1.data
+//                        isNationalPermit1 = it1.data
+//                        permitExpiryDate1 = it1.data
+//                        stateOfRegistration1 = it1.data
+//                        tagVehicleClassID1 = it1.data
+//                        npciVehicleClassID1 = it1.data
+//                        type = it1.data
+//                        vehicleType = it1.data
+//                        tagCost = it1.data
+//                        securityDeposit = it1.data
+//                        rechargeAmount = it1.data
+                            Log.e("SendOtpRequest--->>>", requestBody.toString())
+                            viewModel.sendOtp(sharedPrefManager.getToken().toString(), requestBody)
+                        }
                     } else {
                         showErrorToast(it.message.toString())
                     }

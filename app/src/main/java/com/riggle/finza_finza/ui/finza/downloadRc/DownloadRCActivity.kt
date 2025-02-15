@@ -14,30 +14,34 @@ import android.text.TextWatcher
 import android.util.Log
 import android.view.WindowManager
 import android.widget.RadioButton
-import android.widget.Toast
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.riggle.finza_finza.BR
 import com.riggle.finza_finza.R
+import com.riggle.finza_finza.data.model.RcDownloadedDataX
 import com.riggle.finza_finza.databinding.ActivityDownloadRcactivityBinding
+import com.riggle.finza_finza.databinding.HolderDownloadTransactionsBinding
 import com.riggle.finza_finza.ui.base.BaseActivity
 import com.riggle.finza_finza.ui.base.BaseViewModel
+import com.riggle.finza_finza.ui.base.SimpleRecyclerViewAdapter
 import com.riggle.finza_finza.utils.Status
+import com.riggle.finza_finza.utils.VerticalPagination
 import com.riggle.finza_finza.utils.showErrorToast
 import com.riggle.finza_finza.utils.showInfoToast
 import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.OkHttpClient
 import okhttp3.Request
-import java.io.File
-import java.io.FileOutputStream
 import java.io.InputStream
 import java.io.OutputStream
 import java.util.Locale
 
 @AndroidEntryPoint
-class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
+class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
+    VerticalPagination.VerticalScrollListener {
 
     private var selectedText = ""
     private val viewModel: DownloadRCActivityVM by viewModels()
@@ -70,12 +74,13 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.line_color)
 
+        viewModel.downloadList(sharedPrefManager.getToken().toString(), currentPage)
         sharedPrefManager.getCurrentUser().let {
-         //   binding.tv3.text = it?.full_name
+            //   binding.tv3.text = it?.full_name
         }
 
         sharedPrefManager.getToken()?.let {
-           // viewModel.getWallet(it)
+            // viewModel.getWallet(it)
         }
 
         binding.rb.setOnCheckedChangeListener { group, checkedId ->
@@ -99,6 +104,7 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
             override fun afterTextChanged(s: Editable) {}
         })
 
+        initAdapter()
     }
 
     private fun initOnClick() {
@@ -117,17 +123,11 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
                     } else {  // 1 = Smart Card , 2 = RC Copy
                         if (selectedText == "Download MParivahan") {
                             viewModel.downloadPdf(
-                                sharedPrefManager.getToken().toString(),
-                                vehicleNumber,
-                                1,
-                                1
+                                sharedPrefManager.getToken().toString(), vehicleNumber, 1, 1
                             )
                         } else {
                             viewModel.downloadPdf(
-                                sharedPrefManager.getToken().toString(),
-                                vehicleNumber,
-                                1,
-                                2
+                                sharedPrefManager.getToken().toString(), vehicleNumber, 1, 2
                             )
                         }
                     }
@@ -138,6 +138,46 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
 
     @RequiresApi(Build.VERSION_CODES.Q)
     private fun initObservers() {
+        viewModel.obrDownloadList.observe(this) {
+            when (it?.status) {
+                Status.LOADING -> {
+                    showHideLoader(true)
+                }
+
+                Status.SUCCESS -> {
+                    showHideLoader(false)
+                    if (it.data != null) {
+                        if (currentPage < it.data.data.last_page) {
+                            verticalPagination.isLoading = false
+                        }
+                        if (it.data.data.current_page == 1) {
+                            adapter.list = it.data.data.data
+                        } else {
+                            if (it.data.data.data.isNotEmpty()) {
+                                adapter.addToList(it.data.data.data)
+                            }
+                        }
+                        it.data.data.let { it1 ->
+                            it1.data.let { it2 ->
+                                adapter.list = it2
+                            }
+                        }
+                    }
+                }
+
+                Status.WARN -> {
+                    showHideLoader(false)
+                    showErrorToast(it.message.toString())
+                }
+
+                Status.ERROR -> {
+                    showHideLoader(false)
+                }
+
+                else -> {}
+            }
+        }
+
         viewModel.obrDownload.observe(this) {
             when (it?.status) {
                 Status.LOADING -> {
@@ -145,7 +185,7 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
                 }
 
                 Status.SUCCESS -> {
-                   // showHideLoader(false)
+                    // showHideLoader(false)
                     if (it.data != null) {
                         pdfUrl = it.data.pdf_url
                         if (checkPermission()) {
@@ -177,10 +217,10 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
                 }
 
                 Status.SUCCESS -> {
-                      showHideLoader(false)
+                    showHideLoader(false)
                     // showSuccessToast(it.data?.message.toString())
                     if (it.data != null) {
-                    //    binding.tv5.text = "₹ ${it.data.wallet}"
+                        //    binding.tv5.text = "₹ ${it.data.wallet}"
                     }
                 }
 
@@ -198,6 +238,25 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
             }
         }
 
+    }
+
+    private var currentPage: Int = 1
+    private lateinit var verticalPagination: VerticalPagination
+    private lateinit var adapter: SimpleRecyclerViewAdapter<RcDownloadedDataX, HolderDownloadTransactionsBinding>
+    private fun initAdapter() {
+        adapter = SimpleRecyclerViewAdapter(
+            R.layout.holder_download_transactions, BR.bean
+        ) { v, m, pos ->
+
+        }
+        val layoutManager = LinearLayoutManager(this)
+        binding.rvHomeDrawer.layoutManager = layoutManager
+        binding.rvHomeDrawer.setItemViewCacheSize(50)
+        binding.rvHomeDrawer.adapter = adapter
+        verticalPagination = VerticalPagination(layoutManager, 3)
+        verticalPagination.setListener(this)
+        binding.rvHomeDrawer.addOnScrollListener(verticalPagination)
+        binding.rvHomeDrawer.adapter = adapter
     }
 
     private fun checkPermission(): Boolean {
@@ -224,6 +283,7 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
     }
 
     var pdfUrl = ""
+
     @RequiresApi(Build.VERSION_CODES.Q)
     override fun onRequestPermissionsResult(
         requestCode: Int, permissions: Array<String>, grantResults: IntArray
@@ -257,7 +317,10 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
                 val contentValues = ContentValues().apply {
                     put(MediaStore.MediaColumns.DISPLAY_NAME, "downloaded_sample.pdf")
                     put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
-                    put(MediaStore.MediaColumns.RELATIVE_PATH, "Download/") // Path to Downloads folder
+                    put(
+                        MediaStore.MediaColumns.RELATIVE_PATH,
+                        "Download/"
+                    ) // Path to Downloads folder
                 }
 
                 // Insert into MediaStore (Downloads folder)
@@ -297,6 +360,11 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>() {
                 e.printStackTrace()
             }
         }.start()
+    }
+
+    override fun onLoadMore() {
+        currentPage++
+        viewModel.downloadList(sharedPrefManager.getToken().toString(), currentPage)
     }
 
 }

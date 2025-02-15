@@ -134,7 +134,15 @@ object ImageBindingAdapter {
             }else{
             iv.setBackgroundDrawable(ContextCompat.getDrawable(iv.context, R.drawable.round_8dp_border_rec))
         }
+    }
 
+    @JvmStatic
+    @BindingAdapter("formatDate")
+    fun formatDate1(iv: TextView,inputDate: String) {
+        val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", Locale.getDefault())
+        val outputFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        val date = inputFormat.parse(inputDate)
+        iv.text = "Date : "+outputFormat.format(date)
     }
 
     @JvmStatic
