@@ -371,7 +371,7 @@
                 android:id="@+id/rbDownloadPrivahan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Download QR RC "
+                android:text="Download QR RC"
                 android:textColor="@color/black"
                 android:layout_marginEnd="@dimen/_15sdp"
                 app:layout_constraintStart_toStartOf="@+id/etvVehicleNumber"
@@ -381,7 +381,7 @@
                 android:id="@+id/rbDownloadRC"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="⁠Download Smart Card RC"
+                android:text="Download Smart Card RC"
                 android:textColor="@color/black"
                 app:layout_constraintStart_toStartOf="@+id/etvVehicleNumber"
                 app:layout_constraintTop_toBottomOf="@+id/rbDownloadPrivahan" />
@@ -417,7 +417,6 @@
             app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             android:layout_marginBottom="@dimen/_5sdp"
             app:layout_constraintStart_toStartOf="parent"
-            android:paddingBottom="@dimen/_50sdp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/tvDownload"
             tools:listitem="@layout/holder_download_transactions" />

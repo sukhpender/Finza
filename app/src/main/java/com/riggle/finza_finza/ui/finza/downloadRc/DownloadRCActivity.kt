@@ -2,18 +2,23 @@ package com.riggle.finza_finza.ui.finza.downloadRc
 
 import android.Manifest
 import android.app.Activity
+import android.app.DownloadManager
 import android.content.ContentResolver
 import android.content.ContentValues
+import android.content.Context
 import android.content.Intent
 import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
+import android.os.Environment
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import android.view.WindowManager
 import android.widget.RadioButton
+import androidx.activity.result.ActivityResultLauncher
+import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
 import androidx.core.app.ActivityCompat
@@ -31,12 +36,17 @@ import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.VerticalPagination
 import com.riggle.finza_finza.utils.showErrorToast
 import com.riggle.finza_finza.utils.showInfoToast
+import com.riggle.finza_finza.utils.showSheet
 import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import okhttp3.OkHttpClient
 import okhttp3.Request
 import java.io.InputStream
 import java.io.OutputStream
+import java.net.HttpURLConnection
+import java.net.URL
+import java.text.SimpleDateFormat
+import java.util.Date
 import java.util.Locale
 
 @AndroidEntryPoint
@@ -73,6 +83,28 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
         window.clearFlags(WindowManager.LayoutParams.FLAG_TRANSLUCENT_STATUS)
         window.addFlags(WindowManager.LayoutParams.FLAG_DRAWS_SYSTEM_BAR_BACKGROUNDS)
         window.statusBarColor = ContextCompat.getColor(this, R.color.line_color)
+
+        requestPermissionLauncher =
+            registerForActivityResult(ActivityResultContracts.RequestMultiplePermissions()) { permissions ->
+                val granted = permissions.all { it.value }
+                if (granted) {
+                    downloadPdf()
+                } else {
+                    showErrorToast("Storage permission is required!")
+                }
+            }
+
+        // Initialize Storage Access Framework (SAF) launcher for Android 10+
+        createFileLauncher =
+            registerForActivityResult(ActivityResultContracts.CreateDocument("application/pdf")) { uri ->
+                uri?.let {
+                    downloadPdfToUri(uri)
+                } ?: run {
+                    showErrorToast("No folder selected!")
+                }
+            }
+
+
 
         viewModel.downloadList(sharedPrefManager.getToken().toString(), currentPage)
         sharedPrefManager.getCurrentUser().let {
@@ -121,13 +153,13 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
                     } else if (selectedText == "") {
                         showErrorToast("Please select download type")
                     } else {  // 1 = Smart Card , 2 = RC Copy
-                        if (selectedText == "Download MParivahan") {
+                        if (selectedText == "Download QR RC") {
                             viewModel.downloadPdf(
-                                sharedPrefManager.getToken().toString(), vehicleNumber, 1, 1
+                                sharedPrefManager.getToken().toString(), vehicleNumber, 1, 2
                             )
                         } else {
                             viewModel.downloadPdf(
-                                sharedPrefManager.getToken().toString(), vehicleNumber, 1, 2
+                                sharedPrefManager.getToken().toString(), vehicleNumber, 1, 1
                             )
                         }
                     }
@@ -136,7 +168,6 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
         }
     }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
     private fun initObservers() {
         viewModel.obrDownloadList.observe(this) {
             when (it?.status) {
@@ -157,11 +188,11 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
                                 adapter.addToList(it.data.data.data)
                             }
                         }
-                        it.data.data.let { it1 ->
-                            it1.data.let { it2 ->
-                                adapter.list = it2
-                            }
-                        }
+//                        it.data.data.let { it1 ->
+//                            it1.data.let { it2 ->
+//                                adapter.list = it2
+//                            }
+//                        }
                     }
                 }
 
@@ -188,10 +219,10 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
                     // showHideLoader(false)
                     if (it.data != null) {
                         pdfUrl = it.data.pdf_url
-                        if (checkPermission()) {
-                            downloadPDF(it.data.pdf_url)
-                        } else {
-                            requestPermission()
+                        if (pdfUrl != null && pdfUrl != "") {
+                            startDownloadProcess()
+                        }else{
+                            showErrorToast("pdf url not found")
                         }
                     }
                 }
@@ -259,112 +290,86 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
         binding.rvHomeDrawer.adapter = adapter
     }
 
-    private fun checkPermission(): Boolean {
-        return if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-            ContextCompat.checkSelfPermission(
-                this, Manifest.permission.WRITE_EXTERNAL_STORAGE
-            ) == PackageManager.PERMISSION_GRANTED
-        } else {
-            true
-        }
-    }
-
-    private fun requestPermission() {
-        if (ActivityCompat.shouldShowRequestPermissionRationale(
-                this, Manifest.permission.WRITE_EXTERNAL_STORAGE
-            )
-        ) {
-            // Show explanation
-            showInfoToast("Storage permission is required to download the PDF")
-        }
-        ActivityCompat.requestPermissions(
-            this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 101
-        )
-    }
-
-    var pdfUrl = ""
-
-    @RequiresApi(Build.VERSION_CODES.Q)
-    override fun onRequestPermissionsResult(
-        requestCode: Int, permissions: Array<String>, grantResults: IntArray
-    ) {
-        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
-        if (requestCode == 101) {
-            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                downloadPDF(pdfUrl)
+    private var pdfUrl = ""
+    private lateinit var requestPermissionLauncher: ActivityResultLauncher<Array<String>>
+    private lateinit var createFileLauncher: ActivityResultLauncher<String>
+    private fun startDownloadProcess() {
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                // Android 10+ (Use SAF)
+                createFileLauncher.launch(getCurrentDateTime()+".jpg")
             } else {
-                showErrorToast("Permission denied")
+                // Android 9 and below (Use permissions and DownloadManager)
+                checkPermissions()
             }
         }
-    }
 
-    @RequiresApi(Build.VERSION_CODES.Q)
-    private fun downloadPDF(url: String) {
-        Thread {
-            try {
-                // Create OkHttpClient instance
-                val client = OkHttpClient()
-
-                // Create request to fetch PDF
-                val request = Request.Builder().url(url).build()
-
-                // Execute request and get response
-                val response = client.newCall(request).execute()
-                val inputStream: InputStream = response.body?.byteStream() ?: return@Thread
-
-                // Get the ContentResolver and prepare ContentValues
-                val contentResolver: ContentResolver = contentResolver
-                val contentValues = ContentValues().apply {
-                    put(MediaStore.MediaColumns.DISPLAY_NAME, "downloaded_sample.pdf")
-                    put(MediaStore.MediaColumns.MIME_TYPE, "application/pdf")
-                    put(
-                        MediaStore.MediaColumns.RELATIVE_PATH,
-                        "Download/"
-                    ) // Path to Downloads folder
-                }
-
-                // Insert into MediaStore (Downloads folder)
-                val contentUri: Uri = MediaStore.Downloads.EXTERNAL_CONTENT_URI
-                val uri: Uri? = contentResolver.insert(contentUri, contentValues)
-
-                if (uri != null) {
-                    val outputStream: OutputStream? = contentResolver.openOutputStream(uri)
-
-                    outputStream?.use { outputStream ->
-                        val buffer = ByteArray(1024)
-                        var length: Int
-                        while (inputStream.read(buffer).also { length = it } != -1) {
-                            outputStream.write(buffer, 0, length)
-                        }
-
-                        // Notify user that the download is complete
-                        runOnUiThread {
-                            showHideLoader(false)
-                            showSuccessToast("PDF downloaded to Downloads folder")
-                            finish()
-                        }
-                    }
-                } else {
-                    runOnUiThread {
-                        showHideLoader(false)
-                        showErrorToast("Failed to create file in Downloads folder")
-                    }
-                }
-
-                inputStream.close()
-            } catch (e: Exception) {
-                runOnUiThread {
-                    showHideLoader(false)
-                    showErrorToast("Failed to download PDF")
-                }
-                e.printStackTrace()
+        private fun checkPermissions() {
+            val permissions = if (Build.VERSION.SDK_INT < Build.VERSION_CODES.Q) {
+                arrayOf(
+                    Manifest.permission.READ_EXTERNAL_STORAGE,
+                    Manifest.permission.WRITE_EXTERNAL_STORAGE
+                )
+            } else {
+                emptyArray() // No permission needed for SAF
             }
-        }.start()
+
+            if (permissions.isNotEmpty()) {
+                requestPermissionLauncher.launch(permissions)
+            } else {
+                downloadPdf()
+            }
+        }
+
+    private fun getCurrentDateTime(): String {
+        val dateFormat = SimpleDateFormat("dd MMM yyyy HH:mm:ss", Locale.getDefault())
+        return dateFormat.format(Date())
     }
+
+
+    private fun downloadPdf() {
+            val request = DownloadManager.Request(Uri.parse(pdfUrl))
+                .setTitle("Downloading Document")
+                .setDescription("Downloading...")
+                .setNotificationVisibility(DownloadManager.Request.VISIBILITY_VISIBLE_NOTIFY_COMPLETED)
+                .setDestinationInExternalPublicDir(Environment.DIRECTORY_DOWNLOADS, getCurrentDateTime() + ".jpg")
+
+            val downloadManager = getSystemService(Context.DOWNLOAD_SERVICE) as DownloadManager
+            downloadManager.enqueue(request)
+            showToast("Download started...")
+        }
+
+        private fun downloadPdfToUri(uri: Uri) {
+            Thread {
+                try {
+                    val url = URL(pdfUrl)
+                    val connection: HttpURLConnection = url.openConnection() as HttpURLConnection
+                    connection.connect()
+
+                    val inputStream: InputStream = connection.inputStream
+                    contentResolver.openOutputStream(uri)?.use { outputStream ->
+                        val buffer = ByteArray(1024)
+                        var bytesRead: Int
+                        while (inputStream.read(buffer).also { bytesRead = it } != -1) {
+                            outputStream.write(buffer, 0, bytesRead)
+                        }
+                        outputStream.flush()
+                    }
+
+                    runOnUiThread {
+                        showSuccessToast("Downloaded successfully!")
+                    }
+                } catch (e: Exception) {
+                    e.printStackTrace()
+                    runOnUiThread {
+                        showErrorToast("Failed to download")
+                    }
+                }
+            }.start()
+            hideLoading()
+        }
 
     override fun onLoadMore() {
         currentPage++
         viewModel.downloadList(sharedPrefManager.getToken().toString(), currentPage)
     }
-
 }
