@@ -223,6 +223,7 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
                         if (pdfUrl != null && pdfUrl != "") {
                             startDownloadProcess()
                         }else{
+
                             showErrorToast("pdf url not found")
                         }
                     }
