@@ -217,6 +217,7 @@ class DownloadRCActivity : BaseActivity<ActivityDownloadRcactivityBinding>(),
 
                 Status.SUCCESS -> {
                     // showHideLoader(false)
+
                     if (it.data != null) {
                         pdfUrl = it.data.pdf_url
                         if (pdfUrl != null && pdfUrl != "") {
