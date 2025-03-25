@@ -47,12 +47,18 @@
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:singleLine="true"
+                        android:text='@{"Vehicle Number : "+String.valueOf(bean.vehicle_number)}'
+                        android:textColor="@color/white"
+                        android:textSize="@dimen/_12sdp"
+                        android:fontFamily="@font/inter_bold" />
+
+                    <TextView
+                        style="@style/TextView.InterRegular_12ssp"
+                        android:singleLine="true"
                         android:text='@{"Amount : "+String.valueOf(bean.amount)}'
                         android:textColor="@color/white"
                         android:textSize="@dimen/_12sdp"
-                        android:fontFamily="@font/inter_bold"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:fontFamily="@font/inter_bold" />
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
@@ -61,18 +67,14 @@
                         formatDate="@{bean.created_at}"
                         android:fontFamily="@font/inter_bold"
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="@dimen/_12sdp" />
 
                     <TextView
                         style="@style/TextView.InterRegular_12ssp"
                         android:layout_marginTop="@dimen/_2sdp"
                         android:text='@{"-> "+bean.description}'
                         android:textColor="@color/white"
-                        android:textSize="@dimen/_12sdp"
-                        app:layout_constraintEnd_toEndOf="parent"
-                        app:layout_constraintTop_toTopOf="parent" />
+                        android:textSize="@dimen/_12sdp" />
 
                 </LinearLayout>
 

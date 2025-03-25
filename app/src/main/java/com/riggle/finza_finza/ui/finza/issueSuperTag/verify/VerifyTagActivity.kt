@@ -811,6 +811,8 @@ class VerifyTagActivity : BaseActivity<ActivityVerifyTagBinding>() {
                             vehicleEngineNumber = it1.data.engineNo
                             vehicleColour1 = it1.data.vehicleColor
 
+                            Log.e("AShuuu->",vehicleChassisNumber.toString() + "Engine number -> " + vehicleEngineNumber.toString())
+
 
 //                        vehicleManuf = it1.data
 //                        model = it1.data

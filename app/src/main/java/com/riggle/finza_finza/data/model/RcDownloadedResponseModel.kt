@@ -28,6 +28,7 @@ data class RcDownloadedDataX(
     val id: Int,
     val status: Int,
     val transaction_id: Any,
+    val vehicle_number: String? = "-",
     val updated_at: String,
     val user_id: Int
 )

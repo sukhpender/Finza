@@ -45,6 +45,7 @@ import java.time.format.DateTimeParseException
 import java.util.Calendar
 import java.util.Date
 import java.util.Locale
+import java.util.TimeZone
 import kotlin.math.ln
 import kotlin.math.pow
 
@@ -138,17 +139,21 @@ object ImageBindingAdapter {
 
     @JvmStatic
     @BindingAdapter("formatDate")
-    fun formatDate1(iv: TextView,inputDate: String) {
+    fun formatDate1(iv: TextView, inputDate: String) {
         val inputFormat = SimpleDateFormat("yyyy-MM-dd'T'HH:mm:ss.SSSSSS'Z'", Locale.getDefault())
-        val outputFormat = SimpleDateFormat("dd MMM yyyy", Locale.getDefault())
+        inputFormat.timeZone = TimeZone.getTimeZone("UTC")  // Set the input format's time zone to UTC
+
+        val outputFormat = SimpleDateFormat("dd MMM yyyy HH:mm a", Locale.getDefault())
+        outputFormat.timeZone = TimeZone.getDefault()  // Set the output format to local time zone (or UTC if you prefer)
+
         val date = inputFormat.parse(inputDate)
-        iv.text = "Date : "+outputFormat.format(date)
+        iv.text = "Date : " + outputFormat.format(date)
     }
 
     @JvmStatic
     @BindingAdapter("getInitials")
     fun getInitials(textView: TextView, data: UsersListData) {
-        var firstName = data.first_name + " " + data.last_name
+        val firstName = data.first_name + " " + data.last_name
         val nameParts = firstName.trim().split(" ")
         if (nameParts.size >= 2) {
             val firstInitial = nameParts.firstOrNull()?.firstOrNull()?.uppercase() ?: ""

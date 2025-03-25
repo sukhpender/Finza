@@ -1,13 +1,16 @@
 package com.riggle.finza_finza.ui.finza
 
+import android.Manifest
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
 import android.os.Build
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.activity.viewModels
 import androidx.annotation.RequiresApi
+import androidx.core.app.ActivityCompat
 import androidx.core.view.GravityCompat
 import androidx.navigation.findNavController
 import androidx.navigation.ui.AppBarConfiguration
@@ -34,6 +37,7 @@ import com.riggle.finza_finza.ui.forgotPassword.ForgotPasswordActivity
 import com.riggle.finza_finza.ui.login.LoginActivity
 import com.riggle.finza_finza.utils.Status
 import com.riggle.finza_finza.utils.showErrorToast
+import com.riggle.finza_finza.utils.showInfoToast
 import com.riggle.finza_finza.utils.showSuccessToast
 import dagger.hilt.android.AndroidEntryPoint
 import jp.wasabeef.blurry.Blurry
@@ -218,6 +222,7 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
 //                    openCloseDrawer()
 //                }
                 5 -> { // download RC
+                  //  requestPermission()
                     startActivity(DownloadRCActivity.newIntent(this))
                     openCloseDrawer()
                 }
@@ -249,6 +254,34 @@ class FinzaHomeActivity : BaseActivity<ActivityFinzaHomeBinding>() {
         }
         binding.rvHomeDrawer.adapter = adapter
         adapter.list = prepareList()
+    }
+
+    private fun requestPermission() {
+        if (ActivityCompat.shouldShowRequestPermissionRationale(
+                this, Manifest.permission.WRITE_EXTERNAL_STORAGE
+            )
+        ) {
+            // Show explanation
+            showInfoToast("Storage permission is required to download the PDF")
+        }
+        ActivityCompat.requestPermissions(
+            this, arrayOf(Manifest.permission.WRITE_EXTERNAL_STORAGE), 101
+        )
+    }
+
+    @RequiresApi(Build.VERSION_CODES.Q)
+    override fun onRequestPermissionsResult(
+        requestCode: Int, permissions: Array<String>, grantResults: IntArray
+    ) {
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        if (requestCode == 101) {
+            if (grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                startActivity(DownloadRCActivity.newIntent(this))
+                openCloseDrawer()
+            } else {
+                showErrorToast("Permission denied")
+            }
+        }
     }
 
     private fun openChrome() {
